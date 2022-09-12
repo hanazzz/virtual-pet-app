@@ -19,6 +19,8 @@ app.jinja_env.undefined = StrictUndefined
 def show_homepage():
     """Show homepage."""
 
+    return render_template('homepage.html')
+
 
 if __name__ == "__main__":
     # connect app to db
