@@ -20,6 +20,9 @@ class User(db.Model):
     # User.pet pulls up a user's pet
     pet = db.relationship("Pet", back_populates="user")
 
+    # User.items pulls up all of a user's items
+    items = db.relationship("Item", secondary="users_items", back_populates="users")
+
     # Display user data
     def __repr__(self):
         return f"<User user_id={self.user_id} || username={self.username}>"
@@ -35,6 +38,8 @@ class Pet(db.Model):
     species_type = db.Column(db.String)
     name = db.Column(db.String(50))
     zipcode = db.Column(db.String)
+
+    # COMMENTING THESE OUT FOR NOW TO MAKE TESTING EASIER
 
     # hunger = db.Column(db.Integer)
     # last_fed = db.Column(db.DateTime)
@@ -60,16 +65,31 @@ class Pet(db.Model):
         return f"<Pet pet_id={self.pet_id} || name={self.name}>"
 
 
-# class Item(db.Model):
-#     """An item"""
+class Item(db.Model):
+    """An item"""
 
-#     __tablename__ = "items"
+    __tablename__ = "items"
+
+    item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    item_name = db.Column(db.String)
+    description = db.Column(db.String)
+
+    # Item.users pulls up all users that have an item
+    users = db.relationship("User", secondary="users_items", back_populates="items")
+
+    # Display item data
+    def __repr__(self):
+        return f"<Item item_id={self.item_id} || item_name={self.item_name}>"
 
 
-# class UserItem(db.Model):
-#     """A user's specific item."""
+class UserItem(db.Model):
+    """A user's specific item."""
     
-#     __tablename__ = "users_items"
+    __tablename__ = "users_items"
+
+    user_item_id =  db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    item_id = db.Column(db.Integer, db.ForeignKey("items.item_id"))
 
 
 
