@@ -18,38 +18,46 @@ class User(db.Model):
     password = db.Column(db.String)
 
     # User.pet pulls up a user's pet
-    # pet = db.relationship("Pet", back_populates="user")
+    pet = db.relationship("Pet", back_populates="user")
+
+    # Display user data
+    def __repr__(self):
+        return f"<User user_id={self.user_id} || username={self.username}>"
 
 
-# class Pet(db.Model):
-#     """A pet."""
+class Pet(db.Model):
+    """A pet."""
 
-#     __tablename__ = "pets"
+    __tablename__ = "pets"
 
-#     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-#     species_type = db.Column(db.String)
-#     name = db.Column(db.String(50))
-#     zipcode = db.Column(db.String)
+    pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    species_type = db.Column(db.String)
+    name = db.Column(db.String(50))
+    zipcode = db.Column(db.String)
 
-#     hunger = db.Column(db.Integer)
-#     last_fed = db.Column(db.DateTime)
-#     happiness = db.Column(db.Integer)
-#     last_played = db.Column(db.DateTime)
+    # hunger = db.Column(db.Integer)
+    # last_fed = db.Column(db.DateTime)
+    # happiness = db.Column(db.Integer)
+    # last_played = db.Column(db.DateTime)
 
-#     food_fav = db.Column(db.String)
-#     food_least = db.Column(db.String)
-#     activity_fav = db.Column(db.String)
-#     activity_least = db.Column(db.String)
-#     music_fave = db.Column(db.String)
-#     music_least = db.Column(db.String)
-#     weather_fave = db.Column(db.String)
-#     weather_least = db.Column(db.String)
-#     personality = db.Column(db.String)
-#     astro_sign = db.Column(db.String)
+    # food_fav = db.Column(db.String)
+    # food_least = db.Column(db.String)
+    # activity_fav = db.Column(db.String)
+    # activity_least = db.Column(db.String)
+    # music_fave = db.Column(db.String)
+    # music_least = db.Column(db.String)
+    # weather_fave = db.Column(db.String)
+    # weather_least = db.Column(db.String)
+    # personality = db.Column(db.String)
+    # astro_sign = db.Column(db.String)
 
-#     # Pet.user pulls up a pet's user
-#     # user = db.relationship("User", back_populates="pet")
+    # Pet.user pulls up a pet's user
+    user = db.relationship("User", back_populates="pet")
+
+    # Display pet data
+    def __repr__(self):
+        return f"<Pet pet_id={self.pet_id} || name={self.name}>"
 
 
 # class Item(db.Model):
