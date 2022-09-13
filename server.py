@@ -18,7 +18,11 @@ app.jinja_env.undefined = StrictUndefined
 def show_homepage():
     """Show homepage."""
 
-    return render_template('homepage.html')
+    # Check if user is logged in. If yes, redirect to pet page.
+    if session.get("logged_in") == True:
+        return redirect('/pet')
+    else:
+        return render_template('homepage.html')
 
 
 @app.route('/create-user', methods=['POST'])
@@ -27,6 +31,7 @@ def create_user():
     
     Checks if user with provided email or username already exists."""
 
+    # Get email, username, password from create account form
     email = request.form.get("email")
     username = request.form.get("username")
     password = request.form.get("password")
@@ -48,14 +53,34 @@ def create_user():
         return redirect('/')
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login():
     """Log user in."""
 
-    email = request.form.get("email")
+    # Get username and password from login form
     username = request.form.get("username")
+    password = request.form.get("password")
 
-    return redirect('/pet')
+    # Get user object by username
+    user = crud.get_user_by_username(username)
+    # print("USER:", user)
+    # print("PASSWORD:", user.password)
+
+    # Validate username
+    if not user:
+        flash("No accounts found with that username. Please try again.")
+        return redirect('/')
+
+    # Validate password
+    # If valid password, redirect to pet page
+    elif user.password == password:
+        session["logged_in"] = True
+        flash("You are now logged in!")
+        return redirect('/pet')
+    # If invalid password, redirect to login page
+    else:
+        flash("That username and password don't match. Please try again.")
+        return redirect('/')
 
 
 @app.route('/pet')
