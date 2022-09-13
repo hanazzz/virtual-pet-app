@@ -5,4 +5,30 @@
 {% block body %}
     <h1>MY VIRTUAL PET APP</h1>
     <p>It works!</p>
+
+    <h2>Create Account</h2>
+    <form action="/create-user" method="POST">
+        <label for="user-email">Email:</label>
+        <input type="text" name="email" id="user-email">
+
+        <label for="user-username">Username:</label>
+        <input type="text" name="username" id="user-username">
+
+        <label for="user-password">Password:</label>
+        <input type="text" name="password" id="user-password">
+
+        <input aria-label="submit" type="submit">
+    </form>
+
+    <h2>Log In</h2>
+    <form action="/login" method="POST">
+        <label for="user-username">Username:</label>
+        <input type="text" name="username" id="user-username">
+
+        <label for="user-password">Password:</label>
+        <input type="text" name="password" id="user-password">
+
+        <input aria-label="submit" type="submit">
+    </form>
+
 {% endblock %}
