@@ -91,7 +91,7 @@ def new_pet():
 
 
 @app.route("/generate-pet")
-def create_pet():
+def generate_rand_pet():
     """Generate a random pet."""
 
     pet = helper.generate_pet()
