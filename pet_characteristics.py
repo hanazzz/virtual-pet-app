@@ -12,6 +12,6 @@ MUSIC_GENRES = ["punk rock", "dance pop", "hip hop"]
 
 WEATHER = ["hot", "warm", "cold"]
 
-PERSONALITY = ["lethal", "clever", "caring", "shy", "bold", "mellow", "poisted"]
+PERSONALITY = ["lethal", "clever", "caring", "shy", "bold", "mellow", "poised"]
 
 ASTROLOGICAL_SIGN = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
