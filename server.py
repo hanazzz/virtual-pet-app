@@ -1,6 +1,6 @@
 """Server for virtual pet app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db, db
 import crud
 import helper
@@ -81,6 +81,23 @@ def view_pet():
         return redirect("/")
 
     return render_template('pet.html')
+
+
+@app.route("/create-pet")
+def new_pet():
+    """Show user pet generator."""
+
+    return render_template("pet-generator.html")
+
+
+@app.route("/generate-pet")
+def create_pet():
+    """Generate a random pet."""
+
+    pet = helper.generate_pet()
+    print(pet)
+
+    return jsonify(pet)
 
 
 if __name__ == "__main__":
