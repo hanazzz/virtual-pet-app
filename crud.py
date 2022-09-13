@@ -43,10 +43,18 @@ def get_user_by_id(user_id):
     return user
 
 
-def get_user_by_name(username):
-    """Retrieve and return an existing user, using their username."""
+def get_user_by_username(username):
+    """Retrieve and return an existing user, using their username. If user doesn't exist, return None."""
 
-    user = User.query.filter_by(username=username).one()
+    user = User.query.filter_by(username=username).first()
+
+    return user
+
+
+def get_user_by_email(email):
+    """Retrieve and return an existing user, using their email. If user doesn't exist, return None."""
+
+    user = User.query.filter_by(email=email).first()
 
     return user
 
