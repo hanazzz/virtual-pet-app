@@ -5,18 +5,16 @@
 {% block body %}
     <h1>Pet Generator</h1>
 
-    <button type="button">GENERATE PET</button><br><br>
-
-    <a href="/generate-pet">GENERATE PET</a><br><br>
+    <button type="button" id="generate-pet">GENERATE PET</button><br><br>
 
     <div>
         <img src="https://via.placeholder.com/400">
     </div>
 
-    <br><button type="button">ADOPT PET</button><br>
+    <br><button type="button" id="adopt-pet">ADOPT PET</button><br>
 
     <div>
-        <table>
+        <table id="pet-info">
             <tr>
                 <td>Pet species:</td>
                 <td> TBD </td>
@@ -40,5 +38,7 @@
             </tr>
         </table>
     </div>
+
+    <script src="static/generate_pet.js"></script>
 
 {% endblock %}
