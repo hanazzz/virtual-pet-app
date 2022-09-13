@@ -19,7 +19,7 @@ def show_homepage():
     """Show homepage."""
 
     # Check if user is logged in. If yes, redirect to pet page.
-    if session.get("logged_in") == True:
+    if session.get("logged_in"):
         return redirect('/pet')
     else:
         return render_template('homepage.html')
@@ -35,6 +35,9 @@ def create_user():
     email = request.form.get("email")
     username = request.form.get("username")
     password = request.form.get("password")
+    password2 = request.form.get("password2")
+
+    # QUESTION: Bunch of if statements?? Best way to write?
 
     # Flash error if email already in use
     if crud.get_user_by_email(email) != None:
@@ -46,9 +49,17 @@ def create_user():
         flash("ERROR: An account with this username already exists.")
         return redirect('/')
 
-    # Create account
+    # Check if passwords match
+    if password != password2:
+        flash("ERROR: Passwords do not match.")
+        return redirect('/')
+
+    # Create account and add to databases
     else:
-        crud.create_user(username, email, password)
+        user = crud.create_user(username, email, password)
+        db.session.add(user)
+        db.session.commit()
+
         flash("Your account has successfully been created! You may now log in.")
         return redirect('/')
 
@@ -86,6 +97,10 @@ def login():
 @app.route('/pet')
 def view_pet():
     """Show user their pet."""
+
+    # Redirect to homepage if user not logged in
+    if not session.get("logged_in"):
+        return redirect("/")
 
     return render_template('pet.html')
 
