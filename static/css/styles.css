@@ -1,0 +1,9 @@
+html {
+    font-family: sans-serif;
+}
+
+form {
+    border: 2px grey solid;
+    border-radius: .5rem;
+    padding: 1rem
+}
