@@ -45,9 +45,9 @@ class Pet(db.Model):
     last_played = db.Column(db.DateTime)
 
     # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
-    # food_fav = db.Column(db.String)
+    # food_fave = db.Column(db.String)
     # food_least = db.Column(db.String)
-    # activity_fav = db.Column(db.String)
+    # activity_fave = db.Column(db.String)
     # activity_least = db.Column(db.String)
     # music_fave = db.Column(db.String)
     # music_least = db.Column(db.String)
@@ -125,9 +125,9 @@ def create_example_data():
     last_played=datetime(2022,9,12,hour=12,minute=10))
 
     # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
-    # food_fav="cake",
+    # food_fave="cake",
     # food_least="carrots",
-    # activity_fav="Chasing yarn",
+    # activity_fave="Chasing yarn",
     # activity_least="Taking a bath",
     # music_fave="Pop punk",
     # music_least="Classic rock",
