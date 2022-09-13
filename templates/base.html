@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    {% block navbar %}
+    {% endblock %}
+
     {% for msg in get_flashed_messages() %}
         <p clsass="flash-msg">
             {{ msg }}
