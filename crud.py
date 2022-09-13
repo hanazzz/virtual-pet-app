@@ -1,6 +1,5 @@
 """CRUD operations."""
 
-from this import d
 from model import db, User, Pet, Item, UserItem, connect_to_db
 from datetime import datetime
 
