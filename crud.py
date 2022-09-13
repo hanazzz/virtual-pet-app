@@ -36,6 +36,36 @@ def create_item(item_name, description):
     return item
 
 
+def get_user_by_id(user_id):
+    """Retrieve and return an existing user, using their user_id."""
+
+    user = User.query.get(user_id)
+
+    return user
+
+
+def get_user_by_name(username):
+    """Retrieve and return an existing user, using their username."""
+
+    user = User.query.filter_by(username=username).one()
+
+    return user
+
+
+def get_pet(user):
+    """Retrieve a user's existing pet."""
+
+    pet = user.pet
+
+    return pet
+
+# Retrieve existing item
+# Assign an item to a user
+# Delete a user?
+# Delete a pet?
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
