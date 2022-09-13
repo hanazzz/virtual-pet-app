@@ -4,21 +4,24 @@
 
 {% block body %}
     <h1>MY VIRTUAL PET APP</h1>
-    <p>It works!</p>
+    <p>I have a homepage!</p>
 
     <div>
         <h2>Create Account</h2>
         <form action="/create-user" method="POST">
-            <label for="user-email">Email:</label>
-            <input type="text" name="email" id="user-email">
+            <label for="user-email-new">Email:</label>
+            <input type="text" name="email" id="user-email-new"><br>
 
             <label for="user-username">Username:</label>
-            <input type="text" name="username" id="user-username">
+            <input type="text" name="username" id="user-username"><br>
 
-            <label for="user-password">Password:</label>
-            <input type="password" name="password" id="user-password">
+            <label for="user-password-new">Password:</label>
+            <input type="password" name="password" id="user-password-new"><br>
 
-            <input aria-label="submit" type="submit">
+            <label for="user-password-confirm">Confirm password:</label>
+            <input type="password" name="password2" id="user-password-confirm">
+
+            <input type="submit">
         </form>
     </div>
 
@@ -26,12 +29,12 @@
         <h2>Log In</h2>
         <form action="/login" method="POST">
             <label for="user-username">Username:</label>
-            <input type="text" name="username" id="user-username">
+            <input type="text" name="username" id="user-username"><br>
 
             <label for="user-password">Password:</label>
             <input type="password" name="password" id="user-password">
 
-            <input aria-label="submit" type="submit">
+            <input type="submit">
         </form>
     </div>
 
