@@ -13,7 +13,7 @@ app.secret_key = "lkdhjfasiop89ryweq23809"
 app.jinja_env.undefined = StrictUndefined
 
 
-# ROUTES AND VIEW FUNCTIONS GO HERE
+
 @app.route('/')
 def show_homepage():
     """Show homepage."""
@@ -37,8 +37,6 @@ def create_user():
     password = request.form.get("password")
     password2 = request.form.get("password2")
 
-    # QUESTION: Bunch of if statements?? Best way to write?
-
     # Flash error if email already in use
     if crud.get_user_by_email(email) != None:
         flash("ERROR: An account with this email already exists.")
@@ -49,19 +47,18 @@ def create_user():
         flash("ERROR: An account with this username already exists.")
         return redirect('/')
 
-    # Check if passwords match
+    # Flash error if passwords don't match
     if password != password2:
         flash("ERROR: Passwords do not match.")
         return redirect('/')
 
     # Create account and add to databases
-    else:
-        user = crud.create_user(username, email, password)
-        db.session.add(user)
-        db.session.commit()
+    user = crud.create_user(username, email, password)
+    db.session.add(user)
+    db.session.commit()
 
-        flash("Your account has successfully been created! You may now log in.")
-        return redirect('/')
+    flash("Your account has successfully been created! You may now log in.")
+    return redirect('/')
 
 
 @app.route('/login', methods=['POST'])
@@ -74,8 +71,6 @@ def login():
 
     # Get user object by username
     user = crud.get_user_by_username(username)
-    # print("USER:", user)
-    # print("PASSWORD:", user.password)
 
     # Validate username
     if not user:
@@ -84,7 +79,7 @@ def login():
 
     # Validate password
     # If valid password, redirect to pet page
-    elif user.password == password:
+    if user.password == password:
         session["logged_in"] = True
         flash("You are now logged in!")
         return redirect('/pet')
