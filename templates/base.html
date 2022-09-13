@@ -15,6 +15,10 @@
 
 <body>
     {% block navbar %}
+        <div>
+            NAVBAR GOES HERE
+            <button type="button" name="logout">LOG OUT</button>
+        </div>
     {% endblock %}
 
     {% for msg in get_flashed_messages() %}
