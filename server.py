@@ -3,6 +3,7 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db, db
 import crud
+import helper
 from jinja2 import StrictUndefined
 
 # create Flask app
@@ -37,28 +38,13 @@ def create_user():
     password = request.form.get("password")
     password2 = request.form.get("password2")
 
-    # Flash error if email already in use
-    if crud.get_user_by_email(email) != None:
-        flash("ERROR: An account with this email already exists.")
+    valid_account = helper.check_new_account(email, username, password, password2)
+
+    if not valid_account:
         return redirect('/')
-
-    # Flash error if username already in use
-    if crud.get_user_by_username(username) != None:
-        flash("ERROR: An account with this username already exists.")
-        return redirect('/')
-
-    # Flash error if passwords don't match
-    if password != password2:
-        flash("ERROR: Passwords do not match.")
-        return redirect('/')
-
-    # Create account and add to databases
-    user = crud.create_user(username, email, password)
-    db.session.add(user)
-    db.session.commit()
-
-    flash("Your account has successfully been created! You may now log in.")
-    return redirect('/')
+    else:
+        helper.log_in_user()
+        return redirect('/pet')
 
 
 @app.route('/login', methods=['POST'])
@@ -78,15 +64,12 @@ def login():
         return redirect('/')
 
     # Validate password
-    # If valid password, redirect to pet page
-    if user.password == password:
-        session["logged_in"] = True
-        flash("You are now logged in!")
-        return redirect('/pet')
-    # If invalid password, redirect to login page
-    else:
+    if user.password != password:
         flash("That username and password don't match. Please try again.")
         return redirect('/')
+    else:
+        helper.log_in_user()
+        return redirect('/pet')
 
 
 @app.route('/pet')
