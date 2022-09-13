@@ -1,4 +1,4 @@
-"""Models for virtual pet app."""
+"""Models for virtual pet app (User, Pet, Item, UserItem)."""
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -7,7 +7,6 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-# MODELS GO HERE
 class User(db.Model):
     """A user."""
 
@@ -40,23 +39,22 @@ class Pet(db.Model):
     name = db.Column(db.String(50))
     zipcode = db.Column(db.String)
 
-    # COMMENTING THESE OUT FOR NOW TO MAKE TESTING EASIER
-
     hunger = db.Column(db.Integer)
     last_fed = db.Column(db.DateTime)
     happiness = db.Column(db.Integer)
     last_played = db.Column(db.DateTime)
 
-    food_fav = db.Column(db.String)
-    food_least = db.Column(db.String)
-    activity_fav = db.Column(db.String)
-    activity_least = db.Column(db.String)
-    music_fave = db.Column(db.String)
-    music_least = db.Column(db.String)
-    weather_fave = db.Column(db.String)
-    weather_least = db.Column(db.String)
-    personality = db.Column(db.String)
-    astro_sign = db.Column(db.String)
+    # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
+    # food_fav = db.Column(db.String)
+    # food_least = db.Column(db.String)
+    # activity_fav = db.Column(db.String)
+    # activity_least = db.Column(db.String)
+    # music_fave = db.Column(db.String)
+    # music_least = db.Column(db.String)
+    # weather_fave = db.Column(db.String)
+    # weather_least = db.Column(db.String)
+    # personality = db.Column(db.String)
+    # astro_sign = db.Column(db.String)
 
     # Pet.user pulls up a pet's user
     user = db.relationship("User", back_populates="pet")
@@ -113,7 +111,7 @@ def connect_to_db(app, db_name="virtualpet"):
 
 
 def create_example_data():
-    """Create example data."""
+    """Create example data and add to database."""
 
     test_user = User(username = "potato", email = "pot@ato.com", password="password")
 
@@ -124,17 +122,19 @@ def create_example_data():
     hunger=5,
     last_fed=datetime(2022,9,12,hour=16,minute=3),
     happiness=5,
-    last_played=datetime(2022,9,12,hour=12,minute=10),
-    food_fav="cake",
-    food_least="carrots",
-    activity_fav="Chasing yarn",
-    activity_least="Taking a bath",
-    music_fave="Pop punk",
-    music_least="Classic rock",
-    weather_fave="Warm and sunny",
-    weather_least="Cold and rainy",
-    personality="Shy, clever, kind",
-    astro_sign="Libra")
+    last_played=datetime(2022,9,12,hour=12,minute=10))
+
+    # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
+    # food_fav="cake",
+    # food_least="carrots",
+    # activity_fav="Chasing yarn",
+    # activity_least="Taking a bath",
+    # music_fave="Pop punk",
+    # music_least="Classic rock",
+    # weather_fave="Warm and sunny",
+    # weather_least="Cold and rainy",
+    # personality="Shy, clever, kind",
+    # astro_sign="Libra"
 
     test_item1 = Item(item_name = "omelette", description = "Yum, this looks good!")
     test_item2 = Item(item_name = "pizza", description = "So cheesy!")
