@@ -101,9 +101,8 @@ def view_pet():
             flash("Looks like you don't have a pet yet! Let's fix that.")
             return redirect("/create-pet")
         # If user has pet, display pet
-        else:
-            print(pet)
-            return render_template('pet.html', pet=pet)
+
+    return render_template('pet.html', pet=pet)
 
 
 @app.route("/create-pet")
@@ -172,11 +171,7 @@ def adopt_pet():
     db.session.add(pet)
     db.session.commit()
 
-    print(crud.get_pet(session["current_user_id"]))
-
-    flash("Congratulations on bringing home your new pet!")
-
-    return redirect('/pet')
+    return jsonify(f"Congratulations on bringing home your new pet, {name} the {personality} {species_name}!")
 
 
 @app.route("/delete-pet")
