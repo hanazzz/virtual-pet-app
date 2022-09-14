@@ -12,54 +12,17 @@ generatePetButton.addEventListener("click", () => {
             document.querySelector("#species-img").src = petData["Species img path"]
 
             // Update pet info table
-            petInfoTable.innerHTML = "";
-            let tableRows = `
-                <tr>
-                    <td>Pet species</td>
-                    <td id="pet-species">${petData["Pet species"]}</td>
-                </tr>
-                <tr>
-                    <td>Favorite food</td>
-                    <td id="food-fave">${petData["Favorite food"]}</td>
-                </tr>
-                <tr>
-                    <td>Least favorite food</td>
-                    <td id="food-least">${petData["Least favorite food"]}</td>
-                </tr>
-                <tr>
-                    <td>Favorite activity</td>
-                    <td id="activity-fave">${petData["Favorite activity"]}</td>
-                </tr>
-                <tr>
-                    <td>Least favorite activity</td>
-                    <td id="activity-least">${petData["Least favorite activity"]}</td>
-                </tr>
-                <tr>
-                    <td>Favorite music genre</td>
-                    <td id="music-fave">${petData["Favorite music genre"]}</td>
-                </tr>
-                <tr>
-                    <td>Least favorite music genre</td>
-                    <td id="music-least">${petData["Least favorite music genre"]}</td>
-                </tr>
-                <tr>
-                    <td>Favorite weather</td>
-                    <td id="weather-fave">${petData["Favorite weather"]}</td>
-                </tr>
-                <tr>
-                    <td>Least favorite weather</td>
-                    <td id="weather-least">${petData["Least favorite weather"]}</td>
-                </tr>
-                <tr>
-                    <td>Personality</td>
-                    <td id="personality">${petData["Personality"]}</td>
-                </tr>
-                <tr>
-                    <td>Astrological sign</td>
-                    <td id="astro-sign">${petData["Astrological sign"]}</td>
-                </tr>
-            `;
-            petInfoTable.insertAdjacentHTML('beforeEnd', tableRows);
+            document.getElementById("pet-species").innerText = petData["Pet species"];
+            document.getElementById("food-fave").innerText = petData["Favorite food"];
+            document.getElementById("food-least").innerText = petData["Least favorite food"];
+            document.getElementById("activity-fave").innerText = petData["Favorite activity"];
+            document.getElementById("activity-least").innerText = petData["Least favorite activity"];
+            document.getElementById("music-fave").innerText = petData["Favorite music genre"];
+            document.getElementById("music-least").innerText = petData["Least favorite music genre"];
+            document.getElementById("weather-fave").innerText = petData["Favorite weather"];
+            document.getElementById("weather-least").innerText = petData["Least favorite weather"];
+            document.getElementById("personality").innerText = petData["Personality"];
+            document.getElementById("astro-sign").innerText = petData["Astrological sign"];
     })
 });
 

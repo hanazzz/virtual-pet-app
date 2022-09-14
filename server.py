@@ -104,9 +104,9 @@ def new_pet():
     if not session.get("current_user_id"):
         return redirect("/")
 
-    characteristics = ["Pet species", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
+    # characteristics = ["Pet species", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
 
-    return render_template("pet-generator.html", characteristics=characteristics)
+    return render_template("pet-generator.html")
 
 
 @app.route("/generate-pet")
