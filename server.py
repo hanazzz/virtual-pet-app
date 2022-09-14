@@ -87,7 +87,9 @@ def view_pet():
 def new_pet():
     """Show user pet generator."""
 
-    return render_template("pet-generator.html")
+    characteristics = ["Pet species", "Img path", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
+
+    return render_template("pet-generator.html", characteristics=characteristics)
 
 
 @app.route("/generate-pet")
@@ -99,6 +101,16 @@ def generate_rand_pet():
 
     return jsonify(pet)
 
+
+@app.route("/adopt-pet", methods=["POST"])
+def adopt_pet():
+    """Create pet in database and assign to user."""
+
+    pet_data = request.json.get("Astrological sign")
+
+    print(pet_data)
+
+    return pet_data
 
 if __name__ == "__main__":
     # connect app to db
