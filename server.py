@@ -74,6 +74,17 @@ def login():
         return redirect('/pet')
 
 
+@app.route("/logout")
+def logout():
+    """Log user out."""
+
+    # session["current_user_id"] = None
+    session.pop("current_user_id", None)
+    flash("You are now logged out.")
+
+    return redirect("/")
+
+
 @app.route('/pet')
 def view_pet():
     """Show user their pet."""
