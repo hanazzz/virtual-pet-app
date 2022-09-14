@@ -38,23 +38,20 @@ class Pet(db.Model):
     species_type = db.Column(db.String)
     name = db.Column(db.String(50))
     zipcode = db.Column(db.String)
-
-    hunger = db.Column(db.Integer)
-    last_fed = db.Column(db.DateTime)
-    happiness = db.Column(db.Integer)
-    last_played = db.Column(db.DateTime)
-
-    # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
-    # food_fave = db.Column(db.String)
-    # food_least = db.Column(db.String)
-    # activity_fave = db.Column(db.String)
-    # activity_least = db.Column(db.String)
-    # music_fave = db.Column(db.String)
-    # music_least = db.Column(db.String)
-    # weather_fave = db.Column(db.String)
-    # weather_least = db.Column(db.String)
-    # personality = db.Column(db.String)
-    # astro_sign = db.Column(db.String)
+    hunger = db.Column(db.Integer, default=5)
+    last_fed = db.Column(db.DateTime, default=datetime.now())
+    happiness = db.Column(db.Integer, default=5)
+    last_played = db.Column(db.DateTime, default=datetime.now())
+    food_fave = db.Column(db.String)
+    food_least = db.Column(db.String)
+    activity_fave = db.Column(db.String)
+    activity_least = db.Column(db.String)
+    music_fave = db.Column(db.String)
+    music_least = db.Column(db.String)
+    weather_fave = db.Column(db.String)
+    weather_least = db.Column(db.String)
+    personality = db.Column(db.String)
+    astro_sign = db.Column(db.String)
 
     # Pet.user pulls up a pet's user
     user = db.relationship("User", back_populates="pet")
@@ -119,22 +116,16 @@ def create_example_data():
     species_type='cat',
     name='floof',
     zipcode='95129',
-    hunger=5,
-    last_fed=datetime(2022,9,12,hour=16,minute=3),
-    happiness=5,
-    last_played=datetime(2022,9,12,hour=12,minute=10))
-
-    # COMMENTING THESE OUT FOR NOW TO MAKE DEVELOPMENT & TESTING EASIER
-    # food_fave="cake",
-    # food_least="carrots",
-    # activity_fave="Chasing yarn",
-    # activity_least="Taking a bath",
-    # music_fave="Pop punk",
-    # music_least="Classic rock",
-    # weather_fave="Warm and sunny",
-    # weather_least="Cold and rainy",
-    # personality="Shy, clever, kind",
-    # astro_sign="Libra"
+    food_fave="cake",
+    food_least="carrots",
+    activity_fave="Chasing yarn",
+    activity_least="Taking a bath",
+    music_fave="Pop punk",
+    music_least="Classic rock",
+    weather_fave="Warm and sunny",
+    weather_least="Cold and rainy",
+    personality="Shy, clever, kind",
+    astro_sign="Libra")
 
     test_item1 = Item(item_name = "omelette", description = "Yum, this looks good!")
     test_item2 = Item(item_name = "pizza", description = "So cheesy!")
