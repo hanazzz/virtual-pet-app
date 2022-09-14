@@ -81,9 +81,10 @@ def get_user_by_email(email):
     return user
 
 
-def get_pet(user):
+def get_pet(user_id):
     """Retrieve a user's existing pet."""
 
+    user = User.query.get(user_id)
     pet = user.pet
 
     return pet
