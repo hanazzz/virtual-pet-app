@@ -93,14 +93,17 @@ def view_pet():
     if not session.get("current_user_id"):
         return redirect("/")
 
-    # Get pet of current user. If none, returns empty list
-    pet = crud.get_pet(session["current_user_id"])
-
-    if not pet:
-        flash("Looks like you don't have a pet yet! Let's fix that.")
-        return redirect("/create-pet")
+    # Get pet of current user
     else:
-        return render_template('pet.html')
+        pet = crud.get_pet(session["current_user_id"])
+        # If user doesn't have a pet, redirect to create pet page.
+        if not pet:
+            flash("Looks like you don't have a pet yet! Let's fix that.")
+            return redirect("/create-pet")
+        # If user has pet, display pet
+        else:
+            print(pet)
+            return render_template('pet.html', pet=pet)
 
 
 @app.route("/create-pet")
@@ -110,8 +113,11 @@ def new_pet():
     # Redirect to homepage if user not logged in
     if not session.get("current_user_id"):
         return redirect("/")
-
-    return render_template("pet-generator.html")
+    # Redirect to pet page if user has existing pet
+    elif crud.get_pet(session["current_user_id"]):
+        return redirect("/pet")
+    else:
+        return render_template("pet-generator.html")
 
 
 @app.route("/generate-pet")
@@ -119,7 +125,6 @@ def generate_rand_pet():
     """Generate a random pet."""
 
     pet = helper.generate_pet()
-    print(pet)
 
     return jsonify(pet)
 
@@ -166,11 +171,23 @@ def adopt_pet():
 
     db.session.add(pet)
     db.session.commit()
-    print("SUCCESSFULLY ADDED PET")
-    print(pet)
 
-    return "SUCESS"
+    print(crud.get_pet(session["current_user_id"]))
 
+    flash("Congratulations on bringing home your new pet!")
+
+    return redirect('/pet')
+
+
+@app.route("/delete-pet")
+def delete_user_pet():
+    """Delete current user's pet."""
+
+    crud.delete_pet(session["current_user_id"])
+
+    flash("Your pet has been released to the wild.")
+
+    return redirect("/create-pet")
 
 
 if __name__ == "__main__":
