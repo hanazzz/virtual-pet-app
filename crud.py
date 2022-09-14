@@ -82,17 +82,26 @@ def get_user_by_email(email):
 
 
 def get_pet(user_id):
-    """Retrieve a user's existing pet."""
+    """Retrieve a user's existing pet by user_id.
+    
+    Returns None if user doesn't have pet."""
 
-    user = User.query.get(user_id)
-    pet = user.pet
+    pet = Pet.query.filter_by(user_id=user_id).first()
 
     return pet
+
+
+def delete_pet(user_id):
+    """Delete a user's existing pet."""
+
+    pet = get_pet(user_id)
+
+    db.session.delete(pet)
+    db.session.commit()
 
 # Retrieve existing item
 # Assign an item to a user
 # Delete a user?
-# Delete a pet?
 
 
 
