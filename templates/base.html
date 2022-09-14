@@ -22,9 +22,11 @@
     {% endblock %}
 
     {% for msg in get_flashed_messages() %}
-        <p clsass="flash-msg">
-            {{ msg }}
-        </p>
+        <div id="flash">
+            <p clsass="flash-msg">
+                {{ msg }}
+            </p>
+        </div>
     {% endfor %}
 
     {% block body %}
