@@ -87,7 +87,7 @@ def view_pet():
 def new_pet():
     """Show user pet generator."""
 
-    characteristics = ["Pet species", "Img path", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
+    characteristics = ["Pet species", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
 
     return render_template("pet-generator.html", characteristics=characteristics)
 
@@ -106,11 +106,54 @@ def generate_rand_pet():
 def adopt_pet():
     """Create pet in database and assign to user."""
 
-    pet_data = request.json.get("Astrological sign")
+    pet_data = request.json
 
-    print(pet_data)
+    species_name = pet_data["Pet species"]
+    food_fave = pet_data["Favorite food"]
+    food_least = pet_data["Least favorite food"]
+    activity_fave = pet_data["Favorite activity"]
+    activity_least = pet_data["Least favorite activity"]
+    music_fave = pet_data["Favorite music genre"]
+    music_least = pet_data["Least favorite music genre"]
+    weather_fave = pet_data["Favorite weather"]
+    weather_least = pet_data["Least favorite weather"]
+    personality = pet_data["Personality"]
+    astro_sign = pet_data["Astrological sign"]
+    species_img_path = pet_data["Species img path"]
 
-    return pet_data
+    # TO DO:
+    # user_id = ??
+    # name = ??
+    # zipcode = ??
+
+    # FAKE DATA
+    user_id = 3
+    name = "Fluffy"
+    zipcode = "95129"
+
+    pet = crud.create_pet(
+    user_id,
+    species_name,
+    name,
+    zipcode,
+    food_fave,
+    food_least,
+    activity_fave,
+    activity_least,
+    music_fave,
+    music_least,
+    weather_fave,
+    weather_least,
+    personality,
+    astro_sign,
+    species_img_path)
+
+    db.session.add(pet)
+    db.session.commit()
+
+    return "SUCESS"
+
+
 
 if __name__ == "__main__":
     # connect app to db
