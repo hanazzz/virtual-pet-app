@@ -4,7 +4,24 @@ from flask import (flash, session)
 import crud
 from model import db
 from random import (choice, sample)
-import pet_characteristics
+
+# Lists of pet characteristics
+SPECIES_ID = ["sparkle-wolf", "bunny", "cat"]
+
+SPECIES = {"sparkle-wolf" : ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"], "bunny" : ["Bunny", "/static/images/sparkle-wolf.jpg"], "cat" : ["Cat", "/static/images/sparkle-wolf.jpg"]}
+
+FOOD = ["cheddar cheese", "chili sauce", "sweet potatoes", "anchovies", "condensed milk"]
+
+ACTIVITY = ["playing dress up", "soccer", "painting", "cooking", "baking"]
+
+MUSIC_GENRES = ["punk rock", "dance pop", "hip hop"]
+
+WEATHER = ["hot", "warm", "cold"]
+
+PERSONALITY = ["lethal", "clever", "caring", "shy", "bold", "mellow", "poised"]
+
+ASTROLOGICAL_SIGN = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+
 
 def check_new_account(email, username, password, password2):
     """Check whether account creationg is valid.
@@ -48,24 +65,27 @@ def generate_pet():
     
     Returns a dictionary of pet characteristics."""
 
-    species_type = choice(pet_characteristics.SPECIES)
-    food_fave_least = sample(pet_characteristics.FOOD, k=2)
+    species_type = choice(SPECIES_ID)
+    species_name = SPECIES[species_type][0]
+    species_img = SPECIES[species_type][1]
+    food_fave_least = sample(FOOD, k=2)
     food_fave = food_fave_least[0]
     food_least = food_fave_least[1]
-    activity_fave_least = sample(pet_characteristics.ACTIVITY, k=2)
+    activity_fave_least = sample(ACTIVITY, k=2)
     activity_fave = activity_fave_least[0]
     activity_least = activity_fave_least[1]
-    music_fave_least = sample(pet_characteristics.MUSIC_GENRES, k=2)
+    music_fave_least = sample(MUSIC_GENRES, k=2)
     music_fave = music_fave_least[0]
     music_least = music_fave_least[1]
-    weather_fave_least = sample(pet_characteristics.WEATHER, k=2)
+    weather_fave_least = sample(WEATHER, k=2)
     weather_fave = weather_fave_least[0]
     weather_least = weather_fave_least[1]
-    personality = sample(pet_characteristics.PERSONALITY, k=3)
-    astro_sign = choice(pet_characteristics.ASTROLOGICAL_SIGN)
+    personality = sample(PERSONALITY, k=3)
+    astro_sign = choice(ASTROLOGICAL_SIGN)
 
     pet = {
-        "Pet species" : species_type,
+        "Pet species" : species_name,
+        "Img path" : species_img,
         "Favorite food" : food_fave,
         "Least favorite food" : food_least,
         "Favorite activity" : activity_fave,
