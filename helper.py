@@ -6,9 +6,9 @@ from model import db
 from random import (choice, sample)
 
 # Lists of pet characteristics
-SPECIES_ID = ["sparkle-wolf", "bunny", "cat"]
+SPECIES_ID = ["sparkle-wolf", "prickly-bunny", "invisi-cat"]
 
-SPECIES = {"sparkle-wolf" : ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"], "bunny" : ["Bunny", "/static/images/sparkle-wolf.jpg"], "cat" : ["Cat", "/static/images/sparkle-wolf.jpg"]}
+SPECIES = {"sparkle-wolf" : ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"], "prickly-bunny" : ["Prickly Bunny", "/static/images/prickly-bunny.jpg"], "invisi-cat" : ["Invisible Cat", "/static/images/invisi-cat.jpg"]}
 
 FOOD = ["cheddar cheese", "chili sauce", "sweet potatoes", "anchovies", "condensed milk"]
 
