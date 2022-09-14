@@ -52,4 +52,8 @@ adoptPetButton.addEventListener("click", () => {
             'Content-Type': 'application/json',
         },
     })
+        .then((response) => response.json())
+        .then((msg) => {
+            alert(msg)
+        })
 });
