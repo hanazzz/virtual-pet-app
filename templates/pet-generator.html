@@ -8,34 +8,19 @@
     <button type="button" id="generate-pet">GENERATE PET</button><br><br>
 
     <div>
-        <img src="https://via.placeholder.com/400">
+        <img src="https://via.placeholder.com/255" id="species-img">
     </div>
 
     <br><button type="button" id="adopt-pet">ADOPT PET</button><br>
 
     <div>
         <table id="pet-info">
-            <tr>
-                <td>Pet species:</td>
-                <td> TBD </td>
-            </tr>
-            <tr>
-                <td>Favorite food:</td>
-                <td> TBD </td>
-            </tr>
-            <tr>
-                <td>Least favorite food:</td>
-                <td> TBD </td>
-            </tr>
-            <tr>
-                <td>Favorite activity:</td>
-                <td> TBD </td>
-            </tr>
-            <tr>
-                <td>Least activity:</td>
-                <td> TBD </td>
-            </tr>
-            </tr>
+            {% for characteristic in characteristics %}
+                <tr>
+                    <td> {{ characteristic }} </td>
+                    <td> TBD </td>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 
