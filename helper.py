@@ -80,8 +80,8 @@ def generate_pet():
     weather_fave_least = sample(WEATHER, k=2)
     weather_fave = weather_fave_least[0]
     weather_least = weather_fave_least[1]
-    # TO DO: convert personality list into string
     personality = sample(PERSONALITY, k=3)
+    personality = ', '.join(personality)
     astro_sign = choice(ASTROLOGICAL_SIGN)
 
     pet = {
