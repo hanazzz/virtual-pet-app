@@ -1,5 +1,6 @@
 """Models for virtual pet app (User, Pet, Item, UserItem)."""
 
+from enum import unique
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -34,7 +35,7 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), unique=True)
     species_name = db.Column(db.String)
     name = db.Column(db.String(50))
     zipcode = db.Column(db.String)
