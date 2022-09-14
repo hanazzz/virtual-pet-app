@@ -20,7 +20,7 @@ def show_homepage():
     """Show homepage."""
 
     # Check if user is logged in. If yes, redirect to pet page.
-    if session.get("logged_in"):
+    if session.get("current_user_id"):
         return redirect('/pet')
     else:
         return render_template('homepage.html')
@@ -43,7 +43,9 @@ def create_user():
     if not valid_account:
         return redirect('/')
     else:
-        helper.log_in_user()
+        # Get newly created User object from db
+        user = crud.get_user_by_username(username)
+        helper.log_in_user(user)
         return redirect('/pet')
 
 
@@ -68,7 +70,7 @@ def login():
         flash("That username and password don't match. Please try again.")
         return redirect('/')
     else:
-        helper.log_in_user()
+        helper.log_in_user(user)
         return redirect('/pet')
 
 
@@ -77,7 +79,7 @@ def view_pet():
     """Show user their pet."""
 
     # Redirect to homepage if user not logged in
-    if not session.get("logged_in"):
+    if not session.get("current_user_id"):
         return redirect("/")
 
     return render_template('pet.html')
@@ -86,6 +88,10 @@ def view_pet():
 @app.route("/create-pet")
 def new_pet():
     """Show user pet generator."""
+
+    # Redirect to homepage if user not logged in
+    if not session.get("current_user_id"):
+        return redirect("/")
 
     characteristics = ["Pet species", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
 
@@ -120,17 +126,11 @@ def adopt_pet():
     personality = pet_data["Personality"]
     astro_sign = pet_data["Astrological sign"]
     species_img_path = pet_data["Species img path"]
+    name = pet_data["Name"]
+    zipcode = pet_data["Zipcode"]
+    user_id = session["current_user_id"]
 
-    # TO DO:
-    # user_id = ??
-    # name = ??
-    # zipcode = ??
-
-    # FAKE DATA
-    user_id = 3
-    name = "Fluffy"
-    zipcode = "95129"
-
+    # Create pet
     pet = crud.create_pet(
     user_id,
     species_name,
@@ -150,6 +150,8 @@ def adopt_pet():
 
     db.session.add(pet)
     db.session.commit()
+    print("SUCCESSFULLY ADDED PET")
+    print(pet)
 
     return "SUCESS"
 
