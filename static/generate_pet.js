@@ -11,7 +11,7 @@ generatePetButton.addEventListener("click", () => {
         .then((petData) => {
             console.log(petData);
             // Update species img
-            document.querySelector("#species-img").src = petData["Img path"]
+            document.querySelector("#species-img").src = petData["Species img path"]
 
             // Update pet info table
             petInfoTable.innerHTML = "";

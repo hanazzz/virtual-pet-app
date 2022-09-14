@@ -14,7 +14,7 @@ def create_user(username, email, password):
 
 def create_pet(
     user_id,
-    species_type,
+    species_name,
     name,
     zipcode,
     food_fave,
@@ -26,11 +26,12 @@ def create_pet(
     weather_fave,
     weather_least,
     personality,
-    astro_sign):
+    astro_sign,
+    species_img_path):
     """Create and return a new pet."""
 
     pet = Pet(user_id=user_id,
-    species_type=species_type,
+    species_name=species_name,
     name=name,
     zipcode=zipcode,
     food_fave=food_fave,
@@ -42,7 +43,8 @@ def create_pet(
     weather_fave=weather_fave,
     weather_least=weather_least,
     personality=personality,
-    astro_sign=astro_sign)
+    astro_sign=astro_sign,
+    species_img_path=species_img_path)
 
     return pet
 

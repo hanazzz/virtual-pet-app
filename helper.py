@@ -67,7 +67,7 @@ def generate_pet():
 
     species_type = choice(SPECIES_ID)
     species_name = SPECIES[species_type][0]
-    species_img = SPECIES[species_type][1]
+    species_img_path = SPECIES[species_type][1]
     food_fave_least = sample(FOOD, k=2)
     food_fave = food_fave_least[0]
     food_least = food_fave_least[1]
@@ -80,12 +80,13 @@ def generate_pet():
     weather_fave_least = sample(WEATHER, k=2)
     weather_fave = weather_fave_least[0]
     weather_least = weather_fave_least[1]
+    # TO DO: convert personality list into string
     personality = sample(PERSONALITY, k=3)
     astro_sign = choice(ASTROLOGICAL_SIGN)
 
     pet = {
         "Pet species" : species_name,
-        "Img path" : species_img,
+        "Species img path" : species_img_path,
         "Favorite food" : food_fave,
         "Least favorite food" : food_least,
         "Favorite activity" : activity_fave,

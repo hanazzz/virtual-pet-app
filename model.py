@@ -35,7 +35,7 @@ class Pet(db.Model):
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    species_type = db.Column(db.String)
+    species_name = db.Column(db.String)
     name = db.Column(db.String(50))
     zipcode = db.Column(db.String)
     hunger = db.Column(db.Integer, default=5)
@@ -52,6 +52,7 @@ class Pet(db.Model):
     weather_least = db.Column(db.String)
     personality = db.Column(db.String)
     astro_sign = db.Column(db.String)
+    species_img_path = db.Column(db.String)
 
     # Pet.user pulls up a pet's user
     user = db.relationship("User", back_populates="pet")
@@ -113,7 +114,7 @@ def create_example_data():
     test_user = User(username = "potato", email = "pot@ato.com", password="password")
 
     test_pet = Pet(user_id=1,
-    species_type='cat',
+    species_name='cat',
     name='floof',
     zipcode='95129',
     food_fave="cake",
@@ -125,7 +126,8 @@ def create_example_data():
     weather_fave="Warm and sunny",
     weather_least="Cold and rainy",
     personality="Shy, clever, kind",
-    astro_sign="Libra")
+    astro_sign="Libra",
+    species_img_path="/static/images/prickly-bunny.jpg")
 
     test_item1 = Item(item_name = "omelette", description = "Yum, this looks good!")
     test_item2 = Item(item_name = "pizza", description = "So cheesy!")
