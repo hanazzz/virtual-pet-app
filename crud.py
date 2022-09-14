@@ -12,17 +12,37 @@ def create_user(username, email, password):
     return user
 
 
-def create_pet(user_id, species_type, name, zipcode, hunger, last_fed, happiness, last_played):
+def create_pet(
+    user_id,
+    species_type,
+    name,
+    zipcode,
+    food_fave,
+    food_least,
+    activity_fave,
+    activity_least,
+    music_fave,
+    music_least,
+    weather_fave,
+    weather_least,
+    personality,
+    astro_sign):
     """Create and return a new pet."""
 
     pet = Pet(user_id=user_id,
     species_type=species_type,
     name=name,
     zipcode=zipcode,
-    hunger=hunger,
-    last_fed=last_fed,
-    happiness=happiness,
-    last_played=last_played)
+    food_fave=food_fave,
+    food_least=food_least,
+    activity_fave=activity_fave,
+    activity_least=activity_least,
+    music_fave=music_fave,
+    music_least=music_least,
+    weather_fave=weather_fave,
+    weather_least=weather_least,
+    personality=personality,
+    astro_sign=astro_sign)
 
     return pet
 
