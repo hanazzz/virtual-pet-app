@@ -7,3 +7,10 @@ form {
     border-radius: .5rem;
     padding: 1rem
 }
+
+#flash {
+    color: red;
+    font-size: large;
+    font-weight: 700;
+    font-style: italic;
+}
