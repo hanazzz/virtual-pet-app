@@ -67,6 +67,8 @@ generatePetButton.addEventListener("click", () => {
 
              // When user clicks adopt pet button, send pet data back to server
             adoptPetButton.addEventListener("click", () => {
+                currentPetData["Name"] = prompt("Please name your pet:");
+                currentPetData["Zipcode"] = prompt("Where would you like your pet to live? (Enter zipcode)");
                 fetch("/adopt-pet", {
                     method: 'POST',
                     body: JSON.stringify(currentPetData),
