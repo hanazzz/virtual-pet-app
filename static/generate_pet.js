@@ -1,8 +1,6 @@
 generatePetButton = document.querySelector("#generate-pet");
 adoptPetButton =  document.querySelector("#adopt-pet");
 
-petInfoTable = document.querySelector("#pet-info");
-
 generatePetButton.addEventListener("click", () => {
         fetch("/generate-pet")
         .then((response) => response.json())
