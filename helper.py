@@ -53,10 +53,11 @@ def check_new_account(email, username, password, password2):
     return valid_account
 
 
-def log_in_user():
+def log_in_user(user):
     """Log user in."""
 
-    session["logged_in"] = True
+    session["current_user_id"] = user.user_id
+    print(session["current_user_id"])
     flash("You are now logged in!")
 
 
@@ -96,7 +97,9 @@ def generate_pet():
         "Favorite weather" : weather_fave,
         "Least favorite weather" : weather_least,
         "Personality" : personality,
-        "Astrological sign" : astro_sign
+        "Astrological sign" : astro_sign,
+        "Name" : None,
+        "Zipcode" : None
     }
 
     return pet
