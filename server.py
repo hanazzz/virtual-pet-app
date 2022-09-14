@@ -93,7 +93,14 @@ def view_pet():
     if not session.get("current_user_id"):
         return redirect("/")
 
-    return render_template('pet.html')
+    # Get pet of current user. If none, returns empty list
+    pet = crud.get_pet(session["current_user_id"])
+
+    if not pet:
+        flash("Looks like you don't have a pet yet! Let's fix that.")
+        return redirect("/create-pet")
+    else:
+        return render_template('pet.html')
 
 
 @app.route("/create-pet")
@@ -103,8 +110,6 @@ def new_pet():
     # Redirect to homepage if user not logged in
     if not session.get("current_user_id"):
         return redirect("/")
-
-    # characteristics = ["Pet species", "Favorite food", "Least favorite food", "Favorite activity", "Least favorite activity", "Favorite music genre", "Least favorite music genre", "Favorite weather", "Least favorite weather", "Personality", "Astrological sign"]
 
     return render_template("pet-generator.html")
 
