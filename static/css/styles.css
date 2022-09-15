@@ -14,3 +14,7 @@ form {
     font-weight: 700;
     font-style: italic;
 }
+
+img {
+    border-radius: .5rem;
+}
