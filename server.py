@@ -187,9 +187,11 @@ def delete_user_pet():
 
     crud.delete_pet(session["current_user_id"])
 
-    flash("Your pet has been released to the wild.")
+    return jsonify("Your pet has been released into the wild.")
 
-    return redirect("/create-pet")
+    # flash("Your pet has been released into the wild.")
+
+    # return redirect("/create-pet")
 
 
 @app.route("/get-loc")
