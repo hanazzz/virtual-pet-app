@@ -10,16 +10,16 @@
         <h2>Create Account</h2>
         <form action="/create-user" method="POST">
             <label for="user-email-new">Email:</label>
-            <input type="text" name="email" id="user-email-new"><br>
+            <input type="email" name="email" maxlength=254 required="required" aria-required="true" id="user-email-new"><br>
 
             <label for="user-username">Username:</label>
-            <input type="text" name="username" id="user-username"><br>
+            <input type="text" name="username" maxlength=30 required="required" aria-required="true" id="user-username"><br>
 
             <label for="user-password-new">Password:</label>
-            <input type="password" name="password" id="user-password-new"><br>
+            <input type="password" name="password" maxlength=30 required="required" aria-required="true" id="user-password-new"><br>
 
             <label for="user-password-confirm">Confirm password:</label>
-            <input type="password" name="password2" id="user-password-confirm">
+            <input type="password" name="password2" required="required" aria-required="true" id="user-password-confirm">
 
             <input type="submit">
         </form>
@@ -29,10 +29,10 @@
         <h2>Log In</h2>
         <form action="/login" method="POST">
             <label for="user-username">Username:</label>
-            <input type="text" name="username" id="user-username"><br>
+            <input type="text" name="username" maxlength=30 required="required" aria-required="true" id="user-username"><br>
 
             <label for="user-password">Password:</label>
-            <input type="password" name="password" id="user-password">
+            <input type="password" name="password" required="required" aria-required="true" id="user-password">
 
             <input type="submit">
         </form>
