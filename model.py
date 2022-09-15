@@ -38,7 +38,12 @@ class Pet(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), unique=True)
     species_name = db.Column(db.String)
     name = db.Column(db.String(50))
-    zipcode = db.Column(db.String)
+    # zipcode = db.Column(db.String)
+    country = db.Column(db.String)
+    region = db.Column(db.String)
+    city =  db.Column(db.String)
+    lat = db.Column(db.Integer)
+    lon = db.Column(db.Integer)
     hunger = db.Column(db.Integer, default=5)
     last_fed = db.Column(db.DateTime, default=datetime.now())
     happiness = db.Column(db.Integer, default=5)
@@ -117,7 +122,12 @@ def create_example_data():
     test_pet = Pet(user_id=1,
     species_name='cat',
     name='floof',
-    zipcode='95129',
+    # zipcode='95129',
+    country="United States",
+    region = "California",
+    city = "Oakland",
+    lat = 37.803372927524414,
+    lon = -122.27166093896454,
     food_fave="cake",
     food_least="carrots",
     activity_fave="Chasing yarn",

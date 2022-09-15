@@ -147,7 +147,12 @@ def adopt_pet():
     astro_sign = pet_data["Astrological sign"]
     species_img_path = pet_data["Species img path"]
     name = pet_data["Name"]
-    zipcode = pet_data["Zipcode"]
+    country = pet_data["Country"]
+    region = pet_data["Region"]
+    city = pet_data["City"]
+    lat = pet_data["lat"]
+    lon = pet_data["lon"]
+    # zipcode = pet_data["Zipcode"]
     user_id = session["current_user_id"]
 
     # Create pet
@@ -155,7 +160,12 @@ def adopt_pet():
     user_id,
     species_name,
     name,
-    zipcode,
+    # zipcode,
+    country,
+    region,
+    city,
+    lat,
+    lon,
     food_fave,
     food_least,
     activity_fave,
@@ -184,7 +194,9 @@ def delete_user_pet():
 
 @app.route("/get-loc")
 def get_user_loc():
-    """Use the user's IP address to get information about their location."""
+    """Use the user's IP address to get information about their location.
+    
+    Makes API request to ip-api.com"""
 
     url = "http://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,timezone,query"
     # Make GET request
@@ -200,8 +212,8 @@ def get_user_loc():
     #     zipcode = user_data["zip"]
     #     lat = user_data["lat"]
     #     long = user_data["lon"]
-    # elif user_data["status"] == "fail":
-    #     print("Request failed.")
+    if user_data["status"] == "fail":
+        print("Request failed.")
 
     return jsonify(user_data)
 

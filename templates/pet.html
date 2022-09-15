@@ -7,7 +7,7 @@
 
     <div>
         <h2>{{pet.name}} the {{pet.personality}} {{pet.species_name}}</h2>
-        <h3>Location: {{pet.zipcode}}</h3>
+        <h3 id="location">Location: {{pet.city}}, {{pet.region}}, {{pet.country}}</h3>
         <img src="{{pet.species_img_path}}" id="species-img">
         
         <div>
@@ -61,13 +61,4 @@
     </div>
 
     <br><br><a href="/delete-pet">DELETE PET</a>
-
-    <div>
-        <h3>Testing Getting Location</h3>
-        <p id="location-display">Location should display here.</p>
-        <button id="get-location">Get my location from broswer</button>
-        <button id="get-location-ip">Get my location from IP address</button>
-    </div>
-
-    <script src="/static/location.js"></script>
 {% endblock %}

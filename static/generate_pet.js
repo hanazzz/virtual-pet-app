@@ -39,21 +39,36 @@ adoptPetButton.addEventListener("click", () => {
         "Personality" : document.getElementById("personality").textContent,
         "Astrological sign" : document.getElementById("astro-sign").textContent,
         "Name" : null,
-        "Zipcode" : null
+        "Country" : null,
+        "Region" : null,
+        "City" : null,
+        "lat" : null,
+        "lon" : null,
+        // "Zipcode" : null
     }
 
-    console.log("adding evt listener")
-    currentPetData["Name"] = prompt("Please name your pet:");
-    currentPetData["Zipcode"] = prompt("Where would you like your pet to live? (Enter zipcode)");
-    fetch("/adopt-pet", {
-        method: 'POST',
-        body: JSON.stringify(currentPetData),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    fetch("/get-loc")
         .then((response) => response.json())
-        .then((msg) => {
-            alert(msg)
-        })
+        .then((userData) => {
+            console.log(userData);
+            currentPetData["Country"] = userData["country"];
+            currentPetData["Region"] = userData["regionName"];
+            currentPetData["City"] = userData["city"];
+            currentPetData["lat"] = userData["lat"];
+            currentPetData["lon"] = userData["lon"];
+
+            currentPetData["Name"] = prompt("Please name your pet:");
+
+            fetch("/adopt-pet", {
+                method: 'POST',
+                body: JSON.stringify(currentPetData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response) => response.json())
+                .then((msg) => {
+                    alert(msg)
+                })
+    })
 });

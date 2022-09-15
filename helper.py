@@ -100,8 +100,8 @@ def generate_pet():
         "Least favorite weather" : weather_least,
         "Personality" : personality,
         "Astrological sign" : astro_sign,
-        "Name" : None,
-        "Zipcode" : None
+        # "Name" : None,
+        # "Zipcode" : None
     }
 
     return pet
