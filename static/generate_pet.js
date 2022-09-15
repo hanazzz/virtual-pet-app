@@ -24,6 +24,7 @@ generatePetButton.addEventListener("click", () => {
     })
 });
 
+
 adoptPetButton.addEventListener("click", () => {
     let currentPetData = {
         "Pet species" : document.getElementById("pet-species").textContent,
@@ -44,7 +45,6 @@ adoptPetButton.addEventListener("click", () => {
         "City" : null,
         "lat" : null,
         "lon" : null,
-        // "Zipcode" : null
     }
 
     fetch("/get-loc")

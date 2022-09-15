@@ -1,7 +1,6 @@
 """CRUD operations."""
 
 from model import db, User, Pet, Item, UserItem, connect_to_db
-from datetime import datetime
 
 
 def create_user(username, email, password):
@@ -16,7 +15,6 @@ def create_pet(
     user_id,
     species_name,
     name,
-    # zipcode,
     country,
     region,
     city,
@@ -38,7 +36,6 @@ def create_pet(
     pet = Pet(user_id=user_id,
     species_name=species_name,
     name=name,
-    # zipcode=zipcode,
     country=country,
     region=region,
     city=city,

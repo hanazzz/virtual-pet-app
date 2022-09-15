@@ -15,6 +15,8 @@ app.secret_key = "lkdhjfasiop89ryweq23809"
 app.jinja_env.undefined = StrictUndefined
 
 
+# ------------------------------------ #
+
 
 @app.route('/')
 def show_homepage():
@@ -152,7 +154,6 @@ def adopt_pet():
     city = pet_data["City"]
     lat = pet_data["lat"]
     lon = pet_data["lon"]
-    # zipcode = pet_data["Zipcode"]
     user_id = session["current_user_id"]
 
     # Create pet
@@ -160,7 +161,6 @@ def adopt_pet():
     user_id,
     species_name,
     name,
-    # zipcode,
     country,
     region,
     city,
@@ -189,10 +189,6 @@ def delete_user_pet():
 
     return jsonify("Your pet has been released into the wild.")
 
-    # flash("Your pet has been released into the wild.")
-
-    # return redirect("/create-pet")
-
 
 @app.route("/get-loc")
 def get_user_loc():
@@ -207,17 +203,13 @@ def get_user_loc():
     user_data = res.json()
     print(user_data)
 
-    # if user_data["status"] == "success":
-    #     country = user_data["country"]
-    #     region = user_data["regionName"]
-    #     city = user_data["city"]
-    #     zipcode = user_data["zip"]
-    #     lat = user_data["lat"]
-    #     long = user_data["lon"]
     if user_data["status"] == "fail":
         print("Request failed.")
 
     return jsonify(user_data)
+
+
+# ------------------------------------ #
 
 
 if __name__ == "__main__":

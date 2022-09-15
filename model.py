@@ -38,7 +38,6 @@ class Pet(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), unique=True)
     species_name = db.Column(db.String)
     name = db.Column(db.String(50))
-    # zipcode = db.Column(db.String)
     country = db.Column(db.String)
     region = db.Column(db.String)
     city =  db.Column(db.String)
@@ -122,7 +121,6 @@ def create_example_data():
     test_pet = Pet(user_id=1,
     species_name='cat',
     name='floof',
-    # zipcode='95129',
     country="United States",
     region = "California",
     city = "Oakland",

@@ -6,6 +6,6 @@ document.querySelector("#delete-pet").addEventListener("click", () => {
                 alert(msg)
             })
     } else {
-        alert("Your pet has not been deleted..");
+        alert("Your pet has not been deleted.");
     }
 })
