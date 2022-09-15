@@ -24,9 +24,11 @@ ASTROLOGICAL_SIGN = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Lib
 
 
 def check_new_account(email, username, password, password2):
-    """Check whether account creationg is valid.
+    """Check whether account creation is valid.
     
-    Checks if email is already in use, if username is already in use, and whether both password fields match. Returns Boolean value indicating whether account is valid."""
+    Checks if email is already in use, if username is already in use, and whether both password fields match. If no issues, crerates new user account.
+    
+    Returns Boolean value indicating whether account is valid."""
 
     valid_account = False
 

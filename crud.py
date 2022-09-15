@@ -46,6 +46,9 @@ def create_pet(
     astro_sign=astro_sign,
     species_img_path=species_img_path)
 
+    db.session.add(pet)
+    db.session.commit()
+
     return pet
 
 

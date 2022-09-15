@@ -150,7 +150,7 @@ def adopt_pet():
     user_id = session["current_user_id"]
 
     # Create pet
-    pet = crud.create_pet(
+    crud.create_pet(
     user_id,
     species_name,
     name,
@@ -166,9 +166,6 @@ def adopt_pet():
     personality,
     astro_sign,
     species_img_path)
-
-    db.session.add(pet)
-    db.session.commit()
 
     return jsonify(f"Congratulations on bringing home your new pet, {name} the {personality} {species_name}!")
 
