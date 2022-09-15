@@ -5,6 +5,7 @@ from model import connect_to_db, db
 import crud
 import helper
 from jinja2 import StrictUndefined
+import requests
 
 # create Flask app
 app = Flask(__name__)
@@ -179,6 +180,30 @@ def delete_user_pet():
     flash("Your pet has been released to the wild.")
 
     return redirect("/create-pet")
+
+
+@app.route("/get-loc")
+def get_user_loc():
+    """Use the user's IP address to get information about their location."""
+
+    url = "http://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,timezone,query"
+    # Make GET request
+    res = requests.get(url)
+    # parse JSON
+    user_data = res.json()
+    print(user_data)
+
+    # if user_data["status"] == "success":
+    #     country = user_data["country"]
+    #     region = user_data["regionName"]
+    #     city = user_data["city"]
+    #     zipcode = user_data["zip"]
+    #     lat = user_data["lat"]
+    #     long = user_data["lon"]
+    # elif user_data["status"] == "fail":
+    #     print("Request failed.")
+
+    return jsonify(user_data)
 
 
 if __name__ == "__main__":
