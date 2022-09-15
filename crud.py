@@ -101,7 +101,7 @@ def delete_pet(user_id):
 
 # Retrieve existing item
 # Assign an item to a user
-# Delete a user?
+# Delete a user? (Would have to delete pet, then user)
 
 
 

@@ -78,7 +78,6 @@ def login():
 def logout():
     """Log user out."""
 
-    # session["current_user_id"] = None
     session.pop("current_user_id", None)
     flash("You are now logged out.")
 
@@ -93,14 +92,14 @@ def view_pet():
     if not session.get("current_user_id"):
         return redirect("/")
 
-    # Get pet of current user
+    # Check whether user has pet
     else:
+        # Get pet of current user
         pet = crud.get_pet(session["current_user_id"])
         # If user doesn't have a pet, redirect to create pet page.
         if not pet:
             flash("Looks like you don't have a pet yet! Let's fix that.")
             return redirect("/create-pet")
-        # If user has pet, display pet
 
     return render_template('pet.html', pet=pet)
 
@@ -115,8 +114,8 @@ def new_pet():
     # Redirect to pet page if user has existing pet
     elif crud.get_pet(session["current_user_id"]):
         return redirect("/pet")
-    else:
-        return render_template("pet-generator.html")
+    
+    return render_template("pet-generator.html")
 
 
 @app.route("/generate-pet")
