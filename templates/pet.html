@@ -4,4 +4,61 @@
 
 {% block body %}
     <h1>THIS IS YOUR PET.</h1>
+
+    <div>
+        <h2>{{pet.name}} the {{pet.personality}} {{pet.species_name}}</h2>
+        <h3>Location: {{pet.zipcode}}</h3>
+        <img src="{{pet.species_img_path}}" id="species-img">
+        
+        <div>
+            <table>
+                <tr>
+                    <td>Pet species</td>
+                    <td id="pet-species">{{pet.species_name}}</td>
+                </tr>
+                <tr>
+                    <td>Favorite food</td>
+                    <td id="food-fave">{{pet.food_fave}}</td>
+                </tr>
+                <tr>
+                    <td>Least favorite food</td>
+                    <td id="food-least">{{pet.food_least}}</td>
+                </tr>
+                <tr>
+                    <td>Favorite activity</td>
+                    <td id="activity-fave">{{pet.activity_fave}}</td>
+                </tr>
+                <tr>
+                    <td>Least favorite activity</td>
+                    <td id="activity-least">{{pet.activity_least}}</td>
+                </tr>
+                <tr>
+                    <td>Favorite music genre</td>
+                    <td id="music-fave">{{pet.music_fave}}</td>
+                </tr>
+                <tr>
+                    <td>Least favorite music genre</td>
+                    <td id="music-least">{{pet.music_least}}</td>
+                </tr>
+                <tr>
+                    <td>Favorite weather</td>
+                    <td id="weather-fave">{{pet.weather_fave}}</td>
+                </tr>
+                <tr>
+                    <td>Least favorite weather</td>
+                    <td id="weather-least">{{pet.weather_least}}</td>
+                </tr>
+                <tr>
+                    <td>Personality</td>
+                    <td id="personality">{{pet.personality}}</td>
+                </tr>
+                <tr>
+                    <td>Astrological sign</td>
+                    <td id="astro-sign">{{pet.astro_sign}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <br><br><a href="/delete-pet">DELETE PET</a>
 {% endblock %}
