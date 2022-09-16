@@ -8,7 +8,7 @@ form {
     padding: 1rem
 }
 
-#flash {
+.flash {
     color: red;
     font-size: large;
     font-weight: 700;

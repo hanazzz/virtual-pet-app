@@ -14,24 +14,27 @@
 </head>
 
 <body>
+
+    <nav>
     {% block navbar %}
-        <div>
             NAVBAR GOES HERE
             <a href="/logout">LOG OUT</a>
-        </div>
     {% endblock %}
+    </nav>
 
-    {% for msg in get_flashed_messages() %}
-        <div id="flash">
-            <p clsass="flash-msg">
-                {{ msg }}
-            </p>
-        </div>
-    {% endfor %}
+    <main>
+        {% for msg in get_flashed_messages() %}
+            <div class="flash">
+                <p class="flash-msg">
+                    {{ msg }}
+                </p>
+            </div>
+        {% endfor %}
 
-    {% block body %}
-        BODY CONTENT GOES HERE
-    {% endblock %}
+        {% block body %}
+            BODY CONTENT GOES HERE
+        {% endblock %}
+    </main>
 </body>
 
 </html>
