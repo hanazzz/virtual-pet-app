@@ -209,6 +209,13 @@ def get_user_loc():
     return jsonify(user_data)
 
 
+@app.route("/react-test")
+def load_react():
+    """Load React test page."""
+
+    return render_template("index.html")
+
+
 # ------------------------------------ #
 
 
