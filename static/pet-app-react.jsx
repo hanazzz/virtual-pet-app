@@ -1,20 +1,19 @@
 function AcctForm(props) {
   // LOGIC FOR LOG IN / CREATE ACCOUNT BUTTON
-  // logInMethd tracks whether the user is logging into an existing account
-  // or creating a new account (initla value is logging in)
-  // EVENTUALLY SWITCH TO TRUE/FALSE
-  const [logInMethd, setLogInMethd] = React.useState("Log in");
+  // logInMethd tracks whether the user is logging into an existing account (true)
+  // or creating a new account (false)
+  const [logInMethd, setLogInMethd] = React.useState(true);
   // btnMsg is the button text to switch forms
   const [btnMsg, setBtnMsg] = React.useState("New user? Create an account instead.");
 
   // Whatever the current logInMethd is, this switches it to the opposite.
   // btnMsg updates accordingly
   function switchLogInMethd() {
-    if (logInMethd == "Log in") {
-      setLogInMethd("Create account");
+    if (logInMethd) {
+      setLogInMethd(false);
       setBtnMsg("Already have an account? Log in instead.");
-    } else if (logInMethd == "Create account") {
-      setLogInMethd("Log in");
+    } else {
+      setLogInMethd(true);
       setBtnMsg("New user? Create an account instead.");
     }
   }
@@ -42,36 +41,54 @@ function AcctForm(props) {
   // and sends form data to server via Fetch re quest
   function submitForm(evt) {
     evt.preventDefault();
-    // IF LOGGING IN
-    if (logInMethd == "Log in") {
-      let userData = {"username" : username, "password" : password};
-      fetch("/login", {
-        method: 'POST',
-        body: JSON.stringify(userData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((responseJson => {
-          handleAcctServerResponse(responseJson);
-        }))
-        
-    // IF CREATING ACCOUNT
-    } else if (logInMethd == "Create account") {
-      let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
-      fetch("/create-user", {
-        method: 'POST',
-        body: JSON.stringify(userData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((responseJson => {
-          handleAcctServerResponse(responseJson);
-        }))
+    let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
+    let route = "/login"
+    if (logInMethd == false) {
+      route = "/create-user"
     }
+
+    fetch(`${route}`, {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson => {
+        handleAcctServerResponse(responseJson);
+      }))
+
+    // // IF LOGGING IN
+    // if (logInMethd == "Log in") {
+    //   let userData = {"username" : username, "password" : password};
+    //   fetch("/login", {
+    //     method: 'POST',
+    //     body: JSON.stringify(userData),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   })
+    //     .then((response) => response.json())
+    //     .then((responseJson => {
+    //       handleAcctServerResponse(responseJson);
+    //     }))
+        
+    // // IF CREATING ACCOUNT
+    // } else if (logInMethd == "Create account") {
+    //   let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
+    //   fetch("/create-user", {
+    //     method: 'POST',
+    //     body: JSON.stringify(userData),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   })
+    //     .then((response) => response.json())
+    //     .then((responseJson => {
+    //       handleAcctServerResponse(responseJson);
+    //     }))
+    // }
   }
 
 
@@ -167,9 +184,9 @@ function AcctForm(props) {
   let form = null;
 
   // FORM LOGIC
-  if (logInMethd == "Log in") {
+  if (logInMethd) {
     form = logInForm;
-  } else if (logInMethd == "Create account") {
+  } else {
     form = createAcctForm;
   }
 
