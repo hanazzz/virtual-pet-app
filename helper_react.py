@@ -60,7 +60,6 @@ def log_in_user(user):
 
     session["current_user_id"] = user.user_id
     print(session["current_user_id"])
-    flash("You are now logged in!")
 
 
 def generate_pet():
