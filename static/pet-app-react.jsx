@@ -25,6 +25,16 @@ function AcctForm(props) {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [password2, setPassword2] = React.useState("")
+  const [userID, setUserID] = React.useState("")
+
+  // FUNCTION FOR HANDLING SERVER RESPONSE
+  function handleAcctServerResponse(responseJson) {
+    let msg = responseJson["msg"];
+    alert(msg);
+    if (responseJson["status"]) {
+      setUserID(responseJson["user_id"])
+    }
+  }
 
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
@@ -43,9 +53,7 @@ function AcctForm(props) {
       })
         .then((response) => response.json())
         .then((responseJson => {
-          let status = responseJson["status"];
-          let msg = responseJson["msg"];
-          alert(msg);
+          handleAcctServerResponse(responseJson);
         }))
         
     // IF CREATING ACCOUNT
@@ -60,12 +68,12 @@ function AcctForm(props) {
       })
         .then((response) => response.json())
         .then((responseJson => {
-          let status = responseJson["status"];
-          let msg = responseJson["msg"];
-          alert(msg);
+          handleAcctServerResponse(responseJson);
         }))
     }
   }
+
+
 
   // DEFINE FORMS
   // Have state for each form field.
