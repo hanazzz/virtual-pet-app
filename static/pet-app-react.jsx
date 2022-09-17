@@ -26,16 +26,6 @@ function AcctForm(props) {
   const [password2, setPassword2] = React.useState("")
   const [userID, setUserID] = React.useState(0)
 
-  // FUNCTION FOR HANDLING SERVER RESPONSE
-  function handleAcctServerResponse(responseJson) {
-    let msg = responseJson["msg"];
-    alert(msg);
-    // If valid account, update userID state with user's ID
-    if (responseJson["status"]) {
-      setUserID(responseJson["user_id"]);
-    }
-  }
-
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
   // and sends form data to server via Fetch re quest
@@ -65,10 +55,19 @@ function AcctForm(props) {
           console.log(uID)
           setUserID(uID);
           console.log(userID);
-          console.log(userID);
-          console.log(userID);
         }
       }))
+
+
+  // // FUNCTION FOR HANDLING SERVER RESPONSE
+  // function handleAcctServerResponse(responseJson) {
+  //   let msg = responseJson["msg"];
+  //   alert(msg);
+  //   // If valid account, update userID state with user's ID
+  //   if (responseJson["status"]) {
+  //     setUserID(responseJson["user_id"]);
+  //   }
+  // }
 
     // // IF LOGGING IN
     // if (logInMethd == "Log in") {
