@@ -35,42 +35,36 @@ def create_user():
     
     Checks if user with provided email or username already exists."""
 
+    user_data = request.json
+
     # Get email, username, password from create account form
-    email = request.form.get("email")
-    username = request.form.get("username")
-    password = request.form.get("password")
-    password2 = request.form.get("password2")
+    username = user_data["username"]
+    email = user_data["email"]
+    password = user_data["password"]
+    password2 = user_data["password2"]
 
     valid_account = helper_react.check_new_account(email, username, password, password2)
 
-    if not valid_account["status"]:
-        print(valid_account["status"])
-        print(valid_account["msg"])
-        return valid_account["msg"]
-    else:
+    # If account creation is valid
+    if valid_account["status"]:
         # Get newly created User object from db
         user = crud.get_user_by_username(username)
         helper_react.log_in_user(user)
-        print(valid_account["status"])
-        print(valid_account["msg"])
-        return valid_account["msg"]
+
+    return jsonify(valid_account)
 
 
 @app.route('/login', methods=['POST'])
 def login():
     """Log user in."""
 
-    # Get username and password
     user_data = request.json
 
     username = user_data["username"]
     password = user_data["password"]
-    print("UN:", username)
-    print("PW:", password)
 
     # Get user object by username
     user = crud.get_user_by_username(username)
-    print("USER:", user)
 
     # Validate username
     if not user:
@@ -82,8 +76,6 @@ def login():
     else:
         helper_react.log_in_user(user)
         valid_account = {"status" : True, "msg" : "You are now logged in!"}
-    
-    print("VALID_ACCOUNT:", valid_account)
 
     return jsonify(valid_account)
 

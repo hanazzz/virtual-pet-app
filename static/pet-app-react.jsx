@@ -31,10 +31,8 @@ function AcctForm(props) {
   // and sends form data to server via Fetch re quest
   function submitForm(evt) {
     evt.preventDefault();
-    console.log("Form submission");
-    console.log(username, email, password, password2);
+    // IF LOGGING IN
     if (logInMethd == "Log in") {
-      console.log("Logging in...");
       let userData = {"username" : username, "password" : password};
       fetch("/login", {
         method: 'POST',
@@ -45,14 +43,27 @@ function AcctForm(props) {
       })
         .then((response) => response.json())
         .then((responseJson => {
-          console.log(responseJson);
           let status = responseJson["status"];
           let msg = responseJson["msg"];
           alert(msg);
         }))
+        
+    // IF CREATING ACCOUNT
     } else if (logInMethd == "Create account") {
-      console.log("Creating account...");
-      // fetch("/create-user")
+      let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
+      fetch("/create-user", {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((responseJson => {
+          let status = responseJson["status"];
+          let msg = responseJson["msg"];
+          alert(msg);
+        }))
     }
   }
 
