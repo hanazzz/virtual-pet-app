@@ -31,8 +31,9 @@ function AcctForm(props) {
   function handleAcctServerResponse(responseJson) {
     let msg = responseJson["msg"];
     alert(msg);
+    // If valid account, update userID state with user's ID
     if (responseJson["status"]) {
-      setUserID(responseJson["user_id"])
+      setUserID(responseJson["user_id"]);
     }
   }
 
