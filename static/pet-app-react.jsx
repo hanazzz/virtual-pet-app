@@ -2,6 +2,7 @@ function AcctForm(props) {
   // LOGIC FOR LOG IN / CREATE ACCOUNT BUTTON
   // logInMethd tracks whether the user is logging into an existing account
   // or creating a new account (initla value is logging in)
+  // EVENTUALLY SWITCH TO TRUE/FALSE
   const [logInMethd, setLogInMethd] = React.useState("Log in");
   // btnMsg is the button text to switch forms
   const [btnMsg, setBtnMsg] = React.useState("New user? Create an account instead.");
@@ -31,7 +32,28 @@ function AcctForm(props) {
   function submitForm(evt) {
     evt.preventDefault();
     console.log("Form submission");
-    console.log(username, email, password, password2)
+    console.log(username, email, password, password2);
+    if (logInMethd == "Log in") {
+      console.log("Logging in...");
+      let userData = {"username" : username, "password" : password};
+      fetch("/login", {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((responseJson => {
+          console.log(responseJson);
+          let status = responseJson["status"];
+          let msg = responseJson["msg"];
+          alert(msg);
+        }))
+    } else if (logInMethd == "Create account") {
+      console.log("Creating account...");
+      // fetch("/create-user")
+    }
   }
 
   // DEFINE FORMS
