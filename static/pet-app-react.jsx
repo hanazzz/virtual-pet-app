@@ -24,7 +24,7 @@ function AcctForm(props) {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [password2, setPassword2] = React.useState("")
-  const [userID, setUserID] = React.useState("")
+  const [userID, setUserID] = React.useState(0)
 
   // FUNCTION FOR HANDLING SERVER RESPONSE
   function handleAcctServerResponse(responseJson) {
@@ -56,7 +56,18 @@ function AcctForm(props) {
     })
       .then((response) => response.json())
       .then((responseJson => {
-        handleAcctServerResponse(responseJson);
+        let msg = responseJson["msg"];
+        alert(msg);
+        // If valid account, update userID state with user's ID
+        if (responseJson["status"]) {
+          console.log(responseJson["user_id"]);
+          let uID = responseJson["user_id"];
+          console.log(uID)
+          setUserID(uID);
+          console.log(userID);
+          console.log(userID);
+          console.log(userID);
+        }
       }))
 
     // // IF LOGGING IN
