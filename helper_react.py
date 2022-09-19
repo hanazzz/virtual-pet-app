@@ -81,10 +81,10 @@ def check_login(username, password):
     - password (str): User-provided password
 
     Return:
-    - valid_account (dict): Information about attempted account creation
+    - valid_account (dict): Information about attempted account login
         - "status" (bool): Whether account is valid (True) or not (False)
-        - "msg" (str): Whether account was successfuly created (and if not, reason for error)
-        - "user_id" (int): If account was created, user ID for new account
+        - "msg" (str): Whether account was successfuly logged in (and if not, reason for error)
+        - "user_id" (int): If account was logged in, user ID for account
     """
 
     valid_account = {"status" : False, "msg" : ""}
@@ -110,7 +110,13 @@ def check_login(username, password):
 
 
 def log_in_user(user):
-    """Log user in."""
+    """Log user in.
+
+    Creates session object with key to track user ID.
+
+    Argument:
+    - user (object): User object from database
+    """
 
     session["current_user_id"] = user.user_id
 

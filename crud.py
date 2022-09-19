@@ -68,7 +68,9 @@ def create_item(item_name, description):
 
 
 def get_user_by_id(user_id):
-    """Retrieve and return an existing user, using their user_id."""
+    """Retrieve and return an existing user, using their user_id.
+    
+     Returns None if user doesn't exist."""
 
     user = User.query.get(user_id)
 
@@ -76,7 +78,9 @@ def get_user_by_id(user_id):
 
 
 def get_user_by_username(username):
-    """Retrieve and return an existing user, using their username. If user doesn't exist, return None."""
+    """Retrieve and return an existing user, using their username.
+    
+    Returns None if user doesn't exist."""
 
     user = User.query.filter_by(username=username).first()
 
@@ -84,7 +88,9 @@ def get_user_by_username(username):
 
 
 def get_user_by_email(email):
-    """Retrieve and return an existing user, using their email. If user doesn't exist, return None."""
+    """Retrieve and return an existing user, using their email.
+    
+    Returns None if user doesn't exist."""
 
     user = User.query.filter_by(email=email).first()
 
