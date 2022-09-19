@@ -117,18 +117,18 @@ def get_user_info():
     return jsonify(pet)
 
 
-@app.route("/create-pet")
-def new_pet():
-    """Show user pet generator."""
+# @app.route("/create-pet")
+# def new_pet():
+#     """Show user pet generator."""
 
-    # Redirect to homepage if user not logged in
-    if not session.get("current_user_id"):
-        return redirect("/")
-    # Redirect to pet page if user has existing pet
-    elif crud.get_pet(session["current_user_id"]):
-        return redirect("/pet")
+#     # Redirect to homepage if user not logged in
+#     if not session.get("current_user_id"):
+#         return redirect("/")
+#     # Redirect to pet page if user has existing pet
+#     elif crud.get_pet(session["current_user_id"]):
+#         return redirect("/pet")
     
-    return render_template("pet-generator.html")
+#     return render_template("pet-generator.html")
 
 
 @app.route("/generate-pet")
