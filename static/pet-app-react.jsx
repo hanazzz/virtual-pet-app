@@ -49,58 +49,15 @@ function AcctForm(props) {
         alert(msg);
         // If valid account, update userID state with user's ID
         if (responseJson["status"]) {
-          console.log(responseJson["user_id"]);
-          let uID = responseJson["user_id"];
-          console.log(uID)
-          props.setUserID(uID);
-          console.log(props.userID);
+          // console.log(responseJson["user_id"]);
+          // let uID = responseJson["user_id"];
+          // console.log(uID)
+          // props.setUserID(uID);
+          // console.log(props.userID);
           window.location.href="/pet";
         }
       }))
-
-
-  // // FUNCTION FOR HANDLING SERVER RESPONSE
-  // function handleAcctServerResponse(responseJson) {
-  //   let msg = responseJson["msg"];
-  //   alert(msg);
-  //   // If valid account, update userID state with user's ID
-  //   if (responseJson["status"]) {
-  //     setUserID(responseJson["user_id"]);
-  //   }
-  // }
-
-    // // IF LOGGING IN
-    // if (logInMethd == "Log in") {
-    //   let userData = {"username" : username, "password" : password};
-    //   fetch("/login", {
-    //     method: 'POST',
-    //     body: JSON.stringify(userData),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((responseJson => {
-    //       handleAcctServerResponse(responseJson);
-    //     }))
-        
-    // // IF CREATING ACCOUNT
-    // } else if (logInMethd == "Create account") {
-    //   let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
-    //   fetch("/create-user", {
-    //     method: 'POST',
-    //     body: JSON.stringify(userData),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((responseJson => {
-    //       handleAcctServerResponse(responseJson);
-    //     }))
-    // }
   }
-
 
 
   // DEFINE FORMS
@@ -230,5 +187,4 @@ function VirtualPetApp() {
   )
 }
 
-
-ReactDOM.render(<VirtualPetApp />, document.querySelector("#app"));
+ReactDOM.render(<AcctForm />, document.querySelector("#access")); 
