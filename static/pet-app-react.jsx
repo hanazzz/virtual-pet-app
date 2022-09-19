@@ -1,4 +1,5 @@
 function PetDisplay(props) {
+  console.log(props.pet)
 
   return (
     <div>
@@ -14,15 +15,15 @@ function PetDisplay(props) {
           </tr>
           <tr>
               <td>Favorite food</td>
-              <td id="food-fave">TBD</td>
+              <td id="food-fave">{props.pet.food_fave}</td>
           </tr>
           <tr>
               <td>Least favorite food</td>
-              <td id="food-least">TBD</td>
+              <td id="food-least">{props.pet.food_least}</td>
           </tr>
           <tr>
               <td>Favorite activity</td>
-              <td id="activity-fave">TBD</td>
+              <td id="activity-fave">{props.pet.activity_least}</td>
           </tr>
           <tr>
               <td>Least favorite activity</td>
@@ -59,15 +60,36 @@ function PetDisplay(props) {
 }
 
 
-function GeneratePet() {
-  alert("Looks like you don't have a pet yet! Let's fix that.")
+function PetGenerator(props) {
+  // alert("Looks like you don't have a pet yet! Let's fix that.")
+  const [newPetData, setNewPetData] = React.useState()
+  console.log("Loading pet generator")
 
-  return (
-    <div>
-      no pet!
-      <PetDisplay />
-    </div>
-  )
+  function generateNewPet() {
+    console.log("generating pet");
+    fetch("/generate-pet")
+    .then((response) => response.json())
+    .then((petJson) => {
+      console.log("new pet available");
+      setNewPetData(petJson);
+    });
+  }
+
+  if (newPetData) {
+    console.log("showing pet")
+    return (
+      <div>
+        <h2>Potential Pet</h2>
+        <PetDisplay pet={newPetData} />
+        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button>
+      </div>
+    )
+  } else {
+    return (
+      <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
+    )
+  }
+  
 }
 
 
@@ -89,27 +111,45 @@ function CurrentPet(props) {
 
 function VirtualPetApp() {
   const [petData, setPetData] = React.useState();
+  const [hasPet, setHasPet] = React.useState();
+
+  console.log("Loading app")
 
   React.useEffect(() => {
+    console.log("fetching");
     fetch("/user-info")
       .then((response) => response.json())
       .then((petJson) => {
         if (petJson) {
+          console.log("has pet")
           setPetData(petJson);
-        } 
+          setHasPet("yes");
+        } else {
+          console.log("no pet");
+          setHasPet("no");
+        }
       })
   }, []);
   
-  if (petData) {
+  if (hasPet == "yes") {
+    console.log("hasPet condition met")
     return (
+      // <React.StrictMode>
       <CurrentPet pet={petData} />
+      // </React.StrictMode>
     )
-  } else if (petData == false) {
+  } else if (hasPet == "no") {
+    console.log("hasPet condition NOT met")
     return (
-      <GeneratePet petData="TBD" />
+      // <React.StrictMode>
+      <PetGenerator />
+      // </React.StrictMode>
     )
   } else {
-    return null
+    console.log("the void")
+    return (
+      <div>Loading...</div>
+    )
   }
 }
 
