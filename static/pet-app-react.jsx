@@ -24,7 +24,6 @@ function AcctForm(props) {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [password2, setPassword2] = React.useState("")
-  const [userID, setUserID] = React.useState(0)
 
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
@@ -53,8 +52,9 @@ function AcctForm(props) {
           console.log(responseJson["user_id"]);
           let uID = responseJson["user_id"];
           console.log(uID)
-          setUserID(uID);
-          console.log(userID);
+          props.setUserID(uID);
+          console.log(props.userID);
+          window.location.href="/pet";
         }
       }))
 
@@ -141,26 +141,26 @@ function AcctForm(props) {
   <h2>Create Account</h2>
 
   <form onSubmit={(evt) => submitForm(evt)}>
-      <label htmlFor="user-email-new">Email:</label>
+      <label htmlFor="email-new">Email:</label>
       <input
       type="email"
       name="email"
       maxLength="254"
       required="required"
       aria-required="true"
-      id="user-email-new"
+      id="email-new"
       value={email}
       onChange={(evt) => setEmail(evt.target.value)} />
       <br />
 
-      <label htmlFor="user-username-new">Username:</label>
+      <label htmlFor="username-new">Username:</label>
       <input
       type="text"
       name="username"
       maxLength="30"
       required="required"
       aria-required="true"
-      id="user-username-new"
+      id="username-new"
       value={username}
       onChange={(evt) => setUsername(evt.target.value)} />
       <br />
@@ -207,11 +207,22 @@ function AcctForm(props) {
       {logInMethd == "Create account" && createAcctForm} */}
       <br />
       <button type="button" onClick={switchLogInMethd}>
-        {btnMsg} (Currently: {logInMethd})
+        {btnMsg}
       </button>
     </div>
   )
 }
 
 
-ReactDOM.render(<AcctForm />, document.querySelector("#app"));
+function VirtualPetApp() {
+  const [userID, setUserID] = React.useState(0)
+  
+  return (
+    <div>
+      <AcctForm userID={userID} setUserID={setUserID} />
+    </div>
+  )
+}
+
+
+ReactDOM.render(<VirtualPetApp />, document.querySelector("#app"));
