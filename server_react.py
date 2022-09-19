@@ -82,15 +82,6 @@ def view_pet():
     if not session.get("current_user_id"):
         return redirect("/")
 
-    # # Check whether user has pet
-    # else:
-    #     # Get pet of current user
-    #     pet = crud.get_pet(session["current_user_id"])
-    #     # If user doesn't have a pet, redirect to create pet page.
-    #     if not pet:
-    #         flash("Looks like you don't have a pet yet! Let's fix that.")
-    #         return redirect("/create-pet")
-
     return render_template('pet-react.html')
 
 
