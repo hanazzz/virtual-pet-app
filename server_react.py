@@ -76,22 +76,54 @@ def logout():
 
 @app.route('/pet')
 def view_pet():
-    """Show user their pet."""
+    """Take user to main app page."""
 
     # Redirect to homepage if user not logged in
     if not session.get("current_user_id"):
         return redirect("/")
 
-    # Check whether user has pet
-    else:
-        # Get pet of current user
-        pet = crud.get_pet(session["current_user_id"])
-        # If user doesn't have a pet, redirect to create pet page.
-        if not pet:
-            flash("Looks like you don't have a pet yet! Let's fix that.")
-            return redirect("/create-pet")
+    # # Check whether user has pet
+    # else:
+    #     # Get pet of current user
+    #     pet = crud.get_pet(session["current_user_id"])
+    #     # If user doesn't have a pet, redirect to create pet page.
+    #     if not pet:
+    #         flash("Looks like you don't have a pet yet! Let's fix that.")
+    #         return redirect("/create-pet")
 
-    return render_template('pet.html', pet=pet)
+    return render_template('pet-react.html')
+
+
+@app.route("/user-info")
+def get_user_info():
+    """Get current user's pet information from database."""
+
+    pet = crud.get_pet(session["current_user_id"])
+    
+    # If user has pet, turn Pet object into dict
+    if pet:
+        pet = {
+            "name" : pet.name,
+            "species_name" : pet.species_name,
+            "country" : pet.country,
+            "region" : pet.region,
+            "city" : pet.city,
+            "lat" : pet.lat,
+            "lon" : pet.lon,
+            "food_fave" : pet.food_fave,
+            "food_least" : pet.food_least,
+            "activity_fave" : pet.activity_fave,
+            "activity_least" : pet.activity_least,
+            "music_fave" : pet.music_fave,
+            "music_least" : pet.music_least,
+            "weather_fave" : pet.weather_fave,
+            "weather_least" : pet.weather_least,
+            "personality" : pet.personality,
+            "astro_sign" : pet.astro_sign,
+            "species_img_path" : pet.species_img_path,
+        }
+
+    return jsonify(pet)
 
 
 @app.route("/create-pet")
