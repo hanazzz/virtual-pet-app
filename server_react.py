@@ -64,22 +64,24 @@ def login():
     username = user_data["username"]
     password = user_data["password"]
 
-    # Get user object by username
-    user = crud.get_user_by_username(username)
+    valid_account = helper_react.check_login(username, password)
 
-    # Validate username
-    valid_account = {"status" : False, "msg" : ""}
-    if not user:
-        valid_account["msg"] = "No accounts found with that username. Please try again."
+    # # Get user object by username
+    # user = crud.get_user_by_username(username)
 
-    # Validate password
-    elif user.password != password:
-        valid_account["msg"] = "That username and password don't match. Please try again."
-    else:
-        helper_react.log_in_user(user)
-        valid_account["status"] = True
-        valid_account["msg"] = "You are now logged in!"
-        valid_account["user_id"] = user.user_id
+    # # Validate username
+    # valid_account = {"status" : False, "msg" : ""}
+    # if not user:
+    #     valid_account["msg"] = "No accounts found with that username. Please try again."
+
+    # # Validate password
+    # elif user.password != password:
+    #     valid_account["msg"] = "That username and password don't match. Please try again."
+    # else:
+    #     helper_react.log_in_user(user)
+    #     valid_account["status"] = True
+    #     valid_account["msg"] = "You are now logged in!"
+    #     valid_account["user_id"] = user.user_id
 
     return jsonify(valid_account)
 
