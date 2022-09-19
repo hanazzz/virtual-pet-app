@@ -118,6 +118,7 @@ function AcctForm(props) {
       required="required"
       aria-required="true"
       id="user-username"
+      autoComplete="username"
       value={username}
       onChange={(evt) => setUsername(evt.target.value)} />
       <br />
@@ -129,6 +130,7 @@ function AcctForm(props) {
       required="required"
       aria-required="true"
       id="user-password" 
+      autoComplete="current-password"
       value={password}
       onChange={(evt) => setPassword(evt.target.value)}/>
       <br />
@@ -149,6 +151,7 @@ function AcctForm(props) {
       required="required"
       aria-required="true"
       id="email-new"
+      autoComplete="email"
       value={email}
       onChange={(evt) => setEmail(evt.target.value)} />
       <br />
@@ -161,29 +164,32 @@ function AcctForm(props) {
       required="required"
       aria-required="true"
       id="username-new"
+      autoComplete="username"
       value={username}
       onChange={(evt) => setUsername(evt.target.value)} />
       <br />
 
-      <label htmlFor="user-password-new">Password:</label>
+      <label htmlFor="password-new">Password:</label>
       <input
       type="password"
       name="password"
       maxLength="30"
       required="required"
       aria-required="true"
-      id="user-password-new"
+      id="password-new"
+      autoComplete="new-password"
       value={password}
       onChange={(evt) => setPassword(evt.target.value)} />
       <br />
 
-      <label htmlFor="user-password-confirm">Confirm password:</label>
+      <label htmlFor="password-new-confirm">Confirm password:</label>
       <input
       type="password"
       name="password2"
       required="required"
       aria-required="true"
-      id="user-password-confirm"
+      id="password-new-confirm"
+      autoComplete="new-password"
       value={password2}
       onChange={(evt) => setPassword2(evt.target.value)} />
       <br />
