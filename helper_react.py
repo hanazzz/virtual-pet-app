@@ -26,9 +26,20 @@ ASTROLOGICAL_SIGN = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Lib
 def check_new_account(email, username, password, password2):
     """Check whether account creation is valid.
     
-    Checks if email is already in use, if username is already in use, and whether both password fields match. If no issues, crerates new user account.
+    Checks if email is already in use, if username is already in use, and whether both password fields match. If no issues, crerates new user account and logs user in. Paramters come from Create Account form.
+
+    Arguments:
+    - email (str): User-provided email
+    - username (str): User-provided username
+    - password (str): User-provided password
+    - password2 (str): User-provided confirmation of password (must match password arg)
     
-    Returns Boolean value indicating whether account is valid and corresponding message."""
+    Return:
+    - valid_account (dict): Information about attempted account creation
+        - "status" (bool): Whether account is valid (True) or not (False)
+        - "msg" (str): Whether account was successfuly created (and if not, reason for error)
+        - "user_id" (int): If account was created, user ID for new account
+    """
 
     valid_account = {"status" : False, "msg" : ""}
 
@@ -61,11 +72,20 @@ def check_new_account(email, username, password, password2):
 
 
 def check_login(username, password):
-    """Checks whether account login is valid.
+    """Check whether account login is valid.
     
-    Checks whether user exists in db, whether provided password matches password in db.
-    
-    Returns Boolean value indicating whether account is valid and corresponding message."""
+    Checks whether user exists in db, whether provided password matches password in db. If no issues, logs user in. Parameters come from Log In form.
+
+    Arguments:
+    - username (str): User-provided username
+    - password (str): User-provided password
+
+    Return:
+    - valid_account (dict): Information about attempted account creation
+        - "status" (bool): Whether account is valid (True) or not (False)
+        - "msg" (str): Whether account was successfuly created (and if not, reason for error)
+        - "user_id" (int): If account was created, user ID for new account
+    """
 
     valid_account = {"status" : False, "msg" : ""}
 
