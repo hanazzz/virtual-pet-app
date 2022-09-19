@@ -21,10 +21,17 @@
 <body>
 
     <nav>
-    {% block navbar %}
+        {% block navbar %}
             NAVBAR GOES HERE
-            <a href="/logout">LOG OUT</a>
-    {% endblock %}
+            ***
+            SOME NAVBAR CONTENT
+            {% if session.get("current_user_id") %}
+                ***
+                <a href="/logout">LOG OUT</a>
+                ***
+                Logged in as: {{ session["current_username"] }}
+            {% endif %}
+        {% endblock %}
     </nav>
 
     <main>
