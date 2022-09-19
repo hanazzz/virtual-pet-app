@@ -68,6 +68,7 @@ def logout():
     """Log user out."""
 
     session.pop("current_user_id", None)
+    session.pop("current_username", None)
     flash("You are now logged out.")
 
     return redirect("/")
