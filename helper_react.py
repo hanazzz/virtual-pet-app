@@ -112,13 +112,14 @@ def check_login(username, password):
 def log_in_user(user):
     """Log user in.
 
-    Creates session object with key to track user ID.
+    Creates session object with keys to track user ID and username.
 
     Argument:
     - user (object): User object from database
     """
 
     session["current_user_id"] = user.user_id
+    session["current_username"] = user.username
 
 
 def generate_pet():
