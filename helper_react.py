@@ -147,18 +147,18 @@ def generate_pet():
     astro_sign = choice(ASTROLOGICAL_SIGN)
 
     pet = {
-        "Pet species" : species_name,
-        "Species img path" : species_img_path,
-        "Favorite food" : food_fave,
-        "Least favorite food" : food_least,
-        "Favorite activity" : activity_fave,
-        "Least favorite activity" : activity_least,
-        "Favorite music genre" : music_fave,
-        "Least favorite music genre" : music_least,
-        "Favorite weather" : weather_fave,
-        "Least favorite weather" : weather_least,
-        "Personality" : personality,
-        "Astrological sign" : astro_sign,
+        "species_name" : species_name,
+        "species_img_path" : species_img_path,
+        "food_fave" : food_fave,
+        "food_least" : food_least,
+        "activity_fave" : activity_fave,
+        "activity_least" : activity_least,
+        "music_fave" : music_fave,
+        "music_least" : music_least,
+        "weather_fave" : weather_fave,
+        "weather_least" : weather_least,
+        "personality" : personality,
+        "astro_sign" : astro_sign,
     }
 
     return pet
