@@ -23,35 +23,35 @@ function PetDisplay(props) {
           </tr>
           <tr>
               <td>Favorite activity</td>
-              <td id="activity-fave">{props.pet.activity_least}</td>
+              <td id="activity-fave">{props.pet.activity_fave}</td>
           </tr>
           <tr>
               <td>Least favorite activity</td>
-              <td id="activity-least">TBD</td>
+              <td id="activity-least">{props.pet.activity_least}</td>
           </tr>
           <tr>
               <td>Favorite music genre</td>
-              <td id="music-fave">TBD</td>
+              <td id="music-fave">{props.pet.music_fave}</td>
           </tr>
           <tr>
               <td>Least favorite music genre</td>
-              <td id="music-least">TBD</td>
+              <td id="music-least">{props.pet.music_least}</td>
           </tr>
           <tr>
               <td>Favorite weather</td>
-              <td id="weather-fave">TBD</td>
+              <td id="weather-fave">{props.pet.weather_fave}</td>
           </tr>
           <tr>
               <td>Least favorite weather</td>
-              <td id="weather-least">TBD</td>
+              <td id="weather-least">{props.pet.weather_least}</td>
           </tr>
           <tr>
               <td>Personality</td>
-              <td id="personality">TBD</td>
+              <td id="personality">{props.pet.personality}</td>
           </tr>
           <tr>
               <td>Astrological sign</td>
-              <td id="astro-sign">TBD</td>
+              <td id="astro-sign">{props.pet.astro_sign}</td>
           </tr>
         </tbody>
       </table>
