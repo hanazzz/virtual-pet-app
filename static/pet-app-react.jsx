@@ -52,24 +52,53 @@ function PetDisplay() {
 
 
 function GeneratePet() {
+  alert("Looks like you don't have a pet yet! Let's fix that.")
 
+  return (
+    <div>
+      no pet!
+    </div>
+  )
 }
 
 
 function CurrentPet() {
-
+  alert("Your pet is so cute!")
   // <button id="delete-pet">DELETE PET</button>
+
+  return (
+    <div>
+      meow! here is your pet!
+    </div>
+  )
 }
 
 
 function VirtualPetApp() {
   // const [userID, setUserID] = React.useState(0)
+  const [hasPet, setHasPet] = React.useState();
+
+  React.useEffect(() => {
+    fetch("/user-info")
+      .then((response) => response.json())
+      .then((petData) => {
+        console.log(petData);
+
+        if (petData) {
+          setHasPet(true);
+        }
+      })
+  }, []);
   
-  return (
-    <div>
-      meow!
-    </div>
-  )
+  if (hasPet) {
+    return (
+      <CurrentPet />
+    )
+  } else {
+    return (
+      <GeneratePet />
+    )
+  }
 }
 
 
