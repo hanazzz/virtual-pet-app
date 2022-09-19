@@ -49,6 +49,11 @@ def check_new_account(email, username, password, password2):
         user = crud.create_user(username, email, password)
         db.session.add(user)
         db.session.commit()
+        # Get newly created User object from db
+        user = crud.get_user_by_username(username)
+        # Log user in
+        log_in_user(user)
+        valid_account["user_id"] = user.user_id
         valid_account["status"] = True
         valid_account["msg"] = "Your account has successfully been created!"
     
@@ -58,7 +63,7 @@ def check_new_account(email, username, password, password2):
 def check_login(username, password):
     """Checks whether account login is valid.
     
-    Checks whether username exists in db, whether provided password matches password in db.
+    Checks whether user exists in db, whether provided password matches password in db.
     
     Returns Boolean value indicating whether account is valid and corresponding message."""
 
@@ -75,7 +80,8 @@ def check_login(username, password):
     elif user.password != password:
         valid_account["msg"] = "That username and password don't match. Please try again."
     else:
-        # helper_react.log_in_user(user)
+        # Log user in
+        log_in_user(user)
         valid_account["status"] = True
         valid_account["msg"] = "You are now logged in!"
         valid_account["user_id"] = user.user_id
@@ -87,7 +93,6 @@ def log_in_user(user):
     """Log user in."""
 
     session["current_user_id"] = user.user_id
-    print(session["current_user_id"])
 
 
 def generate_pet():

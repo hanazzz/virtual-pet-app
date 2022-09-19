@@ -45,13 +45,6 @@ def create_user():
 
     valid_account = helper_react.check_new_account(email, username, password, password2)
 
-    # If account creation is valid
-    if valid_account["status"]:
-        # Get newly created User object from db
-        user = crud.get_user_by_username(username)
-        helper_react.log_in_user(user)
-        valid_account["user_id"] = user.user_id
-
     return jsonify(valid_account)
 
 
@@ -61,27 +54,11 @@ def login():
 
     user_data = request.json
 
+    # Get username and password from login form
     username = user_data["username"]
     password = user_data["password"]
 
     valid_account = helper_react.check_login(username, password)
-
-    # # Get user object by username
-    # user = crud.get_user_by_username(username)
-
-    # # Validate username
-    # valid_account = {"status" : False, "msg" : ""}
-    # if not user:
-    #     valid_account["msg"] = "No accounts found with that username. Please try again."
-
-    # # Validate password
-    # elif user.password != password:
-    #     valid_account["msg"] = "That username and password don't match. Please try again."
-    # else:
-    #     helper_react.log_in_user(user)
-    #     valid_account["status"] = True
-    #     valid_account["msg"] = "You are now logged in!"
-    #     valid_account["user_id"] = user.user_id
 
     return jsonify(valid_account)
 
@@ -214,6 +191,7 @@ def get_user_loc():
 
     if user_data["status"] == "fail":
         print("Request failed.")
+        # TODO: ADD BEHAVIOR IN CASE OF FAILURE (alert user and use default location)
 
     return jsonify(user_data)
 
