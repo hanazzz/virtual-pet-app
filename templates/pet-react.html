@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} VIRTUAL PET APP {% endblock %}
+{% block title %} VIRTUAL PET APP {% endblock title %}
 
 {% block body %}
 
@@ -10,4 +10,8 @@
 
     <script src="/static/pet-app-react.jsx" type="text/jsx"></script>
 
-{% endblock %}
+{% endblock body %}
+
+{% block footer %}
+    <p>Pet images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
+{% endblock footer %}
