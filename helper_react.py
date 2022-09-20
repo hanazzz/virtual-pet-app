@@ -118,7 +118,7 @@ def log_in_user(user):
 def generate_pet():
     """Randomly generate a pet.
     
-    Returns a dictionary of pet characteristics."""
+    Returns a dictionary of pet attributes."""
 
     species_type = choice(SPECIES_ID)
     species_name = SPECIES[species_type][0]
