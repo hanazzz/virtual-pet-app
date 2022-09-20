@@ -148,6 +148,12 @@ def generate_pet():
 
     pet = {
         "species_name" : species_name,
+        "name" : None,
+        "country" : None,
+        "region" : None,
+        "city" : None,
+        "lat" : None,
+        "lon" : None,
         "species_img_path" : species_img_path,
         "food_fave" : food_fave,
         "food_least" : food_least,
