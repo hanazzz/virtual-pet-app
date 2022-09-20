@@ -30,7 +30,11 @@ function AcctForm(props) {
   // and sends form data to server via Fetch re quest
   function submitForm(evt) {
     evt.preventDefault();
-    let userData = {"username" : username, "email" : email, "password" : password, "password2" : password2};
+    let userData = {
+      "username" : username,
+      "email" : email,
+      "password" : password,
+      "password2" : password2};
     let route = "/login"
     if (logInMethd == false) {
       route = "/create-user"
@@ -49,11 +53,6 @@ function AcctForm(props) {
         alert(msg);
         // If valid account, update userID state with user's ID
         if (responseJson["status"]) {
-          // console.log(responseJson["user_id"]);
-          // let uID = responseJson["user_id"];
-          // console.log(uID)
-          // props.setUserID(uID);
-          // console.log(props.userID);
           window.location.href="/pet";
         }
       }))
@@ -130,7 +129,7 @@ function AcctForm(props) {
       <input
       type="password"
       name="password"
-      maxLength="30"
+      minLength="8"
       required="required"
       aria-required="true"
       id="password-new"
@@ -143,6 +142,7 @@ function AcctForm(props) {
       <input
       type="password"
       name="password2"
+      minLength="8"
       required="required"
       aria-required="true"
       id="password-new-confirm"
