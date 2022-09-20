@@ -1,6 +1,6 @@
 function PetDisplay(props) {
   return (
-    <div>
+    <div id="pet-display">
       <div>
         <img src={`${props.pet.species_img_path}`} alt={`${props.pet.species_name}`} id="species-img" />
         <p>Images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
@@ -58,11 +58,22 @@ function PetDisplay(props) {
 }
 
 
+function PetGeneratorIntro() {
+  return (
+    <React.Fragment>
+      <h1>Adopt a Pet</h1>
+      <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
+    </React.Fragment>
+  )
+}
+
 function PetGenerator(props) {
+  // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
   console.log("Loading pet generator");
   console.log(newPetData);
 
+  // Generate random pet
   function generateNewPet() {
     console.log("generating pet");
     fetch("/generate-pet")
@@ -73,8 +84,10 @@ function PetGenerator(props) {
     });
   }
 
+  // Adopt pet
   function adoptPet() {
     console.log("preparing to adopt pet");
+    // Get user's location via IP address and use for pet's location
     fetch("/get-loc-mock")
       .then((response) => response.json())
       .then((userData) => {
@@ -101,6 +114,7 @@ function PetGenerator(props) {
         // })}
         // );
 
+        // Adopt pet (create pet in database and link to user)
         fetch("/adopt-pet", {
           method: 'POST',
           body: JSON.stringify(newPetData),
@@ -112,6 +126,7 @@ function PetGenerator(props) {
           .then((msg) => {
             console.log("adoption complete");
             alert(msg);
+            // Promps re-render of VirtualPetApp
             props.setAdoptedPet(true);
           });
     });
@@ -122,6 +137,7 @@ function PetGenerator(props) {
     console.log("showing pet")
     return (
       <div>
+        <PetGeneratorIntro />
         <h2>Potential Pet</h2>
         <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button><br />
         <PetDisplay pet={newPetData} />
@@ -130,7 +146,10 @@ function PetGenerator(props) {
     )
   } else {
     return (
-      <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
+      <React.Fragment>
+        <PetGeneratorIntro />
+        <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
+      </React.Fragment>
     )
   }
   
@@ -139,17 +158,23 @@ function PetGenerator(props) {
 
 function CurrentPet(props) {
   function deletePet() {
-    fetch("/delete-pet")
-      .then((response) => response.json())
-      .then((msg) => {
-        alert(msg);
-        props.setPetData(null);
-      });
+    if (confirm("Are you sure you want to delete your pet? This action is irreversible.")) {
+      fetch("/delete-pet")
+        .then((response) => response.json())
+        .then((msg) => {
+          alert(msg);
+          props.setPetData(false);
+          props.setAdoptedPet(false);
+        });
+    } else {
+      alert("Your pet has not been deleted.");
+    }
+
   }
 
   return (
     <div>
-      <h1>meow! here is your pet!</h1>
+      <h1>Your Pet</h1>
       <h2>{props.pet.name} the {props.pet.personality} {props.pet.species_name}</h2>
       <h3 id="location">Location: {props.pet.city}, {props.pet.region}, {props.pet.country}</h3>
       <PetDisplay pet={props.pet} />
@@ -161,12 +186,13 @@ function CurrentPet(props) {
 
 
 function VirtualPetApp() {
-  const [petData, setPetData] = React.useState("TBD");
-  // const [hasPet, setHasPet] = React.useState();
+  const [petData, setPetData] = React.useState(undefined);
+  // Use adoptedPet to trigger useEffect
   const [adoptedPet, setAdoptedPet] = React.useState(false);
 
   console.log("Loading app")
 
+  // Check if user has existing pet
   React.useEffect(() => {
     console.log("fetching");
     fetch("/user-info")
@@ -183,20 +209,20 @@ function VirtualPetApp() {
   }, [adoptedPet]);
 
   // If user has pet
-  if (petData && petData != "TBD") {
+  if (petData) {
     console.log("Existing pet data");
     alert("Your pet is so cute!");
     return(
-      <CurrentPet pet={petData} setPetData={setPetData} />
+      <CurrentPet pet={petData} setPetData={setPetData} setAdoptedPet={setAdoptedPet} />
     )
   // If user doesn't have pet
-  } else if (!petData && !adoptedPet) {
+  } else if (petData === null && adoptedPet === false) {
     console.log("NO pet data");
     alert("Looks like you don't have a pet yet! Let's fix that.");
     return (
       <PetGenerator adoptedPet={adoptedPet} setAdoptedPet={setAdoptedPet} />
     )
-  // If useEffect hasn't run
+  // If user's pet status is unknown (i.e. useEffect hasn't run)
   } else {
     console.log("the void");
     return (
