@@ -69,13 +69,18 @@ function PetGeneratorIntro() {
   )
 }
 
+
 function PetGenerator(props) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
+  let petData = props.petData;
+  let setPetData = props.setPetData;
+
   console.log("Loading pet generator");
   console.log(newPetData);
 
   // Generate random pet
+  // HELP - Getting data: Do I need to use useEffect hook here?
   function generateNewPet() {
     console.log("generating pet");
     fetch("/generate-pet")
@@ -90,6 +95,7 @@ function PetGenerator(props) {
   function adoptPet() {
     console.log("preparing to adopt pet");
     // Get user's location via IP address and use for pet's location
+    // HELP - Getting data: Do I need to use useEffect hook here?
     fetch("/get-loc-mock")
       .then((response) => response.json())
       .then((userData) => {
@@ -127,10 +133,8 @@ function PetGenerator(props) {
           .then((response) => response.json())
           .then((responseJson) => {
             console.log("adoption complete");
-            props.setPetState({isPetAvailable: true, petData: responseJson})
-            // alert(msg);
-            // Promps re-render of VirtualPetApp
-            // props.setPetState({...props.petState, isPetAvailable: true});
+            setPetData(responseJson);
+            // alert(`Congratulations on bringing home your new pet, ${petData.name} the ${petData.personality} ${petData.species_name}!`);
           });
     });
   }
@@ -160,13 +164,18 @@ function PetGenerator(props) {
 
 
 function CurrentPet(props) {
+  let pet = props.pet;
+  let setPetData = props.setPetData;
+  console.log("Existing pet data, rendering CurrentPet");
+  // HELP - Getting data: Do I need to use useEffect hook here?
   function deletePet() {
     if (confirm("Are you sure you want to delete your pet? This action is irreversible.")) {
       fetch("/delete-pet")
         .then((response) => response.json())
         .then((msg) => {
+          console.log("deleting pet")
           alert(msg);
-          props.setPetState({isPetAvailable: false, petData: null});
+          setPetData(null);
         });
     } else {
       alert("Your pet has not been deleted.");
@@ -177,9 +186,9 @@ function CurrentPet(props) {
   return (
     <div>
       <h1>Your Pet</h1>
-      <h2>{props.pet.name} the {props.pet.personality} {props.pet.species_name}</h2>
-      <h3 id="location">Location: {props.pet.city}, {props.pet.region}, {props.pet.country}</h3>
-      <PetDisplay pet={props.pet} />
+      <h2>{pet.name} the {pet.personality} {pet.species_name}</h2>
+      <h3 id="location">Location: {pet.city}, {pet.region}, {pet.country}</h3>
+      <PetDisplay pet={pet} />
   
       <button id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
@@ -188,11 +197,7 @@ function CurrentPet(props) {
 
 
 function VirtualPetApp() {
-  // const [petData, setPetData] = React.useState(undefined);
-  // // Use adoptedPet to trigger useEffect
-  // const [adoptedPet, setAdoptedPet] = React.useState(false);
-
-  const [petState, setPetState] = React.useState({isPetAvailable: false, petData: undefined})
+  const [petData, setPetData] = React.useState(undefined);
 
   console.log("Loading app")
 
@@ -204,36 +209,30 @@ function VirtualPetApp() {
       .then((petJson) => {
         if (petJson) {
           console.log("checked db: has pet")
-          // setPetData(petJson);
-          setPetState({isPetAvailable: true, petData: petJson})
+          setPetData(petJson);
         } else {
           console.log("checked db: no pet");
-          // setPetData(null);
-          setPetState({...petState, petData: null})
+          setPetData(null);
         }
       })
   }, []);
 
   // If user has pet
-  if (petState.petData) {
-    // unpacking petState object
-    let {petData} = petState;
-    console.log("Existing pet data, rendering CurrentPet");
+  if (petData) {
     alert("Your pet is so cute!");
     return(
       <CurrentPet
       pet={petData}
-      petState={petState}
-      setPetState={setPetState} />
+      setPetData={setPetData} />
     )
   // If user doesn't have pet
-  } else if (petState.petData === null) {
+  } else if (petData === null) {
     console.log("NO pet data, rendering PetGenerator");
     alert("Looks like you don't have a pet yet! Let's fix that.");
     return (
       <PetGenerator
-      petState={petState}
-      setPetState={setPetState} />
+      petData={petData}
+      setPetData={setPetData} />
     )
   // If user's pet status is unknown (i.e. useEffect hasn't run)
   } else {
