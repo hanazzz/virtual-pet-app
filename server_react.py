@@ -132,47 +132,11 @@ def adopt_pet():
 
     pet_data = request.json
 
-    name = pet_data["name"]
-    species_name = pet_data["species_name"]
-    country = pet_data["country"]
-    region = pet_data["region"]
-    city = pet_data["city"]
-    lat = pet_data["lat"]
-    lon = pet_data["lon"]
-    food_fave = pet_data["food_fave"]
-    food_least = pet_data["food_least"]
-    activity_fave = pet_data["activity_fave"]
-    activity_least = pet_data["activity_least"]
-    music_fave = pet_data["music_fave"]
-    music_least = pet_data["music_least"]
-    weather_fave = pet_data["weather_fave"]
-    weather_least = pet_data["weather_least"]
-    personality = pet_data["personality"]
-    astro_sign = pet_data["astro_sign"]
-    species_img_path = pet_data["species_img_path"]
-    user_id = session["current_user_id"]
+    # Add current user ID to pet_data dictionary
+    pet_data["user_id"] = session["current_user_id"]
 
     # Create pet
-    crud.create_pet(
-    user_id,
-    species_name,
-    name,
-    country,
-    region,
-    city,
-    lat,
-    lon,
-    food_fave,
-    food_least,
-    activity_fave,
-    activity_least,
-    music_fave,
-    music_least,
-    weather_fave,
-    weather_least,
-    personality,
-    astro_sign,
-    species_img_path)
+    crud.create_pet_from_dict(pet_data)
 
     # Get newly created pet from database
     pet = crud.get_pet(session["current_user_id"])

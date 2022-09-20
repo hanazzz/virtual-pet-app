@@ -59,6 +59,35 @@ def create_pet(
     return pet
 
 
+def create_pet_from_dict(pet_dict):
+    """Create and return a new pet, using a dictionary."""
+
+    pet = Pet(user_id=pet_dict["user_id"],
+    species_name=pet_dict["species_name"],
+    name=pet_dict["name"],
+    country=pet_dict["country"],
+    region=pet_dict["region"],
+    city=pet_dict["city"],
+    lat=pet_dict["lat"],
+    lon=pet_dict["lon"],
+    food_fave=pet_dict["food_fave"],
+    food_least=pet_dict["food_least"],
+    activity_fave=pet_dict["activity_fave"],
+    activity_least=pet_dict["activity_least"],
+    music_fave=pet_dict["music_fave"],
+    music_least=pet_dict["music_least"],
+    weather_fave=pet_dict["weather_fave"],
+    weather_least=pet_dict["weather_least"],
+    personality=pet_dict["personality"],
+    astro_sign=pet_dict["astro_sign"],
+    species_img_path=pet_dict["species_img_path"])
+
+    db.session.add(pet)
+    db.session.commit()
+
+    return pet
+
+
 def create_item(item_name, description):
     """Create and return a new item."""
 
