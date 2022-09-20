@@ -1,55 +1,57 @@
 function PetDisplay(props) {
+  const pet = props.pet;
+
   return (
     <div id="pet-display">
       <div>
-        <img src={`${props.pet.species_img_path}`} alt={`${props.pet.species_name}`} id="species-img" />
+        <img src={`${pet.species_img_path}`} alt={`${pet.species_name}`} id="species-img" />
         <p>Images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
       </div>
       <table>
         <tbody>
           <tr>
             <td>Pet species</td>
-            <td id="pet-species">{props.pet.species_name}</td>
+            <td id="pet-species">{pet.species_name}</td>
           </tr>
           <tr>
               <td>Favorite food</td>
-              <td id="food-fave">{props.pet.food_fave}</td>
+              <td id="food-fave">{pet.food_fave}</td>
           </tr>
           <tr>
               <td>Least favorite food</td>
-              <td id="food-least">{props.pet.food_least}</td>
+              <td id="food-least">{pet.food_least}</td>
           </tr>
           <tr>
               <td>Favorite activity</td>
-              <td id="activity-fave">{props.pet.activity_fave}</td>
+              <td id="activity-fave">{pet.activity_fave}</td>
           </tr>
           <tr>
               <td>Least favorite activity</td>
-              <td id="activity-least">{props.pet.activity_least}</td>
+              <td id="activity-least">{pet.activity_least}</td>
           </tr>
           <tr>
               <td>Favorite music genre</td>
-              <td id="music-fave">{props.pet.music_fave}</td>
+              <td id="music-fave">{pet.music_fave}</td>
           </tr>
           <tr>
               <td>Least favorite music genre</td>
-              <td id="music-least">{props.pet.music_least}</td>
+              <td id="music-least">{pet.music_least}</td>
           </tr>
           <tr>
               <td>Favorite weather</td>
-              <td id="weather-fave">{props.pet.weather_fave}</td>
+              <td id="weather-fave">{pet.weather_fave}</td>
           </tr>
           <tr>
               <td>Least favorite weather</td>
-              <td id="weather-least">{props.pet.weather_least}</td>
+              <td id="weather-least">{pet.weather_least}</td>
           </tr>
           <tr>
               <td>Personality</td>
-              <td id="personality">{props.pet.personality}</td>
+              <td id="personality">{pet.personality}</td>
           </tr>
           <tr>
               <td>Astrological sign</td>
-              <td id="astro-sign">{props.pet.astro_sign}</td>
+              <td id="astro-sign">{pet.astro_sign}</td>
           </tr>
         </tbody>
       </table>
@@ -123,11 +125,12 @@ function PetGenerator(props) {
           },
         })
           .then((response) => response.json())
-          .then((msg) => {
+          .then((responseJson) => {
             console.log("adoption complete");
-            alert(msg);
+            props.setPetState({isPetAvailable: true, petData: responseJson})
+            // alert(msg);
             // Promps re-render of VirtualPetApp
-            props.setAdoptedPet(true);
+            // props.setPetState({...props.petState, isPetAvailable: true});
           });
     });
   }
@@ -163,8 +166,7 @@ function CurrentPet(props) {
         .then((response) => response.json())
         .then((msg) => {
           alert(msg);
-          props.setPetData(false);
-          props.setAdoptedPet(false);
+          props.setPetState({isPetAvailable: false, petData: null});
         });
     } else {
       alert("Your pet has not been deleted.");
@@ -186,9 +188,11 @@ function CurrentPet(props) {
 
 
 function VirtualPetApp() {
-  const [petData, setPetData] = React.useState(undefined);
-  // Use adoptedPet to trigger useEffect
-  const [adoptedPet, setAdoptedPet] = React.useState(false);
+  // const [petData, setPetData] = React.useState(undefined);
+  // // Use adoptedPet to trigger useEffect
+  // const [adoptedPet, setAdoptedPet] = React.useState(false);
+
+  const [petState, setPetState] = React.useState({isPetAvailable: false, petData: undefined})
 
   console.log("Loading app")
 
@@ -199,28 +203,37 @@ function VirtualPetApp() {
       .then((response) => response.json())
       .then((petJson) => {
         if (petJson) {
-          console.log("has pet")
-          setPetData(petJson);
+          console.log("checked db: has pet")
+          // setPetData(petJson);
+          setPetState({isPetAvailable: true, petData: petJson})
         } else {
-          console.log("no pet");
-          setPetData(null);
+          console.log("checked db: no pet");
+          // setPetData(null);
+          setPetState({...petState, petData: null})
         }
       })
-  }, [adoptedPet]);
+  }, []);
 
   // If user has pet
-  if (petData) {
-    console.log("Existing pet data");
+  if (petState.petData) {
+    // unpacking petState object
+    let {petData} = petState;
+    console.log("Existing pet data, rendering CurrentPet");
     alert("Your pet is so cute!");
     return(
-      <CurrentPet pet={petData} setPetData={setPetData} setAdoptedPet={setAdoptedPet} />
+      <CurrentPet
+      pet={petData}
+      petState={petState}
+      setPetState={setPetState} />
     )
   // If user doesn't have pet
-  } else if (petData === null && adoptedPet === false) {
-    console.log("NO pet data");
+  } else if (petState.petData === null) {
+    console.log("NO pet data, rendering PetGenerator");
     alert("Looks like you don't have a pet yet! Let's fix that.");
     return (
-      <PetGenerator adoptedPet={adoptedPet} setAdoptedPet={setAdoptedPet} />
+      <PetGenerator
+      petState={petState}
+      setPetState={setPetState} />
     )
   // If user's pet status is unknown (i.e. useEffect hasn't run)
   } else {
