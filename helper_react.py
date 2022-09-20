@@ -1,32 +1,22 @@
 """Helper functions."""
 
-from flask import (flash, session)
+from flask import (session)
 import crud
 from model import db
 from random import (choice, sample)
-
-# Lists of pet characteristics
-SPECIES_ID = ["sparkle-wolf", "prickly-bunny", "invisi-cat"]
-
-SPECIES = {"sparkle-wolf" : ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"], "prickly-bunny" : ["Prickly Bunny", "/static/images/prickly-bunny.jpg"], "invisi-cat" : ["Invisible Cat", "/static/images/invisi-cat.jpg"]}
-
-FOOD = ["cheddar cheese", "chili sauce", "sweet potatoes", "anchovies", "condensed milk"]
-
-ACTIVITY = ["playing dress up", "soccer", "painting", "cooking", "baking"]
-
-MUSIC_GENRES = ["punk rock", "dance pop", "hip hop"]
-
-WEATHER = ["hot", "warm", "cold"]
-
-PERSONALITY = ["lethal", "clever", "caring", "shy", "bold", "mellow", "poised"]
-
-ASTROLOGICAL_SIGN = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+# Lists of pet attributes
+from create_attributes import (
+    SPECIES_ID, SPECIES, FOOD, ACTIVITY, MUSIC_GENRE, WEATHER, PERSONALITY,
+    ASTROLOGICAL_SIGN
+)
 
 
 def check_new_account(email, username, password, password2):
     """Check whether account creation is valid.
     
-    Checks if email is already in use, if username is already in use, and whether both password fields match. If no issues, crerates new user account and logs user in. Paramters come from Create Account form.
+    Checks if email is already in use, if username is already in use, and
+    whether both password fields match. If no issues, crerates new user account
+    and logs user in. Paramters come from Create Account form.
 
     Arguments:
     - email (str): User-provided email
@@ -37,7 +27,8 @@ def check_new_account(email, username, password, password2):
     Return:
     - valid_account (dict): Information about attempted account creation
         - "status" (bool): Whether account is valid (True) or not (False)
-        - "msg" (str): Whether account was successfuly created (and if not, reason for error)
+        - "msg" (str): Whether account was successfuly created (and if not,
+        reason for error)
         - "user_id" (int): If account was created, user ID for new account
     """
 
@@ -74,7 +65,8 @@ def check_new_account(email, username, password, password2):
 def check_login(username, password):
     """Check whether account login is valid.
     
-    Checks whether user exists in db, whether provided password matches password in db. If no issues, logs user in. Parameters come from Log In form.
+    Checks whether user exists in db, whether provided password matches
+    password in db. If no issues, logs user in. Parameters come from Log In form.
 
     Arguments:
     - username (str): User-provided username
@@ -83,7 +75,8 @@ def check_login(username, password):
     Return:
     - valid_account (dict): Information about attempted account login
         - "status" (bool): Whether account is valid (True) or not (False)
-        - "msg" (str): Whether account was successfuly logged in (and if not, reason for error)
+        - "msg" (str): Whether account was successfuly logged in (and if not,
+        reason for error)
         - "user_id" (int): If account was logged in, user ID for account
     """
 
@@ -136,7 +129,7 @@ def generate_pet():
     activity_fave_least = sample(ACTIVITY, k=2)
     activity_fave = activity_fave_least[0]
     activity_least = activity_fave_least[1]
-    music_fave_least = sample(MUSIC_GENRES, k=2)
+    music_fave_least = sample(MUSIC_GENRE, k=2)
     music_fave = music_fave_least[0]
     music_least = music_fave_least[1]
     weather_fave_least = sample(WEATHER, k=2)

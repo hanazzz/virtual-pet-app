@@ -8,7 +8,7 @@ def make_list(file_path, list_name):
     - list_name (lst): List to which to add attributes
 
     Return:
-    - list_name (lst)
+    - list_name (lst): List of attributes
     """
 
     list_name = []
