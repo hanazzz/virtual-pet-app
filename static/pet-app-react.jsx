@@ -138,6 +138,15 @@ function PetGenerator(props) {
 
 
 function CurrentPet(props) {
+  function deletePet() {
+    fetch("/delete-pet")
+      .then((response) => response.json())
+      .then((msg) => {
+        alert(msg);
+        props.setPetData(null);
+      });
+  }
+
   return (
     <div>
       <h1>meow! here is your pet!</h1>
@@ -145,7 +154,7 @@ function CurrentPet(props) {
       <h3 id="location">Location: {props.pet.city}, {props.pet.region}, {props.pet.country}</h3>
       <PetDisplay pet={props.pet} />
   
-      <button id="delete-pet" onClick="">DELETE PET</button>
+      <button id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
   )
 }
@@ -178,7 +187,7 @@ function VirtualPetApp() {
     console.log("Existing pet data");
     alert("Your pet is so cute!");
     return(
-      <CurrentPet pet={petData} />
+      <CurrentPet pet={petData} setPetData={setPetData} />
     )
   // If user doesn't have pet
   } else if (!petData && !adoptedPet) {
