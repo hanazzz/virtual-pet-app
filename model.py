@@ -62,9 +62,37 @@ class Pet(db.Model):
     # Pet.user pulls up a pet's user
     user = db.relationship("User", back_populates="pet")
 
-    # Display pet data
     def __repr__(self):
+        """Display pet object information."""
+
         return f"<Pet pet_id={self.pet_id} || name={self.name}>"
+
+
+    def convert_to_dict(self):
+        """Convert database object to dictionary."""
+
+        pet_dict = {
+        "name" : self.name,
+        "species_name" : self.species_name,
+        "country" : self.country,
+        "region" : self.region,
+        "city" : self.city,
+        "lat" : self.lat,
+        "lon" : self.lon,
+        "food_fave" : self.food_fave,
+        "food_least" : self.food_least,
+        "activity_fave" : self.activity_fave,
+        "activity_least" : self.activity_least,
+        "music_fave" : self.music_fave,
+        "music_least" : self.music_least,
+        "weather_fave" : self.weather_fave,
+        "weather_least" : self.weather_least,
+        "personality" : self.personality,
+        "astro_sign" : self.astro_sign,
+        "species_img_path" : self.species_img_path
+        }
+
+        return pet_dict
 
 
 class Item(db.Model):
