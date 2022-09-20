@@ -1,5 +1,5 @@
 function PetDisplay(props) {
-  console.log(props.pet)
+  // console.log(props.pet);
 
   return (
     <div>
@@ -62,8 +62,9 @@ function PetDisplay(props) {
 
 function PetGenerator(props) {
   // alert("Looks like you don't have a pet yet! Let's fix that.")
-  const [newPetData, setNewPetData] = React.useState()
-  console.log("Loading pet generator")
+  const [newPetData, setNewPetData] = React.useState();
+  console.log("Loading pet generator");
+  console.log(newPetData);
 
   function generateNewPet() {
     console.log("generating pet");
@@ -75,13 +76,48 @@ function PetGenerator(props) {
     });
   }
 
+  function adoptPet() {
+    console.log("adopting pet");
+    fetch("/get-loc")
+      .then((response) => response.json())
+      .then((userData) => {
+        console.log(userData);
+
+        let name = prompt("Please name your pet:");
+        setNewPetData((currentNewPetData) => ({
+            ...currentNewPetData,
+            "name": name,
+            "country": userData["country"],
+            "region": userData["regionName"],
+            "city": userData["city"],
+            "lat": userData["lat"],
+            "lon": userData["lon"]
+        }));
+
+        fetch("/adopt-pet", {
+          method: 'POST',
+          body: JSON.stringify(newPetData),
+          headers: {
+              'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((msg) => {
+              alert(msg);
+              setHasPet("yes");
+          });
+    });
+  }
+
+
   if (newPetData) {
     console.log("showing pet")
     return (
       <div>
         <h2>Potential Pet</h2>
+        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button><br />
         <PetDisplay pet={newPetData} />
-        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button>
+        <br/><button type="button" onClick={adoptPet} id="adopt-pet">ADOPT PET</button>
       </div>
     )
   } else {
@@ -142,7 +178,7 @@ function VirtualPetApp() {
     console.log("hasPet condition NOT met")
     return (
       // <React.StrictMode>
-      <PetGenerator />
+      <PetGenerator hasPet={hasPet} setHasPet={setHasPet} />
       // </React.StrictMode>
     )
   } else {
