@@ -117,20 +117,6 @@ def get_user_info():
     return jsonify(pet)
 
 
-# @app.route("/create-pet")
-# def new_pet():
-#     """Show user pet generator."""
-
-#     # Redirect to homepage if user not logged in
-#     if not session.get("current_user_id"):
-#         return redirect("/")
-#     # Redirect to pet page if user has existing pet
-#     elif crud.get_pet(session["current_user_id"]):
-#         return redirect("/pet")
-    
-#     return render_template("pet-generator.html")
-
-
 @app.route("/generate-pet")
 def generate_rand_pet():
     """Generate a random pet."""
@@ -219,12 +205,20 @@ def get_user_loc():
 
     return jsonify(user_data)
 
+@app.route("/get-loc-mock")
+def mock_get_user_loc():
+    """Mock version of get_user_loc() for testing."""
 
-@app.route("/react-test")
-def load_react():
-    """Load React test page."""
+    user_data = {
+        "country" : "United States",
+        "regionName" : "California",
+        "city" : "Oakland",
+        "lat" : 37.7994978,
+        "lon" : -122.2613965,
+    }
 
-    return render_template("index.html")
+    return jsonify(user_data)
+
 
 
 # ------------------------------------ #
