@@ -1,6 +1,4 @@
 function PetDisplay(props) {
-  // console.log(props.pet);
-
   return (
     <div>
       <div>
@@ -61,7 +59,6 @@ function PetDisplay(props) {
 
 
 function PetGenerator(props) {
-  // alert("Looks like you don't have a pet yet! Let's fix that.")
   const [newPetData, setNewPetData] = React.useState();
   console.log("Loading pet generator");
   console.log(newPetData);
@@ -77,22 +74,32 @@ function PetGenerator(props) {
   }
 
   function adoptPet() {
-    console.log("adopting pet");
-    fetch("/get-loc")
+    console.log("preparing to adopt pet");
+    fetch("/get-loc-mock")
       .then((response) => response.json())
       .then((userData) => {
         console.log(userData);
 
         let name = prompt("Please name your pet:");
-        setNewPetData((currentNewPetData) => ({
-            ...currentNewPetData,
-            "name": name,
-            "country": userData["country"],
-            "region": userData["regionName"],
-            "city": userData["city"],
-            "lat": userData["lat"],
-            "lon": userData["lon"]
-        }));
+        let updatedPetData = newPetData;
+        updatedPetData["name"] = name;
+        updatedPetData["country"] = userData["country"];
+        updatedPetData["region"] = userData["regionName"];
+        updatedPetData["city"] = userData["city"];
+        updatedPetData["lat"] = userData["lat"];
+        updatedPetData["lon"] = userData["lon"];
+        setNewPetData(updatedPetData);
+        console.log(newPetData);
+        // setNewPetData((currentNewPetData) => {({
+        //     ...currentNewPetData,
+        //     "name": name,
+        //     "country": userData["country"],
+        //     "region": userData["regionName"],
+        //     "city": userData["city"],
+        //     "lat": userData["lat"],
+        //     "lon": userData["lon"]
+        // })}
+        // );
 
         fetch("/adopt-pet", {
           method: 'POST',
@@ -103,8 +110,9 @@ function PetGenerator(props) {
         })
           .then((response) => response.json())
           .then((msg) => {
-              alert(msg);
-              setHasPet("yes");
+            console.log("adoption complete");
+            alert(msg);
+            props.setAdoptedPet(true);
           });
     });
   }
@@ -130,8 +138,6 @@ function PetGenerator(props) {
 
 
 function CurrentPet(props) {
-  alert("Your pet is so cute!");
-
   return (
     <div>
       <h1>meow! here is your pet!</h1>
@@ -139,15 +145,16 @@ function CurrentPet(props) {
       <h3 id="location">Location: {props.pet.city}, {props.pet.region}, {props.pet.country}</h3>
       <PetDisplay pet={props.pet} />
   
-      <button id="delete-pet">DELETE PET</button>
+      <button id="delete-pet" onClick="">DELETE PET</button>
     </div>
   )
 }
 
 
 function VirtualPetApp() {
-  const [petData, setPetData] = React.useState();
-  const [hasPet, setHasPet] = React.useState();
+  const [petData, setPetData] = React.useState("TBD");
+  // const [hasPet, setHasPet] = React.useState();
+  const [adoptedPet, setAdoptedPet] = React.useState(false);
 
   console.log("Loading app")
 
@@ -159,34 +166,34 @@ function VirtualPetApp() {
         if (petJson) {
           console.log("has pet")
           setPetData(petJson);
-          setHasPet("yes");
         } else {
           console.log("no pet");
-          setHasPet("no");
+          setPetData(null);
         }
       })
-  }, []);
-  
-  if (hasPet == "yes") {
-    console.log("hasPet condition met")
-    return (
-      // <React.StrictMode>
+  }, [adoptedPet]);
+
+  // If user has pet
+  if (petData && petData != "TBD") {
+    console.log("Existing pet data");
+    alert("Your pet is so cute!");
+    return(
       <CurrentPet pet={petData} />
-      // </React.StrictMode>
     )
-  } else if (hasPet == "no") {
-    console.log("hasPet condition NOT met")
+  // If user doesn't have pet
+  } else if (!petData && !adoptedPet) {
+    console.log("NO pet data");
+    alert("Looks like you don't have a pet yet! Let's fix that.");
     return (
-      // <React.StrictMode>
-      <PetGenerator hasPet={hasPet} setHasPet={setHasPet} />
-      // </React.StrictMode>
+      <PetGenerator adoptedPet={adoptedPet} setAdoptedPet={setAdoptedPet} />
     )
+  // If useEffect hasn't run
   } else {
-    console.log("the void")
+    console.log("the void");
     return (
       <div>Loading...</div>
     )
-  }
+  } 
 }
 
 
