@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 function PetDisplay(props) {
-  const pet = props.pet;
+  const { pet } = props;
 
   return (
     <div id="pet-display">
@@ -60,18 +61,17 @@ function PetDisplay(props) {
 
 function PetGeneratorIntro() {
   return (
-    <React.Fragment>
+    <>
       <h1>Adopt a Pet</h1>
       <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
-    </React.Fragment>
+    </>
   );
 }
 
 function PetGenerator(props) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
-  const petData = props.petData;
-  const setPetData = props.setPetData;
+  const { setPetData } = props;
 
   console.log('Loading pet generator');
   console.log(newPetData);
@@ -99,12 +99,12 @@ function PetGenerator(props) {
         const name = prompt('Please name your pet:');
 
         const updatedPetData = newPetData;
-        updatedPetData['name'] = name;
-        updatedPetData['country'] = userData['country'];
-        updatedPetData['region'] = userData['regionName'];
-        updatedPetData['city'] = userData['city'];
-        updatedPetData['lat'] = userData['lat'];
-        updatedPetData['lon'] = userData['lon'];
+        updatedPetData.name = name;
+        updatedPetData.country = userData.country;
+        updatedPetData.region = userData.regionName;
+        updatedPetData.city = userData.city;
+        updatedPetData.lat = userData.lat;
+        updatedPetData.lon = userData.lon;
         setNewPetData(updatedPetData);
 
         console.log(newPetData);
@@ -148,24 +148,29 @@ function PetGenerator(props) {
         <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button>
         <br />
         <PetDisplay pet={newPetData} />
-        <br/><button type="button" onClick={adoptPet} id="adopt-pet">ADOPT PET</button>
+        <br />
+        <button type="button" onClick={adoptPet} id="adopt-pet">ADOPT PET</button>
       </div>
     );
-  } else {
-    return (
-      <React.Fragment>
-        <PetGeneratorIntro />
-        <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
-      </React.Fragment>
-    );
   }
-
+  return (
+    <>
+      <PetGeneratorIntro />
+      <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
+    </>
+  );
 }
 
 function CurrentPet(props) {
-  const pet = props.pet;
-  const setPetData = props.setPetData;
+  const { pet } = props;
+  const { setPetData } = props;
+  CurrentPet.propTypes = {
+    pet: PropTypes.object.isRequired,
+    setPetData: PropTypes.func.isRequired,
+  };
+
   console.log('Existing pet data, rendering CurrentPet');
+
   function deletePet() {
     if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
       fetch('/delete-pet')
@@ -187,7 +192,7 @@ function CurrentPet(props) {
       <h3 id="location">Location: {pet.city}, {pet.region}, {pet.country}</h3>
       <PetDisplay pet={pet} />
 
-      <button id="delete-pet" onClick={deletePet}>DELETE PET</button>
+      <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
   );
 }
@@ -232,13 +237,12 @@ function VirtualPetApp() {
         setPetData={setPetData}
       />
     );
-  // If user's pet status is unknown (i.e. useEffect hasn't run)
-  } else {
-    console.log('the void');
-    return (
-      <div>Loading...</div>
-    );
   }
+  // If user's pet status is unknown (i.e. useEffect hasn't run)
+  console.log('the void');
+  return (
+    <div>Loading...</div>
+  );
 }
 
 ReactDOM.render(<VirtualPetApp />, document.querySelector('#app'));
