@@ -30,10 +30,11 @@ function AcctForm() {
       password,
       password2,
     };
-    let route = '/login';
-    if (logInMethd === false) {
-      route = '/create-user';
-    }
+    const route = logInMethd ? '/login' : '/create-user';
+    // let route = '/login';
+    // if (logInMethd === false) {
+    //   route = '/create-user';
+    // }
 
     fetch(`${route}`, {
       method: 'POST',
@@ -179,8 +180,6 @@ function AcctForm() {
     <div>
       {logInMethd ? logInForm : createAcctForm}
       {/* {form} */}
-      {/* {logInMethd == "Log in" && logInForm}
-      {logInMethd == "Create account" && createAcctForm} */}
       <br />
       <button type="button" onClick={toggleLogInMethd}>
         {logInMethd ? logInMsg : createAcctMsg}

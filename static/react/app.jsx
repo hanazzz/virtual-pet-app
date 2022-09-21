@@ -1,6 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 function PetDisplay(props) {
   const { pet } = props;
+  PetDisplay.propTypes = {
+    pet: PropTypes.object.isRequired,
+  };
 
   return (
     <div id="pet-display">
@@ -72,6 +75,10 @@ function PetGenerator(props) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
   const { setPetData } = props;
+
+  PetGenerator.propTypes = {
+    setPetData: PropTypes.func.isRequired,
+  };
 
   console.log('Loading pet generator');
   console.log(newPetData);
