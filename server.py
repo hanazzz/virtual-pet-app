@@ -6,6 +6,7 @@ import crud
 import helper
 from jinja2 import StrictUndefined
 import requests
+from os import environ
 
 # create Flask app
 app = Flask(__name__)
@@ -13,6 +14,8 @@ app = Flask(__name__)
 app.secret_key = "lkdhjfasiop89ryweq23809"
 # throw error for undefined variables
 app.jinja_env.undefined = StrictUndefined
+# create OWM key
+# OWM_KEY = environ["OWM_API_KEY"]
 
 
 # ------------------------------------ #
@@ -26,7 +29,7 @@ def show_homepage():
     if session.get("current_user_id"):
         return redirect('/pet')
     else:
-        return render_template('homepage.html')
+        return render_template("index.html")
 
 
 @app.route('/create-user', methods=['POST'])
@@ -35,46 +38,32 @@ def create_user():
     
     Checks if user with provided email or username already exists."""
 
+    user_data = request.json
+
     # Get email, username, password from create account form
-    email = request.form.get("email")
-    username = request.form.get("username")
-    password = request.form.get("password")
-    password2 = request.form.get("password2")
+    username = user_data["username"]
+    email = user_data["email"]
+    password = user_data["password"]
+    password2 = user_data["password2"]
 
     valid_account = helper.check_new_account(email, username, password, password2)
 
-    if not valid_account:
-        return redirect('/')
-    else:
-        # Get newly created User object from db
-        user = crud.get_user_by_username(username)
-        helper.log_in_user(user)
-        return redirect('/pet')
+    return jsonify(valid_account)
 
 
 @app.route('/login', methods=['POST'])
 def login():
     """Log user in."""
 
+    user_data = request.json
+
     # Get username and password from login form
-    username = request.form.get("username")
-    password = request.form.get("password")
+    username = user_data["username"]
+    password = user_data["password"]
 
-    # Get user object by username
-    user = crud.get_user_by_username(username)
+    valid_account = helper.check_login(username, password)
 
-    # Validate username
-    if not user:
-        flash("No accounts found with that username. Please try again.")
-        return redirect('/')
-
-    # Validate password
-    if user.password != password:
-        flash("That username and password don't match. Please try again.")
-        return redirect('/')
-    else:
-        helper.log_in_user(user)
-        return redirect('/pet')
+    return jsonify(valid_account)
 
 
 @app.route("/logout")
@@ -82,6 +71,7 @@ def logout():
     """Log user out."""
 
     session.pop("current_user_id", None)
+    session.pop("current_username", None)
     flash("You are now logged out.")
 
     return redirect("/")
@@ -89,36 +79,45 @@ def logout():
 
 @app.route('/pet')
 def view_pet():
-    """Show user their pet."""
+    """Take user to main app page."""
 
     # Redirect to homepage if user not logged in
     if not session.get("current_user_id"):
         return redirect("/")
 
-    # Check whether user has pet
-    else:
-        # Get pet of current user
-        pet = crud.get_pet(session["current_user_id"])
-        # If user doesn't have a pet, redirect to create pet page.
-        if not pet:
-            flash("Looks like you don't have a pet yet! Let's fix that.")
-            return redirect("/create-pet")
-
-    return render_template('pet.html', pet=pet)
+    return render_template('pet.html')
 
 
-@app.route("/create-pet")
-def new_pet():
-    """Show user pet generator."""
+@app.route("/user-info")
+def get_user_info():
+    """Get current user's pet information from database."""
 
-    # Redirect to homepage if user not logged in
-    if not session.get("current_user_id"):
-        return redirect("/")
-    # Redirect to pet page if user has existing pet
-    elif crud.get_pet(session["current_user_id"]):
-        return redirect("/pet")
+    pet = crud.get_pet(session["current_user_id"])
     
-    return render_template("pet-generator.html")
+    # If user has pet, turn Pet object into dict
+    if pet:
+        pet = {
+            "name" : pet.name,
+            "species_name" : pet.species_name,
+            "country" : pet.country,
+            "region" : pet.region,
+            "city" : pet.city,
+            "lat" : pet.lat,
+            "lon" : pet.lon,
+            "food_fave" : pet.food_fave,
+            "food_least" : pet.food_least,
+            "activity_fave" : pet.activity_fave,
+            "activity_least" : pet.activity_least,
+            "music_fave" : pet.music_fave,
+            "music_least" : pet.music_least,
+            "weather_fave" : pet.weather_fave,
+            "weather_least" : pet.weather_least,
+            "personality" : pet.personality,
+            "astro_sign" : pet.astro_sign,
+            "species_img_path" : pet.species_img_path,
+        }
+
+    return jsonify(pet)
 
 
 @app.route("/generate-pet")
@@ -136,49 +135,20 @@ def adopt_pet():
 
     pet_data = request.json
 
-    species_name = pet_data["Pet species"]
-    food_fave = pet_data["Favorite food"]
-    food_least = pet_data["Least favorite food"]
-    activity_fave = pet_data["Favorite activity"]
-    activity_least = pet_data["Least favorite activity"]
-    music_fave = pet_data["Favorite music genre"]
-    music_least = pet_data["Least favorite music genre"]
-    weather_fave = pet_data["Favorite weather"]
-    weather_least = pet_data["Least favorite weather"]
-    personality = pet_data["Personality"]
-    astro_sign = pet_data["Astrological sign"]
-    species_img_path = pet_data["Species img path"]
-    name = pet_data["Name"]
-    country = pet_data["Country"]
-    region = pet_data["Region"]
-    city = pet_data["City"]
-    lat = pet_data["lat"]
-    lon = pet_data["lon"]
-    user_id = session["current_user_id"]
+    # Add current user ID to pet_data dictionary
+    pet_data["user_id"] = session["current_user_id"]
 
     # Create pet
-    crud.create_pet(
-    user_id,
-    species_name,
-    name,
-    country,
-    region,
-    city,
-    lat,
-    lon,
-    food_fave,
-    food_least,
-    activity_fave,
-    activity_least,
-    music_fave,
-    music_least,
-    weather_fave,
-    weather_least,
-    personality,
-    astro_sign,
-    species_img_path)
+    crud.create_pet_from_dict(pet_data)
 
-    return jsonify(f"Congratulations on bringing home your new pet, {name} the {personality} {species_name}!")
+    # Get newly created pet from database
+    pet = crud.get_pet(session["current_user_id"])
+    
+    # Recreate object as dictionary
+    pet = pet.convert_to_dict()
+
+    # return jsonify(f"Congratulations on bringing home your new pet, {name} the {personality} {species_name}!")
+    return jsonify(pet)
 
 
 @app.route("/delete-pet")
@@ -205,15 +175,35 @@ def get_user_loc():
 
     if user_data["status"] == "fail":
         print("Request failed.")
+        # TODO: ADD BEHAVIOR IN CASE OF FAILURE (alert user and use default location)
 
     return jsonify(user_data)
 
 
-@app.route("/react-test")
-def load_react():
-    """Load React test page."""
+@app.route("/get-loc-mock")
+def mock_get_user_loc():
+    """Mock version of get_user_loc() for testing."""
 
-    return render_template("index.html")
+    user_data = {
+        "country" : "United States",
+        "regionName" : "California",
+        "city" : "Oakland",
+        "lat" : 37.7994978,
+        "lon" : -122.2613965,
+    }
+
+    return jsonify(user_data)
+
+
+# @app("/get-weather")
+# def get_weather():
+#     """Get current weather at the pet's location."""
+
+    # get lat and lon from pet object (store current pet in session?)
+    # make API call using lat and lon
+    # parse returned JSON
+    # pull out relevant parts of data
+    # return data
 
 
 # ------------------------------------ #
