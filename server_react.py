@@ -6,6 +6,7 @@ import crud
 import helper_react
 from jinja2 import StrictUndefined
 import requests
+from os import environ
 
 # create Flask app
 app = Flask(__name__)
@@ -13,6 +14,8 @@ app = Flask(__name__)
 app.secret_key = "lkdhjfasiop89ryweq23809"
 # throw error for undefined variables
 app.jinja_env.undefined = StrictUndefined
+# create OWM key
+# OWM_KEY = environ["OWM_API_KEY"]
 
 
 # ------------------------------------ #
@@ -176,6 +179,7 @@ def get_user_loc():
 
     return jsonify(user_data)
 
+
 @app.route("/get-loc-mock")
 def mock_get_user_loc():
     """Mock version of get_user_loc() for testing."""
@@ -190,6 +194,16 @@ def mock_get_user_loc():
 
     return jsonify(user_data)
 
+
+# @app("/get-weather")
+# def get_weather():
+#     """Get current weather at the pet's location."""
+
+    # get lat and lon from pet object (store current pet in session?)
+    # make API call using lat and lon
+    # parse returned JSON
+    # pull out relevant parts of data
+    # return data
 
 
 # ------------------------------------ #
