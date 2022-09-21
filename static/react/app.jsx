@@ -1,4 +1,10 @@
-/* eslint-disable react/react-in-jsx-scope */
+/* eslint-env browser */
+/* global React ReactDOM PropTypes */
+/* eslint no-else-return: "error" */
+// REMOVE THE BELOW BEFORE DEPLOYMENT
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+
 function PetDisplay(props) {
   const { pet } = props;
   PetDisplay.propTypes = {
@@ -140,8 +146,8 @@ function PetGenerator(props) {
           .then((response) => response.json())
           .then((responseJson) => {
             console.log('adoption complete');
+            alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
             setPetData(responseJson);
-            // alert(`Congratulations on bringing home your new pet, ${petData.name} the ${petData.personality} ${petData.species_name}!`);
           });
       });
   }

@@ -1,4 +1,9 @@
-/* eslint-disable react/react-in-jsx-scope */
+/* eslint-env browser */
+/* global React ReactDOM */
+// REMOVE THE BELOW BEFORE DEPLOYMENT
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+
 function AcctForm() {
   // LOGIC FOR LOG IN / CREATE ACCOUNT BUTTON
   // logInMethd tracks whether the user is logging into an existing account (true)
