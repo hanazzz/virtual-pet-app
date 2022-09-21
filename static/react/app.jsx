@@ -97,7 +97,8 @@ function PetGenerator(props) {
       .then((petJson) => {
         console.log('new pet available');
         setNewPetData(petJson);
-      });
+      })
+      .catch((error) => alert(error.toString()));
   }
 
   // Adopt pet
@@ -148,7 +149,8 @@ function PetGenerator(props) {
             console.log('adoption complete');
             alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
             setPetData(responseJson);
-          });
+          })
+          .catch((error) => alert(error.toString()));
       });
   }
 
@@ -192,7 +194,8 @@ function CurrentPet(props) {
           console.log('deleting pet');
           alert(msg);
           setPetData(null);
-        });
+        })
+        .catch((error) => alert(error.toString()));
     } else {
       alert('Your pet has not been deleted.');
     }
@@ -228,7 +231,8 @@ function VirtualPetApp() {
           console.log('checked db: no pet');
           setPetData(null);
         }
-      });
+      })
+      .catch((error) => alert(error.toString()));
   }, []);
 
   // If user has pet

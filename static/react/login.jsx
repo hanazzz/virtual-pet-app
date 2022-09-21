@@ -57,7 +57,7 @@ function AcctForm() {
           window.location.href = '/pet';
         }
       })
-      .catch((error) => alert(error.toSting()));
+      .catch((error) => alert(error.toString()));
   }
 
   // DEFINE FORMS
