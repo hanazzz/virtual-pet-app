@@ -1,5 +1,6 @@
 """Create lists of pet attributes from text files."""
 
+
 def make_list(file_path, list_name):
     """Create list of pet attributes from file.
 
@@ -20,10 +21,11 @@ def make_list(file_path, list_name):
 
     return list_name
 
+
 SPECIES = {
-    "sparkle-wolf" : ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"],
-    "prickly-bunny" : ["Prickly Bunny", "/static/images/prickly-bunny.jpg"],
-    "invisi-cat" : ["Invisible Cat", "/static/images/invisi-cat.jpg"]
+    "sparkle-wolf": ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"],
+    "prickly-bunny": ["Prickly Bunny", "/static/images/prickly-bunny.jpg"],
+    "invisi-cat": ["Invisible Cat", "/static/images/invisi-cat.jpg"]
 }
 
 SPECIES_ID = list(SPECIES.keys())

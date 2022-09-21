@@ -1,6 +1,7 @@
 """Server for virtual pet app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
+from flask import (Flask, render_template, request,
+                   flash, session, redirect, jsonify)
 from model import connect_to_db, db
 import crud
 import helper
@@ -35,7 +36,7 @@ def show_homepage():
 @app.route('/create-user', methods=['POST'])
 def create_user():
     """Create new user.
-    
+
     Checks if user with provided email or username already exists."""
 
     user_data = request.json
@@ -46,7 +47,8 @@ def create_user():
     password = user_data["password"]
     password2 = user_data["password2"]
 
-    valid_account = helper.check_new_account(email, username, password, password2)
+    valid_account = helper.check_new_account(
+        email, username, password, password2)
 
     return jsonify(valid_account)
 
@@ -93,28 +95,28 @@ def get_user_info():
     """Get current user's pet information from database."""
 
     pet = crud.get_pet(session["current_user_id"])
-    
+
     # If user has pet, turn Pet object into dict
     if pet:
         pet = {
-            "name" : pet.name,
-            "species_name" : pet.species_name,
-            "country" : pet.country,
-            "region" : pet.region,
-            "city" : pet.city,
-            "lat" : pet.lat,
-            "lon" : pet.lon,
-            "food_fave" : pet.food_fave,
-            "food_least" : pet.food_least,
-            "activity_fave" : pet.activity_fave,
-            "activity_least" : pet.activity_least,
-            "music_fave" : pet.music_fave,
-            "music_least" : pet.music_least,
-            "weather_fave" : pet.weather_fave,
-            "weather_least" : pet.weather_least,
-            "personality" : pet.personality,
-            "astro_sign" : pet.astro_sign,
-            "species_img_path" : pet.species_img_path,
+            "name": pet.name,
+            "species_name": pet.species_name,
+            "country": pet.country,
+            "region": pet.region,
+            "city": pet.city,
+            "lat": pet.lat,
+            "lon": pet.lon,
+            "food_fave": pet.food_fave,
+            "food_least": pet.food_least,
+            "activity_fave": pet.activity_fave,
+            "activity_least": pet.activity_least,
+            "music_fave": pet.music_fave,
+            "music_least": pet.music_least,
+            "weather_fave": pet.weather_fave,
+            "weather_least": pet.weather_least,
+            "personality": pet.personality,
+            "astro_sign": pet.astro_sign,
+            "species_img_path": pet.species_img_path,
         }
 
     return jsonify(pet)
@@ -143,7 +145,7 @@ def adopt_pet():
 
     # Get newly created pet from database
     pet = crud.get_pet(session["current_user_id"])
-    
+
     # Recreate object as dictionary
     pet = pet.convert_to_dict()
 
@@ -163,7 +165,7 @@ def delete_user_pet():
 @app.route("/get-loc")
 def get_user_loc():
     """Use the user's IP address to get information about their location.
-    
+
     Makes API request to ip-api.com"""
 
     url = "http://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,timezone,query"
@@ -185,11 +187,11 @@ def mock_get_user_loc():
     """Mock version of get_user_loc() for testing."""
 
     user_data = {
-        "country" : "United States",
-        "regionName" : "California",
-        "city" : "Oakland",
-        "lat" : 37.7994978,
-        "lon" : -122.2613965,
+        "country": "United States",
+        "regionName": "California",
+        "city": "Oakland",
+        "lat": 37.7994978,
+        "lon": -122.2613965,
     }
 
     return jsonify(user_data)

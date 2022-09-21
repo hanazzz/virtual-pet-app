@@ -12,46 +12,46 @@ def create_user(username, email, password):
 
 
 def create_pet(
-    user_id,
-    species_name,
-    name,
-    country,
-    region,
-    city,
-    lat,
-    lon,
-    food_fave,
-    food_least,
-    activity_fave,
-    activity_least,
-    music_fave,
-    music_least,
-    weather_fave,
-    weather_least,
-    personality,
-    astro_sign,
-    species_img_path):
+        user_id,
+        species_name,
+        name,
+        country,
+        region,
+        city,
+        lat,
+        lon,
+        food_fave,
+        food_least,
+        activity_fave,
+        activity_least,
+        music_fave,
+        music_least,
+        weather_fave,
+        weather_least,
+        personality,
+        astro_sign,
+        species_img_path):
     """Create and return a new pet."""
 
     pet = Pet(user_id=user_id,
-    species_name=species_name,
-    name=name,
-    country=country,
-    region=region,
-    city=city,
-    lat=lat,
-    lon=lon,
-    food_fave=food_fave,
-    food_least=food_least,
-    activity_fave=activity_fave,
-    activity_least=activity_least,
-    music_fave=music_fave,
-    music_least=music_least,
-    weather_fave=weather_fave,
-    weather_least=weather_least,
-    personality=personality,
-    astro_sign=astro_sign,
-    species_img_path=species_img_path)
+              species_name=species_name,
+              name=name,
+              country=country,
+              region=region,
+              city=city,
+              lat=lat,
+              lon=lon,
+              food_fave=food_fave,
+              food_least=food_least,
+              activity_fave=activity_fave,
+              activity_least=activity_least,
+              music_fave=music_fave,
+              music_least=music_least,
+              weather_fave=weather_fave,
+              weather_least=weather_least,
+              personality=personality,
+              astro_sign=astro_sign,
+              species_img_path=species_img_path)
 
     db.session.add(pet)
     db.session.commit()
@@ -63,24 +63,24 @@ def create_pet_from_dict(pet_dict):
     """Create and return a new pet, using a dictionary."""
 
     pet = Pet(user_id=pet_dict["user_id"],
-    species_name=pet_dict["species_name"],
-    name=pet_dict["name"],
-    country=pet_dict["country"],
-    region=pet_dict["region"],
-    city=pet_dict["city"],
-    lat=pet_dict["lat"],
-    lon=pet_dict["lon"],
-    food_fave=pet_dict["food_fave"],
-    food_least=pet_dict["food_least"],
-    activity_fave=pet_dict["activity_fave"],
-    activity_least=pet_dict["activity_least"],
-    music_fave=pet_dict["music_fave"],
-    music_least=pet_dict["music_least"],
-    weather_fave=pet_dict["weather_fave"],
-    weather_least=pet_dict["weather_least"],
-    personality=pet_dict["personality"],
-    astro_sign=pet_dict["astro_sign"],
-    species_img_path=pet_dict["species_img_path"])
+              species_name=pet_dict["species_name"],
+              name=pet_dict["name"],
+              country=pet_dict["country"],
+              region=pet_dict["region"],
+              city=pet_dict["city"],
+              lat=pet_dict["lat"],
+              lon=pet_dict["lon"],
+              food_fave=pet_dict["food_fave"],
+              food_least=pet_dict["food_least"],
+              activity_fave=pet_dict["activity_fave"],
+              activity_least=pet_dict["activity_least"],
+              music_fave=pet_dict["music_fave"],
+              music_least=pet_dict["music_least"],
+              weather_fave=pet_dict["weather_fave"],
+              weather_least=pet_dict["weather_least"],
+              personality=pet_dict["personality"],
+              astro_sign=pet_dict["astro_sign"],
+              species_img_path=pet_dict["species_img_path"])
 
     db.session.add(pet)
     db.session.commit()
@@ -98,7 +98,7 @@ def create_item(item_name, description):
 
 def get_user_by_id(user_id):
     """Retrieve and return an existing user, using their user_id.
-    
+
      Returns None if user doesn't exist."""
 
     user = User.query.get(user_id)
@@ -108,7 +108,7 @@ def get_user_by_id(user_id):
 
 def get_user_by_username(username):
     """Retrieve and return an existing user, using their username.
-    
+
     Returns None if user doesn't exist."""
 
     user = User.query.filter_by(username=username).first()
@@ -118,7 +118,7 @@ def get_user_by_username(username):
 
 def get_user_by_email(email):
     """Retrieve and return an existing user, using their email.
-    
+
     Returns None if user doesn't exist."""
 
     user = User.query.filter_by(email=email).first()
@@ -128,7 +128,7 @@ def get_user_by_email(email):
 
 def get_pet(user_id):
     """Retrieve a user's existing pet by user_id.
-    
+
     Returns None if user doesn't have pet."""
 
     pet = Pet.query.filter_by(user_id=user_id).first()
@@ -147,7 +147,6 @@ def delete_pet(user_id):
 # Retrieve existing item
 # Assign an item to a user
 # Delete a user? (Would have to delete pet, then user)
-
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ from create_attributes import (
 
 def check_new_account(email, username, password, password2):
     """Check whether account creation is valid.
-    
+
     Checks if email is already in use, if username is already in use, and
     whether both password fields match. If no issues, crerates new user account
     and logs user in. Paramters come from Create Account form.
@@ -23,7 +23,7 @@ def check_new_account(email, username, password, password2):
     - username (str): User-provided username
     - password (str): User-provided password
     - password2 (str): User-provided confirmation of password (must match password arg)
-    
+
     Return:
     - valid_account (dict): Information about attempted account creation
         - "status" (bool): Whether account is valid (True) or not (False)
@@ -32,7 +32,7 @@ def check_new_account(email, username, password, password2):
         - "user_id" (int): If account was created, user ID for new account
     """
 
-    valid_account = {"status" : False, "msg" : ""}
+    valid_account = {"status": False, "msg": ""}
 
     # Flash error if email already in use
     if crud.get_user_by_email(email) != None:
@@ -58,13 +58,13 @@ def check_new_account(email, username, password, password2):
         valid_account["user_id"] = user.user_id
         valid_account["status"] = True
         valid_account["msg"] = "Your account has successfully been created!"
-    
+
     return valid_account
 
 
 def check_login(username, password):
     """Check whether account login is valid.
-    
+
     Checks whether user exists in db, whether provided password matches
     password in db. If no issues, logs user in. Parameters come from Log In form.
 
@@ -80,7 +80,7 @@ def check_login(username, password):
         - "user_id" (int): If account was logged in, user ID for account
     """
 
-    valid_account = {"status" : False, "msg" : ""}
+    valid_account = {"status": False, "msg": ""}
 
     # Get user object by username
     user = crud.get_user_by_username(username)
@@ -117,7 +117,7 @@ def log_in_user(user):
 
 def generate_pet():
     """Randomly generate a pet.
-    
+
     Returns a dictionary of pet attributes."""
 
     species_type = choice(SPECIES_ID)
@@ -140,24 +140,24 @@ def generate_pet():
     astro_sign = choice(ASTROLOGICAL_SIGN)
 
     pet = {
-        "species_name" : species_name,
-        "name" : None,
-        "country" : None,
-        "region" : None,
-        "city" : None,
-        "lat" : None,
-        "lon" : None,
-        "species_img_path" : species_img_path,
-        "food_fave" : food_fave,
-        "food_least" : food_least,
-        "activity_fave" : activity_fave,
-        "activity_least" : activity_least,
-        "music_fave" : music_fave,
-        "music_least" : music_least,
-        "weather_fave" : weather_fave,
-        "weather_least" : weather_least,
-        "personality" : personality,
-        "astro_sign" : astro_sign,
+        "species_name": species_name,
+        "name": None,
+        "country": None,
+        "region": None,
+        "city": None,
+        "lat": None,
+        "lon": None,
+        "species_img_path": species_img_path,
+        "food_fave": food_fave,
+        "food_least": food_least,
+        "activity_fave": activity_fave,
+        "activity_least": activity_least,
+        "music_fave": music_fave,
+        "music_least": music_least,
+        "weather_fave": weather_fave,
+        "weather_least": weather_least,
+        "personality": personality,
+        "astro_sign": astro_sign,
     }
 
     return pet

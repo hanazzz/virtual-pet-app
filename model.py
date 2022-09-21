@@ -22,7 +22,8 @@ class User(db.Model):
     pet = db.relationship("Pet", back_populates="user")
 
     # User.items pulls up all of a user's items
-    items = db.relationship("Item", secondary="users_items", back_populates="users")
+    items = db.relationship(
+        "Item", secondary="users_items", back_populates="users")
 
     # Display user data
     def __repr__(self):
@@ -35,12 +36,13 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), unique=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.user_id'), unique=True)
     species_name = db.Column(db.String)
     name = db.Column(db.String(50))
     country = db.Column(db.String)
     region = db.Column(db.String)
-    city =  db.Column(db.String)
+    city = db.Column(db.String)
     lat = db.Column(db.Integer)
     lon = db.Column(db.Integer)
     hunger = db.Column(db.Integer, default=5)
@@ -67,29 +69,28 @@ class Pet(db.Model):
 
         return f"<Pet pet_id={self.pet_id} || name={self.name}>"
 
-
     def convert_to_dict(self):
         """Convert database object to dictionary."""
 
         pet_dict = {
-        "name" : self.name,
-        "species_name" : self.species_name,
-        "country" : self.country,
-        "region" : self.region,
-        "city" : self.city,
-        "lat" : self.lat,
-        "lon" : self.lon,
-        "food_fave" : self.food_fave,
-        "food_least" : self.food_least,
-        "activity_fave" : self.activity_fave,
-        "activity_least" : self.activity_least,
-        "music_fave" : self.music_fave,
-        "music_least" : self.music_least,
-        "weather_fave" : self.weather_fave,
-        "weather_least" : self.weather_least,
-        "personality" : self.personality,
-        "astro_sign" : self.astro_sign,
-        "species_img_path" : self.species_img_path
+            "name": self.name,
+            "species_name": self.species_name,
+            "country": self.country,
+            "region": self.region,
+            "city": self.city,
+            "lat": self.lat,
+            "lon": self.lon,
+            "food_fave": self.food_fave,
+            "food_least": self.food_least,
+            "activity_fave": self.activity_fave,
+            "activity_least": self.activity_least,
+            "music_fave": self.music_fave,
+            "music_least": self.music_least,
+            "weather_fave": self.weather_fave,
+            "weather_least": self.weather_least,
+            "personality": self.personality,
+            "astro_sign": self.astro_sign,
+            "species_img_path": self.species_img_path
         }
 
         return pet_dict
@@ -105,7 +106,8 @@ class Item(db.Model):
     description = db.Column(db.String)
 
     # Item.users pulls up all users that have an item
-    users = db.relationship("User", secondary="users_items", back_populates="items")
+    users = db.relationship(
+        "User", secondary="users_items", back_populates="items")
 
     # Display item data
     def __repr__(self):
@@ -114,14 +116,12 @@ class Item(db.Model):
 
 class UserItem(db.Model):
     """A user's specific item."""
-    
+
     __tablename__ = "users_items"
 
-    user_item_id =  db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     item_id = db.Column(db.Integer, db.ForeignKey("items.item_id"))
-
-
 
 
 def connect_to_db(app, db_name="virtualpet"):
@@ -144,30 +144,32 @@ def connect_to_db(app, db_name="virtualpet"):
 def create_example_data():
     """Create example data and add to database."""
 
-    test_user = User(username = "potato", email = "pot@ato.com", password="password")
+    test_user = User(username="potato", email="pot@ato.com",
+                     password="password")
 
     test_pet = Pet(user_id=1,
-    species_name='cat',
-    name='floof',
-    country="United States",
-    region = "California",
-    city = "Oakland",
-    lat = 37.803372927524414,
-    lon = -122.27166093896454,
-    food_fave="cake",
-    food_least="carrots",
-    activity_fave="Chasing yarn",
-    activity_least="Taking a bath",
-    music_fave="Pop punk",
-    music_least="Classic rock",
-    weather_fave="Warm and sunny",
-    weather_least="Cold and rainy",
-    personality="Shy, clever, kind",
-    astro_sign="Libra",
-    species_img_path="/static/images/prickly-bunny.jpg")
+                   species_name='cat',
+                   name='floof',
+                   country="United States",
+                   region="California",
+                   city="Oakland",
+                   lat=37.803372927524414,
+                   lon=-122.27166093896454,
+                   food_fave="cake",
+                   food_least="carrots",
+                   activity_fave="Chasing yarn",
+                   activity_least="Taking a bath",
+                   music_fave="Pop punk",
+                   music_least="Classic rock",
+                   weather_fave="Warm and sunny",
+                   weather_least="Cold and rainy",
+                   personality="Shy, clever, kind",
+                   astro_sign="Libra",
+                   species_img_path="/static/images/prickly-bunny.jpg")
 
-    test_item1 = Item(item_name = "omelette", description = "Yum, this looks good!")
-    test_item2 = Item(item_name = "pizza", description = "So cheesy!")
+    test_item1 = Item(item_name="omelette",
+                      description="Yum, this looks good!")
+    test_item2 = Item(item_name="pizza", description="So cheesy!")
 
     # Add all test data into db
     test_data = [test_user, test_pet, test_item1, test_item2]
