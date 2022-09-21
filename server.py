@@ -7,7 +7,7 @@ import crud
 import helper
 from jinja2 import StrictUndefined
 import requests
-from os import environ
+import os
 
 # create Flask app
 app = Flask(__name__)
@@ -15,8 +15,6 @@ app = Flask(__name__)
 app.secret_key = "lkdhjfasiop89ryweq23809"
 # throw error for undefined variables
 app.jinja_env.undefined = StrictUndefined
-# create OWM key
-# OWM_KEY = environ["OWM_API_KEY"]
 
 
 # ------------------------------------ #
@@ -197,15 +195,84 @@ def mock_get_user_loc():
     return jsonify(user_data)
 
 
-# @app("/get-weather")
-# def get_weather():
-#     """Get current weather at the pet's location."""
+@app.route("/get-weather")
+def get_current_weather():
+    """Get current weather at the pet's location."""
+
+    # create OWM key
+    OWM_KEY = os.environ["OWM_API_KEY"]
+    print(OWM_KEY)
+
+    # Fahrenheit
+    # units=imperial
+
+    # Celsius
+    # units=metric
+
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    payload = {
+        "lat": 37.7994978,
+        "lon": -122.2613965,
+        "exclude": "minutely,hourly,daily,alerts",
+        "units": "imperial", 
+        "appid": OWM_KEY,
+    }
+
+    res = requests.get(url, params=payload)
+
+    print()
+    print("RESPONSE", res)
+    print("URL", res.url)
+    print()
+
+    weather_data = res.json()
+
+    print("WEATHER", weather_data)
+    print()
+    
+    temp = weather_data["main"]["temp"]
+    condition_code = weather_data["weather"][0]["id"]
+    weather_type = weather_data["weather"][0]["main"]
+    weather_description = weather_data["weather"][0]["description"]
+    owm_icon_id = weather_data["weather"][0]["icon"]
+    icon_url = f"http://openweathermap.org/img/wn/{owm_icon_id}@2x.png"
+
+    current_weather = {
+        "temp": temp,
+        "condition_code": condition_code,
+        "weather_type": weather_type,
+        "weather_description": weather_description,
+        "owm_icon_id": owm_icon_id,
+        "icon_url": icon_url
+    }
+
+    print(current_weather)
+    print()
 
     # get lat and lon from pet object (store current pet in session?)
     # make API call using lat and lon
     # parse returned JSON
     # pull out relevant parts of data
     # return data
+
+    return jsonify(current_weather)
+
+
+@app.route("/get-weather-mock")
+def mock_get_current_weather():
+    """Mock version of get_current_weather() for testing."""
+
+    current_weather = {
+        'temp': 71.83,
+        'condition_code': 802,
+        'weather_type': 'Clouds',
+        'weather_description':
+        'scattered clouds',
+        'owm_icon_id': '03d',
+        'icon_url': 'http://openweathermap.org/img/wn/03d@2x.png'
+    }
+
+    return jsonify(current_weather)
 
 
 # ------------------------------------ #
