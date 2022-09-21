@@ -5,7 +5,6 @@ function PetDisplay(props) {
     <div id="pet-display">
       <div>
         <img src={`${pet.species_img_path}`} alt={`${pet.species_name}`} id="species-img" />
-        <p>Images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
       </div>
       <table>
         <tbody>
@@ -14,51 +13,50 @@ function PetDisplay(props) {
             <td id="pet-species">{pet.species_name}</td>
           </tr>
           <tr>
-              <td>Favorite food</td>
-              <td id="food-fave">{pet.food_fave}</td>
+            <td>Favorite food</td>
+            <td id="food-fave">{pet.food_fave}</td>
           </tr>
           <tr>
-              <td>Least favorite food</td>
-              <td id="food-least">{pet.food_least}</td>
+            <td>Least favorite food</td>
+            <td id="food-least">{pet.food_least}</td>
           </tr>
           <tr>
-              <td>Favorite activity</td>
-              <td id="activity-fave">{pet.activity_fave}</td>
+            <td>Favorite activity</td>
+            <td id="activity-fave">{pet.activity_fave}</td>
           </tr>
           <tr>
-              <td>Least favorite activity</td>
-              <td id="activity-least">{pet.activity_least}</td>
+            <td>Least favorite activity</td>
+            <td id="activity-least">{pet.activity_least}</td>
           </tr>
           <tr>
-              <td>Favorite music genre</td>
-              <td id="music-fave">{pet.music_fave}</td>
+            <td>Favorite music genre</td>
+            <td id="music-fave">{pet.music_fave}</td>
           </tr>
           <tr>
-              <td>Least favorite music genre</td>
-              <td id="music-least">{pet.music_least}</td>
+            <td>Least favorite music genre</td>
+            <td id="music-least">{pet.music_least}</td>
           </tr>
           <tr>
-              <td>Favorite weather</td>
-              <td id="weather-fave">{pet.weather_fave}</td>
+            <td>Favorite weather</td>
+            <td id="weather-fave">{pet.weather_fave}</td>
           </tr>
           <tr>
-              <td>Least favorite weather</td>
-              <td id="weather-least">{pet.weather_least}</td>
+            <td>Least favorite weather</td>
+            <td id="weather-least">{pet.weather_least}</td>
           </tr>
           <tr>
-              <td>Personality</td>
-              <td id="personality">{pet.personality}</td>
+            <td>Personality</td>
+            <td id="personality">{pet.personality}</td>
           </tr>
           <tr>
-              <td>Astrological sign</td>
-              <td id="astro-sign">{pet.astro_sign}</td>
+            <td>Astrological sign</td>
+            <td id="astro-sign">{pet.astro_sign}</td>
           </tr>
         </tbody>
       </table>
     </div>
-  )
+  );
 }
-
 
 function PetGeneratorIntro() {
   return (
@@ -66,121 +64,120 @@ function PetGeneratorIntro() {
       <h1>Adopt a Pet</h1>
       <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
     </React.Fragment>
-  )
+  );
 }
-
 
 function PetGenerator(props) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
-  let petData = props.petData;
-  let setPetData = props.setPetData;
+  const petData = props.petData;
+  const setPetData = props.setPetData;
 
-  console.log("Loading pet generator");
+  console.log('Loading pet generator');
   console.log(newPetData);
 
   // Generate random pet
-  // HELP - Getting data: Do I need to use useEffect hook here?
   function generateNewPet() {
-    console.log("generating pet");
-    fetch("/generate-pet")
-    .then((response) => response.json())
-    .then((petJson) => {
-      console.log("new pet available");
-      setNewPetData(petJson);
-    });
+    console.log('generating pet');
+    fetch('/generate-pet')
+      .then((response) => response.json())
+      .then((petJson) => {
+        console.log('new pet available');
+        setNewPetData(petJson);
+      });
   }
 
   // Adopt pet
   function adoptPet() {
-    console.log("preparing to adopt pet");
+    console.log('preparing to adopt pet');
     // Get user's location via IP address and use for pet's location
-    // HELP - Getting data: Do I need to use useEffect hook here?
-    fetch("/get-loc-mock")
+    fetch('/get-loc-mock')
       .then((response) => response.json())
       .then((userData) => {
         console.log(userData);
 
-        let name = prompt("Please name your pet:");
-        let updatedPetData = newPetData;
-        updatedPetData["name"] = name;
-        updatedPetData["country"] = userData["country"];
-        updatedPetData["region"] = userData["regionName"];
-        updatedPetData["city"] = userData["city"];
-        updatedPetData["lat"] = userData["lat"];
-        updatedPetData["lon"] = userData["lon"];
+        const name = prompt('Please name your pet:');
+
+        const updatedPetData = newPetData;
+        updatedPetData['name'] = name;
+        updatedPetData['country'] = userData['country'];
+        updatedPetData['region'] = userData['regionName'];
+        updatedPetData['city'] = userData['city'];
+        updatedPetData['lat'] = userData['lat'];
+        updatedPetData['lon'] = userData['lon'];
         setNewPetData(updatedPetData);
+
         console.log(newPetData);
-        // setNewPetData((currentNewPetData) => {({
-        //     ...currentNewPetData,
-        //     "name": name,
-        //     "country": userData["country"],
-        //     "region": userData["regionName"],
-        //     "city": userData["city"],
-        //     "lat": userData["lat"],
-        //     "lon": userData["lon"]
-        // })}
-        // );
+
+        // TODO: Troubleshoot (doesn't currently work)
+        // setNewPetData(prevData => ({
+        //   ...prevData,
+        //   name: name,
+        //   country: userData["country"],
+        //   region: userData["regionName"],
+        //   city: userData["city"],
+        //   lat: userData["lat"],
+        //   lon: userData["lon"],
+        // }));
+
+        // console.log(newPetData);
 
         // Adopt pet (create pet in database and link to user)
-        fetch("/adopt-pet", {
+        fetch('/adopt-pet', {
           method: 'POST',
           body: JSON.stringify(newPetData),
           headers: {
-              'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
           },
         })
           .then((response) => response.json())
           .then((responseJson) => {
-            console.log("adoption complete");
+            console.log('adoption complete');
             setPetData(responseJson);
             // alert(`Congratulations on bringing home your new pet, ${petData.name} the ${petData.personality} ${petData.species_name}!`);
           });
-    });
+      });
   }
 
-
   if (newPetData) {
-    console.log("showing pet")
+    console.log('showing pet');
     return (
       <div>
         <PetGeneratorIntro />
         <h2>Potential Pet</h2>
-        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button><br />
+        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button>
+        <br />
         <PetDisplay pet={newPetData} />
         <br/><button type="button" onClick={adoptPet} id="adopt-pet">ADOPT PET</button>
       </div>
-    )
+    );
   } else {
     return (
       <React.Fragment>
         <PetGeneratorIntro />
         <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
       </React.Fragment>
-    )
+    );
   }
-  
+
 }
 
-
 function CurrentPet(props) {
-  let pet = props.pet;
-  let setPetData = props.setPetData;
-  console.log("Existing pet data, rendering CurrentPet");
-  // HELP - Getting data: Do I need to use useEffect hook here?
+  const pet = props.pet;
+  const setPetData = props.setPetData;
+  console.log('Existing pet data, rendering CurrentPet');
   function deletePet() {
-    if (confirm("Are you sure you want to delete your pet? This action is irreversible.")) {
-      fetch("/delete-pet")
+    if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
+      fetch('/delete-pet')
         .then((response) => response.json())
         .then((msg) => {
-          console.log("deleting pet")
+          console.log('deleting pet');
           alert(msg);
           setPetData(null);
         });
     } else {
-      alert("Your pet has not been deleted.");
+      alert('Your pet has not been deleted.');
     }
-
   }
 
   return (
@@ -189,59 +186,59 @@ function CurrentPet(props) {
       <h2>{pet.name} the {pet.personality} {pet.species_name}</h2>
       <h3 id="location">Location: {pet.city}, {pet.region}, {pet.country}</h3>
       <PetDisplay pet={pet} />
-  
+
       <button id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
-  )
+  );
 }
-
 
 function VirtualPetApp() {
   const [petData, setPetData] = React.useState(undefined);
 
-  console.log("Loading app")
+  console.log('Loading app');
 
   // Check if user has existing pet
   React.useEffect(() => {
-    console.log("fetching");
-    fetch("/user-info")
+    console.log('fetching');
+    fetch('/user-info')
       .then((response) => response.json())
       .then((petJson) => {
         if (petJson) {
-          console.log("checked db: has pet")
+          console.log('checked db: has pet');
           setPetData(petJson);
         } else {
-          console.log("checked db: no pet");
+          console.log('checked db: no pet');
           setPetData(null);
         }
-      })
+      });
   }, []);
 
   // If user has pet
   if (petData) {
-    alert("Your pet is so cute!");
-    return(
+    alert('Your pet is so cute!');
+    return (
       <CurrentPet
-      pet={petData}
-      setPetData={setPetData} />
-    )
+        pet={petData}
+        setPetData={setPetData}
+      />
+    );
   // If user doesn't have pet
   } else if (petData === null) {
-    console.log("NO pet data, rendering PetGenerator");
+    console.log('NO pet data, rendering PetGenerator');
     alert("Looks like you don't have a pet yet! Let's fix that.");
     return (
       <PetGenerator
-      petData={petData}
-      setPetData={setPetData} />
-    )
+        petData={petData}
+        setPetData={setPetData}
+      />
+    );
   // If user's pet status is unknown (i.e. useEffect hasn't run)
   } else {
-    console.log("the void");
+    console.log('the void');
     return (
       <div>Loading...</div>
-    )
-  } 
+    );
+  }
 }
 
-
-ReactDOM.render(<VirtualPetApp />, document.querySelector("#app")); 
+ReactDOM.render(<VirtualPetApp />, document.querySelector('#app'));
