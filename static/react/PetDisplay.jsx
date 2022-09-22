@@ -5,7 +5,6 @@ function PetDisplay(props) {
   const { pet } = props;
   PetDisplay.propTypes = {
     pet: PropTypes.shape({
-      name: PropTypes.string.isRequired,
       species_name: PropTypes.string.isRequired,
       country: PropTypes.string.isRequired,
       region: PropTypes.string.isRequired,
