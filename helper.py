@@ -113,6 +113,11 @@ def log_in_user(user):
 
     session["current_user_id"] = user.user_id
     session["current_username"] = user.username
+    pet = crud.get_pet(session["current_user_id"])
+    if pet:
+        session["current_pet"] = crud.get_pet(user.user_id).convert_to_dict()
+    else:
+        session["current_pet"] = None
 
 
 def generate_pet():
