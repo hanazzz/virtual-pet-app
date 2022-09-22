@@ -203,15 +203,8 @@ def get_current_weather():
 
     # Get pet location
     location = request.json
-    print()
-    print(location)
     lat = location["lat"]
     lon = location["lon"]
-    # lat = session["current_pet"]["lat"]
-    # lon = session["current_pet"]["lon"]
-    print()
-    print("LAT", lat)
-    print("LON", lon)
 
     # Create OWM key
     OWM_KEY = os.environ["OWM_API_KEY"]
@@ -232,17 +225,9 @@ def get_current_weather():
 
     res = requests.get(url, params=payload)
 
-    print()
-    print("RESPONSE", res)
-    print("URL", res.url)
-    print()
-
     weather_data = res.json()
-
-    print("WEATHER", weather_data)
-    print()
     
-    temp = weather_data["main"]["temp"]
+    temp = round(weather_data["main"]["temp"])
     condition_code = weather_data["weather"][0]["id"]
     weather_type = weather_data["weather"][0]["main"]
     weather_description = weather_data["weather"][0]["description"]
@@ -264,12 +249,12 @@ def get_current_weather():
     return jsonify(current_weather)
 
 
-@app.route("/get-weather-mock")
+@app.route("/get-weather-mock", methods=["POST"])
 def mock_get_current_weather():
     """Mock version of get_current_weather() for testing."""
 
     current_weather = {
-        'temp': 71.83,
+        'temp': round(71.83),
         'condition_code': 802,
         'weather_type': 'Clouds',
         'weather_description':
