@@ -9,14 +9,22 @@
 function WeatherDisplay(props) {
   console.log('displaying weather');
 
+  const [currentWeather, setCurrentWeather] = React.useState(undefined);
+  // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)
+  const [tempInF, setTempInF] = React.useState(true);
+  const fahrenheit = '\u2109';
+  const celsius = '\u2103';
   const { lat, lon } = props;
   const petLocation = { lat, lon };
-  const [currentWeather, setCurrentWeather] = React.useState(undefined);
 
   WeatherDisplay.propTypes = {
     lat: PropTypes.number.isRequired,
     lon: PropTypes.number.isRequired,
   };
+
+  function toggleTempUnit() {
+    setTempInF((prevTemp) => (!prevTemp));
+  }
 
   // Get current weather
   React.useEffect(() => {
@@ -47,10 +55,15 @@ function WeatherDisplay(props) {
     <div id="weather">
       <i className={`owf owf-${currentWeather.conditionCode} owf-3x`} />
       <i className={`wi wi-owm-${currentWeather.conditionCode}`} />
-      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <span>{currentWeather.temp} &#8457;</span>
+      {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
+      <span>
+        {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : `${currentWeather.tempC} ${celsius}`}
+      </span>
       <br />
       <span>{currentWeather.description}</span>
+      <br />
+      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+      <button type="button" onClick={toggleTempUnit}>{fahrenheit} {'\u2194'} {celsius}</button>
     </div>
   );
 }
