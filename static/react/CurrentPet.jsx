@@ -31,10 +31,29 @@ function CurrentPet(props) {
   return (
     <div>
       <h1>Your Pet</h1>
-      <h2>{pet.name} the {pet.personality} {pet.species_name}</h2>
-      <h3 id="location">Location: {pet.city}, {pet.region}, {pet.country}</h3>
+
+      <h2>
+        {pet.name}
+        {' '}
+        the
+        {pet.personality}
+        {' '}
+        {pet.species_name}
+      </h2>
+
+      <h3 id="location">
+        Location:
+        {pet.city}
+        {', '}
+        {pet.region}
+        {', '}
+        {pet.country}
+      </h3>
+
+      <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+
       <PetDisplay pet={pet} />
-      <WeatherDisplay pet={pet} />
+
       <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
   );
