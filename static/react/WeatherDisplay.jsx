@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global React ReactDOM PropTypes */
+/* global React PropTypes */
 /* eslint no-else-return: "error" */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -15,7 +15,7 @@ function WeatherDisplay(props) {
   console.log(currentWeather)
 
   function getWeather() {
-    fetch("/get-weather")
+    fetch('/get-weather')
       .then((response) => response.json())
       .then((weatherData) => {
         console.log(weatherData);
@@ -32,10 +32,14 @@ function WeatherDisplay(props) {
   }
 
   return (
-    <div>
+    <div id="weather">
       <h4>Current Weather</h4>
       <p>{currentWeather.weather_type}</p>
       <p>{currentWeather.weather_description}</p>
+      <img
+        src={currentWeather.icon_url}
+        alt={currentWeather.weather_description}
+      />
     </div>
   );
 }
