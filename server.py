@@ -219,32 +219,28 @@ def get_current_weather():
     payload = {
         "lat": lat,
         "lon": lon,
-        "units": "imperial", 
+        "units": "imperial",
         "appid": OWM_KEY,
     }
 
     res = requests.get(url, params=payload)
 
     weather_data = res.json()
-    
+    weather_data_overview = weather_data["weather"][0]
+
     temp = round(weather_data["main"]["temp"])
-    condition_code = weather_data["weather"][0]["id"]
-    weather_type = weather_data["weather"][0]["main"]
-    weather_description = weather_data["weather"][0]["description"]
-    owm_icon_id = weather_data["weather"][0]["icon"]
-    icon_url = f"http://openweathermap.org/img/wn/{owm_icon_id}@2x.png"
+    condition_code = weather_data_overview["id"]
+    weather_type = weather_data_overview["main"]
+    weather_description = weather_data_overview["description"]
+    owm_icon_id = weather_data_overview["icon"]
 
     current_weather = {
         "temp": temp,
-        "condition_code": condition_code,
-        "weather_type": weather_type,
-        "weather_description": weather_description,
-        "owm_icon_id": owm_icon_id,
-        "icon_url": icon_url
+        "conditionCode": condition_code,
+        "type": weather_type,
+        "description": weather_description,
+        "owmIconID": owm_icon_id,
     }
-
-    print(current_weather)
-    print()
 
     return jsonify(current_weather)
 
@@ -255,12 +251,11 @@ def mock_get_current_weather():
 
     current_weather = {
         'temp': round(71.83),
-        'condition_code': 802,
-        'weather_type': 'Clouds',
-        'weather_description':
+        'conditionCode': 802,
+        'type': 'Clouds',
+        'description':
         'scattered clouds',
-        'owm_icon_id': '03d',
-        'icon_url': 'http://openweathermap.org/img/wn/03d@2x.png'
+        'owmIconID': '03d',
     }
 
     return jsonify(current_weather)
