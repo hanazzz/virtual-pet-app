@@ -197,14 +197,18 @@ def mock_get_user_loc():
     return jsonify(user_data)
 
 
-@app.route("/get-weather")
+@app.route("/get-weather", methods=["POST"])
 def get_current_weather():
     """Get current weather at the pet's location."""
 
     # Get pet location
-    # HELP: More efficient to get this from db or from fetch request (POST)?
-    lat = session["current_pet"]["lat"]
-    lon = session["current_pet"]["lon"]
+    location = request.json
+    print()
+    print(location)
+    lat = location["lat"]
+    lon = location["lon"]
+    # lat = session["current_pet"]["lat"]
+    # lon = session["current_pet"]["lon"]
     print()
     print("LAT", lat)
     print("LON", lon)
