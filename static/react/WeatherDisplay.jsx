@@ -1,18 +1,15 @@
 /* eslint-env browser */
-/* global React PropTypes */
+/* global React */
 /* eslint no-else-return: "error" */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
-function WeatherDisplay(props) {
+// eslint-disable-next-line no-unused-vars
+function WeatherDisplay() {
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
-  const { pet } = props;
-  WeatherDisplay.propTypes = {
-    pet: PropTypes.object.isRequired
-  };
 
-  console.log(currentWeather)
+  console.log(currentWeather);
 
   function getWeather() {
     fetch('/get-weather')
