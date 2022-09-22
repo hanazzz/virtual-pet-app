@@ -147,7 +147,8 @@ def adopt_pet():
     # Recreate object as dictionary
     pet = pet.convert_to_dict()
 
-    # return jsonify(f"Congratulations on bringing home your new pet, {name} the {personality} {species_name}!")
+    session["current_pet"] = pet
+
     return jsonify(pet)
 
 
@@ -156,6 +157,7 @@ def delete_user_pet():
     """Delete current user's pet."""
 
     crud.delete_pet(session["current_user_id"])
+    session["current_pet"] = None
 
     return jsonify("Your pet has been released into the wild.")
 
@@ -199,9 +201,16 @@ def mock_get_user_loc():
 def get_current_weather():
     """Get current weather at the pet's location."""
 
-    # create OWM key
+    # Get pet location
+    # HELP: More efficient to get this from db or from fetch request (POST)?
+    lat = session["current_pet"]["lat"]
+    lon = session["current_pet"]["lon"]
+    print()
+    print("LAT", lat)
+    print("LON", lon)
+
+    # Create OWM key
     OWM_KEY = os.environ["OWM_API_KEY"]
-    print(OWM_KEY)
 
     # Fahrenheit
     # units=imperial
@@ -211,9 +220,8 @@ def get_current_weather():
 
     url = "https://api.openweathermap.org/data/2.5/weather"
     payload = {
-        "lat": 37.7994978,
-        "lon": -122.2613965,
-        "exclude": "minutely,hourly,daily,alerts",
+        "lat": lat,
+        "lon": lon,
         "units": "imperial", 
         "appid": OWM_KEY,
     }
@@ -248,12 +256,6 @@ def get_current_weather():
 
     print(current_weather)
     print()
-
-    # get lat and lon from pet object (store current pet in session?)
-    # make API call using lat and lon
-    # parse returned JSON
-    # pull out relevant parts of data
-    # return data
 
     return jsonify(current_weather)
 
