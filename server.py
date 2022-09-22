@@ -209,12 +209,6 @@ def get_current_weather():
     # Create OWM key
     OWM_KEY = os.environ["OWM_API_KEY"]
 
-    # Fahrenheit
-    # units=imperial
-
-    # Celsius
-    # units=metric
-
     url = "https://api.openweathermap.org/data/2.5/weather"
     payload = {
         "lat": lat,
@@ -235,7 +229,8 @@ def get_current_weather():
     owm_icon_id = weather_data_overview["icon"]
 
     current_weather = {
-        "temp": temp,
+        "tempF": temp,
+        "tempC": round(helper.convert_F_to_C(temp)),
         "conditionCode": condition_code,
         "type": weather_type,
         "description": weather_description,
@@ -249,8 +244,11 @@ def get_current_weather():
 def mock_get_current_weather():
     """Mock version of get_current_weather() for testing."""
 
+    temp = 71.83
+
     current_weather = {
-        'temp': round(71.83),
+        'tempF': round(temp),
+        "tempC": round(helper.convert_F_to_C(temp)),
         'conditionCode': 802,
         'type': 'Clouds',
         'description':

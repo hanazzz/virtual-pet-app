@@ -108,7 +108,10 @@ def log_in_user(user):
     Creates session object with keys to track user ID and username.
 
     Argument:
-    - user (object): User object from database
+    - user (database object): User object from database
+
+    Returns:
+    - pet (dict): Dictionary of pet attributes
     """
 
     session["current_user_id"] = user.user_id
@@ -166,3 +169,18 @@ def generate_pet():
     }
 
     return pet
+
+
+def convert_F_to_C(temp_F):
+    """Converts temperature in Fahrenheit to Celsius.
+    
+    Argument:
+    - temp_F (int): Temperature in Fahrenheit
+
+    Returns:
+    - temp_C (int): Temperature in Celsius
+    """
+
+    temp_C = (temp_F - 32) / 1.8
+
+    return temp_C
