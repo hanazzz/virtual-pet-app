@@ -8,6 +8,10 @@ form {
     padding: 1rem
 }
 
+img {
+    border-radius: .5rem;
+}
+
 .flash {
     color: red;
     font-size: large;
@@ -15,6 +19,7 @@ form {
     font-style: italic;
 }
 
-img {
-    border-radius: .5rem;
+#weather {
+    font-size: larger;
+    font-weight: 700;
 }
