@@ -1,6 +1,4 @@
-/* eslint-env browser */
-/* global React ReactDOM PropTypes */
-/* eslint no-else-return: "error" */
+/* global React ReactDOM PropTypes CurrentPet */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -14,7 +12,7 @@ function PetDisplay(props) {
   return (
     <div id="pet-display">
       <div>
-        <img src={`${pet.species_img_path}`} alt={`${pet.species_name}`} id="species-img" />
+        <img src={pet.species_img_path} alt={pet.species_name} id="species-img" />
       </div>
       <table>
         <tbody>

@@ -1,6 +1,4 @@
-/* eslint-env browser */
 /* global React PropTypes WeatherDisplay PetDisplay */
-/* eslint no-else-return: "error" */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
