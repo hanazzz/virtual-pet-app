@@ -6,37 +6,48 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function WeatherDisplay() {
+function WeatherDisplay(props) {
+  console.log("displaying weather");
+
+  const { lat, lon } = props;
+  const petLocation = {lat, lon};
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
 
-  console.log(currentWeather);
-
-  function getWeather() {
-    fetch('/get-weather')
+  // Get current weather
+  React.useEffect(() => {
+    console.log('Getting weather...');
+    fetch('/get-weather-mock', {
+      method: 'POST',
+      body: JSON.stringify(petLocation),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((response) => response.json())
       .then((weatherData) => {
-        console.log(weatherData);
         setCurrentWeather(weatherData);
-      });
-  }
+      })
+      .catch((error) => alert(error.toString()));
+  }, []);
 
   if (!currentWeather) {
     return (
       <div>
-        <button type="button" onClick={getWeather}>GET WEATHER</button>
+        <p>Weather soon!</p>
       </div>
     );
   }
 
   return (
     <div id="weather">
-      <h4>Current Weather</h4>
-      <p>{currentWeather.weather_type}</p>
-      <p>{currentWeather.weather_description}</p>
-      <img
+      <i className={`owf owf-${currentWeather.condition_code} owf-3x`} />
+      <span>{currentWeather.temp} &#8457;</span>
+      <br />
+      <span>{currentWeather.weather_description}</span>
+      {/* <img
         src={currentWeather.icon_url}
         alt={currentWeather.weather_description}
-      />
+      /> */}
     </div>
   );
 }
