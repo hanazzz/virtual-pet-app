@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global React */
+/* global React PropTypes */
 /* eslint no-else-return: "error" */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -7,11 +7,16 @@
 
 // eslint-disable-next-line no-unused-vars
 function WeatherDisplay(props) {
-  console.log("displaying weather");
+  console.log('displaying weather');
 
   const { lat, lon } = props;
-  const petLocation = {lat, lon};
+  const petLocation = { lat, lon };
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
+
+  WeatherDisplay.propTypes = {
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired,
+  };
 
   // Get current weather
   React.useEffect(() => {
@@ -40,15 +45,12 @@ function WeatherDisplay(props) {
 
   return (
     <div id="weather">
-      <i className={`owf owf-${currentWeather.condition_code} owf-3x`} />
-      <i className={`wi wi-owm-${currentWeather.condition_code}`} />
+      <i className={`owf owf-${currentWeather.conditionCode} owf-3x`} />
+      <i className={`wi wi-owm-${currentWeather.conditionCode}`} />
+      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       <span>{currentWeather.temp} &#8457;</span>
       <br />
-      <span>{currentWeather.weather_description}</span>
-      {/* <img
-        src={currentWeather.icon_url}
-        alt={currentWeather.weather_description}
-      /> */}
+      <span>{currentWeather.description}</span>
     </div>
   );
 }
