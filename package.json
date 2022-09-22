@@ -1,0 +1,28 @@
+{
+  "name": "virtual-pet-app",
+  "version": "1.0.0",
+  "description": "A web app where users can generate and adopt a virtual pet and interact with them. Capstone project for Hackbright Bootcamp.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanazzz/virtual-pet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanazzz/virtual-pet/issues"
+  },
+  "homepage": "https://github.com/hanazzz/virtual-pet#readme",
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}
