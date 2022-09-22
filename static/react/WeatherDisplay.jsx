@@ -41,6 +41,7 @@ function WeatherDisplay(props) {
   return (
     <div id="weather">
       <i className={`owf owf-${currentWeather.condition_code} owf-3x`} />
+      <i className={`wi wi-owm-${currentWeather.condition_code}`} />
       <span>{currentWeather.temp} &#8457;</span>
       <br />
       <span>{currentWeather.weather_description}</span>

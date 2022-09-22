@@ -6,11 +6,11 @@
  * -------------------------- */
 @font-face {
   font-family: 'owfont';
-  src: url('../fonts/owfont-regular.eot?v=1.0.0');
-  src: url('../fonts/owfont-regular.eot?#iefix&v=1.0.0') format('embedded-opentype'),
-	   url('../fonts/owfont-regular.woff') format('woff'),
-	   url('../fonts/owfont-regular.ttf') format('truetype'),
-	   url('../fonts/owfont-regular.svg#owf-regular') format('svg');
+  src: url('../fonts-owf/owfont-regular.eot?v=1.0.0');
+  src: url('../fonts-owf/owfont-regular.eot?#iefix&v=1.0.0') format('embedded-opentype'),
+	   url('../fonts-owf/owfont-regular.woff') format('woff'),
+	   url('../fonts-owf/owfont-regular.ttf') format('truetype'),
+	   url('../fonts-owf/owfont-regular.svg#owf-regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
