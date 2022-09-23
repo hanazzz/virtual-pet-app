@@ -1,4 +1,4 @@
-/* global React PropTypes WeatherDisplay PetDisplay PetEnergy */
+/* global React PropTypes WeatherDisplay PetDisplay Stat */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -71,7 +71,8 @@ function CurrentPet(props) {
 
       <PetDisplay pet={pet} />
 
-      <PetEnergy initialEnergy={pet.energy} />
+      {/* <PetEnergy initialEnergy={pet.energy} /> */}
+      <Stat initialStat={pet.energy} statName="energy" statInteraction="FEED PET" />
 
       <br />
       <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
