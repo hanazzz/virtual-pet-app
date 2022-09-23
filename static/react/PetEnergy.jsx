@@ -16,17 +16,42 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
+function EnergyDisplay(props) {
+  const { energy } = props;
+  const emptyEnergy = 5 - energy;
+  EnergyDisplay.propTypes = {
+    energy: PropTypes.number.isRequired,
+  };
+
+  const energySquares = [];
+  const emptyEnergySquares = [];
+
+  for (let i = 0; i < energy; i += 1) {
+    energySquares.push(<i className="fa-solid fa-square fa-3x " />);
+  }
+  for (let i = 0; i < emptyEnergy; i += 1) {
+    emptyEnergySquares.push(<i className="fa-regular fa-square fa-3x" />);
+  }
+
+  return (
+    <div id="energy-display">
+      {energySquares}
+      {emptyEnergySquares}
+    </div>
+  );
+}
+
 // eslint-disable-next-line no-unused-vars
 function PetEnergy(props) {
   console.log('***rendering PetEnergy***');
 
-	// Get initialEnergy from petData (which is from db)
+  // Get initialEnergy from petData (which is from db)
   const { initialEnergy } = props;
   PetEnergy.propTypes = {
     initialEnergy: PropTypes.number.isRequired,
   };
 
-	// create state to track energy
+  // create state to track energy
   const [energy, setEnergy] = React.useState(initialEnergy);
   // eslint-disable-next-line prefer-const
   let energyInterval = null;
@@ -65,6 +90,8 @@ function PetEnergy(props) {
     <div>
       <h4>ENERGY</h4>
       <p>{energy}</p>
+      <br />
+      <EnergyDisplay energy={energy} />
       <br />
       <button type="button" id="feed-pet" onClick={feedPet}>FEED PET</button>
     </div>
