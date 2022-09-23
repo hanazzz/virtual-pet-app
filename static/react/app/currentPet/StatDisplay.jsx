@@ -1,14 +1,7 @@
-/* global React PropTypes */
-
 // Visual display of pet stat (e.g. energy, happiness)
 // eslint-disable-next-line no-unused-vars
 function StatDisplay(props) {
   const { filledStat, emptyStat, statName } = props;
-  StatDisplay.propTypes = {
-    filledStat: PropTypes.number.isRequired,
-    emptyStat: PropTypes.number.isRequired,
-    statName: PropTypes.string.isRequired,
-  };
 
   // Create an array with n "undefined" slots
   // Use .map() to create a new array with n square elements
@@ -28,3 +21,9 @@ function StatDisplay(props) {
     </div>
   );
 }
+
+StatDisplay.propTypes = {
+  filledStat: PropTypes.number.isRequired,
+  emptyStat: PropTypes.number.isRequired,
+  statName: PropTypes.string.isRequired,
+};

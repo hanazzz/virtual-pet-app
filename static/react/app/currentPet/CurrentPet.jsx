@@ -1,4 +1,3 @@
-/* global React PropTypes WeatherDisplay PetDisplay Stat */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -7,33 +6,6 @@
 function CurrentPet(props) {
   const { pet } = props;
   const { setPetData } = props;
-  CurrentPet.propTypes = {
-    pet: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      species_name: PropTypes.string.isRequired,
-      country: PropTypes.string.isRequired,
-      region: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      lat: PropTypes.number.isRequired,
-      lon: PropTypes.number.isRequired,
-      energy: PropTypes.number.isRequired,
-      // last_fed:  PropTypes.??.isRequired,
-      happiness: PropTypes.number.isRequired,
-      // last_played:  PropTypes.??.isRequired,
-      food_fave: PropTypes.string.isRequired,
-      food_least: PropTypes.string.isRequired,
-      activity_fave: PropTypes.string.isRequired,
-      activity_least: PropTypes.string.isRequired,
-      music_fave: PropTypes.string.isRequired,
-      music_least: PropTypes.string.isRequired,
-      weather_fave: PropTypes.string.isRequired,
-      weather_least: PropTypes.string.isRequired,
-      personality: PropTypes.string.isRequired,
-      astro_sign: PropTypes.string.isRequired,
-      species_img_path: PropTypes.string.isRequired,
-    }).isRequired,
-    setPetData: PropTypes.func.isRequired,
-  };
 
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
@@ -80,3 +52,31 @@ function CurrentPet(props) {
     </div>
   );
 }
+
+CurrentPet.propTypes = {
+  pet: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    species_name: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    region: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired,
+    energy: PropTypes.number.isRequired,
+    // last_fed:  PropTypes.??.isRequired,
+    happiness: PropTypes.number.isRequired,
+    // last_played:  PropTypes.??.isRequired,
+    food_fave: PropTypes.string.isRequired,
+    food_least: PropTypes.string.isRequired,
+    activity_fave: PropTypes.string.isRequired,
+    activity_least: PropTypes.string.isRequired,
+    music_fave: PropTypes.string.isRequired,
+    music_least: PropTypes.string.isRequired,
+    weather_fave: PropTypes.string.isRequired,
+    weather_least: PropTypes.string.isRequired,
+    personality: PropTypes.string.isRequired,
+    astro_sign: PropTypes.string.isRequired,
+    species_img_path: PropTypes.string.isRequired,
+  }).isRequired,
+  setPetData: PropTypes.func.isRequired,
+};

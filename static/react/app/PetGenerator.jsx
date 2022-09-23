@@ -1,4 +1,3 @@
-/* global React PropTypes PetDisplay */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -18,10 +17,6 @@ function PetGenerator(props) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
   const { setPetData } = props;
-
-  PetGenerator.propTypes = {
-    setPetData: PropTypes.func.isRequired,
-  };
 
   console.log('*** rendering pet generator ***');
   console.log(newPetData);
@@ -112,3 +107,7 @@ function PetGenerator(props) {
     </>
   );
 }
+
+PetGenerator.propTypes = {
+  setPetData: PropTypes.func.isRequired,
+};

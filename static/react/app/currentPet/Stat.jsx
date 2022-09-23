@@ -1,7 +1,3 @@
-/* global React PropTypes StatDisplay */
-
-// send current energy level to db on log out
-
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -10,11 +6,6 @@
 function Stat(props) {
   // Get initialStat from petData (which is from db)
   const { initialStat, statName, statInteraction } = props;
-  Stat.propTypes = {
-    initialStat: PropTypes.number.isRequired,
-    statName: PropTypes.string.isRequired,
-    statInteraction: PropTypes.string.isRequired,
-  };
 
   // If stat data is in local storage, set as initial  state value.
   // If not, use initialStat passed through as prop (data retrieved from db at user log in).
@@ -67,3 +58,9 @@ function Stat(props) {
     </div>
   );
 }
+
+Stat.propTypes = {
+  initialStat: PropTypes.number.isRequired,
+  statName: PropTypes.string.isRequired,
+  statInteraction: PropTypes.string.isRequired,
+};

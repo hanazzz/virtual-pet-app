@@ -1,5 +1,3 @@
-/* eslint-env browser */
-/* global React ReactDOM Login CreateAcct */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */

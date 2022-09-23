@@ -1,4 +1,3 @@
-/* global React ReactDOM CurrentPet PetGenerator */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */

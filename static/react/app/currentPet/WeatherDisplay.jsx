@@ -1,5 +1,3 @@
-/* eslint-env browser */
-/* global React PropTypes */
 /* eslint no-else-return: "error" */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -16,11 +14,6 @@ function WeatherDisplay(props) {
   const celsius = '\u2103';
   const { lat, lon } = props;
   const petLocation = { lat, lon };
-
-  WeatherDisplay.propTypes = {
-    lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired,
-  };
 
   function toggleTempUnit() {
     setTempInF((prevTemp) => (!prevTemp));
@@ -67,3 +60,8 @@ function WeatherDisplay(props) {
     </div>
   );
 }
+
+WeatherDisplay.propTypes = {
+  lat: PropTypes.number.isRequired,
+  lon: PropTypes.number.isRequired,
+};

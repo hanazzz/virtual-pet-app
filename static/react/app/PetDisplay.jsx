@@ -1,24 +1,6 @@
-/* global React PropTypes  */
-
 // eslint-disable-next-line no-unused-vars
 function PetDisplay(props) {
   const { pet } = props;
-  PetDisplay.propTypes = {
-    pet: PropTypes.shape({
-      species_name: PropTypes.string.isRequired,
-      food_fave: PropTypes.string.isRequired,
-      food_least: PropTypes.string.isRequired,
-      activity_fave: PropTypes.string.isRequired,
-      activity_least: PropTypes.string.isRequired,
-      music_fave: PropTypes.string.isRequired,
-      music_least: PropTypes.string.isRequired,
-      weather_fave: PropTypes.string.isRequired,
-      weather_least: PropTypes.string.isRequired,
-      personality: PropTypes.string.isRequired,
-      astro_sign: PropTypes.string.isRequired,
-      species_img_path: PropTypes.string.isRequired,
-    }).isRequired,
-  };
 
   return (
     <div id="pet-display">
@@ -80,3 +62,20 @@ function PetDisplay(props) {
     </div>
   );
 }
+
+PetDisplay.propTypes = {
+  pet: PropTypes.shape({
+    species_name: PropTypes.string.isRequired,
+    food_fave: PropTypes.string.isRequired,
+    food_least: PropTypes.string.isRequired,
+    activity_fave: PropTypes.string.isRequired,
+    activity_least: PropTypes.string.isRequired,
+    music_fave: PropTypes.string.isRequired,
+    music_least: PropTypes.string.isRequired,
+    weather_fave: PropTypes.string.isRequired,
+    weather_least: PropTypes.string.isRequired,
+    personality: PropTypes.string.isRequired,
+    astro_sign: PropTypes.string.isRequired,
+    species_img_path: PropTypes.string.isRequired,
+  }).isRequired,
+};
