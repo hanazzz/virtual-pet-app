@@ -23,15 +23,16 @@ function EnergyDisplay(props) {
     energy: PropTypes.number.isRequired,
   };
 
-  const energySquares = [];
-  const emptyEnergySquares = [];
-
-  for (let i = 0; i < energy; i += 1) {
-    energySquares.push(<i className="fa-solid fa-square fa-3x " />);
-  }
-  for (let i = 0; i < emptyEnergy; i += 1) {
-    emptyEnergySquares.push(<i className="fa-regular fa-square fa-3x" />);
-  }
+  // Create an array with n "undefined" slots
+  // Use .map() to create a new array with n square elements
+  const energySquares = [...Array(energy)].map((value, idx) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <i className="fa-solid fa-square energy-square" key={idx} />
+  ));
+  const emptyEnergySquares = [...Array(emptyEnergy)].map((value, idx) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <i className="fa-regular fa-square energy-square" key={idx} />
+  ));
 
   return (
     <div id="energy-display">
@@ -43,7 +44,7 @@ function EnergyDisplay(props) {
 
 // eslint-disable-next-line no-unused-vars
 function PetEnergy(props) {
-  console.log('***rendering PetEnergy***');
+  console.log('*** rendering PetEnergy ***');
 
   // Get initialEnergy from petData (which is from db)
   const { initialEnergy } = props;
@@ -51,17 +52,14 @@ function PetEnergy(props) {
     initialEnergy: PropTypes.number.isRequired,
   };
 
-  // create state to track energy
   const [energy, setEnergy] = React.useState(initialEnergy);
   // eslint-disable-next-line prefer-const
   let energyInterval = null;
 
-  console.log(energy);
-
+  // SET UP TIMER
+  // callback function for timer
   function decreaseEnergy() {
-    console.log('Decrease energy funct');
     if (energy > 0) {
-      console.log('updating energy');
       setEnergy((prevEnergy) => prevEnergy - 1);
     } else {
       console.log('clear interval funct', energyInterval);
@@ -69,28 +67,26 @@ function PetEnergy(props) {
     }
   }
 
-  // Need to clearInterval on return (component unmounting) to avoid multiple clearInterval
+  // Use setInterval() on render to call decreaseEnergy() every n milliseconds
+  // Need to clearInterval on return (component unmounting) to avoid multiple intervals
   React.useEffect(() => {
-    console.log('setting timer');
     energyInterval = setInterval(decreaseEnergy, 5000);
     return () => {
-      console.log('useEffect return: clear int', energyInterval);
       clearInterval(energyInterval);
     };
   });
 
+  // feedPet() gets called on button click, increases energy by 1
   function feedPet() {
-    console.log('feeding pet');
     if (energy < 5) {
       setEnergy((prevEnergy) => prevEnergy + 1);
     }
   }
 
   return (
-    <div>
-      <h4>ENERGY</h4>
-      <p>{energy}</p>
-      <br />
+    <div id="energy">
+      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+      <h4>ENERGY: {energy}</h4>
       <EnergyDisplay energy={energy} />
       <br />
       <button type="button" id="feed-pet" onClick={feedPet}>FEED PET</button>
