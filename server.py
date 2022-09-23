@@ -72,8 +72,6 @@ def logout():
 
     current_stats = request.json
 
-    print(current_stats)
-
     current_energy = current_stats["currentEnergy"]
     current_happiness = current_stats["currentHappiness"]
 

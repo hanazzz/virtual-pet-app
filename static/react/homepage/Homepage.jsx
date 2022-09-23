@@ -22,6 +22,9 @@ function AcctForm() {
   const [password, setPassword] = React.useState('');
   const [password2, setPassword2] = React.useState('');
 
+  // If anything in local storage, clear it
+  localStorage.clear();
+
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
   // and sends form data to server via Fetch re quest
