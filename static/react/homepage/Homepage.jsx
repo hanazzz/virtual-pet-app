@@ -48,7 +48,6 @@ function AcctForm() {
       .then((responseJson) => {
         const { msg } = responseJson;
         alert(msg);
-        // If valid account, update userID state with user's ID
         if (responseJson.status) {
           window.location.href = '/pet';
         }
@@ -56,13 +55,7 @@ function AcctForm() {
       .catch((error) => alert(error.toString()));
   }
 
-  // DEFINE FORMS
-  // Have state for each form field.
-  // Use onChange attribute for fields to update state with setState.
-  // Use onSubmit for entire form to handle form submission.
-
   // FORM LOGIC
-  // const form = logInMethd ? logInForm : createAcctForm;
   let form = (
     <Login
       username={username}
