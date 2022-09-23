@@ -1,4 +1,4 @@
-/* global React PropTypes */
+/* global React PropTypes StatDisplay */
 
 // get current pet energy level
 
@@ -15,32 +15,6 @@
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
-
-function EnergyDisplay(props) {
-  const { energy } = props;
-  const emptyEnergy = 5 - energy;
-  EnergyDisplay.propTypes = {
-    energy: PropTypes.number.isRequired,
-  };
-
-  // Create an array with n "undefined" slots
-  // Use .map() to create a new array with n square elements
-  const energySquares = [...Array(energy)].map((value, idx) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <i className="fa-solid fa-square energy-square" key={idx} />
-  ));
-  const emptyEnergySquares = [...Array(emptyEnergy)].map((value, idx) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <i className="fa-regular fa-square energy-square" key={idx} />
-  ));
-
-  return (
-    <div id="energy-display">
-      {energySquares}
-      {emptyEnergySquares}
-    </div>
-  );
-}
 
 // eslint-disable-next-line no-unused-vars
 function PetEnergy(props) {
@@ -87,7 +61,7 @@ function PetEnergy(props) {
     <div id="energy">
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       <h4>ENERGY: {energy}</h4>
-      <EnergyDisplay energy={energy} />
+      <StatDisplay filledStat={energy} emptyStat={5 - energy} statName="energy" />
       <br />
       <button type="button" id="feed-pet" onClick={feedPet}>FEED PET</button>
     </div>
