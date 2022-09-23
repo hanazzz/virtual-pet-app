@@ -11,10 +11,13 @@
         "React": "readonly",
         "ReactDOM": "readonly",
         "PropTypes": "readonly",
-        "CurrentPet": "readonly",
-        "PetGenerator": "readonly",
         "Navbar": "readonly",
+        "PetGenerator": "readonly",
+        "CurrentPet": "readonly",
+        "PetDisplay": "readonly",
+        "WeatherDisplay": "readonly",
         "StatDisplay": "readonly",
+        "Stat": "readonly",
         "Login": "readonly",
         "CreateAcct": "readonly"
     }   
