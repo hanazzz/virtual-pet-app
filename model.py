@@ -45,7 +45,7 @@ class Pet(db.Model):
     city = db.Column(db.String)
     lat = db.Column(db.Integer)
     lon = db.Column(db.Integer)
-    hunger = db.Column(db.Integer, default=5)
+    energy = db.Column(db.Integer, default=5)
     last_fed = db.Column(db.DateTime, default=datetime.now())
     happiness = db.Column(db.Integer, default=5)
     last_played = db.Column(db.DateTime, default=datetime.now())
@@ -80,7 +80,7 @@ class Pet(db.Model):
             "city": self.city,
             "lat": self.lat,
             "lon": self.lon,
-            "hunger": self.hunger,
+            "energy": self.energy,
             "last_fed": self.last_fed,
             "happiness": self.happiness,
             "last_played": self.last_played,
