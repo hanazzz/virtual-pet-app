@@ -54,11 +54,7 @@ def check_new_account(email, username, password, password2):
         # Get newly created User object from db
         user = crud.get_user_by_username(username)
         # Log user in
-        log_in_user(user)
-        valid_account["user_id"] = user.user_id
-        valid_account["username"] = user.username
-        valid_account["status"] = True
-        valid_account["msg"] = "Your account has successfully been created!"
+        valid_account = log_in_user(user, "Your account has successfully been created!")
 
     return valid_account
 
@@ -95,22 +91,19 @@ def check_login(username, password):
         valid_account["msg"] = "That username and password don't match. Please try again."
     else:
         # Log user in
-        log_in_user(user)
-        valid_account["status"] = True
-        valid_account["msg"] = "You are now logged in!"
-        valid_account["user_id"] = user.user_id
-        valid_account["username"] = user.username
+        valid_account = log_in_user(user, "You are now logged in!")
 
     return valid_account
 
 
-def log_in_user(user):
+def log_in_user(user, msg):
     """Log user in.
 
     Creates session object with keys to track user ID and username.
 
     Argument:
     - user (database object): User object from database
+    - msg (str): Success message to display after login
 
     Returns:
     - pet (dict): Dictionary of pet attributes
@@ -123,6 +116,15 @@ def log_in_user(user):
         session["current_pet"] = crud.get_pet(user.user_id).convert_to_dict()
     else:
         session["current_pet"] = None
+
+    valid_account = {
+        "status": True,
+        "msg": msg,
+        "user_id": user.user_id,
+        "username": user.username
+    }
+
+    return valid_account
 
 
 def generate_pet():

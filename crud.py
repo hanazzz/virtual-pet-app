@@ -137,7 +137,13 @@ def get_pet(user_id):
 
 
 def update_pet_stats(user_id, current_energy, current_happiness):
-    """Update current pet's energy and happiness stats."""
+    """Update current pet's energy and happiness stats.
+    
+    Arguments:
+    - user_id (int): Current user's user ID
+    - current_energy (int): Current user's pet's energy
+    - current_happiness (int): Current user's pet's happiness
+    """
 
     pet = get_pet(user_id)
 
