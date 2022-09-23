@@ -1,15 +1,5 @@
 /* global React PropTypes StatDisplay */
 
-// get current pet energy level
-
-// create energy state, initial value is pet's current energy level
-
-// use setInterval
-// function - if energy > 0, decrease by 1
-// delay = 1000 (1 second to start)
-
-// update img: ??
-
 // send current energy level to db on log out
 
 // REMOVE THE BELOW BEFORE DEPLOYMENT
