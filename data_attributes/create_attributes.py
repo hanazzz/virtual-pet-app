@@ -30,15 +30,15 @@ SPECIES = {
 
 SPECIES_ID = list(SPECIES.keys())
 
-FOOD = make_list("data/food.txt", "FOOD")
+FOOD = make_list("data_attributes/food.txt", "FOOD")
 
-ACTIVITY = make_list("data/activities.txt", "ACTIVITY")
+ACTIVITY = make_list("data_attributes/activities.txt", "ACTIVITY")
 
-MUSIC_GENRE = make_list("data/music_genres.txt", "MUSIC_GENRES")
+MUSIC_GENRE = make_list("data_attributes/music_genres.txt", "MUSIC_GENRES")
 
-WEATHER = make_list("data/weather.txt", "WEATHER")
+WEATHER = make_list("data_attributes/weather.txt", "WEATHER")
 
-PERSONALITY = make_list("data/personality.txt", "PERSONALITY")
+PERSONALITY = make_list("data_attributes/personality.txt", "PERSONALITY")
 
 ASTROLOGICAL_SIGN = [
     "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
