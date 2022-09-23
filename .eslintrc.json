@@ -10,5 +10,12 @@
     "globals": {
         "React": "readonly",
         "ReactDOM": "readonly",
+        "PropTypes": "readonly",
+        "CurrentPet": "readonly",
+        "PetGenerator": "readonly",
+        "Navbar": "readonly",
+        "StatDisplay": "readonly",
+        "Login": "readonly",
+        "CreateAcct": "readonly"
     }   
 }
