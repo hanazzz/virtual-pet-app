@@ -57,7 +57,7 @@ function WeatherDisplay(props) {
       <i className={`wi wi-owm-${currentWeather.conditionCode}`} />
       {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
       <span>
-        {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : `${currentWeather.tempC} ${celsius}`}
+        {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
       </span>
       <br />
       <span>{currentWeather.description}</span>
