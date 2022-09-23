@@ -1,4 +1,4 @@
-/* global React PropTypes WeatherDisplay PetDisplay */
+/* global React PropTypes WeatherDisplay PetDisplay PetEnergy */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -16,7 +16,7 @@ function CurrentPet(props) {
       city: PropTypes.string.isRequired,
       lat: PropTypes.number.isRequired,
       lon: PropTypes.number.isRequired,
-      // hunger: PropTypes.number.isRequired,
+      energy: PropTypes.number.isRequired,
       // last_fed:  PropTypes.??.isRequired,
       // happiness: PropTypes.number.isRequired,
       // last_played:  PropTypes.??.isRequired,
@@ -71,6 +71,9 @@ function CurrentPet(props) {
 
       <PetDisplay pet={pet} />
 
+      <PetEnergy initialEnergy={pet.energy} />
+
+      <br />
       <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
     </div>
   );
