@@ -19,6 +19,16 @@ img {
     font-style: italic;
 }
 
+.energy-square {
+    padding: 1rem;
+    font-size: 2.5em;
+}
+
+.happiness-square {
+    padding: 1rem;
+    font-size: 2.5em;
+}
+
 #weather {
     font-size: larger;
     font-weight: 700;
