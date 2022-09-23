@@ -23,13 +23,8 @@ img {
     font-style: italic;
 }
 
-.energy-square {
-    padding: 1rem;
-    font-size: 2.5em;
-}
-
-.happiness-square {
-    padding: 1rem;
+.stat-square {
+    padding: .5rem 1rem;
     font-size: 2.5em;
 }
 

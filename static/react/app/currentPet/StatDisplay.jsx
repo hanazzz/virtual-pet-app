@@ -7,11 +7,11 @@ function StatDisplay(props) {
   // Use .map() to create a new array with n square elements
   const filledStatSquares = [...Array(filledStat)].map((value, idx) => (
     // eslint-disable-next-line react/no-array-index-key
-    <i className={`fa-solid fa-square ${statName}-square`} key={idx} />
+    <i className="fa-solid fa-square stat-square" key={idx} />
   ));
   const emptyStatSquares = [...Array(emptyStat)].map((value, idx) => (
     // eslint-disable-next-line react/no-array-index-key
-    <i className={`fa-regular fa-square ${statName}-square`} key={idx} />
+    <i className="fa-regular fa-square stat-square" key={idx} />
   ));
 
   return (
