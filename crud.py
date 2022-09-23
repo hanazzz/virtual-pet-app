@@ -136,6 +136,17 @@ def get_pet(user_id):
     return pet
 
 
+def update_pet_stats(user_id, current_energy, current_happiness):
+    """Update current pet's energy and happiness stats."""
+
+    pet = get_pet(user_id)
+
+    pet.energy = current_energy
+    pet.happiness = current_happiness
+
+    db.session.commit()
+
+
 def delete_pet(user_id):
     """Delete a user's existing pet."""
 
