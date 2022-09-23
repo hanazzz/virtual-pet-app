@@ -10,7 +10,7 @@ function Navbar(props) {
     const currentStats = {
       currentEnergy: localStorage.getItem('energy'),
       currentHappiness: localStorage.getItem('happiness'),
-    }
+    };
 
     fetch('/logout', {
       method: 'POST',
@@ -25,7 +25,7 @@ function Navbar(props) {
         alert(msg);
         window.location.href = '/';
       });
-  };
+  }
 
   let navbarUserInfo = (
     // eslint-disable-next-line react/jsx-one-expression-per-line

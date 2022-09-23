@@ -37,6 +37,9 @@ function VirtualPetApp() {
       />
     );
   } else if (petData === null) {
+    // If any lingering stats in local storage, delete them.
+    localStorage.removeItem('energy');
+    localStorage.removeItem('happiness');
     appContent = (
       <PetGenerator
         petData={petData}
@@ -51,41 +54,6 @@ function VirtualPetApp() {
       {appContent}
     </>
   );
-
-  // // If user has pet
-  // if (petData) {
-  //   alert('Your pet is so cute!');
-  //   return (
-  //     <>
-  //       <Navbar username={petData.username} />
-  //       <CurrentPet
-  //         pet={petData}
-  //         setPetData={setPetData}
-  //       />
-  //     </>
-  //   );
-  // // If user doesn't have pet
-  // } else if (petData === null) {
-  //   console.log('NO pet data, rendering PetGenerator');
-  //   alert("Looks like you don't have a pet yet! Let's fix that.");
-  //   return (
-  //     <>
-  //       <Navbar username={username} />
-  //       <PetGenerator
-  //         petData={petData}
-  //         setPetData={setPetData}
-  //       />
-  //     </>
-  //   );
-  // }
-  // // If user's pet status is unknown (i.e. useEffect hasn't run)
-  // console.log('the void');
-  // return (
-  //   <>
-  //     <Navbar username={username} />
-  //     <div>Loading...</div>
-  //   </>
-  // );
 }
 
 ReactDOM.render(<VirtualPetApp />, document.querySelector('#app'));
