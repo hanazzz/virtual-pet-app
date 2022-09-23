@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global React ReactDOM */
+/* global React ReactDOM Login CreateAcct */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -36,10 +36,6 @@ function AcctForm() {
       password2,
     };
     const route = logInMethd ? '/login' : '/create-user';
-    // let route = '/login';
-    // if (logInMethd === false) {
-    //   route = '/create-user';
-    // }
 
     fetch(`${route}`, {
       method: 'POST',
@@ -64,127 +60,38 @@ function AcctForm() {
   // Have state for each form field.
   // Use onChange attribute for fields to update state with setState.
   // Use onSubmit for entire form to handle form submission.
-  const logInForm = (
-    <div>
-      <h2>Log In</h2>
-      <form onSubmit={(evt) => submitForm(evt)}>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            id="username"
-            maxLength="30"
-            required="required"
-            aria-required="true"
-            autoComplete="username"
-            value={username}
-            onChange={(evt) => setUsername(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            required="required"
-            aria-required="true"
-            autoComplete="current-password"
-            value={password}
-            onChange={(evt) => setPassword(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <input type="submit" />
-      </form>
-    </div>
-  );
-
-  const createAcctForm = (
-    <div>
-      <h2>Create Account</h2>
-
-      <form onSubmit={(evt) => submitForm(evt)}>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            maxLength="254"
-            required="required"
-            aria-required="true"
-            autoComplete="email"
-            value={email}
-            onChange={(evt) => setEmail(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            id="username"
-            maxLength="30"
-            required="required"
-            aria-required="true"
-            autoComplete="username"
-            value={username}
-            onChange={(evt) => setUsername(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            minLength="8"
-            required="required"
-            aria-required="true"
-            autoComplete="new-password"
-            value={password}
-            onChange={(evt) => setPassword(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <label htmlFor="password-confirm">
-          Confirm password:
-          <input
-            type="password"
-            name="password2"
-            id="password-confirm"
-            minLength="8"
-            required="required"
-            aria-required="true"
-            autoComplete="new-password"
-            value={password2}
-            onChange={(evt) => setPassword2(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <input type="submit" />
-      </form>
-    </div>
-  );
 
   // FORM LOGIC
   // const form = logInMethd ? logInForm : createAcctForm;
+  let form = (
+    <Login
+      username={username}
+      setUsername={setUsername}
+      password={password}
+      setPassword={setPassword}
+      submitForm={submitForm}
+    />
+  );
+
+  if (!logInMethd) {
+    form = (
+      <CreateAcct
+        username={username}
+        setUsername={setUsername}
+        password={password}
+        setPassword={setPassword}
+        email={email}
+        setEmail={setEmail}
+        password2={password2}
+        setPassword2={setPassword2}
+        submitForm={submitForm}
+      />
+    );
+  }
 
   return (
     <div>
-      {logInMethd ? logInForm : createAcctForm}
-      {/* {form} */}
+      {form}
       <br />
       <button type="button" onClick={toggleLogInMethd}>
         {logInMethd ? logInMsg : createAcctMsg}
