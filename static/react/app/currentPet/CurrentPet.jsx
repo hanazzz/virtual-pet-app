@@ -7,6 +7,7 @@ function CurrentPet(props) {
   const { pet } = props;
   const { setPetData } = props;
 
+  alert('Your pet is so cute!');
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
   function deletePet() {
