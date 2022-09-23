@@ -47,6 +47,8 @@ function AcctForm() {
         const { msg } = responseJson;
         alert(msg);
         if (responseJson.status) {
+          // Store username in local storage
+          localStorage.setItem('username', responseJson.username);
           window.location.href = '/pet';
         }
       })
