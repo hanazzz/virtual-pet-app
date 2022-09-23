@@ -96,26 +96,7 @@ def get_user_info():
 
     # If user has pet, turn Pet object into dict
     if pet:
-        pet = {
-            "name": pet.name,
-            "species_name": pet.species_name,
-            "country": pet.country,
-            "region": pet.region,
-            "city": pet.city,
-            "lat": pet.lat,
-            "lon": pet.lon,
-            "food_fave": pet.food_fave,
-            "food_least": pet.food_least,
-            "activity_fave": pet.activity_fave,
-            "activity_least": pet.activity_least,
-            "music_fave": pet.music_fave,
-            "music_least": pet.music_least,
-            "weather_fave": pet.weather_fave,
-            "weather_least": pet.weather_least,
-            "personality": pet.personality,
-            "astro_sign": pet.astro_sign,
-            "species_img_path": pet.species_img_path,
-        }
+        pet = pet.convert_to_dict()
 
     return jsonify(pet)
 
