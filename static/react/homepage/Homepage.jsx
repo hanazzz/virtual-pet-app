@@ -84,6 +84,7 @@ function AcctForm() {
 
   return (
     <div>
+      <Navbar />
       {form}
       <br />
       <button type="button" onClick={toggleLogInMethd}>
