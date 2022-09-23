@@ -52,13 +52,13 @@ function CurrentPet(props) {
           />
         </div>
         <div className="col">
-          <button>PLACE HOLDER</button>
+          <button type="button">PLACE HOLDER</button>
           <br />
           <br />
-          <button>PLACE HOLDER</button>
+          <button type="button">PLACE HOLDER</button>
           <br />
           <br />
-          <button>PLACE HOLDER</button>
+          <button type="button">PLACE HOLDER</button>
         </div>
       </div>
 
@@ -67,7 +67,6 @@ function CurrentPet(props) {
 
         <Stat initialStat={pet.happiness} statName="happiness" statInteraction="PLAY WITH PET" />
       </div>
-
 
       <br />
       <div className="row">

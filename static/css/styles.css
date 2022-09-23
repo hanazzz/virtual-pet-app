@@ -8,6 +8,10 @@ form {
     padding: 1rem
 }
 
+input {
+    margin: .25rem;
+}
+
 img {
     border-radius: .5rem;
 }

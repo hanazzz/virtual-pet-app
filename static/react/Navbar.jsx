@@ -33,13 +33,14 @@ function Navbar(props) {
         * * *
       </div>
       <div className="col">
-        <a href="/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a>
+        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+        Logged in as: {username}
       </div>
       <div className="col">
         * * *
       </div>
       <div className="col">
-        Logged in as: {username}
+        <a href="/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a>
       </div>
     </>
   );
@@ -51,13 +52,7 @@ function Navbar(props) {
   return (
     <nav className="row">
       <div className="col">
-        NAVBAR GOES HERE
-      </div>
-      <div className="col">
-        * * *
-      </div>
-      <div className="col">
-        SOME NAVBAR CONTENT
+        VIRTUAL PET APP
       </div>
       {navbarUserInfo}
     </nav>

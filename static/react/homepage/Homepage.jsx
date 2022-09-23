@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -88,6 +89,8 @@ function AcctForm() {
   return (
     <>
       <Navbar className="row" />
+      <h1 className="row">[App Name]</h1>
+      <p className="row">A very cool description of this app.</p>
       {form}
       <br />
       <button type="button" className="row" onClick={toggleLogInMethd}>
