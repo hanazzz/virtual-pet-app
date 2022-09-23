@@ -86,14 +86,14 @@ function AcctForm() {
   }
 
   return (
-    <div>
-      <Navbar />
+    <>
+      <Navbar className="row" />
       {form}
       <br />
-      <button type="button" onClick={toggleLogInMethd}>
+      <button type="button" className="row" onClick={toggleLogInMethd}>
         {logInMethd ? logInMsg : createAcctMsg}
       </button>
-    </div>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ function CreateAcct(props) {
   } = props;
 
   return (
-    <div>
+    <div id="create-account" className="row">
       <h2>Create Account</h2>
 
       <form onSubmit={(evt) => submitForm(evt)}>

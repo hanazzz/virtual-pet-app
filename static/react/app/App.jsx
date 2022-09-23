@@ -26,7 +26,7 @@ function VirtualPetApp() {
   }, []);
 
   // If user's pet status is unknown (i.e. useEffect hasn't run)
-  let appContent = (<div>Loading...</div>);
+  let appContent = (<div className="row">Loading...</div>);
 
   // If user has pet, load CurrentPet. If not, load PetGene
   if (petData) {
@@ -51,7 +51,10 @@ function VirtualPetApp() {
   return (
     <>
       <Navbar username={username} />
-      {appContent}
+      <main className="row">
+        {appContent}
+      </main>
+      <Footer />
     </>
   );
 }

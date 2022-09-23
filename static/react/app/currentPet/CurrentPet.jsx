@@ -27,29 +27,52 @@ function CurrentPet(props) {
   }
 
   return (
-    <div>
-      <h1>Your Pet</h1>
+    <div id="current-pet" className="row">
+      {/* <h1>Your Pet</h1> */}
 
-      <h2>
+      <h1 className="row">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         {pet.name} the {pet.personality} {pet.species_name}
-      </h2>
+      </h1>
 
-      <h3 id="location">
+      <h3 id="location" className="row">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         Location: {pet.city}, {pet.region}, {pet.country}
       </h3>
 
       <WeatherDisplay lat={pet.lat} lon={pet.lon} />
 
-      <PetDisplay pet={pet} />
+      <div id="pet" className="row">
+        <PetDisplay pet={pet} className="col" />
+        <div className="col">
+          <img
+            src={pet.species_img_path}
+            alt={pet.species_name}
+            id="species-img"
+          />
+        </div>
+        <div className="col">
+          <button>PLACE HOLDER</button>
+          <br />
+          <br />
+          <button>PLACE HOLDER</button>
+          <br />
+          <br />
+          <button>PLACE HOLDER</button>
+        </div>
+      </div>
 
-      <Stat initialStat={pet.energy} statName="energy" statInteraction="FEED PET" />
+      <div id="stats" className="row">
+        <Stat initialStat={pet.energy} statName="energy" statInteraction="FEED PET" />
 
-      <Stat initialStat={pet.happiness} statName="happiness" statInteraction="PLAY WITH PET" />
+        <Stat initialStat={pet.happiness} statName="happiness" statInteraction="PLAY WITH PET" />
+      </div>
+
 
       <br />
-      <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
+      <div className="row">
+        <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
+      </div>
     </div>
   );
 }

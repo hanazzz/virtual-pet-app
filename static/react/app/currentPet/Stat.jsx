@@ -49,7 +49,7 @@ function Stat(props) {
   }
 
   return (
-    <div id={statName}>
+    <div id={statName} className="col">
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       <h4>{statName}: {stat}</h4>
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />

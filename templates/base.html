@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A virtual pet app">
 
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/owfont-regular.css" type="text/css">
     <link rel="stylesheet" href="/static/css/weather-icons.css" type="text/css">
@@ -27,21 +29,7 @@
 
 <body>
 
-    <!-- <nav>
-        {% block navbar %}
-            NAVBAR GOES HERE
-            ***
-            SOME NAVBAR CONTENT
-            {% if session.get("current_user_id") %}
-                ***
-                <a href="/logout">LOG OUT</a>
-                ***
-                Logged in as: {{ session["current_username"] }}
-            {% endif %}
-        {% endblock navbar %}
-    </nav> -->
-
-    <main>
+    <!-- <main> -->
         {% for msg in get_flashed_messages() %}
             <div class="flash">
                 <p class="flash-msg">
@@ -53,12 +41,13 @@
         {% block body %}
             BODY CONTENT GOES HERE
         {% endblock body %}
-    </main>
-</body>
+    <!-- </main> -->
 
-<footer>
-    {% block footer %}
-    {% endblock footer %}
-</footer>
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    {% block scripts %}
+        
+    {% endblock scripts %}
+</body>
 
 </html>

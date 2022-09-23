@@ -12,6 +12,10 @@ img {
     border-radius: .5rem;
 }
 
+.row {
+    margin: .5rem .2rem;
+}
+
 .flash {
     color: red;
     font-size: large;

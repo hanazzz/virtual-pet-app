@@ -4,10 +4,18 @@
 
 {% block body %}
 
-    <div id="app">
+    <div id="app" class="container">
+
+        <footer class="row">
+            <p>Pet images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
+        </footer>
     </div>
 
+{% endblock body %}
+
+{% block scripts %}
     <script src="/static/react/Navbar.jsx" type="text/jsx"></script>
+    <script src="/static/react/Footer.jsx" type="text/jsx"></script>
     <script src="/static/react/app/PetDisplay.jsx" type="text/jsx"></script>
     <script src="/static/react/app/currentPet/WeatherDisplay.jsx" type="text/jsx"></script>
     <script src="/static/react/app/currentPet/StatDisplay.jsx" type="text/jsx"></script>
@@ -15,9 +23,4 @@
     <script src="/static/react/app/currentPet/CurrentPet.jsx" type="text/jsx"></script>
     <script src="/static/react/app/PetGenerator.jsx" type="text/jsx"></script>
     <script src="/static/react/app/App.jsx" type="text/jsx"></script>
-
-{% endblock body %}
-
-{% block footer %}
-    <p>Pet images created using <a href="https://www.craiyon.com/">Craiyon</a></p>
-{% endblock footer %}
+{% endblock scripts %}

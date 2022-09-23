@@ -28,8 +28,20 @@ function Navbar(props) {
   }
 
   let navbarUserInfo = (
-    // eslint-disable-next-line react/jsx-one-expression-per-line
-    <> *** <a href="/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a> *** Logged in as: {username}</>
+    <>
+      <div className="col">
+        * * *
+      </div>
+      <div className="col">
+        <a href="/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a>
+      </div>
+      <div className="col">
+        * * *
+      </div>
+      <div className="col">
+        Logged in as: {username}
+      </div>
+    </>
   );
 
   if (!username) {
@@ -37,10 +49,16 @@ function Navbar(props) {
   }
 
   return (
-    <nav>
-      NAVBAR GOES HERE
-      ***
-      SOME NAVBAR CONTENT
+    <nav className="row">
+      <div className="col">
+        NAVBAR GOES HERE
+      </div>
+      <div className="col">
+        * * *
+      </div>
+      <div className="col">
+        SOME NAVBAR CONTENT
+      </div>
       {navbarUserInfo}
     </nav>
   );

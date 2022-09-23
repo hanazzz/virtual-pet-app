@@ -4,12 +4,15 @@
 
 {% block body %}
 
-    <div id="access">
+    <div id="access" class="container">
     </div>
 
+{% endblock body %}
+
+{% block scripts %}
     <script src="/static/react/Navbar.jsx" type="text/jsx"></script>
+    <script src="/static/react/Footer.jsx" type="text/jsx"></script>
     <script src="/static/react/homepage/Login.jsx" type="text/jsx"></script>
     <script src="/static/react/homepage/CreateAcct.jsx" type="text/jsx"></script>
     <script src="/static/react/homepage/Homepage.jsx" type="text/jsx"></script>
-
-{% endblock body %}
+{% endblock scripts %}

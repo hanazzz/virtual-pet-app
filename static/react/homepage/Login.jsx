@@ -5,7 +5,7 @@ function Login(props) {
   } = props;
 
   return (
-    <div>
+    <div id="login" className="row">
       <h2>Log In</h2>
       <form onSubmit={(evt) => submitForm(evt)}>
         <label htmlFor="username">
