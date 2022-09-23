@@ -2,16 +2,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
-function PetGeneratorIntro() {
-  return (
-    <>
-      <h1>Adopt a Pet</h1>
-      {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
-      <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
-    </>
-  );
-}
-
 // eslint-disable-next-line no-unused-vars
 function PetGenerator(props) {
   // Store data for generated pets in newPetData state
@@ -56,7 +46,7 @@ function PetGenerator(props) {
 
         console.log(newPetData);
 
-        // TODO: Troubleshoot (doesn't currently work)
+        // FIXME: Troubleshoot (doesn't currently work)
         // setNewPetData(prevData => ({
         //   ...prevData,
         //   name: name,
@@ -87,25 +77,38 @@ function PetGenerator(props) {
       });
   }
 
+  let displayNewPet = null;
+
   if (newPetData) {
-    console.log('showing pet');
-    return (
-      <div>
-        <PetGeneratorIntro />
-        <h2>Potential Pet</h2>
-        <button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button>
-        <br />
+    displayNewPet = (
+      <>
+        <h2 className="row">Potential Pet</h2>
+        <div className="col">
+          <img
+            src={newPetData.species_img_path}
+            alt={newPetData.species_name}
+            id="species-img"
+            className="col"
+          />
+        </div>
         <PetDisplay pet={newPetData} />
-        <br />
-        <button type="button" onClick={adoptPet} id="adopt-pet">ADOPT PET</button>
-      </div>
+        <div>
+          <button type="button" onClick={adoptPet} id="adopt-pet" className="row">ADOPT PET</button>
+        </div>
+      </>
     );
   }
+
   return (
-    <>
-      <PetGeneratorIntro />
-      <div><button type="button" onClick={generateNewPet} id="generate-pet">GENERATE PET</button></div>
-    </>
+    <div id="pet-generator" className="row">
+      <h1 className="row">Adopt a Pet</h1>
+      {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
+      <p className="row">Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
+      <div>
+        <button type="button" onClick={generateNewPet} id="generate-pet" className="row">GENERATE PET</button>
+      </div>
+      {displayNewPet}
+    </div>
   );
 }
 
