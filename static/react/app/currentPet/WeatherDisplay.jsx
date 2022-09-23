@@ -7,7 +7,7 @@
 
 // eslint-disable-next-line no-unused-vars
 function WeatherDisplay(props) {
-  console.log('displaying weather');
+  console.log('*** rendering WeatherDisplay ***');
 
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
   // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)

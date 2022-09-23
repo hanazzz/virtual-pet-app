@@ -18,8 +18,6 @@
 
 // eslint-disable-next-line no-unused-vars
 function Stat(props) {
-  console.log('*** rendering stat ***');
-
   // Get initialStat from petData (which is from db)
   const { initialStat, statName, statInteraction } = props;
   Stat.propTypes = {
@@ -27,6 +25,8 @@ function Stat(props) {
     statName: PropTypes.string.isRequired,
     statInteraction: PropTypes.string.isRequired,
   };
+
+  console.log(`*** rendering Stat: ${statName} ***`);
 
   const [stat, setStat] = React.useState(initialStat);
   // eslint-disable-next-line prefer-const

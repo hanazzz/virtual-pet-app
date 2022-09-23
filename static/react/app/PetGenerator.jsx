@@ -23,7 +23,7 @@ function PetGenerator(props) {
     setPetData: PropTypes.func.isRequired,
   };
 
-  console.log('Loading pet generator');
+  console.log('*** rendering pet generator ***');
   console.log(newPetData);
 
   // Generate random pet

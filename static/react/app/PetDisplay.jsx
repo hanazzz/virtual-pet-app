@@ -6,15 +6,6 @@ function PetDisplay(props) {
   PetDisplay.propTypes = {
     pet: PropTypes.shape({
       species_name: PropTypes.string.isRequired,
-      country: PropTypes.string.isRequired,
-      region: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      lat: PropTypes.number.isRequired,
-      lon: PropTypes.number.isRequired,
-      // hunger: PropTypes.number.isRequired,
-      // last_fed:  PropTypes.??.isRequired,
-      // happiness: PropTypes.number.isRequired,
-      // last_played:  PropTypes.??.isRequired,
       food_fave: PropTypes.string.isRequired,
       food_least: PropTypes.string.isRequired,
       activity_fave: PropTypes.string.isRequired,

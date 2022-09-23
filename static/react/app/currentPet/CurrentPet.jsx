@@ -18,7 +18,7 @@ function CurrentPet(props) {
       lon: PropTypes.number.isRequired,
       energy: PropTypes.number.isRequired,
       // last_fed:  PropTypes.??.isRequired,
-      // happiness: PropTypes.number.isRequired,
+      happiness: PropTypes.number.isRequired,
       // last_played:  PropTypes.??.isRequired,
       food_fave: PropTypes.string.isRequired,
       food_least: PropTypes.string.isRequired,
@@ -35,7 +35,7 @@ function CurrentPet(props) {
     setPetData: PropTypes.func.isRequired,
   };
 
-  console.log('Existing pet data, rendering CurrentPet');
+  console.log('*** Existing pet data, rendering CurrentPet ***');
 
   function deletePet() {
     // eslint-disable-next-line no-restricted-globals
@@ -71,8 +71,9 @@ function CurrentPet(props) {
 
       <PetDisplay pet={pet} />
 
-      {/* <PetEnergy initialEnergy={pet.energy} /> */}
       <Stat initialStat={pet.energy} statName="energy" statInteraction="FEED PET" />
+
+      <Stat initialStat={pet.happiness} statName="happiness" statInteraction="PLAY WITH PET" />
 
       <br />
       <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
