@@ -94,7 +94,8 @@ class Pet(db.Model):
             "weather_least": self.weather_least,
             "personality": self.personality,
             "astro_sign": self.astro_sign,
-            "species_img_path": self.species_img_path
+            "species_img_path": self.species_img_path,
+            "username": self.user.username,
         }
 
         return pet_dict

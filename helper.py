@@ -56,6 +56,7 @@ def check_new_account(email, username, password, password2):
         # Log user in
         log_in_user(user)
         valid_account["user_id"] = user.user_id
+        valid_account["username"] = user.username
         valid_account["status"] = True
         valid_account["msg"] = "Your account has successfully been created!"
 
@@ -98,6 +99,7 @@ def check_login(username, password):
         valid_account["status"] = True
         valid_account["msg"] = "You are now logged in!"
         valid_account["user_id"] = user.user_id
+        valid_account["username"] = user.username
 
     return valid_account
 
