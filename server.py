@@ -66,15 +66,25 @@ def login():
     return jsonify(valid_account)
 
 
-@app.route("/logout")
+@app.route("/logout", methods=["POST"])
 def logout():
     """Log user out."""
 
+    current_stats = request.json
+
+    print(current_stats)
+
+    current_energy = current_stats["currentEnergy"]
+    current_happiness = current_stats["currentHappiness"]
+
+    crud.update_pet_stats(session["current_user_id"], current_energy, current_happiness)
+
+    session.pop("current_pet", None)
     session.pop("current_user_id", None)
     session.pop("current_username", None)
-    flash("You are now logged out.")
+    msg = "You are now logged out."
 
-    return redirect("/")
+    return jsonify(msg)
 
 
 @app.route('/pet')
