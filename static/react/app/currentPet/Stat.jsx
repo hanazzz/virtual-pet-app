@@ -16,11 +16,19 @@ function Stat(props) {
     statInteraction: PropTypes.string.isRequired,
   };
 
-  console.log(`*** rendering Stat: ${statName} ***`);
-
-  const [stat, setStat] = React.useState(initialStat);
+  // If stat data is in local storage, set as initial  state value.
+  // If not, use initialStat passed through as prop (data retrieved from db at user log in).
+  const statInStorage = JSON.parse(localStorage.getItem(statName));
+  const [stat, setStat] = React.useState(statInStorage >= 0 ? statInStorage : initialStat);
   // eslint-disable-next-line prefer-const
   let intervalID = null;
+  // Add stat data to local storage or update if already present. Updates whenever stat changes.
+  React.useEffect(() => {
+    localStorage.setItem(statName, stat);
+    console.log(JSON.parse(localStorage.getItem(statName)));
+  }, [stat]);
+
+  console.log(`*** rendering Stat: ${statName} // ${stat} ***`);
 
   // SET UP TIMER
   // callback function for timer
