@@ -4,6 +4,7 @@ function PetDisplay(props) {
 
   return (
     <table id="pet-display" className="col">
+      <caption>Pet Attributes</caption>
       <tbody>
         <tr>
           <td>Pet species</td>

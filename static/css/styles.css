@@ -16,6 +16,15 @@ img {
     border-radius: .5rem;
 }
 
+td:first {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+caption {
+    caption-side: top;
+}
+
 .row {
     margin: .5rem .2rem;
 }
