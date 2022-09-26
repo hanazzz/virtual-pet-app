@@ -26,7 +26,7 @@ SPECIES = {
     "sparkle-wolf": ["Sparkle Wolf", "/static/images/sparkle-wolf.jpg"],
     "prickly-bunny": ["Prickly Bunny", "/static/images/prickly-bunny.jpg"],
     "invisi-cat": ["Invisible Cat", "/static/images/invisi-cat.jpg"],
-    "jelly-dolphin": ["Jelly Dolphin," "/static/images/jelly-dolphin.jpg"]
+    "jelly-dolphin": ["Jelly Dolphin", "/static/images/jelly-dolphin.jpg"]
 }
 
 SPECIES_ID = list(SPECIES.keys())

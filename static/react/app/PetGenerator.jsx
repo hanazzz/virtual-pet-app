@@ -8,7 +8,7 @@ function PetGenerator(props) {
   const [newPetData, setNewPetData] = React.useState();
   const { setPetData } = props;
 
-  alert("Looks like you don't have a pet yet! Let's fix that.");
+  // alert("Looks like you don't have a pet yet! Let's fix that.");
   console.log('*** rendering pet generator ***');
   console.log(newPetData);
 
