@@ -7,23 +7,34 @@ function CurrentPet(props) {
   const { pet } = props;
   const { setPetData } = props;
 
-  alert('Your pet is so cute!');
+  // alert('Your pet is so cute!');
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
+  // function deletePet() {
+  //   // eslint-disable-next-line no-restricted-globals
+  //   if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
+  //     fetch('/delete-pet')
+  //       .then((response) => response.json())
+  //       .then((msg) => {
+  //         console.log('deleting pet');
+  //         alert(msg);
+  //         setPetData(null);
+  //       })
+  //       .catch((error) => alert(error.toString()));
+  //   } else {
+  //     alert('Your pet has not been deleted.');
+  //   }
+  // }
+
   function deletePet() {
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
-      fetch('/delete-pet')
-        .then((response) => response.json())
-        .then((msg) => {
-          console.log('deleting pet');
-          alert(msg);
-          setPetData(null);
-        })
-        .catch((error) => alert(error.toString()));
-    } else {
-      alert('Your pet has not been deleted.');
-    }
+    fetch('/delete-pet')
+      .then((response) => response.json())
+      .then((msg) => {
+        console.log('deleting pet');
+        alert(msg);
+        setPetData(null);
+      })
+      .catch((error) => alert(error.toString()));
   }
 
   return (
@@ -70,7 +81,17 @@ function CurrentPet(props) {
 
       <br />
       <div className="row">
-        <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
+        <Modal
+          modalID="delete-pet"
+          buttonPrompt="Delete pet"
+          modalTitle="Delet Pet"
+          closeBtnText="Never mind, don't delete my pet!"
+          actionBtnText="Yes, I'm sure"
+          actionBtnFunction={deletePet}>
+          <p>Are you sure you want to delete your pet?</p>
+          <p>WARNING: This action is irreversible.</p>
+        </Modal>
+        {/* <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button> */}
       </div>
     </div>
   );
