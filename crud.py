@@ -1,7 +1,7 @@
 """CRUD operations."""
 
 from model import db, User, Pet, Item, UserItem, connect_to_db
-from random import choice
+from random import choice, sample
 from data_attributes.create_attributes import FOOD
 
 
@@ -99,6 +99,29 @@ def create_item(item_name, description):
     return item
 
 
+def create_user_inventory(user):
+    """Create user's initial inventory (3 random items from FOOD list).
+    
+    Argument:
+    - user (obj): User to create inventory for (database object)
+
+    Return:
+    - user_items (lst): List of user's items (as database objects)
+    """
+
+    # Get all available items in db
+    all_items = Item.query.all()
+
+    # Randomly choose 3 items
+    items = sample(all_items, k=3)
+
+    # Add each item to user
+    for item in items:
+        user.items.append(item)
+
+    return user.items
+
+
 # RETRIEVE
 def get_user_by_id(user_id):
     """Retrieve and return an existing user, using their user_id.
@@ -151,13 +174,13 @@ def get_item(item_name):
 def get_user_items(user_id):
     """Retrieve all of a user's items and return as list of item names."""
 
-    items = []
+    items_lst = []
     items_db = get_user_by_id(user_id).items
 
     for item in items_db:
-        items.append(item.item_name)
+        items_lst.append(item.item_name)
 
-    return items
+    return items_lst
 
 
 # UPDATE

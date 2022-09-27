@@ -53,6 +53,9 @@ def check_new_account(email, username, password, password2):
         db.session.commit()
         # Get newly created User object from db
         user = crud.get_user_by_username(username)
+        # Create user's inventory
+        crud.create_user_inventory(user)
+        db.session.commit()
         # Log user in
         valid_account = log_in_user(user, "Your account has successfully been created!")
 

@@ -210,6 +210,11 @@ def get_current_weather():
     }
 
     res = requests.get(url, params=payload)
+    
+    # Check for error
+    if not res:
+        print(res.status_code)
+        return ("ERROR:", res.status_code)
 
     weather_data = res.json()
     weather_data_overview = weather_data["weather"][0]
@@ -228,8 +233,6 @@ def get_current_weather():
         "description": weather_description,
         "owmIconID": owm_icon_id,
     }
-
-    # TODO: Add behavior in case of failure
 
     return jsonify(current_weather)
 
@@ -255,11 +258,7 @@ def mock_get_current_weather():
 
 @app.route("/play")
 def get_activities():
-    # TODO: Improve docstrings
-    """Randomly pick 3 activities and return a dictionary with their associated point value.
-    
-     check how the activity matches with the pet's preferences, and assigns value accordingly
-     """
+    """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
 
     activities = sample(ACTIVITY, k=3)
 
@@ -270,11 +269,7 @@ def get_activities():
 
 @app.route("/feed")
 def get_food():
-    # TODO: Improve docstrings
-    """Randomly pick 3 activities and return a dictionary with their associated point value.
-    
-     check how the activity matches with the pet's preferences, and assigns value accordingly
-     """
+    """Get user's item inventory and return a dictionary with associated point valu and pet response for each item."""
 
     foods = crud.get_user_items(session["current_user_id"])
 
