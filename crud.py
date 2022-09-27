@@ -220,16 +220,17 @@ def add_item_to_user(user_id, item_name=None):
     # If no item name provided, randomly select one from FOOD list
     # QUESTION: Is this the best way to get a random item?
     if not item_name:
-        food_set = set(FOOD)
+        items_set = set(Item.query.all())
         user_items_set = set(get_user_items(user_id))
 
         # Get available items by removing items already in user's inventory
-        available_food = food_set - user_items_set
+        available_items = items_set - user_items_set
 
-        item_name = choice(list(available_food))
+        item = choice(list(available_items))
+    else:
+        item = get_item(item_name)
 
     user = get_user_by_id(user_id)
-    item = get_item(item_name)
 
     user.items.append(item)
 
