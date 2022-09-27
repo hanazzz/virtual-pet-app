@@ -19,6 +19,7 @@
         "StatDisplay": "readonly",
         "Stat": "readonly",
         "Login": "readonly",
-        "CreateAcct": "readonly"
+        "CreateAcct": "readonly",
+        "Play": "readonly"
     }   
 }

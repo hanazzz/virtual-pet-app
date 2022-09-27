@@ -5,14 +5,9 @@
 // eslint-disable-next-line no-unused-vars
 function Stat(props) {
   // Get initialStat from petData (which is from db)
-  const { initialStat, statName, statInteraction } = props;
+  // eslint-disable-next-line object-curly-newline
+  const { statName, statInteraction, stat, setStat } = props;
 
-  // If stat data is in local storage, set as initial  state value.
-  // If not, use initialStat passed through as prop (data retrieved from db at user log in).
-  const statInStorage = JSON.parse(localStorage.getItem(statName));
-  const [stat, setStat] = React.useState(
-    Number.isInteger(statInStorage) ? statInStorage : initialStat,
-  );
   // eslint-disable-next-line prefer-const
   let intervalID = null;
   // Add stat data to local storage or update if already present. Updates whenever stat changes.
@@ -60,7 +55,8 @@ function Stat(props) {
 }
 
 Stat.propTypes = {
-  initialStat: PropTypes.number.isRequired,
   statName: PropTypes.string.isRequired,
   statInteraction: PropTypes.string.isRequired,
+  stat: PropTypes.number.isRequired,
+  setStat: PropTypes.func.isRequired,
 };

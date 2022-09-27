@@ -7,7 +7,20 @@ function CurrentPet(props) {
   const { pet } = props;
   const { setPetData } = props;
 
-  // alert('Your pet is so cute!');
+  // If stat data is in local storage, set as initial  state value.
+  // If not, use initialStat passed through as prop (data retrieved from db at user log in).
+  const energyInStorage = JSON.parse(localStorage.getItem('energy'));
+  const [energy, setEnergy] = React.useState(
+    Number.isInteger(energyInStorage) ? energyInStorage : pet.energy,
+  );
+
+  const happinessInStorage = JSON.parse(localStorage.getItem('happiness'));
+  const [happiness, setHappiness] = React.useState(
+    Number.isInteger(happinessInStorage) ? happinessInStorage : pet.happiness,
+  );
+
+  const [mood, setMood] = React.useState("I'm so happy to see you!");
+
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
   function deletePet() {
@@ -28,7 +41,6 @@ function CurrentPet(props) {
 
   return (
     <div id="current-pet" className="row">
-      {/* <h1>Your Pet</h1> */}
 
       <h1 className="row">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
@@ -52,20 +64,25 @@ function CurrentPet(props) {
           />
         </div>
         <div className="col">
-          <button type="button">PLACE HOLDER</button>
+          {/* <button type="button" onClick={handlePlay}>PLAY with options</button> */}
+          <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} />
           <br />
           <br />
-          <button type="button">PLACE HOLDER</button>
+          <button type="button">FEED with options</button>
           <br />
           <br />
-          <button type="button">PLACE HOLDER</button>
+          <button type="button">ATTRIBUTES</button>
         </div>
       </div>
 
       <div id="stats" className="row">
-        <Stat initialStat={pet.energy} statName="energy" statInteraction="FEED PET" />
+        <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
-        <Stat initialStat={pet.happiness} statName="happiness" statInteraction="PLAY WITH PET" />
+        <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
+      </div>
+
+      <div id="mood" className="row">
+        <h5>{mood}</h5>
       </div>
 
       <br />
