@@ -254,27 +254,33 @@ def mock_get_current_weather():
 
 @app.route("/play")
 def get_activities():
+    # TODO: Improve docstrings
     """Randomly pick 3 activities and return a dictionary with their associated point value.
     
      check how the activity matches with the pet's preferences, and assigns value accordingly
      """
 
-    activity_list = sample(ACTIVITY, k=3)
-    activities = {}
+    activities = helper.get_three_interactions("play")
 
-    for activity in activity_list:
-        activities[activity] = {}
-        if activity == session["current_pet"]["activity_fave"]:
-            activities[activity]["value"] = 2
-            activities[activity]["response"] = "Wow, that was so much fun! Can we do it again?"
-        elif activity == session["current_pet"]["activity_least"]:
-            activities[activity]["value"] = -1
-            activities[activity]["response"] = "Meh... I didn't really like that..."
-        else:
-            activities[activity]["value"] = 1
-            activities[activity]["response"] = "That was fun!"
+    print(activities)
 
-    return(activities)
+    return jsonify(activities)
+
+
+@app.route("/feed")
+def get_food():
+    # TODO: Improve docstrings
+    """Randomly pick 3 activities and return a dictionary with their associated point value.
+    
+     check how the activity matches with the pet's preferences, and assigns value accordingly
+     """
+
+    foods = helper.get_three_interactions("food")
+
+    print(foods)
+
+    return jsonify(foods)
+
 
 # ------------------------------------ #
 

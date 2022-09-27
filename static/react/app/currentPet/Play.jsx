@@ -8,7 +8,7 @@ function Play(props) {
   function handlePlayChoice(evt) {
     const activity = evt.target.id;
     const statChange = Number(activities[activity]['value']);
-    const response = activities;
+    const response = activities[activity]['response'];
     console.log(statChange);
     console.log(happiness + statChange);
     // Check to make sure stat doesn't go over 5 or under 0

@@ -188,3 +188,42 @@ def convert_F_to_C(temp_F):
     temp_C = (temp_F - 32) / 1.8
 
     return temp_C
+
+
+def get_three_interactions(interaction_type):
+    # TODO: Improve docstrings
+    """Randomly pick 3 activities and return a dictionary with their associated point value.
+    
+    check how the activity matches with the pet's preferences, and assigns value accordingly
+    """
+    if interaction_type.lower() == "food":
+        data_list = FOOD
+        responses = {
+            "good": "Mmm, that was the best thing I've ever had!",
+            "bad": "Yuck, I didn't like that one.",
+            "neutral": "Yum, thanks for the snack!",
+        }
+    elif interaction_type.lower() == "play":
+        data_list = ACTIVITY
+        responses = {
+            "good": "Wow, that was so much fun! Can we do it again?",
+            "bad": "Meh... I didn't really like that...",
+            "neutral": "That was fun!"
+        }
+
+    random_interactions = sample(data_list, k=3)
+    interactions = {}
+
+    for option in random_interactions:
+        interactions[option] = {}
+        if option == session["current_pet"]["activity_fave"]:
+            interactions[option]["value"] = 2
+            interactions[option]["response"] = responses["good"]
+        elif option == session["current_pet"]["activity_least"]:
+            interactions[option]["value"] = -1
+            interactions[option]["response"] = responses["bad"]
+        else:
+            interactions[option]["value"] = 1
+            interactions[option]["response"] = responses["neutral"]
+
+    return(interactions)
