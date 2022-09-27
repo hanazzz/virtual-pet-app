@@ -25,6 +25,10 @@ caption {
     caption-side: top;
 }
 
+button {
+    margin: 1rem;
+}
+
 .row {
     margin: .5rem .2rem;
 }
