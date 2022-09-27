@@ -190,40 +190,42 @@ def convert_F_to_C(temp_F):
     return temp_C
 
 
-def get_three_interactions(interaction_type):
-    # TODO: Improve docstrings
-    """Randomly pick 3 activities and return a dictionary with their associated point value.
-    
-    check how the activity matches with the pet's preferences, and assigns value accordingly
+def evaluate_interaction(interactions, interaction_type):
+    """Evalutes user's interaction with pet.
+
+    Arguments:
+    - interactions (lst): A list of interactions
+    - interaction_type (str): Interaction type (must be "food" or "activity")
+
+    Return:
+    - results (dict): Dictionary of each interaction item, which has a nested dictionary of the pet's response phrase and the interaction's value (impact on stat)
     """
-    if interaction_type.lower() == "food":
-        data_list = FOOD
-        responses = {
+
+    interaction_responses = {
+        "activity": {
+            "good": "Wow, that was so much fun! Can we do it again?",
+            "bad": "Meh... I didn't really like that...",
+            "neutral": "That was fun!"
+        },
+        "food": {
             "good": "Mmm, that was the best thing I've ever had!",
             "bad": "Yuck, I didn't like that one.",
             "neutral": "Yum, thanks for the snack!",
         }
-    elif interaction_type.lower() == "play":
-        data_list = ACTIVITY
-        responses = {
-            "good": "Wow, that was so much fun! Can we do it again?",
-            "bad": "Meh... I didn't really like that...",
-            "neutral": "That was fun!"
-        }
+    }
 
-    random_interactions = sample(data_list, k=3)
-    interactions = {}
+    results = { }
 
-    for option in random_interactions:
-        interactions[option] = {}
-        if option == session["current_pet"]["activity_fave"]:
-            interactions[option]["value"] = 2
-            interactions[option]["response"] = responses["good"]
-        elif option == session["current_pet"]["activity_least"]:
-            interactions[option]["value"] = -1
-            interactions[option]["response"] = responses["bad"]
+    for option in interactions:
+        results[option] = { }
+        if option == session["current_pet"][f"{interaction_type}_fave"]:
+            results[option]["value"] = 2
+            results[option]["response"] = interaction_responses[f"{interaction_type}"]["good"]
+        elif option == session["current_pet"][f"{interaction_type}_least"]:
+            results[option]["value"] = -1
+            results[option]["response"] = interaction_responses[f"{interaction_type}"]["bad"]
         else:
-            interactions[option]["value"] = 1
-            interactions[option]["response"] = responses["neutral"]
+            results[option]["value"] = 1
+            results[option]["response"] = interaction_responses[f"{interaction_type}"]["neutral"]
 
-    return(interactions)
+    return results
