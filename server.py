@@ -279,6 +279,13 @@ def get_food():
 
     print(foods)
 
+    foods_list = list(foods.keys())
+
+    for food in foods_list:
+        crud.add_item_to_user(session["current_user_id"], food)
+
+    crud.get_user_items(session["current_user_id"])
+
     return jsonify(foods)
 
 

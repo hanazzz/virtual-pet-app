@@ -3,6 +3,7 @@
 from model import db, User, Pet, Item, UserItem, connect_to_db
 
 
+# CREATE
 def create_user(username, email, password):
     """Create and return a new user."""
 
@@ -96,6 +97,7 @@ def create_item(item_name, description):
     return item
 
 
+# RETRIEVE
 def get_user_by_id(user_id):
     """Retrieve and return an existing user, using their user_id.
 
@@ -136,6 +138,30 @@ def get_pet(user_id):
     return pet
 
 
+def get_item(item_name):
+    """Retrieve an item by its name."""
+
+    item = Item.query.filter_by(item_name=item_name).one()
+
+    return item
+
+
+def get_user_items(user_id):
+    """Retrieve all of a user's items."""
+
+    items = get_user_by_id(user_id).items
+    print()
+    print()
+
+    print(items)
+    print()
+    print()
+    
+
+    return items
+
+
+# UPDATE
 def update_pet_stats(user_id, current_energy, current_happiness):
     """Update current pet's energy and happiness stats.
     
@@ -153,6 +179,22 @@ def update_pet_stats(user_id, current_energy, current_happiness):
     db.session.commit()
 
 
+def add_item_to_user(user_id, item_name):
+    """Connect an item to a user.
+
+    Arguments:
+    - user_id (int):
+    - item_name (str):
+    """
+
+    user = get_user_by_id(user_id)
+    item = get_item(item_name)
+
+    user.items.append(item)
+    # db.session.commit()
+
+
+# DELETE
 def delete_pet(user_id):
     """Delete a user's existing pet."""
 
