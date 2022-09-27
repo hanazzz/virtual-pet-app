@@ -1,62 +1,84 @@
 /* eslint-disable dot-notation */
 // eslint-disable-next-line no-unused-vars
 function Play(props) {
-  const { setHappiness, happiness, setMood } = props;
-  const [activitySlots, setActivitySlots] = React.useState([]);
-  let activities = {};
+  const { setStat, stat, setMood, interactionText, interactionType } = props;
+  const [interactionBtns, setInteractionBtns] = React.useState([]);
+  let interactions = {};
 
-  function handlePlayChoice(evt) {
-    const activity = evt.target.id;
-    const statChange = Number(activities[activity]['value']);
-    const response = activities[activity]['response'];
+  function handleChoice(evt) {
+    const interaction = evt.target.id;
+    const statChange = Number(interactions[interaction]['value']);
+    const response = interactions[interaction]['response'];
     console.log(statChange);
-    console.log(happiness + statChange);
-    // Check to make sure stat doesn't go over 5 or under 0
-    if ((happiness + statChange) <= 0) {
-      setHappiness(0);
-    } else if ((happiness + statChange) >= 5) {
-      setHappiness(5);
+    console.log(stat + statChange);
+    if (interactionType === 'feed') {
+      fetch('/update-inventory', {
+        method: 'POST',
+        body: JSON.stringify(interaction),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(() => {
+          // Check to make sure stat doesn't go over 5 or under 0
+          if ((stat + statChange) <= 0) {
+            setStat(0);
+          } else if ((stat + statChange) >= 5) {
+            setStat(5);
+          } else {
+            setStat(stat + statChange);
+          }
+          setMood(response);
+        });
     } else {
-      setHappiness(happiness + statChange);
+      // Check to make sure stat doesn't go over 5 or under 0
+      if ((stat + statChange) <= 0) {
+        setStat(0);
+      } else if ((stat + statChange) >= 5) {
+        setStat(5);
+      } else {
+        setStat(stat + statChange);
+      }
+      setMood(response);
     }
-    setMood(response);
   }
 
-  function handlePlay() {
-    fetch('/play')
+  function handleInteraction() {
+    fetch(`/${interactionType}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        activities = responseJson;
-        console.log(activities);
-        const btns = Object.keys(activities).map((activity) => (
+        interactions = responseJson;
+        console.log(interactions);
+        const btns = Object.keys(interactions).map((interaction) => (
           <button
             type="button"
-            id={activity}
-            onClick={handlePlayChoice}
+            id={interaction}
+            key={interaction}
+            onClick={handleChoice}
             data-bs-dismiss="modal"
           >
-            {activity}
+            {interaction}
           </button>
         ));
-        setActivitySlots(btns);
+        setInteractionBtns(btns);
       });
   }
 
   return (
     <>
-      <button type="button" data-bs-toggle="modal" data-bs-target="#activity-modal" onClick={handlePlay}>
-        Play with options
+      <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
+        {interactionText}
       </button>
 
-      <div className="modal fade" id="activity-modal" tabIndex="-1" aria-hidden="true">
+      <div className="modal fade" id={`${interactionType}-modal`} tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">PLAY</h5>
+              <h5 className="modal-title">{interactionText}</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-              {activitySlots}
+              {interactionBtns}
               <br />
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
@@ -70,7 +92,9 @@ function Play(props) {
 }
 
 Play.propTypes = {
-  setHappiness: PropTypes.func.isRequired,
-  happiness: PropTypes.number.isRequired,
+  setStat: PropTypes.func.isRequired,
+  stat: PropTypes.number.isRequired,
   setMood: PropTypes.func.isRequired,
+  interactionText: PropTypes.string.isRequired,
+  interactionType: PropTypes.string.isRequired,
 };

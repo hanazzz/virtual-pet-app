@@ -54,21 +54,22 @@ function CurrentPet(props) {
 
       <WeatherDisplay lat={pet.lat} lon={pet.lon} />
 
-      <div id="pet" className="row">
+      <div id="pet-main" className="row align-items-center">
         <PetDisplay pet={pet} className="col" />
-        <div className="col">
+        <div className="col text-center">
           <img
             src={pet.species_img_path}
             alt={pet.species_name}
             id="species-img"
           />
         </div>
-        <div className="col">
+        <div id="interactions" className="col text-center">
           {/* <button type="button" onClick={handlePlay}>PLAY with options</button> */}
-          <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} />
+          {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
+          <Play setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           <br />
           <br />
-          <button type="button">FEED with options</button>
+          <Play setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
           <br />
           <br />
           <button type="button">ATTRIBUTES</button>
