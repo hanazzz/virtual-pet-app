@@ -4,10 +4,21 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Play(props) {
+function Interaction(props) {
   const { setStat, stat, setMood, interactionText, interactionType } = props;
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let interactions = {};
+
+  function handleStatChange(statChange, response) {
+    if ((stat + statChange) <= 0) {
+      setStat(0);
+    } else if ((stat + statChange) >= 5) {
+      setStat(5);
+    } else {
+      setStat(stat + statChange);
+    }
+    setMood(response);
+  }
 
   function handleChoice(evt) {
     const interaction = evt.target.id;
@@ -24,19 +35,8 @@ function Play(props) {
           'Content-Type': 'application/json',
         },
       })
-        .then(() => {
-          // Check to make sure stat doesn't go over 5 or under 0
-          if ((stat + statChange) <= 0) {
-            setStat(0);
-          } else if ((stat + statChange) >= 5) {
-            setStat(5);
-          } else {
-            setStat(stat + statChange);
-          }
-          setMood(response);
-        });
+        .then(handleStatChange);
     } else {
-      // Check to make sure stat doesn't go over 5 or under 0
       if ((stat + statChange) <= 0) {
         setStat(0);
       } else if ((stat + statChange) >= 5) {
@@ -70,28 +70,33 @@ function Play(props) {
   }
 
   return (
-    <>
-      <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
-        {interactionText}
-      </button>
+    <Modal modalID={`${interactionType}-modal`} modalBnText={interactionText} clickCallback={handleInteraction}>
+      <h5 className="modal-title">{interactionText}</h5>
+      {interactionBtns}
+    </Modal>
 
-      <div className="modal fade" id={`${interactionType}-modal`} tabIndex="-1" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <h5 className="modal-title">{interactionText}</h5>
-              {interactionBtns}
-              <br />
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+  // <>
+  //   <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
+  //     {interactionText}
+  //   </button>
+
+  //   <div className="modal fade" id={`${interactionType}-modal`} tabIndex="-1" aria-hidden="true">
+  //     <div className="modal-dialog">
+  //       <div className="modal-content">
+  //         <div className="modal-body">
+  //           <h5 className="modal-title">{interactionText}</h5>
+  //           {interactionBtns}
+  //           <br />
+  //           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </>
   );
 }
 
-Play.propTypes = {
+Interaction.propTypes = {
   setStat: PropTypes.func.isRequired,
   stat: PropTypes.number.isRequired,
   setMood: PropTypes.func.isRequired,
