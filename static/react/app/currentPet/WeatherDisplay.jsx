@@ -45,7 +45,7 @@ function WeatherDisplay(props) {
   }
 
   return (
-    <div id="weather" className="col">
+    <div id="weather">
       <i className={`owf owf-${currentWeather.conditionCode} owf-3x`} />
       <i className={`wi wi-owm-${currentWeather.conditionCode} fa-3x`} />
       {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}

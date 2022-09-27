@@ -53,7 +53,12 @@ function CurrentPet(props) {
       </h3>
 
       <div id="pet-main" className="row align-items-center">
+        <div className="col d-flex flex-column justify-content-around h-100">
         <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+          <div id="mood">
+            <h5>{mood}</h5>
+          </div>
+        </div>
 
         <div className="col text-center">
           <img
@@ -69,7 +74,8 @@ function CurrentPet(props) {
           <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           <br />
           <br />
-          <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
+          {/* <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" /> */}
+          <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} />
           <br />
           <br />
           <Attributes pet={pet} />
@@ -80,10 +86,6 @@ function CurrentPet(props) {
         <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
         <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
-      </div>
-
-      <div id="mood" className="row">
-        <h5>{mood}</h5>
       </div>
 
       <br />
