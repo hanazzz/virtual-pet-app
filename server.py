@@ -5,6 +5,8 @@ from flask import (Flask, render_template, request,
 from model import connect_to_db, db
 import crud
 import helper
+from data_attributes.create_attributes import (FOOD, ACTIVITY)
+from random import (choice, sample)
 from jinja2 import StrictUndefined
 import requests
 import os
@@ -226,6 +228,8 @@ def get_current_weather():
         "owmIconID": owm_icon_id,
     }
 
+    # TODO: Add behavior in case of failure
+
     return jsonify(current_weather)
 
 
@@ -247,6 +251,30 @@ def mock_get_current_weather():
 
     return jsonify(current_weather)
 
+
+@app.route("/play")
+def get_activities():
+    """Randomly pick 3 activities and return a dictionary with their associated point value.
+    
+     check how the activity matches with the pet's preferences, and assigns value accordingly
+     """
+
+    activity_list = sample(ACTIVITY, k=3)
+    activities = {}
+
+    for activity in activity_list:
+        activities[activity] = {}
+        if activity == session["current_pet"]["activity_fave"]:
+            activities[activity]["value"] = 2
+            activities[activity]["response"] = "Wow, that was so much fun! Can we do it again?"
+        elif activity == session["current_pet"]["activity_least"]:
+            activities[activity]["value"] = -1
+            activities[activity]["response"] = "Meh... I didn't really like that..."
+        else:
+            activities[activity]["value"] = 1
+            activities[activity]["response"] = "That was fun!"
+
+    return(activities)
 
 # ------------------------------------ #
 
