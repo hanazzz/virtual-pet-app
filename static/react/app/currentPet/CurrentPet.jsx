@@ -52,10 +52,9 @@ function CurrentPet(props) {
         Location: {pet.city}, {pet.region}, {pet.country}
       </h3>
 
-      <WeatherDisplay lat={pet.lat} lon={pet.lon} />
-
       <div id="pet-main" className="row align-items-center">
-        <PetDisplay pet={pet} className="col" />
+        <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+
         <div className="col text-center">
           <img
             src={pet.species_img_path}
@@ -63,16 +62,17 @@ function CurrentPet(props) {
             id="species-img"
           />
         </div>
+
         <div id="interactions" className="col text-center">
           {/* <button type="button" onClick={handlePlay}>PLAY with options</button> */}
           {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
-          <Play setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
+          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           <br />
           <br />
-          <Play setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
+          <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
           <br />
           <br />
-          <button type="button">ATTRIBUTES</button>
+          <Attributes pet={pet} />
         </div>
       </div>
 

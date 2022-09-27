@@ -45,18 +45,18 @@ function WeatherDisplay(props) {
   }
 
   return (
-    <div id="weather" className="row">
-      <i className={`col owf owf-${currentWeather.conditionCode} owf-3x`} />
-      <i className={`col wi wi-owm-${currentWeather.conditionCode}`} />
+    <div id="weather" className="col">
+      <i className={`owf owf-${currentWeather.conditionCode} owf-3x`} />
+      <i className={`wi wi-owm-${currentWeather.conditionCode} fa-3x`} />
       {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
-      <div className="col">
+      <div className="">
         {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
       </div>
       {/* <br /> */}
-      <div className="col">{currentWeather.description}</div>
+      <div className="">{currentWeather.description}</div>
       {/* <br /> */}
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <button type="button" className="col" onClick={toggleTempUnit}>{fahrenheit} {'\u2194'} {celsius}</button>
+      <button type="button" className="" onClick={toggleTempUnit}>{fahrenheit} {'\u2194'} {celsius}</button>
     </div>
   );
 }
