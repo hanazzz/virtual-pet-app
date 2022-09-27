@@ -191,23 +191,22 @@ def add_item_to_user(user_id, item_name=None):
     """
 
     # Check to make sure user doesn't have more than 3 items
-    if len(get_user_items(user_id)) >= 4:
+    if len(get_user_items(user_id)) >= 3:
         return "error"
 
     # If no item name provided, randomly select one from FOOD list
     # QUESTION: Is this the best way to get a random item?
     if not item_name:
-        item_name = choice(FOOD)
-    print()
-    print(item_name)
-    print()
+        food_set = set(FOOD)
+        user_items_set = set(get_user_items(user_id))
+
+        # Get available items by removing items already in user's inventory
+        available_food = food_set - user_items_set
+
+        item_name = choice(list(available_food))
 
     user = get_user_by_id(user_id)
     item = get_item(item_name)
-
-    print()
-    print(item)
-    print()
 
     user.items.append(item)
 
@@ -224,7 +223,6 @@ def remove_item_from_user(user_id, item_name):
 
     user = get_user_by_id(user_id)
     item = get_item(item_name)
-    print("CRUD", item)
 
     user.items.remove(item)
 
