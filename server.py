@@ -1,5 +1,6 @@
 """Server for virtual pet app."""
 
+from multiprocessing.dummy import active_children
 from flask import (Flask, render_template, request,
                    flash, session, redirect, jsonify)
 from model import connect_to_db, db
@@ -260,11 +261,11 @@ def get_activities():
      check how the activity matches with the pet's preferences, and assigns value accordingly
      """
 
-    activities = helper.get_three_interactions("play")
+    activities = sample(ACTIVITY, k=3)
 
-    print(activities)
+    results = helper.evaluate_interaction(activities, "activity")
 
-    return jsonify(activities)
+    return jsonify(results)
 
 
 @app.route("/feed")
@@ -275,18 +276,27 @@ def get_food():
      check how the activity matches with the pet's preferences, and assigns value accordingly
      """
 
-    foods = helper.get_three_interactions("food")
+    foods = crud.get_user_items(session["current_user_id"])
 
-    print(foods)
+    results = helper.evaluate_interaction(foods, "food")
 
-    foods_list = list(foods.keys())
+    return jsonify(results)
 
-    for food in foods_list:
-        crud.add_item_to_user(session["current_user_id"], food)
 
-    crud.get_user_items(session["current_user_id"])
+@app.route("/update-inventory", methods=["POST"])
+def update_infentory():
+    """Update user's inventory by removing a food item and adding a new one."""
 
-    return jsonify(foods)
+    food = request.json
+
+    response = crud.remove_item_from_user(session["current_user_id"], food)
+    print("remove", response)
+    response = crud.add_item_to_user(session["current_user_id"])
+    print("add", response)
+
+    db.session.commit()
+
+    return "complete"
 
 
 # ------------------------------------ #
