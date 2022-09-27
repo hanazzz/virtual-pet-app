@@ -1,6 +1,8 @@
 """CRUD operations."""
 
 from model import db, User, Pet, Item, UserItem, connect_to_db
+from random import choice
+from data_attributes.create_attributes import FOOD
 
 
 # CREATE
@@ -147,16 +149,13 @@ def get_item(item_name):
 
 
 def get_user_items(user_id):
-    """Retrieve all of a user's items."""
+    """Retrieve all of a user's items and return as list of item names."""
 
-    items = get_user_by_id(user_id).items
-    print()
-    print()
+    items = []
+    items_db = get_user_by_id(user_id).items
 
-    print(items)
-    print()
-    print()
-    
+    for item in items_db:
+        items.append(item.item_name)
 
     return items
 
@@ -179,8 +178,44 @@ def update_pet_stats(user_id, current_energy, current_happiness):
     db.session.commit()
 
 
-def add_item_to_user(user_id, item_name):
-    """Connect an item to a user.
+def add_item_to_user(user_id, item_name=None):
+    """Connect an item to a user. If no item provided, randomly select one.
+
+    Arguments:
+    - user_id (int):
+    - item_name (str):
+
+    Returns:
+    - "error": User already has 3 or more items. No item was added.
+    - "success": New item successfully added
+    """
+
+    # Check to make sure user doesn't have more than 3 items
+    if len(get_user_items(user_id)) >= 4:
+        return "error"
+
+    # If no item name provided, randomly select one from FOOD list
+    # QUESTION: Is this the best way to get a random item?
+    if not item_name:
+        item_name = choice(FOOD)
+    print()
+    print(item_name)
+    print()
+
+    user = get_user_by_id(user_id)
+    item = get_item(item_name)
+
+    print()
+    print(item)
+    print()
+
+    user.items.append(item)
+
+    return "success"
+
+
+def remove_item_from_user(user_id, item_name):
+    """Remove an item from a user.
 
     Arguments:
     - user_id (int):
@@ -189,9 +224,11 @@ def add_item_to_user(user_id, item_name):
 
     user = get_user_by_id(user_id)
     item = get_item(item_name)
+    print("CRUD", item)
 
-    user.items.append(item)
-    # db.session.commit()
+    user.items.remove(item)
+
+    return "success"
 
 
 # DELETE
@@ -203,9 +240,13 @@ def delete_pet(user_id):
     db.session.delete(pet)
     db.session.commit()
 
-# Retrieve existing item
-# Assign an item to a user
-# Delete a user? (Would have to delete pet, then user)
+
+def delete_user(user_id):
+    """Delete current user and their pet."""
+    # TODO: Complete
+    # Will need to delete pet first, then user
+
+    pass
 
 
 if __name__ == '__main__':
