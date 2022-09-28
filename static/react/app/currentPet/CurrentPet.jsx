@@ -63,7 +63,7 @@ function CurrentPet({ pet, setPetData }) {
 
       <br />
       <div className="row">
-        <DeletePet setPetData={setPetData} />
+        <Settings setPetData={setPetData} />
       </div>
     </div>
   );
