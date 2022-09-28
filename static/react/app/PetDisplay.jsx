@@ -1,7 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function PetDisplay(props) {
-  const { pet } = props;
-
+function PetDisplay({ pet }) {
   return (
     <table id="pet-display" className="col">
       <caption>Pet Attributes</caption>

@@ -5,8 +5,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Feed(props) {
-  const { setEnergy, energy, setMood } = props;
+function Feed({ setEnergy, energy, setMood }) {
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let foods = {};
 

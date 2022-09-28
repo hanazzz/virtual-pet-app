@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function WeatherDisplay(props) {
+function WeatherDisplay({ lat, lon }) {
   console.log('*** rendering WeatherDisplay ***');
 
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
@@ -11,7 +11,6 @@ function WeatherDisplay(props) {
   const [tempInF, setTempInF] = React.useState(true);
   const fahrenheit = '\u2109';
   const celsius = '\u2103';
-  const { lat, lon } = props;
   const petLocation = { lat, lon };
 
   function toggleTempUnit() {

@@ -135,7 +135,7 @@ def get_user_by_id(user_id):
     - user_id (int): A user ID to search by
     
     Returns:
-    - user (obj or None): Either user database oject if user exists or None if not
+    - user (obj or None): Either user database object if user exists or None if not
      """
 
     user = User.query.get(user_id)
@@ -152,7 +152,7 @@ def get_user_by_username(username):
     - username (str): A username to search by
     
     Returns:
-    - user (obj or None): Either user database oject if user exists or None if not
+    - user (obj or None): Either user database object if user exists or None if not
     """
 
     user = User.query.filter_by(username=username).first()
@@ -169,7 +169,7 @@ def get_user_by_email(email):
     - email (str): An email to search by
     
     Returns:
-    - user (obj or None): Either user database oject if user exists or None if not
+    - user (obj or None): Either user database object if user exists or None if not
     """
 
     user = User.query.filter_by(email=email).first()

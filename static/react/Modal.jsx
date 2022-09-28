@@ -1,7 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-function Modal(props) {
-  const { modalID, modalBnText, clickCallback, children } = props;
-
+function Modal({ modalID, modalBnText, clickCallback, children }) {
   return (
     <>
       <button type="button" data-bs-toggle="modal" data-bs-target={`#${modalID}`} onClick={clickCallback}>

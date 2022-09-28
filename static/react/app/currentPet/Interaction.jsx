@@ -4,11 +4,11 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Interaction(props) {
-  const { setStat, stat, setMood, interactionText, interactionType } = props;
+function Interaction({ setStat, stat, setMood, interactionText, interactionType }) {
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let interactions = {};
 
+  // Way to use this function to reduce duplication in handleChoice?
   function handleStatChange(statChange, response) {
     if ((stat + statChange) <= 0) {
       setStat(0);
@@ -35,7 +35,16 @@ function Interaction(props) {
           'Content-Type': 'application/json',
         },
       })
-        .then(handleStatChange);
+        .then(() => {
+          if ((stat + statChange) <= 0) {
+            setStat(0);
+          } else if ((stat + statChange) >= 5) {
+            setStat(5);
+          } else {
+            setStat(stat + statChange);
+          }
+          setMood(response);
+        });
     } else {
       if ((stat + statChange) <= 0) {
         setStat(0);

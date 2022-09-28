@@ -1,6 +1,4 @@
-function Navbar(props) {
-  const { username } = props;
-
+function Navbar({ username }) {
   function handleLogout(evt) {
     // prevent page refresh
     evt.preventDefault();

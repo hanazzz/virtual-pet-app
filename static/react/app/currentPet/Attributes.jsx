@@ -1,6 +1,4 @@
-function Attributes(props) {
-  const { pet } = props;
-
+function Attributes({ pet }) {
   return (
     <Modal modalID="pet-attributes" modalBnText="ATTRIBUTES">
       <PetDisplay pet={pet} />

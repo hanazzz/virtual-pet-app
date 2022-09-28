@@ -1,9 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Login(props) {
-  const {
-    username, setUsername, password, setPassword, submitForm,
-  } = props;
-
+function Login({ username, setUsername, password, setPassword, submitForm }) {
   return (
     <div id="login" className="row">
       <h2>Log In</h2>

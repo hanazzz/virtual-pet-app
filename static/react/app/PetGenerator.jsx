@@ -3,10 +3,9 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function PetGenerator(props) {
+function PetGenerator({ setPetData }) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
-  const { setPetData } = props;
 
   // alert("Looks like you don't have a pet yet! Let's fix that.");
   console.log('*** rendering pet generator ***');

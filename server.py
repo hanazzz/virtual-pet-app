@@ -270,7 +270,7 @@ def get_activities():
 
 @app.route("/feed")
 def get_food():
-    """Get user's item inventory and return a dictionary with associated point valu and pet response for each item."""
+    """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
 
     foods = crud.get_user_items(session["current_user_id"])
 

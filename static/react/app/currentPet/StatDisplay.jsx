@@ -1,8 +1,6 @@
 // Visual display of pet stat (e.g. energy, happiness)
 // eslint-disable-next-line no-unused-vars
-function StatDisplay(props) {
-  const { filledStat, emptyStat, statName } = props;
-
+function StatDisplay({ filledStat, emptyStat, statName }) {
   // Create an array with n "undefined" slots
   // Use .map() to create a new array with n square elements
   const filledStatSquares = [...Array(filledStat)].map((value, idx) => (

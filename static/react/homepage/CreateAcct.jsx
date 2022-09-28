@@ -1,13 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-function CreateAcct(props) {
-  const {
-    username, setUsername,
-    password, setPassword,
-    email, setEmail,
-    password2, setPassword2,
-    submitForm,
-  } = props;
-
+function CreateAcct({
+  username, setUsername, password, setPassword,
+  email, setEmail, password2, setPassword2, submitForm,
+}) {
   return (
     <div id="create-account" className="row">
       <h2>Create Account</h2>

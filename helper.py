@@ -15,8 +15,8 @@ def check_new_account(email, username, password, password2):
     """Check whether account creation is valid.
 
     Checks if email is already in use, if username is already in use, and
-    whether both password fields match. If no issues, crerates new user account
-    and logs user in. Paramters come from Create Account form.
+    whether both password fields match. If no issues, creates new user account
+    and logs user in. Parameters come from Create Account form.
 
     Arguments:
     - email (str): User-provided email
@@ -27,7 +27,7 @@ def check_new_account(email, username, password, password2):
     Return:
     - valid_account (dict): Information about attempted account creation
         - "status" (bool): Whether account is valid (True) or not (False)
-        - "msg" (str): Whether account was successfuly created (and if not,
+        - "msg" (str): Whether account was successfully created (and if not,
         reason for error)
         - "user_id" (int): If account was created, user ID for new account
     """
@@ -76,7 +76,7 @@ def check_login(username, password):
     Return:
     - valid_account (dict): Information about attempted account login
         - "status" (bool): Whether account is valid (True) or not (False)
-        - "msg" (str): Whether account was successfuly logged in (and if not,
+        - "msg" (str): Whether account was successfully logged in (and if not,
         reason for error)
         - "user_id" (int): If account was logged in, user ID for account
     """
@@ -195,7 +195,7 @@ def convert_F_to_C(temp_F):
 
 
 def evaluate_interaction(interactions, interaction_type):
-    """Evalutes user's interaction with pet.
+    """Evaluates user's interaction with pet.
 
     Arguments:
     - interactions (lst): A list of interactions

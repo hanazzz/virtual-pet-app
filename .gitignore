@@ -2,3 +2,4 @@ env
 *cache*
 secrets.sh
 node_modules
+.vscode

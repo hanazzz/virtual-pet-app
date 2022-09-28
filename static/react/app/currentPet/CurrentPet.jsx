@@ -3,10 +3,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function CurrentPet(props) {
-  const { pet } = props;
-  const { setPetData } = props;
-
+function CurrentPet({ pet, setPetData }) {
   // If stat data is in local storage, set as initial  state value.
   // If not, use initialStat passed through as prop (data retrieved from db at user log in).
   const energyInStorage = JSON.parse(localStorage.getItem('energy'));

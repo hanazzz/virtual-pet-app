@@ -3,10 +3,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Stat(props) {
-  // Get initialStat from petData (which is from db)
-  const { statName, statInteraction, stat, setStat } = props;
-
+function Stat({ statName, statInteraction, stat, setStat }) {
   // eslint-disable-next-line prefer-const
   let intervalID = null;
   // Add stat data to local storage or update if already present. Updates whenever stat changes.
@@ -17,7 +14,7 @@ function Stat(props) {
   console.log(`*** rendering Stat: ${statName} // ${stat} ***`);
 
   // SET UP TIMER
-  // callback function for timer
+  // callback function for timer: decreases stat by 1
   function decreaseStat() {
     if (stat > 0) {
       setStat((prevStat) => prevStat - 1);
