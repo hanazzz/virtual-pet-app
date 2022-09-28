@@ -279,15 +279,13 @@ def get_food():
 
 
 @app.route("/update-inventory", methods=["POST"])
-def update_infentory():
+def update_inventory():
     """Update user's inventory by removing a food item and adding a new one."""
 
     food = request.json
-
     response = crud.remove_item_from_user(session["current_user_id"], food)
-    print("remove", response)
+
     response = crud.add_item_to_user(session["current_user_id"])
-    print("add", response)
 
     db.session.commit()
 

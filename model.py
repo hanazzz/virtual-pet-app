@@ -7,6 +7,8 @@ from datetime import datetime
 # Create SQLAlchemy object, represents database
 db = SQLAlchemy()
 
+# TODO: Seed database with items (need list of item names and descriptions)
+
 
 class User(db.Model):
     """A user."""

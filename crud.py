@@ -171,14 +171,25 @@ def get_item(item_name):
     return item
 
 
-def get_user_items(user_id):
-    """Retrieve all of a user's items and return as list of item names."""
+def get_user_items(user_id, return_str=True):
+    """Retrieve all of a user's items and return as list of item names.
+    
+    Arguments:
+    - user_id (int): Current user's user ID
+    - return_str (bool): Whether to return a list of item names as string (True) or a list of item database objects (False). Default is True.
 
-    items_lst = []
+    Return:
+    - items_lst (list): List of items (either as database objects or strings of item names)
+    """
+
     items_db = get_user_by_id(user_id).items
 
-    for item in items_db:
-        items_lst.append(item.item_name)
+    if return_str:
+        items_lst = []
+        for item in items_db:
+            items_lst.append(item.item_name)
+    else:
+        items_lst = items_db
 
     return items_lst
 
@@ -221,7 +232,7 @@ def add_item_to_user(user_id, item_name=None):
     # QUESTION: Is this the best way to get a random item?
     if not item_name:
         items_set = set(Item.query.all())
-        user_items_set = set(get_user_items(user_id))
+        user_items_set = set(get_user_items(user_id, False))
 
         # Get available items by removing items already in user's inventory
         available_items = items_set - user_items_set
