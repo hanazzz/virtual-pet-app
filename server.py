@@ -78,7 +78,8 @@ def logout():
     current_energy = current_stats["currentEnergy"]
     current_happiness = current_stats["currentHappiness"]
 
-    crud.update_pet_stats(session["current_user_id"], current_energy, current_happiness)
+    crud.update_pet_stats(session["current_user_id"],
+                          current_energy, current_happiness)
 
     session.pop("current_pet", None)
     session.pop("current_user_id", None)
@@ -210,7 +211,7 @@ def get_current_weather():
     }
 
     res = requests.get(url, params=payload)
-    
+
     # Check for error
     if not res:
         print(res.status_code)

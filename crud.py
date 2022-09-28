@@ -5,7 +5,8 @@ from random import choice, sample
 from data_attributes.create_attributes import FOOD
 
 
-# CREATE
+# ------ CREATE ------ #
+## USER: Create
 def create_user(username, email, password):
     """Create and return a new user."""
 
@@ -14,6 +15,30 @@ def create_user(username, email, password):
     return user
 
 
+def create_user_inventory(user):
+    """Create user's initial inventory (3 random items from FOOD list).
+    
+    Argument:
+    - user (obj): User to create inventory for (database object)
+
+    Return:
+    - user_items (lst): List of user's items (as database objects)
+    """
+
+    # Get all available items in db
+    all_items = Item.query.all()
+
+    # Randomly choose 3 items
+    items = sample(all_items, k=3)
+
+    # Add each item to user
+    for item in items:
+        user.items.append(item)
+
+    return user.items
+
+
+## PET: Create
 def create_pet(
         user_id,
         species_name,
@@ -91,6 +116,7 @@ def create_pet_from_dict(pet_dict):
     return pet
 
 
+## ITEM: Create
 def create_item(item_name, description):
     """Create and return a new item."""
 
@@ -99,34 +125,19 @@ def create_item(item_name, description):
     return item
 
 
-def create_user_inventory(user):
-    """Create user's initial inventory (3 random items from FOOD list).
-    
-    Argument:
-    - user (obj): User to create inventory for (database object)
-
-    Return:
-    - user_items (lst): List of user's items (as database objects)
-    """
-
-    # Get all available items in db
-    all_items = Item.query.all()
-
-    # Randomly choose 3 items
-    items = sample(all_items, k=3)
-
-    # Add each item to user
-    for item in items:
-        user.items.append(item)
-
-    return user.items
-
-
-# RETRIEVE
+# ------ RETRIEVE ------ #
+## USER: Retrieve
 def get_user_by_id(user_id):
     """Retrieve and return an existing user, using their user_id.
 
-     Returns None if user doesn't exist."""
+     Returns None if user doesn't exist.
+     
+    Arguments:
+    - user_id (int): A user ID to search by
+    
+    Returns:
+    - user (obj or None): Either user database oject if user exists or None if not
+     """
 
     user = User.query.get(user_id)
 
@@ -136,7 +147,14 @@ def get_user_by_id(user_id):
 def get_user_by_username(username):
     """Retrieve and return an existing user, using their username.
 
-    Returns None if user doesn't exist."""
+    Returns None if user doesn't exist.
+    
+    Arguments:
+    - username (str): A username to search by
+    
+    Returns:
+    - user (obj or None): Either user database oject if user exists or None if not
+    """
 
     user = User.query.filter_by(username=username).first()
 
@@ -146,23 +164,33 @@ def get_user_by_username(username):
 def get_user_by_email(email):
     """Retrieve and return an existing user, using their email.
 
-    Returns None if user doesn't exist."""
+    Returns None if user doesn't exist.
+    
+    Arguments:
+    - email (str): An email to search by
+    
+    Returns:
+    - user (obj or None): Either user database oject if user exists or None if not
+    """
 
     user = User.query.filter_by(email=email).first()
 
     return user
 
 
+## PET: Retrieve
 def get_pet(user_id):
     """Retrieve a user's existing pet by user_id.
 
-    Returns None if user doesn't have pet."""
+    Returns None if user doesn't have pet.
+    """
 
     pet = Pet.query.filter_by(user_id=user_id).first()
 
     return pet
 
 
+## ITEM: Retrieve
 def get_item(item_name):
     """Retrieve an item by its name."""
 
@@ -173,12 +201,12 @@ def get_item(item_name):
 
 def get_user_items(user_id, return_str=True):
     """Retrieve all of a user's items and return as list of item names.
-    
+
     Arguments:
     - user_id (int): Current user's user ID
     - return_str (bool): Whether to return a list of item names as string (True) or a list of item database objects (False). Default is True.
 
-    Return:
+    Returns:
     - items_lst (list): List of items (either as database objects or strings of item names)
     """
 
@@ -194,14 +222,22 @@ def get_user_items(user_id, return_str=True):
     return items_lst
 
 
-# UPDATE
+# ------ UPDATE ------ #
+## USER: Update
+# none
+
+
+## PET: Update
 def update_pet_stats(user_id, current_energy, current_happiness):
     """Update current pet's energy and happiness stats.
-    
+
     Arguments:
     - user_id (int): Current user's user ID
     - current_energy (int): Current user's pet's energy
     - current_happiness (int): Current user's pet's happiness
+
+    Returns:
+    None
     """
 
     pet = get_pet(user_id)
@@ -212,6 +248,7 @@ def update_pet_stats(user_id, current_energy, current_happiness):
     db.session.commit()
 
 
+## ITEM: Update
 def add_item_to_user(user_id, item_name=None):
     """Connect an item to a user. If no item provided, randomly select one.
 
@@ -252,8 +289,11 @@ def remove_item_from_user(user_id, item_name):
     """Remove an item from a user.
 
     Arguments:
-    - user_id (int):
-    - item_name (str):
+    - user_id (int): Current user's user ID
+    - item_name (str): Name of item to remove
+
+    Returns:
+    - "success" (str)
     """
 
     user = get_user_by_id(user_id)
@@ -264,7 +304,17 @@ def remove_item_from_user(user_id, item_name):
     return "success"
 
 
-# DELETE
+# ------ DELETE ------ #
+## USER: Delete
+def delete_user(user_id):
+    """Delete current user and their pet."""
+    # TODO: Complete
+    # Will need to delete pet first, then user
+
+    pass
+
+
+## PET: Delete
 def delete_pet(user_id):
     """Delete a user's existing pet."""
 
@@ -274,12 +324,11 @@ def delete_pet(user_id):
     db.session.commit()
 
 
-def delete_user(user_id):
-    """Delete current user and their pet."""
-    # TODO: Complete
-    # Will need to delete pet first, then user
+## ITEM: Delete
+# none
 
-    pass
+
+# ------------------------------------ #
 
 
 if __name__ == '__main__':

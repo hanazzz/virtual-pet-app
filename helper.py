@@ -57,7 +57,8 @@ def check_new_account(email, username, password, password2):
         # Get newly created User object from db
         user = crud.get_user_by_username(username)
         # Log user in
-        valid_account = log_in_user(user, "Your account has successfully been created!")
+        valid_account = log_in_user(
+            user, "Your account has successfully been created!")
 
     return valid_account
 
@@ -180,7 +181,7 @@ def generate_pet():
 
 def convert_F_to_C(temp_F):
     """Converts temperature in Fahrenheit to Celsius.
-    
+
     Argument:
     - temp_F (int): Temperature in Fahrenheit
 
@@ -217,10 +218,10 @@ def evaluate_interaction(interactions, interaction_type):
         }
     }
 
-    results = { }
+    results = {}
 
     for option in interactions:
-        results[option] = { }
+        results[option] = {}
         if option == session["current_pet"][f"{interaction_type}_fave"]:
             results[option]["value"] = 2
             results[option]["response"] = interaction_responses[f"{interaction_type}"]["good"]
