@@ -23,15 +23,7 @@ function CurrentPet({ pet, setPetData }) {
   return (
     <div id="current-pet" className="row">
 
-      <h1 className="row">
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        {pet.name} the {pet.personality} {pet.species_name}
-      </h1>
-
-      <h3 id="location" className="row">
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        Location: {pet.city}, {pet.region}, {pet.country}
-      </h3>
+      <PetHeading pet={pet} />
 
       <div id="pet-main" className="row align-items-center">
         <div className="col d-flex flex-column justify-content-around h-100">

@@ -30,6 +30,7 @@
         "Modal": "readonly",
         "Attributes": "readonly",
         "Interaction": "readonly",
-        "Feed": "readonly"
+        "Feed": "readonly",
+        "PetHeading": "readonly"
     }   
 }
