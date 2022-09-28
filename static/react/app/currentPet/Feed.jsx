@@ -63,73 +63,12 @@ function Feed({ setEnergy, energy, setMood }) {
   }
 
   return (
-    <Modal modalID="feed-pet" modalBnText="FEED PET" clickCallback={handleInteraction}>
+    <Modal modalID="feed-modal" modalBnText="FEED PET" clickCallback={handleInteraction}>
       <h5 className="modal-title">Feed Pet</h5>
       {interactionBtns}
     </Modal>
   );
 }
-
-// function Interaction(props) {
-//   const { setStat, stat, setMood, interactionText, interactionType } = props;
-//   const [interactionBtns, setInteractionBtns] = React.useState([]);
-//   let foods = {};
-
-//   function handleChoice(evt) {
-//     const interaction = evt.target.id;
-//     const statChange = Number(foods[interaction]['value']);
-//     // eslint-disable-next-line prefer-destructuring
-//     const response = foods[interaction]['response'];
-//     console.log(statChange);
-//     console.log(stat + statChange);
-//     fetch('/update-inventory', {
-//       method: 'POST',
-//       body: JSON.stringify(interaction),
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     })
-//       .then(() => {
-//         // Check to make sure stat doesn't go over 5 or under 0
-//         if ((stat + statChange) <= 0) {
-//           setStat(0);
-//         } else if ((stat + statChange) >= 5) {
-//           setStat(5);
-//         } else {
-//           setStat(stat + statChange);
-//         }
-//         setMood(response);
-//       });
-//   }
-
-//   function handleInteraction() {
-//     fetch('/feed')
-//       .then((response) => response.json())
-//       .then((responseJson) => {
-//         foods = responseJson;
-//         console.log(foods);
-//         const btns = Object.keys(foods).map((food) => (
-//           <button
-//             type="button"
-//             id={food}
-//             key={food}
-//             onClick={handleChoice}
-//             data-bs-dismiss="modal"
-//           >
-//             {food}
-//           </button>
-//         ));
-//         setInteractionBtns(btns);
-//       });
-//   }
-
-//   return (
-//     <Modal modalID="feed-pet" modalBnText="FEED PET" onClick={handleInteraction}>
-//       <h5 className="modal-title">Feed Pet</h5>
-//       {interactionBtns}
-//     </Modal>
-//   );
-// }
 
 Feed.propTypes = {
   setEnergy: PropTypes.func.isRequired,

@@ -1,68 +1,49 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable dot-notation */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Play(props) {
-  const { setStat, stat, setMood, interactionText, interactionType } = props;
+function Play({ setHappiness, happiness, setMood }) {
+  // const { setStat, stat, setMood, interactionText, interactionType } = props;
   const [interactionBtns, setInteractionBtns] = React.useState([]);
-  let interactions = {};
+  let activities = {};
 
-  function handleChoice(evt) {
-    const interaction = evt.target.id;
-    const statChange = Number(interactions[interaction]['value']);
+  function handlePlayChoice(evt) {
+    // Get activity the user selected
+    const activityChoice = evt.target.id;
+    const statChange = Number(activities[activityChoice]['value']);
     // eslint-disable-next-line prefer-destructuring
-    const response = interactions[interaction]['response'];
+    const response = activities[activityChoice]['response'];
     console.log(statChange);
-    console.log(stat + statChange);
-    if (interactionType === 'feed') {
-      fetch('/update-inventory', {
-        method: 'POST',
-        body: JSON.stringify(interaction),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(() => {
-          // Check to make sure stat doesn't go over 5 or under 0
-          if ((stat + statChange) <= 0) {
-            setStat(0);
-          } else if ((stat + statChange) >= 5) {
-            setStat(5);
-          } else {
-            setStat(stat + statChange);
-          }
-          setMood(response);
-        });
+    console.log(happiness + statChange);
+    // Check to make sure stat doesn't go over 5 or under 0
+    if ((happiness + statChange) <= 0) {
+      setHappiness(0);
+    } else if ((happiness + statChange) >= 5) {
+      setHappiness(5);
     } else {
-      // Check to make sure stat doesn't go over 5 or under 0
-      if ((stat + statChange) <= 0) {
-        setStat(0);
-      } else if ((stat + statChange) >= 5) {
-        setStat(5);
-      } else {
-        setStat(stat + statChange);
-      }
-      setMood(response);
+      setHappiness(happiness + statChange);
     }
+    setMood(response);
   }
 
   function handleInteraction() {
-    fetch(`/${interactionType}`)
+    fetch('/play')
       .then((response) => response.json())
       .then((responseJson) => {
-        interactions = responseJson;
-        console.log(interactions);
-        const btns = Object.keys(interactions).map((interaction) => (
+        activities = responseJson;
+        console.log(activities);
+        const btns = Object.keys(activities).map((activity) => (
           <button
             type="button"
-            id={interaction}
-            key={interaction}
-            onClick={handleChoice}
+            id={activity}
+            key={activity}
+            onClick={handlePlayChoice}
             data-bs-dismiss="modal"
           >
-            {interaction}
+            {activity}
           </button>
         ));
         setInteractionBtns(btns);
@@ -70,31 +51,15 @@ function Play(props) {
   }
 
   return (
-    <>
-      <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
-        {interactionText}
-      </button>
-
-      <div className="modal fade" id={`${interactionType}-modal`} tabIndex="-1" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              <h5 className="modal-title">{interactionText}</h5>
-              {interactionBtns}
-              <br />
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <Modal modalID="play-modal" modalBnText="PLAY WITH PET" clickCallback={handleInteraction}>
+      <h5 className="modal-title">Play with Pet</h5>
+      {interactionBtns}
+    </Modal>
   );
 }
 
 Play.propTypes = {
-  setStat: PropTypes.func.isRequired,
-  stat: PropTypes.number.isRequired,
+  setHappiness: PropTypes.func.isRequired,
+  happiness: PropTypes.number.isRequired,
   setMood: PropTypes.func.isRequired,
-  interactionText: PropTypes.string.isRequired,
-  interactionType: PropTypes.string.isRequired,
 };

@@ -50,14 +50,13 @@ function CurrentPet({ pet, setPetData }) {
         </div>
 
         <div id="interactions" className="col text-center">
-          {/* <button type="button" onClick={handlePlay}>PLAY with options</button> */}
           {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
           <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           <br />
           <br />
           {/* eslint-disable-next-line max-len */}
-          {/* <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" /> */}
-          <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} />
+          <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
+          {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
           <br />
           <br />
           <Attributes pet={pet} />

@@ -9,16 +9,16 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   let interactions = {};
 
   // Way to use this function to reduce duplication in handleChoice?
-  function handleStatChange(statChange, response) {
-    if ((stat + statChange) <= 0) {
-      setStat(0);
-    } else if ((stat + statChange) >= 5) {
-      setStat(5);
-    } else {
-      setStat(stat + statChange);
-    }
-    setMood(response);
-  }
+  // function handleStatChange(statChange, response) {
+  //   if ((stat + statChange) <= 0) {
+  //     setStat(0);
+  //   } else if ((stat + statChange) >= 5) {
+  //     setStat(5);
+  //   } else {
+  //     setStat(stat + statChange);
+  //   }
+  //   setMood(response);
+  // }
 
   function handleChoice(evt) {
     const interaction = evt.target.id;
