@@ -14,7 +14,7 @@ function PetGenerator({ setPetData }) {
   // Generate random pet
   function generateNewPet() {
     console.log('generating pet');
-    fetch('/generate-pet')
+    fetch('/pet/new')
       .then((response) => response.json())
       .then((petJson) => {
         console.log('new pet available');
@@ -27,7 +27,7 @@ function PetGenerator({ setPetData }) {
   function adoptPet() {
     console.log('preparing to adopt pet');
     // Get user's location via IP address and use for pet's location
-    fetch('/get-loc-mock')
+    fetch('/user/location/mock')
       .then((response) => response.json())
       .then((userData) => {
         console.log(userData);
@@ -59,7 +59,7 @@ function PetGenerator({ setPetData }) {
         // console.log(newPetData);
 
         // Adopt pet (create pet in database and link to user)
-        fetch('/adopt-pet', {
+        fetch('/user/pet/new', {
           method: 'POST',
           body: JSON.stringify(newPetData),
           headers: {

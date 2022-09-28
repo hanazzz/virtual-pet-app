@@ -28,7 +28,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     console.log(statChange);
     console.log(stat + statChange);
     if (interactionType === 'feed') {
-      fetch('/update-inventory', {
+      fetch('/user/inventory/update', {
         method: 'POST',
         body: JSON.stringify(interaction),
         headers: {
@@ -58,7 +58,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   }
 
   function handleInteraction() {
-    fetch(`/${interactionType}`)
+    fetch(`/pet/${interactionType}`)
       .then((response) => response.json())
       .then((responseJson) => {
         interactions = responseJson;

@@ -30,7 +30,7 @@ function Play({ setHappiness, happiness, setMood }) {
   }
 
   function handleInteraction() {
-    fetch('/play')
+    fetch('/pet/play')
       .then((response) => response.json())
       .then((responseJson) => {
         activities = responseJson;

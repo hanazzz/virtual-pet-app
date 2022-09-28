@@ -20,7 +20,7 @@ function WeatherDisplay({ lat, lon }) {
   // Get current weather
   React.useEffect(() => {
     console.log('Getting weather...');
-    fetch('/get-weather-mock', {
+    fetch('/user/weather/mock', {
       method: 'POST',
       body: JSON.stringify(petLocation),
       headers: {

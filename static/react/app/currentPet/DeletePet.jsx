@@ -7,7 +7,7 @@ function DeletePet({ setPetData }) {
   function deletePet() {
     // eslint-disable-next-line no-restricted-globals
     if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
-      fetch('/delete-pet')
+      fetch('/user/pet/delete')
         .then((response) => response.json())
         .then((msg) => {
           console.log('deleting pet');

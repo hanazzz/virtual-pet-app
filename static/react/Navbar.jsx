@@ -10,7 +10,7 @@ function Navbar({ username }) {
       currentHappiness: localStorage.getItem('happiness'),
     };
 
-    fetch('/logout', {
+    fetch('/user/logout', {
       method: 'POST',
       body: JSON.stringify(currentStats),
       headers: {
@@ -38,7 +38,7 @@ function Navbar({ username }) {
         * * *
       </div>
       <div className="col">
-        <a href="/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a>
+        <a href="/user/logout" onClick={(evt) => handleLogout(evt)}>LOG OUT</a>
       </div>
     </>
   );

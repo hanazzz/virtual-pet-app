@@ -11,7 +11,7 @@ function VirtualPetApp() {
   // Check if user has existing pet
   React.useEffect(() => {
     console.log('fetching');
-    fetch('/user-info')
+    fetch('/user/pet/info')
       .then((response) => response.json())
       .then((petJson) => {
         if (petJson) {

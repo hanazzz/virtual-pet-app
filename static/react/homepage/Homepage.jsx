@@ -37,7 +37,7 @@ function AcctForm() {
       password,
       password2,
     };
-    const route = logInMethd ? '/login' : '/create-user';
+    const route = logInMethd ? '/user/login' : '/user/create';
 
     fetch(`${route}`, {
       method: 'POST',
@@ -53,7 +53,7 @@ function AcctForm() {
         if (responseJson.status) {
           // Store username in local storage
           localStorage.setItem('username', responseJson.username);
-          window.location.href = '/pet';
+          window.location.href = '/user/pet';
         }
       })
       .catch((error) => alert(error.toString()));

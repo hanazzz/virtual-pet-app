@@ -29,12 +29,12 @@ def show_homepage():
 
     # Check if user is logged in. If yes, redirect to pet page.
     if session.get("current_user_id"):
-        return redirect('/pet')
+        return redirect('/user/pet')
     else:
         return render_template("index.html")
 
 
-@app.route('/create-user', methods=['POST'])
+@app.route('/user/create', methods=['POST'])
 def create_user():
     """Create new user.
 
@@ -54,7 +54,7 @@ def create_user():
     return jsonify(valid_account)
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/user/login', methods=['POST'])
 def login():
     """Log user in."""
 
@@ -69,7 +69,7 @@ def login():
     return jsonify(valid_account)
 
 
-@app.route("/logout", methods=["POST"])
+@app.route("/user/logout", methods=["POST"])
 def logout():
     """Log user out."""
 
@@ -89,7 +89,7 @@ def logout():
     return jsonify(msg)
 
 
-@app.route('/pet')
+@app.route('/user/pet')
 def view_pet():
     """Take user to main app page."""
 
@@ -100,7 +100,7 @@ def view_pet():
     return render_template('pet.html')
 
 
-@app.route("/user-info")
+@app.route("/user/pet/info")
 def get_user_info():
     """Get current user's pet information from database."""
 
@@ -113,7 +113,7 @@ def get_user_info():
     return jsonify(pet)
 
 
-@app.route("/generate-pet")
+@app.route("/pet/new")
 def generate_rand_pet():
     """Generate a random pet."""
 
@@ -122,7 +122,7 @@ def generate_rand_pet():
     return jsonify(pet)
 
 
-@app.route("/adopt-pet", methods=["POST"])
+@app.route("/user/pet/new", methods=["POST"])
 def adopt_pet():
     """Create pet in database and assign to user."""
 
@@ -145,7 +145,7 @@ def adopt_pet():
     return jsonify(pet)
 
 
-@app.route("/delete-pet")
+@app.route("/user/pet/delete")
 def delete_user_pet():
     """Delete current user's pet."""
 
@@ -155,7 +155,7 @@ def delete_user_pet():
     return jsonify("Your pet has been released into the wild.")
 
 
-@app.route("/get-loc")
+@app.route("/user/location")
 def get_user_loc():
     """Use the user's IP address to get information about their location.
 
@@ -175,7 +175,7 @@ def get_user_loc():
     return jsonify(user_data)
 
 
-@app.route("/get-loc-mock")
+@app.route("/user/location/mock")
 def mock_get_user_loc():
     """Mock version of get_user_loc() for testing."""
 
@@ -190,7 +190,7 @@ def mock_get_user_loc():
     return jsonify(user_data)
 
 
-@app.route("/get-weather", methods=["POST"])
+@app.route("/user/weather", methods=["POST"])
 def get_current_weather():
     """Get current weather at the pet's location."""
 
@@ -238,7 +238,7 @@ def get_current_weather():
     return jsonify(current_weather)
 
 
-@app.route("/get-weather-mock", methods=["POST"])
+@app.route("/user/weather/mock", methods=["POST"])
 def mock_get_current_weather():
     """Mock version of get_current_weather() for testing."""
 
@@ -257,7 +257,7 @@ def mock_get_current_weather():
     return jsonify(current_weather)
 
 
-@app.route("/play")
+@app.route("/pet/play")
 def get_activities():
     """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
 
@@ -268,7 +268,7 @@ def get_activities():
     return jsonify(results)
 
 
-@app.route("/feed")
+@app.route("/pet/feed")
 def get_food():
     """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
 
@@ -279,7 +279,7 @@ def get_food():
     return jsonify(results)
 
 
-@app.route("/update-inventory", methods=["POST"])
+@app.route("/user/inventory/update", methods=["POST"])
 def update_inventory():
     """Update user's inventory by removing a food item and adding a new one."""
 

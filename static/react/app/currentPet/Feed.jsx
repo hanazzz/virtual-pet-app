@@ -19,7 +19,7 @@ function Feed({ setEnergy, energy, setMood }) {
     const response = foods[foodChoice]['response'];
     console.log(statChange);
     console.log(energy + statChange);
-    fetch('/update-inventory', {
+    fetch('/user/inventory/update', {
       method: 'POST',
       body: JSON.stringify(foodChoice),
       headers: {
@@ -41,7 +41,7 @@ function Feed({ setEnergy, energy, setMood }) {
 
   // Get food options from server
   function handleInteraction() {
-    fetch('/feed')
+    fetch('/pet/feed')
       .then((response) => response.json())
       .then((responseJson) => {
         foods = responseJson;
