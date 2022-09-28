@@ -23,22 +23,6 @@ function CurrentPet(props) {
 
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
-  function deletePet() {
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
-      fetch('/delete-pet')
-        .then((response) => response.json())
-        .then((msg) => {
-          console.log('deleting pet');
-          alert(msg);
-          setPetData(null);
-        })
-        .catch((error) => alert(error.toString()));
-    } else {
-      alert('Your pet has not been deleted.');
-    }
-  }
-
   return (
     <div id="current-pet" className="row">
 
@@ -91,7 +75,7 @@ function CurrentPet(props) {
 
       <br />
       <div className="row">
-        <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
+        <DeletePet setPetData={setPetData} />
       </div>
     </div>
   );
