@@ -3,45 +3,56 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function CurrentPet(props) {
-  const { pet } = props;
-  const { setPetData } = props;
+function CurrentPet({ pet, setPetData }) {
+  // const { pet } = props;
+  // const { setPetData } = props;
 
   // If stat data is in local storage, set as initial  state value.
   // If not, use initialStat passed through as prop (data retrieved from db at user log in).
-  const energyInStorage = JSON.parse(localStorage.getItem('energy'));
+
+  // bds: repeated code. unify. useReducer?
+  // bds: make functions that handle storage at the same time as setting the stat
+  //    bds: custom hook(s)
+  const energyInStorage = JSON.parse(localStorage.getItem("energy"));
   const [energy, setEnergy] = React.useState(
-    Number.isInteger(energyInStorage) ? energyInStorage : pet.energy,
+    Number.isInteger(energyInStorage) ? energyInStorage : pet.energy
   );
 
-  const happinessInStorage = JSON.parse(localStorage.getItem('happiness'));
+  const happinessInStorage = JSON.parse(localStorage.getItem("happiness"));
   const [happiness, setHappiness] = React.useState(
-    Number.isInteger(happinessInStorage) ? happinessInStorage : pet.happiness,
+    Number.isInteger(happinessInStorage) ? happinessInStorage : pet.happiness
   );
 
+  // bds: here? somewhere else?
   const [mood, setMood] = React.useState("I'm so happy to see you!");
 
-  console.log('*** Existing pet data, rendering CurrentPet ***');
+  console.log("*** Existing pet data, rendering CurrentPet ***");
 
+  // bds: "delete" component
   function deletePet() {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm('Are you sure you want to delete your pet? This action is irreversible.')) {
-      fetch('/delete-pet')
+    if (
+      confirm(
+        "Are you sure you want to delete your pet? This action is irreversible."
+      )
+    ) {
+      fetch("/delete-pet")
         .then((response) => response.json())
         .then((msg) => {
-          console.log('deleting pet');
+          console.log("deleting pet");
           alert(msg);
           setPetData(null);
         })
         .catch((error) => alert(error.toString()));
     } else {
-      alert('Your pet has not been deleted.');
+      alert("Your pet has not been deleted.");
     }
   }
 
   return (
     <div id="current-pet" className="row">
-
+      {/* bds: only ONE h1 on every page */}
+      {/* bds: <PetHeading /> component? prop = pet */}
       <h1 className="row">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         {pet.name} the {pet.personality} {pet.species_name}
@@ -54,7 +65,7 @@ function CurrentPet(props) {
 
       <div id="pet-main" className="row align-items-center">
         <div className="col d-flex flex-column justify-content-around h-100">
-        <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+          <WeatherDisplay lat={pet.lat} lon={pet.lon} />
           <div id="mood">
             <h5>{mood}</h5>
           </div>
@@ -71,7 +82,15 @@ function CurrentPet(props) {
         <div id="interactions" className="col text-center">
           {/* <button type="button" onClick={handlePlay}>PLAY with options</button> */}
           {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
-          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
+          {/* bds: everything except setMood can be derived from "play" */}
+          {/* bds: encapsulate components by state (happiness / energy) */}
+          <Interaction
+            setStat={setHappiness}
+            stat={happiness}
+            setMood={setMood}
+            interactionText="PLAY WITH PET"
+            interactionType="play"
+          />
           <br />
           <br />
           {/* <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" /> */}
@@ -82,15 +101,29 @@ function CurrentPet(props) {
         </div>
       </div>
 
+      {/* bds: interaction buttons with stats? Context? */}
       <div id="stats" className="row">
-        <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
+        <Stat
+          statName="energy"
+          statInteraction="FEED PET"
+          stat={energy}
+          setStat={setEnergy}
+        />
 
-        <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
+        <Stat
+          statName="happiness"
+          statInteraction="PLAY WITH PET"
+          stat={happiness}
+          setStat={setHappiness}
+        />
       </div>
 
       <br />
+      {/* bds: make delete (settings) component, with the delete function */}
       <div className="row">
-        <button type="button" id="delete-pet" onClick={deletePet}>DELETE PET</button>
+        <button type="button" id="delete-pet" onClick={deletePet}>
+          DELETE PET
+        </button>
       </div>
     </div>
   );

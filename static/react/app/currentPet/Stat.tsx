@@ -3,15 +3,17 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function Stat(props) {
+function Stat({ statName, statInteraction, stat, setStat }) {
   // Get initialStat from petData (which is from db)
+  // bds: destructure in function declaration
   // eslint-disable-next-line object-curly-newline
-  const { statName, statInteraction, stat, setStat } = props;
+  // const { statName, statInteraction, stat, setStat } = props;
 
   // eslint-disable-next-line prefer-const
-  let intervalID = null;
+  let intervalID: null | number = null;
   // Add stat data to local storage or update if already present. Updates whenever stat changes.
   React.useEffect(() => {
+    // bds: should be part of setStat (centralize) function = setStatAndSetLocalStorage
     localStorage.setItem(statName, stat);
   }, [stat]);
 
@@ -19,6 +21,8 @@ function Stat(props) {
 
   // SET UP TIMER
   // callback function for timer
+  // bds: centralize stat range (?)
+  // bds: custom hook(?)
   function decreaseStat() {
     if (stat > 0) {
       setStat((prevStat) => prevStat - 1);
@@ -31,6 +35,7 @@ function Stat(props) {
   // Need to clearInterval on return (component unmounting) to avoid multiple intervals
   React.useEffect(() => {
     intervalID = setInterval(decreaseStat, 5000);
+    // bds: investigate... / think about
     return () => {
       clearInterval(intervalID);
     };
@@ -38,6 +43,7 @@ function Stat(props) {
 
   // interactWithPet() gets called on button click, increases stat by 1
   function interactWithPet() {
+    // bds: centralize stat range
     if (stat < 5) {
       setStat((prevStat) => prevStat + 1);
     }
@@ -46,10 +52,14 @@ function Stat(props) {
   return (
     <div id={statName} className="col">
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <h4>{statName}: {stat}</h4>
-      <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
+      <h4>
+        {statName}: {stat}
+      </h4>
+      <StatDisplay filledStat={stat} statName={statName} />
       <br />
-      <button type="button" onClick={interactWithPet}>{statInteraction}</button>
+      <button type="button" onClick={interactWithPet}>
+        {statInteraction}
+      </button>
     </div>
   );
 }
