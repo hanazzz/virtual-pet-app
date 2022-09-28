@@ -2,7 +2,6 @@
 
 from model import db, User, Pet, Item, UserItem, connect_to_db
 from random import choice, sample
-from data_attributes.create_attributes import FOOD
 
 
 # ------ CREATE ------ #
@@ -16,7 +15,7 @@ def create_user(username, email, password):
 
 
 def create_user_inventory(user):
-    """Create user's initial inventory (3 random items from FOOD list).
+    """Create user's initial inventory (3 random items from database).
     
     Argument:
     - user (obj): User to create inventory for (database object)
@@ -265,10 +264,12 @@ def add_item_to_user(user_id, item_name=None):
     if len(get_user_items(user_id)) >= 3:
         return "error"
 
-    # If no item name provided, randomly select one from FOOD list
+    # If no item name provided, randomly select one
     # QUESTION: Is this the best way to get a random item?
     if not item_name:
+        # Get all items in database, cast as set
         items_set = set(Item.query.all())
+        # Get all items in user's inventory, cast as set
         user_items_set = set(get_user_items(user_id, False))
 
         # Get available items by removing items already in user's inventory

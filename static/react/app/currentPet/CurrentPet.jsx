@@ -1,4 +1,4 @@
-// REMOVE THE BELOW BEFORE DEPLOYMENT
+// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
@@ -54,10 +54,10 @@ function CurrentPet(props) {
 
       <div id="pet-main" className="row align-items-center">
         <div className="col d-flex flex-column justify-content-around h-100">
-        <WeatherDisplay lat={pet.lat} lon={pet.lon} />
           <div id="mood">
             <h5>{mood}</h5>
           </div>
+          <WeatherDisplay lat={pet.lat} lon={pet.lon} />
         </div>
 
         <div className="col text-center">
@@ -74,6 +74,7 @@ function CurrentPet(props) {
           <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           <br />
           <br />
+          {/* eslint-disable-next-line max-len */}
           {/* <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" /> */}
           <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} />
           <br />

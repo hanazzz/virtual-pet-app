@@ -2,7 +2,11 @@
     "extends": "airbnb",
     "rules": {
         "react/jsx-no-undef": ["error", { "allowGlobals": true }],
-        "no-else-return": ["error", { "allowElseIf": true}]
+        "no-else-return": ["error", { "allowElseIf": true}],
+        "object-curly-newline": [2, {
+            "multiline": true,
+            "consistent": true
+        }]
     },
     "env": {
         "browser": true
@@ -12,6 +16,7 @@
         "ReactDOM": "readonly",
         "PropTypes": "readonly",
         "Navbar": "readonly",
+        "Footer": "readonly",
         "PetGenerator": "readonly",
         "CurrentPet": "readonly",
         "PetDisplay": "readonly",
@@ -20,6 +25,10 @@
         "Stat": "readonly",
         "Login": "readonly",
         "CreateAcct": "readonly",
-        "Play": "readonly"
+        "Play": "readonly",
+        "Modal": "readonly",
+        "Attributes": "readonly",
+        "Interaction": "readonly",
+        "Feed": "readonly"
     }   
 }

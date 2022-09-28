@@ -1,11 +1,10 @@
-// REMOVE THE BELOW BEFORE DEPLOYMENT
+// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
 function Stat(props) {
   // Get initialStat from petData (which is from db)
-  // eslint-disable-next-line object-curly-newline
   const { statName, statInteraction, stat, setStat } = props;
 
   // eslint-disable-next-line prefer-const

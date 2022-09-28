@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-// REMOVE THE BELOW BEFORE DEPLOYMENT
+// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 

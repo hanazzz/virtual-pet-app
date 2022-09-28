@@ -174,21 +174,9 @@ def create_example_data():
                    astro_sign="Libra",
                    species_img_path="/static/images/prickly-bunny.jpg")
 
-    test_item1 = Item(item_name="omelette",
-                      description="Yum, this looks good!")
-    test_item2 = Item(item_name="pizza", description="So cheesy!")
-
     # Add all test data into db
-    test_data = [test_user, test_pet, test_item1, test_item2]
+    test_data = [test_user, test_pet]
     db.session.add_all(test_data)
-    db.session.commit()
-
-    # Connect test_user with test_item1 and test_item2
-    test_user = User.query.get(1)
-    test_items = Item.query.all()
-
-    for item in test_items:
-        test_user.items.append(item)
     db.session.commit()
 
 
@@ -209,7 +197,7 @@ def create_example_items():
                  description="yummdsafklj")
 
     # Add all test data into db
-    test_items = [item3, item4, item5, item6, item7, item8, item9]
+    test_items = [item1, item2, item3, item4, item5, item6, item7, item8, item9]
     db.session.add_all(test_items)
     db.session.commit()
 

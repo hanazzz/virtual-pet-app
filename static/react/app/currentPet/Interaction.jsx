@@ -1,5 +1,5 @@
 /* eslint-disable dot-notation */
-// REMOVE THE BELOW BEFORE DEPLOYMENT
+// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
@@ -70,12 +70,14 @@ function Interaction(props) {
   }
 
   return (
+    // eslint-disable-next-line react/jsx-no-bind
     <Modal modalID={`${interactionType}-modal`} modalBnText={interactionText} clickCallback={handleInteraction}>
       <h5 className="modal-title">{interactionText}</h5>
       {interactionBtns}
     </Modal>
 
   // <>
+  // eslint-disable-next-line max-len
   //   <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
   //     {interactionText}
   //   </button>
@@ -87,6 +89,7 @@ function Interaction(props) {
   //           <h5 className="modal-title">{interactionText}</h5>
   //           {interactionBtns}
   //           <br />
+  // eslint-disable-next-line max-len
   //           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
   //         </div>
   //       </div>
