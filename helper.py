@@ -10,6 +10,18 @@ from data_attributes.create_attributes import (
     ASTROLOGICAL_SIGN
 )
 
+def check_for_login():
+    """Check if a user is currently logged in.
+    
+    Returns:
+    - True or False (bool): True if user is logged in, False if not
+    """
+
+    if session.get("current_user_id"):
+        return True
+    else:
+        return False
+
 
 def check_new_account(email, username, password, password2):
     """Check whether account creation is valid.
@@ -194,10 +206,11 @@ def convert_F_to_C(temp_F):
     return temp_C
 
 
-def evaluate_interaction(interactions, interaction_type):
+def evaluate_interaction(pet, interactions, interaction_type):
     """Evaluates user's interaction with pet.
 
     Arguments:
+    - pet (db obj): Pet object from database
     - interactions (lst): A list of interactions
     - interaction_type (str): Interaction type (must be "food" or "activity")
 
@@ -222,10 +235,10 @@ def evaluate_interaction(interactions, interaction_type):
 
     for option in interactions:
         results[option] = {}
-        if option == session["current_pet"][f"{interaction_type}_fave"]:
+        if option == pet[f"{interaction_type}_fave"]:
             results[option]["value"] = 2
             results[option]["response"] = interaction_responses[f"{interaction_type}"]["good"]
-        elif option == session["current_pet"][f"{interaction_type}_least"]:
+        elif option == pet[f"{interaction_type}_least"]:
             results[option]["value"] = -1
             results[option]["response"] = interaction_responses[f"{interaction_type}"]["bad"]
         else:

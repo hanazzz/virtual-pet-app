@@ -28,7 +28,7 @@ def show_homepage():
     """Show homepage."""
 
     # Check if user is logged in. If yes, redirect to pet page.
-    if session.get("current_user_id"):
+    if helper.check_for_login():
         return redirect('/user/pet')
     else:
         return render_template("index.html")
@@ -72,6 +72,10 @@ def login():
 @app.route("/user/logout", methods=["POST"])
 def logout():
     """Log user out."""
+    
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     current_stats = request.json
 
@@ -94,7 +98,7 @@ def view_pet():
     """Take user to main app page."""
 
     # Redirect to homepage if user not logged in
-    if not session.get("current_user_id"):
+    if not helper.check_for_login():
         return redirect("/")
 
     return render_template('pet.html')
@@ -103,6 +107,10 @@ def view_pet():
 @app.route("/user/pet/info")
 def get_user_info():
     """Get current user's pet information from database."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     pet = crud.get_pet(session["current_user_id"])
 
@@ -117,6 +125,10 @@ def get_user_info():
 def generate_rand_pet():
     """Generate a random pet."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     pet = helper.generate_pet()
 
     return jsonify(pet)
@@ -125,6 +137,10 @@ def generate_rand_pet():
 @app.route("/user/pet/new", methods=["POST"])
 def adopt_pet():
     """Create pet in database and assign to user."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     pet_data = request.json
 
@@ -149,6 +165,10 @@ def adopt_pet():
 def delete_user_pet():
     """Delete current user's pet."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     crud.delete_pet(session["current_user_id"])
     session["current_pet"] = None
 
@@ -160,6 +180,10 @@ def get_user_loc():
     """Use the user's IP address to get information about their location.
 
     Makes API request to ip-api.com"""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     url = "http://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,timezone,query"
     # Make GET request
@@ -179,6 +203,10 @@ def get_user_loc():
 def mock_get_user_loc():
     """Mock version of get_user_loc() for testing."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     user_data = {
         "country": "United States",
         "regionName": "California",
@@ -193,6 +221,10 @@ def mock_get_user_loc():
 @app.route("/user/weather", methods=["POST"])
 def get_current_weather():
     """Get current weather at the pet's location."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     # Get pet location
     location = request.json
@@ -242,6 +274,10 @@ def get_current_weather():
 def mock_get_current_weather():
     """Mock version of get_current_weather() for testing."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     temp = 71.83
 
     current_weather = {
@@ -261,9 +297,13 @@ def mock_get_current_weather():
 def get_activities():
     """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     activities = sample(ACTIVITY, k=3)
 
-    results = helper.evaluate_interaction(activities, "activity")
+    results = helper.evaluate_interaction(session["current_pet"], activities, "activity")
 
     return jsonify(results)
 
@@ -272,9 +312,13 @@ def get_activities():
 def get_food():
     """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
 
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
     foods = crud.get_user_items(session["current_user_id"])
 
-    results = helper.evaluate_interaction(foods, "food")
+    results = helper.evaluate_interaction(session["current_pet"], foods, "food")
 
     return jsonify(results)
 
@@ -282,6 +326,10 @@ def get_food():
 @app.route("/user/inventory/update", methods=["POST"])
 def update_inventory():
     """Update user's inventory by removing a food item and adding a new one."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
 
     food = request.json
     response = crud.remove_item_from_user(session["current_user_id"], food)
