@@ -17,14 +17,15 @@ function AcctForm() {
   }
 
   // DEFINE STATES FOR FORM FIELDS
-  // Initial state value is empty string
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [password2, setPassword2] = React.useState('');
 
-  // If anything in local storage, clear it
-  localStorage.clear();
+  // If anything in local storage, clear it on initial render
+  React.useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
