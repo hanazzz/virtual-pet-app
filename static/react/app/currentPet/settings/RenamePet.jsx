@@ -4,7 +4,7 @@
 
 // eslint-disable-next-line no-unused-vars
 function RenamePet({ setPetData }) {
-  const [newName, setNewName] = React.useState();
+  const [newName, setNewName] = React.useState('');
 
   // TODO: need to convert to modal that has a form where user can input pet name
   function renamePet(evt) {
