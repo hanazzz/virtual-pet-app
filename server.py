@@ -77,13 +77,15 @@ def logout():
     if not helper.check_for_login():
         return redirect("/")
 
-    current_stats = request.json
+    # Check if current user has pet. If so, update pet stats in db
+    if session["current_pet"]:
+        current_stats = request.json
 
-    current_energy = current_stats["currentEnergy"]
-    current_happiness = current_stats["currentHappiness"]
+        current_energy = current_stats["currentEnergy"]
+        current_happiness = current_stats["currentHappiness"]
 
-    crud.update_pet_stats(session["current_user_id"],
-                          current_energy, current_happiness)
+        crud.update_pet_stats(session["current_user_id"],
+                            current_energy, current_happiness)
 
     session.pop("current_pet", None)
     session.pop("current_user_id", None)
