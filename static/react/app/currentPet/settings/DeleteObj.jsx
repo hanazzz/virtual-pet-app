@@ -2,38 +2,38 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 
-function DeleteObj({ setPetData, deletionObject }) {
-  // Define deletion instructions depending on what is deleted
-  const deletionInstr = {
-    pet: {
-      route: '/user/pet/delete',
-      clearedPetData: null,
-      redirect: false,
-    },
-    account: {
-      route: '/user/delete',
-      clearedPetData: undefined,
-      redirect: false,
-    },
-  };
+// eslint-disable-next-line no-unused-vars
+function DeleteObj({ setPetData, deletePet, deleteAcct }) {
+  // OPTION 1
+  // function redirect() {
+  //   window.location.href = '/';
+  // }
 
-  const { route, clearedPetData, redirect } = deletionInstr[deletionObject];
+  // function clearPetData() {
+  //   setPetData(null);
+  // }
+
+  // const action = deletePet ? clearPetData : redirect;
+
+  // OPTION 2
+  function action() {
+    deletePet ? setPetData(null) : window.location.href = '/';
+  }
+
+  const route = deletePet ? '/user/pet/delete' : '/user/delete';
+  const deletionObject = deletePet ? 'pet' : 'account';
 
   // Confirm whether user wants to delete pet/account
   // On confirmation, sends GET request to server to execute deletion
   function deleteObj() {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm(`Are you sure you want to delete your ${deletionObject}? This action is irreversible.`)) {
+    if (confirm(`Are you sure you want to delete your ${deletionObject}? WARNING: This action is irreversible.`)) {
       fetch(route)
         .then((response) => response.json())
         .then((msg) => {
           console.log(`deleting ${deletionObject}`);
           alert(msg);
-          // TO DO: Currently the redirect doesn't happen because setPetData prompts re-render.
-          setPetData(clearedPetData);
-          if (redirect) {
-            window.location.href = '/';
-          }
+          action();
         })
         .catch((error) => alert(error.toString()));
     } else {
@@ -53,6 +53,14 @@ function DeleteObj({ setPetData, deletionObject }) {
 }
 
 DeleteObj.propTypes = {
-  setPetData: PropTypes.func.isRequired,
-  deletionObject: PropTypes.string.isRequired,
+  setPetData: PropTypes.func,
+  // deletionObject: PropTypes.string.isRequired,
+  deletePet: PropTypes.bool,
+  deleteAcct: PropTypes.bool,
+};
+
+DeleteObj.defaultProps = {
+  setPetData: undefined,
+  deletePet: false,
+  deleteAcct: false,
 };
