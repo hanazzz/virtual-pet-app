@@ -133,6 +133,7 @@ def get_user_info():
     if not helper.check_for_login():
         return redirect("/")
 
+    # TODO: I think I can just write pet=session["current_pet"] and return that, since it will be None if there is no pet or already a dict if there is a pet
     pet = crud.get_pet(session["current_user_id"])
 
     # If user has pet, turn Pet object into dict
@@ -180,6 +181,23 @@ def adopt_pet():
     session["current_pet"] = pet
 
     return jsonify(pet)
+
+
+@app.route("/user/pet/rename", methods=["POST"])
+def rename_user_pet():
+    """Rename current user's pet."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    new_name = request.json
+
+    # Update pet's name in db and update session with new pet name
+    session["current_pet"] = crud.update_pet_name(session["current_user_id"], new_name)
+
+    # Return updated pet data
+    return jsonify(session["current_pet"])
 
 
 @app.route("/user/pet/delete")

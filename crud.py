@@ -247,6 +247,29 @@ def update_pet_stats(user_id, current_energy, current_happiness):
     db.session.commit()
 
 
+def update_pet_name(user_id, new_name):
+    """Rename the current user's pet.
+    
+    Arguments:
+    - pet (dict): Dictionary of pet attributes
+    - name (str): New name for pet
+
+    Returns:
+    None
+    """
+
+    pet = get_pet(user_id)
+
+    pet.name = new_name
+    db.session.commit()
+
+    # Get updated pet dictionary from db
+    pet_dict = pet.convert_to_dict()
+
+    # Return update dictionary
+    return pet_dict
+
+
 ## ITEM: Update
 def add_item_to_user(user_id, item_name=None):
     """Connect an item to a user. If no item provided, randomly select one.
