@@ -42,6 +42,7 @@ def check_new_account(email, username, password, password2):
         - "msg" (str): Whether account was successfully created (and if not,
         reason for error)
         - "user_id" (int): If account was created, user ID for new account
+        - "username" (str): Username for account
     """
 
     valid_account = {"status": False, "msg": ""}
@@ -91,6 +92,7 @@ def check_login(username, password):
         - "msg" (str): Whether account was successfully logged in (and if not,
         reason for error)
         - "user_id" (int): If account was logged in, user ID for account
+        - "username" (str): Username for account
     """
 
     valid_account = {"status": False, "msg": ""}
@@ -122,7 +124,11 @@ def log_in_user(user, msg):
     - msg (str): Success message to display after login
 
     Returns:
-    - pet (dict): Dictionary of pet attributes
+    - valid_account (dict): Information about attempted account login
+        - "status" (bool): Whether account is valid (True) or not (False)
+        - "msg" (str): Message for user confirming log in
+        - "user_id" (int): User ID for account
+        - "username" (str): Username for account
     """
 
     session["current_user_id"] = user.user_id
@@ -210,7 +216,7 @@ def evaluate_interaction(pet, interactions, interaction_type):
     """Evaluates user's interaction with pet.
 
     Arguments:
-    - pet (db obj): Pet object from database
+    - pet (dict): Dictionary of pet attributes
     - interactions (lst): A list of interactions
     - interaction_type (str): Interaction type (must be "food" or "activity")
 
