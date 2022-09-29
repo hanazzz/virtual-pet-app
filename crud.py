@@ -309,21 +309,26 @@ def remove_item_from_user(user_id, item_name):
 ## USER: Delete
 def delete_user(user_id):
     """Delete current user and their pet."""
-    # TODO: Complete
-    # Will need to delete pet first, then user
+    
+    # Delete user's pet
+    delete_pet(user_id)
 
-    pass
+    # Get user from db
+    user = get_user_by_id(user_id)
+
+    # Delete user
+    db.session.delete(user)
 
 
 ## PET: Delete
 def delete_pet(user_id):
     """Delete a user's existing pet."""
 
+    # Get pet from db
     pet = get_pet(user_id)
 
+    # Delete pet
     db.session.delete(pet)
-    db.session.commit()
-
 
 ## ITEM: Delete
 # none

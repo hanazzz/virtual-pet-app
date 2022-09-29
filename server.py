@@ -93,6 +93,25 @@ def logout():
     return jsonify(msg)
 
 
+@app.route("/user/delete")
+def delete_user():
+    """Delete current user's account."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    crud.delete_user(session["current_user_id"])
+    db.session.commit()
+
+    # Remove all user info from session
+    session.pop("current_pet", None)
+    session.pop("current_user_id", None)
+    session.pop("current_username", None)
+
+    return jsonify("Your account has been deleted and your pet has been released into the wild.")
+
+
 @app.route('/user/pet')
 def view_pet():
     """Take user to main app page."""
@@ -170,9 +189,59 @@ def delete_user_pet():
         return redirect("/")
 
     crud.delete_pet(session["current_user_id"])
+    db.session.commit()
     session["current_pet"] = None
 
     return jsonify("Your pet has been released into the wild.")
+
+
+
+@app.route("/pet/play")
+def get_activities():
+    """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    activities = sample(ACTIVITY, k=3)
+
+    results = helper.evaluate_interaction(session["current_pet"], activities, "activity")
+
+    return jsonify(results)
+
+
+@app.route("/pet/feed")
+def get_food():
+    """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    foods = crud.get_user_items(session["current_user_id"])
+
+    results = helper.evaluate_interaction(session["current_pet"], foods, "food")
+
+    return jsonify(results)
+
+
+@app.route("/user/inventory/update", methods=["POST"])
+def update_inventory():
+    """Update user's inventory by removing a food item and adding a new one."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    food = request.json
+    response = crud.remove_item_from_user(session["current_user_id"], food)
+
+    response = crud.add_item_to_user(session["current_user_id"])
+
+    db.session.commit()
+
+    return "complete"
 
 
 @app.route("/user/location")
@@ -291,54 +360,6 @@ def mock_get_current_weather():
     }
 
     return jsonify(current_weather)
-
-
-@app.route("/pet/play")
-def get_activities():
-    """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
-
-    # Redirect to homepage if user not logged in
-    if not helper.check_for_login():
-        return redirect("/")
-
-    activities = sample(ACTIVITY, k=3)
-
-    results = helper.evaluate_interaction(session["current_pet"], activities, "activity")
-
-    return jsonify(results)
-
-
-@app.route("/pet/feed")
-def get_food():
-    """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
-
-    # Redirect to homepage if user not logged in
-    if not helper.check_for_login():
-        return redirect("/")
-
-    foods = crud.get_user_items(session["current_user_id"])
-
-    results = helper.evaluate_interaction(session["current_pet"], foods, "food")
-
-    return jsonify(results)
-
-
-@app.route("/user/inventory/update", methods=["POST"])
-def update_inventory():
-    """Update user's inventory by removing a food item and adding a new one."""
-
-    # Redirect to homepage if user not logged in
-    if not helper.check_for_login():
-        return redirect("/")
-
-    food = request.json
-    response = crud.remove_item_from_user(session["current_user_id"], food)
-
-    response = crud.add_item_to_user(session["current_user_id"])
-
-    db.session.commit()
-
-    return "complete"
 
 
 # ------------------------------------ #
