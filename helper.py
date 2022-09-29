@@ -10,9 +10,10 @@ from data_attributes.create_attributes import (
     ASTROLOGICAL_SIGN
 )
 
+
 def check_for_login():
     """Check if a user is currently logged in.
-    
+
     Returns:
     - True or False (bool): True if user is logged in, False if not
     """

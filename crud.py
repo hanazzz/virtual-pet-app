@@ -16,7 +16,7 @@ def create_user(username, email, password):
 
 def create_user_inventory(user):
     """Create user's initial inventory (3 random items from database).
-    
+
     Argument:
     - user (obj): User to create inventory for (database object)
 
@@ -130,10 +130,10 @@ def get_user_by_id(user_id):
     """Retrieve and return an existing user, using their user_id.
 
      Returns None if user doesn't exist.
-     
+
     Arguments:
     - user_id (int): A user ID to search by
-    
+
     Returns:
     - user (obj or None): Either user database object if user exists or None if not
      """
@@ -147,10 +147,10 @@ def get_user_by_username(username):
     """Retrieve and return an existing user, using their username.
 
     Returns None if user doesn't exist.
-    
+
     Arguments:
     - username (str): A username to search by
-    
+
     Returns:
     - user (obj or None): Either user database object if user exists or None if not
     """
@@ -164,10 +164,10 @@ def get_user_by_email(email):
     """Retrieve and return an existing user, using their email.
 
     Returns None if user doesn't exist.
-    
+
     Arguments:
     - email (str): An email to search by
-    
+
     Returns:
     - user (obj or None): Either user database object if user exists or None if not
     """
@@ -249,7 +249,7 @@ def update_pet_stats(user_id, current_energy, current_happiness):
 
 def update_pet_name(user_id, new_name):
     """Rename the current user's pet.
-    
+
     Arguments:
     - pet (dict): Dictionary of pet attributes
     - name (str): New name for pet
@@ -332,7 +332,7 @@ def remove_item_from_user(user_id, item_name):
 ## USER: Delete
 def delete_user(user_id):
     """Delete current user and their pet."""
-    
+
     # Delete user's pet
     delete_pet(user_id)
 

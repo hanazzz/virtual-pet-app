@@ -17,7 +17,8 @@ function DeleteObj({ setPetData, deletePet, deleteAcct }) {
 
   // OPTION 2
   function action() {
-    deletePet ? setPetData(null) : window.location.href = '/';
+    if (deletePet) setPetData(null);
+    else window.location.href = '/';
   }
 
   const route = deletePet ? '/user/pet/delete' : '/user/delete';

@@ -72,7 +72,7 @@ def login():
 @app.route("/user/logout", methods=["POST"])
 def logout():
     """Log user out."""
-    
+
     # Redirect to homepage if user not logged in
     if not helper.check_for_login():
         return redirect("/")
@@ -85,7 +85,7 @@ def logout():
         current_happiness = current_stats["currentHappiness"]
 
         crud.update_pet_stats(session["current_user_id"],
-                            current_energy, current_happiness)
+                              current_energy, current_happiness)
 
     session.pop("current_pet", None)
     session.pop("current_user_id", None)
@@ -189,7 +189,8 @@ def rename_user_pet():
     new_name = request.json
 
     # Update pet's name in db and update session with new pet name
-    session["current_pet"] = crud.update_pet_name(session["current_user_id"], new_name)
+    session["current_pet"] = crud.update_pet_name(
+        session["current_user_id"], new_name)
 
     # Return updated pet data
     return jsonify(session["current_pet"])
@@ -210,10 +211,11 @@ def delete_user_pet():
     return jsonify("Your pet has been released into the wild.")
 
 
-
 @app.route("/pet/play")
 def get_activities():
-    """Randomly pick 3 activities and return a dictionary with their associated point value and the pet's response."""
+    """Randomly pick 3 activities and return a dictionary
+    with their associated point value and the pet's response.
+    """
 
     # Redirect to homepage if user not logged in
     if not helper.check_for_login():
@@ -221,14 +223,19 @@ def get_activities():
 
     activities = sample(ACTIVITY, k=3)
 
-    results = helper.evaluate_interaction(session["current_pet"], activities, "activity")
+    results = helper.evaluate_interaction(
+        session["current_pet"],
+        activities,
+        "activity")
 
     return jsonify(results)
 
 
 @app.route("/pet/feed")
 def get_food():
-    """Get user's item inventory and return a dictionary with associated point value and pet response for each item."""
+    """Get user's item inventory and return a dictionary
+    with associated point value and pet response for each item.
+    """
 
     # Redirect to homepage if user not logged in
     if not helper.check_for_login():
@@ -236,7 +243,10 @@ def get_food():
 
     foods = crud.get_user_items(session["current_user_id"])
 
-    results = helper.evaluate_interaction(session["current_pet"], foods, "food")
+    results = helper.evaluate_interaction(
+        session["current_pet"],
+        foods,
+        "food")
 
     return jsonify(results)
 

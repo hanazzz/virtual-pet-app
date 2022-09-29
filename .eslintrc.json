@@ -18,6 +18,7 @@
         "Navbar": "readonly",
         "Footer": "readonly",
         "PetGenerator": "readonly",
+        "Settings": "readonly",
         "DeleteObj": "readonly",
         "RenamePet": "readonly",
         "CurrentPet": "readonly",
