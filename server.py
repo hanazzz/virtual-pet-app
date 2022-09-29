@@ -133,12 +133,7 @@ def get_user_info():
     if not helper.check_for_login():
         return redirect("/")
 
-    # TODO: I think I can just write pet=session["current_pet"] and return that, since it will be None if there is no pet or already a dict if there is a pet
-    pet = crud.get_pet(session["current_user_id"])
-
-    # If user has pet, turn Pet object into dict
-    if pet:
-        pet = pet.convert_to_dict()
+    pet = session["current_pet"]
 
     return jsonify(pet)
 
