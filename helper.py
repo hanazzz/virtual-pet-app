@@ -9,6 +9,11 @@ from data_attributes.create_attributes import (
     SPECIES_ID, SPECIES, FOOD, ACTIVITY, MUSIC_GENRE, WEATHER, PERSONALITY,
     ASTROLOGICAL_SIGN
 )
+# For craiyon.py
+from craiyon import Craiyon
+from PIL import Image # pip install pillow
+from io import BytesIO
+import base64
 
 
 def check_for_login():
@@ -253,3 +258,22 @@ def evaluate_interaction(pet, interactions, interaction_type):
             results[option]["response"] = interaction_responses[f"{interaction_type}"]["neutral"]
 
     return results
+
+
+def generate_craiyon_img(text_prompt):
+    path = "/generated/craiyon-test"
+    generator = Craiyon() # Instantiates the api wrapper
+    result = generator.generate(text_prompt)
+    images = result.images # A list containing image data as base64 encoded strings
+    # # ONLY GET FIRST IMAGE
+    image = Image.open(BytesIO(base64.decodebytes(images[0].encode("utf-8"))))
+    image.show()    # Opens image on computer
+    image.save(f"static/images/custom-pets/craiyon-img.jpg")   # Saves image to file path, with provided filename and extension
+
+    # LOOP THROUGH ALL 9 IMAGES
+    # j = 1
+    # for i in images:
+    #     image = Image.open(BytesIO(base64.decodebytes(i.encode("utf-8"))))
+    #     image.show()    # Opens image on computer
+    #     image.save(f"generated/craiyon-test/{j}.jpg")   # Saves image to file path, with provided filename and extension
+    #     j += 1
