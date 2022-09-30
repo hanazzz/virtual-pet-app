@@ -89,9 +89,9 @@ function AcctForm() {
 
   return (
     <>
-      <Navbar className="row" />
-      <h1 className="row">[App Name]</h1>
-      <p className="row">A very cool description of this app.</p>
+      <Navbar />
+      <h1>[App Name]</h1>
+      <p>A very cool description of this app.</p>
       {form}
       <br />
       <Button onClick={toggleLogInMethd}>

@@ -4,18 +4,6 @@
 
 // eslint-disable-next-line no-unused-vars
 function DeleteObj({ setPetData, deletePet, deleteAcct }) {
-  // OPTION 1
-  // function redirect() {
-  //   window.location.href = '/';
-  // }
-
-  // function clearPetData() {
-  //   setPetData(null);
-  // }
-
-  // const action = deletePet ? clearPetData : redirect;
-
-  // OPTION 2
   function action() {
     if (deletePet) setPetData(null);
     else window.location.href = '/';
@@ -55,7 +43,6 @@ function DeleteObj({ setPetData, deletePet, deleteAcct }) {
 
 DeleteObj.propTypes = {
   setPetData: PropTypes.func,
-  // deletionObject: PropTypes.string.isRequired,
   deletePet: PropTypes.bool,
   deleteAcct: PropTypes.bool,
 };

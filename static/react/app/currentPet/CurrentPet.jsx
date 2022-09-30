@@ -63,9 +63,6 @@ function CurrentPet({ pet, setPetData }) {
         <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
       </div>
 
-      <div className="col-span-8">
-        <Settings setPetData={setPetData} />
-      </div>
     </div>
   );
 }
