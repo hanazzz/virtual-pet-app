@@ -12,7 +12,7 @@ function Modal({ modalID, modalBtnText, children, modalBtnCallback }) {
     <>
       {/* The button to open modal */}
       <Button
-        btnClass="modal-button"
+        btnClasses="modal-button"
         onClick={modalCallback}
       >
         {modalBtnText}
@@ -24,7 +24,7 @@ function Modal({ modalID, modalBtnText, children, modalBtnCallback }) {
           {children}
           <div className="modal-action">
             <Button
-              btnClass="modal-button"
+              btnClasses="modal-button"
               onClick={modalCallback}
             >
               Cancel
