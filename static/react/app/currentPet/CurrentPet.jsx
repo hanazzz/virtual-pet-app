@@ -20,6 +20,17 @@ function CurrentPet({ pet, setPetData }) {
 
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
+  // TODO: Configure this to work correctly
+  // function takePic() {
+  //   const captureThis = document.getElementById('current-pet');
+
+  //   html2canvas(captureThis).then(canvas => {
+  //     document.body.appendChild(canvas)
+  //   });
+
+  //   document.querySelector('canvas').classList.add('')
+  // }
+
   return (
     <div id="current-pet" className="grid grid-cols-8">
 
@@ -62,6 +73,10 @@ function CurrentPet({ pet, setPetData }) {
 
         <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
       </div>
+
+      {/* <Button onClick={takePic}>
+        Take picture of pet
+      </Button> */}
 
     </div>
   );
