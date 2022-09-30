@@ -267,7 +267,8 @@ def generate_craiyon_img(text_prompt, user_id):
     - text_prompt (str): Text prompt to send to Craiyon
     - user_id (int): Current user's user ID
     """
-    path = "/generated/craiyon-test"
+    print("Starting up generator...")
+    
     generator = Craiyon()   # Instantiates the api wrapper
     result = generator.generate(text_prompt)
     images = result.images  # A list containing image data as base64 encoded strings

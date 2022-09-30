@@ -190,19 +190,25 @@ def create_custom_pet():
     # Receive set of keywords
     pet_prompt = request.json
 
+    print()
     print(pet_prompt)
+    print()
 
     user_id = session["current_user_id"]
     # Pass keywords into generate_craiyon_img()
     helper.generate_craiyon_img(pet_prompt, user_id)
     species_img = (f"static/images/custom-pets/{user_id}.jpg")
 
+    print()
+    print(species_img)
+    print()
+
     # Update pet object in db with new img
     # Get updated pet as dict and update session
-    session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
+    # session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
     
     # Return updated pet dict
-    return jsonify(session["current_pet"])
+    # return jsonify(session["current_pet"])
 
 
 @app.route("/user/pet/rename", methods=["POST"])
