@@ -1,19 +1,34 @@
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/forbid-prop-types */
-function Modal({ modalID, modalBnText, clickCallback, children }) {
+function Modal({ modalID, modalBtnText, children, modalBtnCallback }) {
+  function toggleModal() {
+    document.getElementById(modalID).classList.toggle('modal-open');
+  }
+
+  const modalCallback = modalBtnCallback || toggleModal;
+
   return (
     <>
-      <button type="button" data-bs-toggle="modal" data-bs-target={`#${modalID}`} onClick={clickCallback}>
-        {modalBnText}
-      </button>
+      {/* The button to open modal */}
+      <Button
+        btnClass="modal-button"
+        onClick={modalCallback}
+      >
+        {modalBtnText}
+      </Button>
 
-      <div className="modal fade" id={modalID} tabIndex="-1" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-body">
-              {children}
-
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+      {/* Modal box */}
+      <div id={modalID} className="modal">
+        <div className="modal-box">
+          {children}
+          <div className="modal-action">
+            <Button
+              btnClass="modal-button"
+              onClick={modalCallback}
+            >
+              Cancel
+            </Button>
           </div>
         </div>
       </div>
@@ -23,11 +38,14 @@ function Modal({ modalID, modalBnText, clickCallback, children }) {
 
 Modal.propTypes = {
   modalID: PropTypes.string.isRequired,
-  modalBnText: PropTypes.string.isRequired,
-  clickCallback: PropTypes.func,
+  modalBtnText: PropTypes.string.isRequired,
+  modalBtnCallback: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
   children: PropTypes.any.isRequired,
 };
 
 Modal.defaultProps = {
-  clickCallback: undefined,
+  modalBtnCallback: false,
 };

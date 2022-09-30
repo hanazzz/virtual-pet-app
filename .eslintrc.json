@@ -29,6 +29,7 @@
         "Login": "readonly",
         "CreateAcct": "readonly",
         "Play": "readonly",
+        "Button": "readonly",
         "Modal": "readonly",
         "Attributes": "readonly",
         "Interaction": "readonly",

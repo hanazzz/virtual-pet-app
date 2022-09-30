@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -45,7 +46,7 @@ function PetGenerator({ setPetData }) {
 
         console.log(newPetData);
 
-        // FIXME: Troubleshoot (doesn't currently work)
+        // TODO: Troubleshoot (doesn't currently work)
         // setNewPetData(prevData => ({
         //   ...prevData,
         //   name: name,
@@ -81,8 +82,8 @@ function PetGenerator({ setPetData }) {
   if (newPetData) {
     displayNewPet = (
       <>
-        <h2 className="row">Potential Pet</h2>
-        <div className="col">
+        <h2 className="col-span-2">Potential Pet</h2>
+        <div>
           <img
             src={newPetData.species_img_path}
             alt={newPetData.species_name}
@@ -91,20 +92,30 @@ function PetGenerator({ setPetData }) {
           />
         </div>
         <PetDisplay pet={newPetData} />
-        <div>
-          <button type="button" onClick={adoptPet} id="adopt-pet" className="row">ADOPT PET</button>
+        <div className="col-span-2">
+          <Button
+            onClick={adoptPet}
+            id="adopt-pet"
+          >
+            ADOPT PET
+          </Button>
         </div>
       </>
     );
   }
 
   return (
-    <div id="pet-generator" className="row">
-      <h1 className="row">Adopt a Pet</h1>
+    <div id="pet-generator" className="grid grid-cols-2">
+      <h1 className="col-span-2">Adopt a Pet</h1>
       {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
-      <p className="row">Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
+      <p className="col-span-2">Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
       <div>
-        <button type="button" onClick={generateNewPet} id="generate-pet" className="row">GENERATE PET</button>
+        <Button
+          onClick={generateNewPet}
+          id="generate-pet"
+        >
+          GENERATE PET
+        </Button>
       </div>
       {displayNewPet}
     </div>

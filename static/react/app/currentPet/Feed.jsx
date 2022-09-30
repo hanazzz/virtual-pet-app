@@ -63,7 +63,7 @@ function Feed({ setEnergy, energy, setMood }) {
   }
 
   return (
-    <Modal modalID="feed-modal" modalBnText="FEED PET" clickCallback={handleInteraction}>
+    <Modal modalID="feed-modal" modalBtnText="FEED PET" clickCallback={handleInteraction}>
       <h5 className="modal-title">Feed Pet</h5>
       {interactionBtns}
     </Modal>

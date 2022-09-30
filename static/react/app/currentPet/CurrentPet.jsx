@@ -21,48 +21,49 @@ function CurrentPet({ pet, setPetData }) {
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
   return (
-    <div id="current-pet" className="row">
+    <div id="current-pet" className="grid grid-cols-8">
 
-      <PetHeading pet={pet} />
-
-      <div id="pet-main" className="row align-items-center">
-        <div className="col d-flex flex-column justify-content-around h-100">
-          <div id="mood">
-            <h5>{mood}</h5>
-          </div>
-          <WeatherDisplay lat={pet.lat} lon={pet.lon} />
-        </div>
-
-        <div className="col text-center">
-          <img
-            src={pet.species_img_path}
-            alt={pet.species_name}
-            id="species-img"
-          />
-        </div>
-
-        <div id="interactions" className="col text-center">
-          {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
-          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
-          <br />
-          <br />
-          {/* eslint-disable-next-line max-len */}
-          <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
-          {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
-          <br />
-          <br />
-          <Attributes pet={pet} />
-        </div>
+      <div id="pet-heading" className="col-span-8">
+        <PetHeading pet={pet} />
       </div>
 
-      <div id="stats" className="row">
+      {/* <div id="pet-main" className="col-span-6 grid grid-cols-6"> */}
+      <div className="col-span-2 flex flex-col justify-evenly">
+        <div id="mood">
+          <h5>{mood}</h5>
+        </div>
+        <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+      </div>
+
+      <div className="col-span-4">
+        <img
+          src={pet.species_img_path}
+          alt={pet.species_name}
+          id="species-img"
+        />
+      </div>
+
+      <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">
+        {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
+        <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
+        <br />
+        <br />
+        {/* eslint-disable-next-line max-len */}
+        <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
+        {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
+        <br />
+        <br />
+        <Attributes pet={pet} />
+      </div>
+      {/* </div> */}
+
+      <div id="stats" className="col-start-3 col-span-4 flex flex-row justify-between">
         <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
         <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
       </div>
 
-      <br />
-      <div className="row">
+      <div className="col-span-8">
         <Settings setPetData={setPetData} />
       </div>
     </div>

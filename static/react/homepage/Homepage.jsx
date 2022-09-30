@@ -94,9 +94,9 @@ function AcctForm() {
       <p className="row">A very cool description of this app.</p>
       {form}
       <br />
-      <button type="button" className="row" onClick={toggleLogInMethd}>
+      <Button onClick={toggleLogInMethd}>
         {logInMethd ? logInMsg : createAcctMsg}
-      </button>
+      </Button>
     </>
   );
 }

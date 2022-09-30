@@ -51,7 +51,7 @@ function VirtualPetApp() {
   return (
     <>
       <Navbar username={username} />
-      <main className="row">
+      <main className="px-10 py-6">
         {appContent}
       </main>
       <Footer />

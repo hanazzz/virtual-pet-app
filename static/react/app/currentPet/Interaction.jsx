@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable dot-notation */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -7,6 +8,7 @@
 function Interaction({ setStat, stat, setMood, interactionText, interactionType }) {
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let interactions = {};
+  const modalID = `${interactionType}-modal`;
 
   // Way to use this function to reduce duplication in handleChoice?
   // function handleStatChange(statChange, response) {
@@ -36,6 +38,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         },
       })
         .then(() => {
+          document.getElementById(modalID).classList.toggle('modal-open');
           if ((stat + statChange) <= 0) {
             setStat(0);
           } else if ((stat + statChange) >= 5) {
@@ -46,6 +49,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
           setMood(response);
         });
     } else {
+      document.getElementById(modalID).classList.toggle('modal-open');
       if ((stat + statChange) <= 0) {
         setStat(0);
       } else if ((stat + statChange) >= 5) {
@@ -58,53 +62,33 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   }
 
   function handleInteraction() {
+    document.getElementById(modalID).classList.toggle('modal-open');
     fetch(`/pet/${interactionType}`)
       .then((response) => response.json())
       .then((responseJson) => {
         interactions = responseJson;
         console.log(interactions);
         const btns = Object.keys(interactions).map((interaction) => (
-          <button
-            type="button"
+          <Button
             id={interaction}
             key={interaction}
             onClick={handleChoice}
-            data-bs-dismiss="modal"
           >
             {interaction}
-          </button>
+          </Button>
         ));
         setInteractionBtns(btns);
       });
   }
 
+  // React.useEffect((handleInteraction), [stat]);
+
   return (
     // eslint-disable-next-line react/jsx-no-bind
-    <Modal modalID={`${interactionType}-modal`} modalBnText={interactionText} clickCallback={handleInteraction}>
+    <Modal modalID={modalID} modalBtnText={interactionText} modalBtnCallback={handleInteraction}>
       <h5 className="modal-title">{interactionText}</h5>
       {interactionBtns}
     </Modal>
-
-  // <>
-  // eslint-disable-next-line max-len
-  //   <button type="button" data-bs-toggle="modal" data-bs-target={`#${interactionType}-modal`} onClick={handleInteraction}>
-  //     {interactionText}
-  //   </button>
-
-  //   <div className="modal fade" id={`${interactionType}-modal`} tabIndex="-1" aria-hidden="true">
-  //     <div className="modal-dialog">
-  //       <div className="modal-content">
-  //         <div className="modal-body">
-  //           <h5 className="modal-title">{interactionText}</h5>
-  //           {interactionBtns}
-  //           <br />
-  // eslint-disable-next-line max-len
-  //           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </>
   );
 }
 

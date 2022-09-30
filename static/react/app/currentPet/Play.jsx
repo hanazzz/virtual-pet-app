@@ -51,7 +51,7 @@ function Play({ setHappiness, happiness, setMood }) {
   }
 
   return (
-    <Modal modalID="play-modal" modalBnText="PLAY WITH PET" clickCallback={handleInteraction}>
+    <Modal modalID="play-modal" modalBtnText="PLAY WITH PET" clickCallback={handleInteraction}>
       <h5 className="modal-title">Play with Pet</h5>
       {interactionBtns}
     </Modal>

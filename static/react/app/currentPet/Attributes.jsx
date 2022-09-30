@@ -1,6 +1,6 @@
 function Attributes({ pet }) {
   return (
-    <Modal modalID="pet-attributes" modalBnText="ATTRIBUTES">
+    <Modal modalID="pet-attributes" modalBtnText="ATTRIBUTES">
       <PetDisplay pet={pet} />
     </Modal>
   );

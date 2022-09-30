@@ -50,11 +50,12 @@ function WeatherDisplay({ lat, lon }) {
       <div className="">
         {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
       </div>
-      {/* <br /> */}
       <div className="">{currentWeather.description}</div>
-      {/* <br /> */}
-      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <button type="button" className="" onClick={toggleTempUnit}>{fahrenheit} {'\u2194'} {celsius}</button>
+      <Button
+        onClick={toggleTempUnit}
+      >
+        {fahrenheit} {'\u2194'} {celsius}
+      </Button>
     </div>
   );
 }
