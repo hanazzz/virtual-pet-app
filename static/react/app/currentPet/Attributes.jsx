@@ -1,8 +1,25 @@
 function Attributes({ pet }) {
+  const modalID = 'pet-attributes-modal';
+
   return (
-    <Modal modalID="pet-attributes" modalBtnText="ATTRIBUTES">
-      <PetDisplay pet={pet} />
-    </Modal>
+    <>
+      <ModalBtn modalID={modalID}>
+        ATTRIBUTES
+      </ModalBtn>
+
+      <ModalBox modalID={modalID}>
+        <PetDisplay pet={pet} />
+        <ModalFooter>
+          <ModalBtn modalID={modalID}>
+            Close
+          </ModalBtn>
+        </ModalFooter>
+      </ModalBox>
+    </>
+
+  // <Modal modalID="pet-attributes" modalBtnText="ATTRIBUTES">
+  //   <PetDisplay pet={pet} />
+  // </Modal>
   );
 }
 

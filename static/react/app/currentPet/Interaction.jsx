@@ -84,11 +84,21 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   // React.useEffect((handleInteraction), [stat]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-bind
-    <Modal modalID={modalID} modalBtnText={interactionText} modalBtnCallback={handleInteraction}>
-      <h5 className="modal-title">{interactionText}</h5>
-      {interactionBtns}
-    </Modal>
+    <>
+      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction}>
+        {interactionText}
+      </ModalBtn>
+
+      <ModalBox modalID={modalID}>
+        <h5 className="modal-title">{interactionText}</h5>
+        {interactionBtns}
+        <ModalFooter>
+          <ModalBtn modalID={modalID}>
+            Cancel
+          </ModalBtn>
+        </ModalFooter>
+      </ModalBox>
+    </>
   );
 }
 
