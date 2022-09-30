@@ -179,6 +179,32 @@ def adopt_pet():
     return jsonify(pet)
 
 
+@app.route("/user/pet/custom", methods=["POST"])
+def create_custom_pet():
+    """Create a custom pet species."""
+
+    # Redirect to homepage if user not logged in
+    if not helper.check_for_login():
+        return redirect("/")
+
+    # Receive set of keywords
+    pet_prompt = request.json
+
+    print(pet_prompt)
+
+    user_id = session["current_user_id"]
+    # Pass keywords into generate_craiyon_img()
+    helper.generate_craiyon_img(pet_prompt, user_id)
+    species_img = (f"static/images/custom-pets/{user_id}.jpg")
+
+    # Update pet object in db with new img
+    # Get updated pet as dict and update session
+    session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
+    
+    # Return updated pet dict
+    return jsonify(session["current_pet"])
+
+
 @app.route("/user/pet/rename", methods=["POST"])
 def rename_user_pet():
     """Rename current user's pet."""

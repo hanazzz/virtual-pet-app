@@ -260,15 +260,22 @@ def evaluate_interaction(pet, interactions, interaction_type):
     return results
 
 
-def generate_craiyon_img(text_prompt):
+def generate_craiyon_img(text_prompt, user_id):
+    """Send a text prompt to Craiyon and store the first resulting image.
+
+    Arguments:
+    - text_prompt (str): Text prompt to send to Craiyon
+    - user_id (int): Current user's user ID
+    """
     path = "/generated/craiyon-test"
-    generator = Craiyon() # Instantiates the api wrapper
+    generator = Craiyon()   # Instantiates the api wrapper
     result = generator.generate(text_prompt)
-    images = result.images # A list containing image data as base64 encoded strings
+    images = result.images  # A list containing image data as base64 encoded strings
+
     # # ONLY GET FIRST IMAGE
     image = Image.open(BytesIO(base64.decodebytes(images[0].encode("utf-8"))))
     image.show()    # Opens image on computer
-    image.save(f"static/images/custom-pets/craiyon-img.jpg")   # Saves image to file path, with provided filename and extension
+    image.save(f"static/images/custom-pets/{user_id}.jpg")   # Saves image to file path, using user_id as filename
 
     # LOOP THROUGH ALL 9 IMAGES
     # j = 1

@@ -246,7 +246,7 @@ def update_pet_stats(user_id, current_energy, current_happiness):
 
     db.session.commit()
 
-
+# TODO: Fold into following, more abstracted function
 def update_pet_name(user_id, new_name):
     """Rename the current user's pet.
 
@@ -255,13 +255,41 @@ def update_pet_name(user_id, new_name):
     - name (str): New name for pet
 
     Returns:
-    None
+    - pet_dict (dict): Updated dictionary of pet attributes
     """
 
     pet = get_pet(user_id)
 
     pet.name = new_name
     db.session.commit()
+
+    # Get updated pet dictionary from db
+    pet_dict = pet.convert_to_dict()
+
+    # Return updated dictionary
+    return pet_dict
+
+
+def update_pet_attr(user_id, attr, new_value):
+    """Update an attribute for the current user's pet.
+
+    Arguments:
+    - pet (dict): Dictionary of pet attributes
+    - attr (str): Attribute to update
+    - new_value (str): New value for attribute
+
+    Returns:
+    - pet_dict (dict): Updated dictionary of pet attributes
+    """
+
+    pet = get_pet(user_id)
+
+    print("old attr", pet.attr)
+
+    pet.attr = new_value
+    db.session.commit()
+
+    print("new attr", pet.attr)
 
     # Get updated pet dictionary from db
     pet_dict = pet.convert_to_dict()
