@@ -17,6 +17,8 @@
         "PropTypes": "readonly",
         "Navbar": "readonly",
         "Footer": "readonly",
+        "SelectInput": "readonly",
+        "CustomPetCreator": "readonly",
         "PetGenerator": "readonly",
         "Settings": "readonly",
         "Logout": "readonly",

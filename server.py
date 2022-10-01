@@ -187,16 +187,22 @@ def create_custom_pet():
     if not helper.check_for_login():
         return redirect("/")
 
-    # Receive set of keywords
+    # Receive string of keywords
     pet_prompt = request.json
+    print(pet_prompt)
+    # Append "synthwave"
+    pet_prompt.append("synthwave")
+    print(pet_prompt)
+    # Join list items to form a string
+    pet_prompt_str = ' '.join(pet_prompt)
 
     print()
-    print(pet_prompt)
+    print(pet_prompt_str)
     print()
 
     user_id = session["current_user_id"]
     # Pass keywords into generate_craiyon_img()
-    helper.generate_craiyon_img(pet_prompt, user_id)
+    helper.generate_craiyon_img(pet_prompt_str, user_id)
     species_img = (f"static/images/custom-pets/{user_id}.jpg")
 
     print()
@@ -205,10 +211,10 @@ def create_custom_pet():
 
     # Update pet object in db with new img
     # Get updated pet as dict and update session
-    # session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
+    session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
     
     # Return updated pet dict
-    # return jsonify(session["current_pet"])
+    return jsonify(session["current_pet"])
 
 
 @app.route("/user/pet/rename", methods=["POST"])

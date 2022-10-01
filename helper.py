@@ -267,8 +267,8 @@ def generate_craiyon_img(text_prompt, user_id):
     - text_prompt (str): Text prompt to send to Craiyon
     - user_id (int): Current user's user ID
     """
-    print("Starting up generator...")
-    
+    print("Starting up img generator...")
+
     generator = Craiyon()   # Instantiates the api wrapper
     result = generator.generate(text_prompt)
     images = result.images  # A list containing image data as base64 encoded strings
@@ -277,6 +277,7 @@ def generate_craiyon_img(text_prompt, user_id):
     image = Image.open(BytesIO(base64.decodebytes(images[0].encode("utf-8"))))
     image.show()    # Opens image on computer
     image.save(f"static/images/custom-pets/{user_id}.jpg")   # Saves image to file path, using user_id as filename
+    print("Image complete.")
 
     # LOOP THROUGH ALL 9 IMAGES
     # j = 1

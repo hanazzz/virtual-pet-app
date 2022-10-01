@@ -24,20 +24,6 @@ function PetGenerator({ setPetData }) {
       .catch((error) => alert(error.toString()));
   }
 
-  const textKeywords = 'pink flower pixel art';
-
-  function customPet() {
-    console.log('creating custom pet');
-
-    fetch('/user/pet/custom', {
-      method: 'POST',
-      body: JSON.stringify(textKeywords),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-
   // Adopt pet
   function adoptPet() {
     console.log('preparing to adopt pet');
@@ -132,7 +118,7 @@ function PetGenerator({ setPetData }) {
         </Button>
       </div>
       {displayNewPet}
-      <Button onClick={customPet}>CUSTOM PET!!!!</Button>
+      <CustomPetCreator />
     </div>
   );
 }
