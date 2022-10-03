@@ -64,7 +64,7 @@ function CurrentPet({ pet, setPetData }) {
         {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
         <br />
         <br />
-        <Attributes pet={pet} />
+        <AttributesModal pet={pet} />
       </div>
       {/* </div> */}
 

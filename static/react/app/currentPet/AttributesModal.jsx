@@ -1,4 +1,4 @@
-function Attributes({ pet }) {
+function AttributesModal({ pet }) {
   const modalID = 'pet-attributes-modal';
 
   return (
@@ -23,7 +23,7 @@ function Attributes({ pet }) {
   );
 }
 
-Attributes.propTypes = {
+AttributesModal.propTypes = {
   pet: PropTypes.shape({
     species_name: PropTypes.string.isRequired,
     food_fave: PropTypes.string.isRequired,

@@ -37,7 +37,7 @@
         "ModalBtn": "readonly",
         "ModalBox": "readonly",
         "ModalFooter": "readonly",
-        "Attributes": "readonly",
+        "AttributesModal": "readonly",
         "Interaction": "readonly",
         "Feed": "readonly",
         "AdoptPetBtn": "readonly",
