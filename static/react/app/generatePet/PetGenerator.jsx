@@ -23,7 +23,7 @@ function PetGenerator({ setPetData }) {
         <h2 className="col-span-2">Potential Pet</h2>
         <div>
           <img
-            src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/400x400.png?text=Your+custom+pet+here!'}
+            src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
             alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pete here!'}
             id="species-img"
             className="col"

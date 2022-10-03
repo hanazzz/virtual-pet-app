@@ -172,7 +172,7 @@ def create_example_data():
                    weather_least="Cold and rainy",
                    personality="Shy, clever, kind",
                    astro_sign="Libra",
-                   species_img_path="/static/images/prickly-bunny.jpg")
+                   species_img_path="/static/images/premade-species/prickly-bunny.jpg")
 
     # Add all test data into db
     test_data = [test_user, test_pet]
