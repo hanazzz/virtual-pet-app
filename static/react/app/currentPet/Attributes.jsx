@@ -8,7 +8,7 @@ function Attributes({ pet }) {
       </ModalBtn>
 
       <ModalBox modalID={modalID}>
-        <PetDisplay pet={pet} />
+        <PetAttributes pet={pet} />
         <ModalFooter>
           <ModalBtn modalID={modalID}>
             Close
@@ -18,7 +18,7 @@ function Attributes({ pet }) {
     </>
 
   // <Modal modalID="pet-attributes" modalBtnText="ATTRIBUTES">
-  //   <PetDisplay pet={pet} />
+  //   <PetAttributes pet={pet} />
   // </Modal>
   );
 }

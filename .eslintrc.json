@@ -25,7 +25,7 @@
         "DeleteObj": "readonly",
         "RenamePet": "readonly",
         "CurrentPet": "readonly",
-        "PetDisplay": "readonly",
+        "PetAttributes": "readonly",
         "WeatherDisplay": "readonly",
         "StatDisplay": "readonly",
         "Stat": "readonly",
@@ -40,6 +40,8 @@
         "Attributes": "readonly",
         "Interaction": "readonly",
         "Feed": "readonly",
+        "AdoptPetBtn": "readonly",
+        "GeneratePetBtn": "readonly",
         "PetHeading": "readonly"
     }   
 }

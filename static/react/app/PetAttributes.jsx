@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function PetDisplay({ pet }) {
+function PetAttributes({ pet }) {
   return (
     <table id="pet-display" className="col">
       <caption>Pet Attributes</caption>
@@ -53,7 +53,7 @@ function PetDisplay({ pet }) {
   );
 }
 
-PetDisplay.propTypes = {
+PetAttributes.propTypes = {
   pet: PropTypes.shape({
     species_name: PropTypes.string.isRequired,
     food_fave: PropTypes.string.isRequired,
