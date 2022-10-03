@@ -50,7 +50,7 @@ function VirtualPetApp() {
 
   return (
     <>
-      <Navbar username={username} setPetData={setPetData} />
+      <Navbar username={username} petData={petData} setPetData={setPetData} />
       <main className="px-10 py-6">
         {appContent}
       </main>
