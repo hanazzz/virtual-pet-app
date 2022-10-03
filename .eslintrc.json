@@ -19,6 +19,7 @@
         "Footer": "readonly",
         "SelectInput": "readonly",
         "CustomPetCreator": "readonly",
+        "SpeciesToggle": "readonly",
         "PetGenerator": "readonly",
         "Settings": "readonly",
         "Logout": "readonly",

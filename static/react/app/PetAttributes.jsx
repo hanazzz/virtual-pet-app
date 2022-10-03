@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-function PetAttributes({ pet }) {
+function PetAttributes({ pet, speciesPlaceholder }) {
   return (
     <table id="pet-display" className="col">
       <caption>Pet Attributes</caption>
       <tbody>
         <tr>
           <td>Pet species</td>
-          <td id="pet-species">{pet.species_name}</td>
+          <td id="pet-species">{!speciesPlaceholder ? pet.species_name : speciesPlaceholder}</td>
         </tr>
         <tr>
           <td>Favorite food</td>
@@ -68,4 +68,8 @@ PetAttributes.propTypes = {
     astro_sign: PropTypes.string.isRequired,
     species_img_path: PropTypes.string.isRequired,
   }).isRequired,
+  speciesPlaceholder: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]).isRequired,
 };

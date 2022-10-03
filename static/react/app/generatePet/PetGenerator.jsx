@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-no-bind */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -7,6 +8,8 @@
 function PetGenerator({ setPetData }) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
+
+  const [useCustomSpecies, setUseCustomSpecies] = React.useState(false);
 
   // alert("Looks like you don't have a pet yet! Let's fix that.");
   console.log('*** rendering pet generator ***');
@@ -20,13 +23,13 @@ function PetGenerator({ setPetData }) {
         <h2 className="col-span-2">Potential Pet</h2>
         <div>
           <img
-            src={newPetData.species_img_path}
-            alt={newPetData.species_name}
+            src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/400x400.png?text=Your+custom+pet+here!'}
+            alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pete here!'}
             id="species-img"
             className="col"
           />
         </div>
-        <PetAttributes pet={newPetData} />
+        <PetAttributes pet={newPetData} speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'} />
         <div className="col-span-1">
           <AdoptPetBtn
             newPetData={newPetData}
@@ -51,6 +54,7 @@ function PetGenerator({ setPetData }) {
         <GeneratePetBtn setNewPetData={setNewPetData} />
       </div>
       {displayNewPet}
+      <SpeciesToggle useCustomSpecies={useCustomSpecies} setUseCustomSpecies={setUseCustomSpecies} />
       <CustomPetCreator />
     </div>
   );
