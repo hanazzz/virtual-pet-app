@@ -27,7 +27,7 @@ function CustomPetCreator() {
   }
 
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full max-w-xs md:col-span-2">
       <form id="custom-species-form" className="hidden" name="custom-pet" onSubmit={(evt) => makeCustomPet(evt)}>
         <h3>Make a custom pet species!</h3>
         <SelectInput

@@ -20,7 +20,7 @@ function PetGenerator({ setPetData }) {
   if (newPetData) {
     displayNewPet = (
       <>
-        <h2 className="col-span-2">Potential Pet</h2>
+        <h2 className="md:col-span-2">Potential Pet</h2>
         <div>
           <img
             src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
@@ -30,6 +30,8 @@ function PetGenerator({ setPetData }) {
           />
         </div>
         <PetAttributes pet={newPetData} speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'} />
+        <SpeciesToggle useCustomSpecies={useCustomSpecies} setUseCustomSpecies={setUseCustomSpecies} />
+        <CustomPetCreator />
         <div className="col-span-1">
           <AdoptPetBtn
             newPetData={newPetData}
@@ -42,9 +44,9 @@ function PetGenerator({ setPetData }) {
   }
 
   return (
-    <div id="pet-generator" className="grid grid-cols-2">
-      <h1 className="col-span-2">Adopt a Pet</h1>
-      <div className="col-span-2">
+    <div id="pet-generator" className="grid md:grid-cols-2">
+      <h1 className="md:col-span-2">Adopt a Pet</h1>
+      <div className="md:col-span-2">
         {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
         <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
         <p>TODO: ADD INSTRUCTIONS. Can either generate pet from existing species or create custom species.</p>
@@ -54,8 +56,6 @@ function PetGenerator({ setPetData }) {
         <GeneratePetBtn setNewPetData={setNewPetData} />
       </div>
       {displayNewPet}
-      <SpeciesToggle useCustomSpecies={useCustomSpecies} setUseCustomSpecies={setUseCustomSpecies} />
-      <CustomPetCreator />
     </div>
   );
 }
