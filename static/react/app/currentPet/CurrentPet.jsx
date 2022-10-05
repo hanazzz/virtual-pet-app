@@ -18,6 +18,8 @@ function CurrentPet({ pet, setPetData }) {
 
   const [mood, setMood] = React.useState("I'm so happy to see you!");
 
+  const {error, isLoading, isSuccess} = useMakeCustomImg();
+
   console.log('*** Existing pet data, rendering CurrentPet ***');
 
   // TODO: Configure this to work correctly
@@ -52,6 +54,9 @@ function CurrentPet({ pet, setPetData }) {
           alt={pet.species_name}
           id="species-img"
         />
+        Error: {error}
+        isLoading: {isLoading}
+        isSuccess: {isSuccess}
       </div>
 
       <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">

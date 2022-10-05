@@ -11,19 +11,24 @@ function CustomPetCreator() {
   const [color, setColor] = React.useState('');
   const [animal, setAnimal] = React.useState('');
 
+  const {makeCustomImg} = useMakeCustomImg();
+
   function makeCustomPet(evt) {
     evt.preventDefault();
 
     console.log('creating custom pet');
+
     const petPrompt = [adjective, color, animal];
-    console.log(petPrompt);
-    fetch('/user/pet/custom', {
-      method: 'POST',
-      body: JSON.stringify(petPrompt),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+
+    makeCustomImg(petPrompt);
+    // console.log(petPrompt);
+    // fetch('/user/pet/custom', {
+    //   method: 'POST',
+    //   body: JSON.stringify(petPrompt),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
   }
 
   return (

@@ -209,12 +209,14 @@ def create_custom_pet():
     print(species_img)
     print()
 
-    # Update pet object in db with new img
-    # Get updated pet as dict and update session
-    session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
+    # # Update pet object in db with new img
+    # # Get updated pet as dict and update session
+    # session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
     
-    # Return updated pet dict
-    return jsonify(session["current_pet"])
+    # # Return updated pet dict
+    # return jsonify(session["current_pet"])
+
+    return jsonify(species_img)
 
 
 @app.route("/user/pet/rename", methods=["POST"])
