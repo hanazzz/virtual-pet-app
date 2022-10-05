@@ -31,7 +31,10 @@ function SelectInput({
 SelectInput.propTypes = {
   selectID: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
-  optionList: PropTypes.list.isRequired,
+  optionList: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])).isRequired,
   addlLabelClasses: PropTypes.string,
   addlSelectClasses: PropTypes.string,
   state: PropTypes.string.isRequired,

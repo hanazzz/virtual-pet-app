@@ -52,6 +52,7 @@ function AdoptPetBtn({ newPetData, setNewPetData, setPetData }) {
           .then((response) => response.json())
           .then((responseJson) => {
             console.log('adoption complete');
+            // eslint-disable-next-line react/prop-types
             alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
             setPetData(responseJson);
           })
@@ -70,7 +71,20 @@ function AdoptPetBtn({ newPetData, setNewPetData, setPetData }) {
 }
 
 AdoptPetBtn.propTypes = {
-  newPetData: PropTypes.obj.isRequired,
+  newPetData: PropTypes.shape({
+    species_name: PropTypes.string.isRequired,
+    food_fave: PropTypes.string.isRequired,
+    food_least: PropTypes.string.isRequired,
+    activity_fave: PropTypes.string.isRequired,
+    activity_least: PropTypes.string.isRequired,
+    music_fave: PropTypes.string.isRequired,
+    music_least: PropTypes.string.isRequired,
+    weather_fave: PropTypes.string.isRequired,
+    weather_least: PropTypes.string.isRequired,
+    personality: PropTypes.string.isRequired,
+    astro_sign: PropTypes.string.isRequired,
+    species_img_path: PropTypes.string.isRequired,
+  }).isRequired,
   setNewPetData: PropTypes.func.isRequired,
   setPetData: PropTypes.func.isRequired,
 };
