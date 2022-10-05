@@ -39,6 +39,16 @@ function PetGenerator({ setPetData }) {
             setPetData={setPetData}
           />
         </div>
+        <div>
+          <br />
+          <br />
+          <br />
+          <p>Worker Test</p>
+          <WorkerTest />
+          <br />
+          <br />
+          <br />
+        </div>
       </>
     );
   }
