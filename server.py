@@ -134,7 +134,7 @@ def get_user_info():
     if not helper.check_for_login():
         return redirect("/")
 
-    pet = session["current_pet"]
+    pet = session.get("current_pet", None)
 
     return jsonify(pet)
 
@@ -164,6 +164,9 @@ def adopt_pet():
 
     # Add current user ID to pet_data dictionary
     pet_data["user_id"] = session["current_user_id"]
+
+    # Ensure pet species is in title case (Craiyon keywords used for species name are lowercase)
+    pet_data["species_name"] = pet_data["species_name"].title()
 
     # Create pet
     crud.create_pet_from_dict(pet_data)
@@ -203,20 +206,20 @@ def create_custom_pet():
     user_id = session["current_user_id"]
     # Pass keywords into generate_craiyon_img()
     helper.generate_craiyon_img(pet_prompt_str, user_id)
-    species_img = (f"static/images/custom-pets/{user_id}.jpg")
+    species_img_path = (f"/static/images/custom-pets/{user_id}.jpg")
 
     print()
-    print(species_img)
+    print(species_img_path)
     print()
 
-    # # Update pet object in db with new img
-    # # Get updated pet as dict and update session
-    # session["current_pet"] = crud.update_pet_attr(user_id, "species_img", species_img)
+    # Update pet object in db with new img
+    # Get updated pet as dict and update session
+    session["current_pet"] = crud.update_pet_attr(user_id, "species_img_path", species_img_path)
     
     # # Return updated pet dict
     # return jsonify(session["current_pet"])
 
-    return jsonify(species_img)
+    return "success"
 
 
 @app.route("/user/pet/rename", methods=["POST"])
