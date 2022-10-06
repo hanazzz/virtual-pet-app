@@ -92,6 +92,9 @@ function AcctForm() {
       <Navbar />
       <h1>[App Name]</h1>
       <p>A very cool description of this app.</p>
+      <Alert alertID="test-alert">
+        This is a test alert!
+      </Alert>
       {form}
       <br />
       <Button onClick={toggleLogInMethd}>
