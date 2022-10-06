@@ -6,7 +6,7 @@ function VirtualPetApp() {
   // const [petData, setPetData] = React.useState(undefined);
   const username = localStorage.getItem('username');
 
-  const queryClient = new ReactQuery.QueryClient();
+  const { petData, isLoading } = usePetData();
 
   console.log('Loading app');
 
@@ -26,54 +26,44 @@ function VirtualPetApp() {
   //     })
   //     .catch((error) => alert(error.toString()));
   // }, []);
-  const {data: petData, isLoading} = ReactQuery.useQuery(['pet data'], () => 
-    fetch('/user/pet/info')
-    .then((response) => response.json())
-    // .then((petJson) => {
-    //   if (petJson) {
-    //     console.log('checked db: has pet');
-    //     setPetData(petJson);
-    //   } else {
-    //     console.log('checked db: no pet');
-    //     setPetData(null);
-    //   }
-    // })
-    .catch((error) => alert(error.toString())), 
-  )
 
   // If user's pet status is unknown (i.e. useEffect hasn't run)
-  // Can rewrite to check isLoading to determine what to show (and update following lines accordingly) + 
+  // TODO: rewrite to check isLoading to determine what to show (update following lines accordingly)
   let appContent = (<div className="row">Loading...</div>);
 
   // If user has pet, load CurrentPet. If not, load PetGene
   if (petData) {
     appContent = (
-      <CurrentPet
-        pet={petData}
-        setPetData={setPetData}
-      />
+      <CurrentPet />
     );
   } else if (petData === null) {
     // If any lingering stats in local storage, delete them.
     localStorage.removeItem('energy');
     localStorage.removeItem('happiness');
     appContent = (
-      <PetGenerator
-        petData={petData}
-        setPetData={setPetData}
-      />
+      <PetGenerator />
     );
   }
 
   return (
-    <ReactQuery.QueryClientProvider client={queryClient}>
-      <Navbar username={username} petData={petData} setPetData={setPetData} />
+    <>
+      <Navbar username={username} />
       <main className="px-10 py-6">
         {appContent}
       </main>
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  const queryClient = new ReactQuery.QueryClient();
+
+  return (
+    <ReactQuery.QueryClientProvider client={queryClient}>
+      <VirtualPetApp />
     </ReactQuery.QueryClientProvider>
   );
 }
 
-ReactDOM.render(<VirtualPetApp />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));
