@@ -30,7 +30,7 @@ const useMakeCustomImg = () => {
     {
       // disable garbage collection
       cacheTime: Infinity,
-      // callback function for when mutation function is successful
+      // callback function for when mutation function is successful (get updated pet data from server)
       onSuccess: () => queryClient.invalidateQueries(['pet data']),
     },
   );
