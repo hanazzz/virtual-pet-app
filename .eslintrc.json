@@ -14,6 +14,7 @@
     "globals": {
         "React": "readonly",
         "ReactDOM": "readonly",
+        "ReactQuery": "readonly",
         "PropTypes": "readonly",
         "Navbar": "readonly",
         "Footer": "readonly",
@@ -43,6 +44,8 @@
         "Feed": "readonly",
         "AdoptPetBtn": "readonly",
         "GeneratePetBtn": "readonly",
+        "usePetData": "readonly",
+        "useMakeCustomImg": "readonly",
         "PetHeading": "readonly"
     }   
 }
