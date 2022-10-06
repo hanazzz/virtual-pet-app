@@ -38,7 +38,6 @@ function WeatherDisplay({ lat, lon, tempInF }) {
 
   return (
     <div id="weather">
-      <i className={`owf owf-${currentWeather.conditionCode} owf-3x`} />
       <i className={`wi wi-owm-${currentWeather.conditionCode} fa-3x`} />
       {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
       <div className="">
