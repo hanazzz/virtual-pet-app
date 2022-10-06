@@ -23,6 +23,8 @@ function CustomPetCreator({ adoptPet }) {
 
     adoptPet(customSpecies, null);
 
+    // TODO: Add way to throw error if adoptPet fails so that rest of function doesn't execute
+
     console.log('creating custom pet');
 
     const petPrompt = [adjective, color, animal];

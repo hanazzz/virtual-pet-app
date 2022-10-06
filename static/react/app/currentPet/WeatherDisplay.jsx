@@ -23,7 +23,13 @@ function WeatherDisplay({ lat, lon, tempInF }) {
     })
       .then((response) => response.json())
       .then((weatherData) => {
-        setCurrentWeather(weatherData);
+        // Throw error if received error message instead of object
+        if (typeof weatherData === 'string') {
+          console.log(weatherData);
+          throw (weatherData);
+        } else {
+          setCurrentWeather(weatherData);
+        }
       })
       .catch((error) => alert(error.toString()));
   }, []);

@@ -17,6 +17,11 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
       .then((userData) => {
         console.log(userData);
 
+        // Throw error if received error message instead of object
+        if (typeof userData === 'string') {
+          throw (userData);
+        }
+
         const name = prompt('Please name your pet:');
 
         const updatedPetData = newPetData;
@@ -66,7 +71,8 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
             alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
           })
           .catch((error) => alert(error.toString()));
-      });
+      })
+      .catch((error) => alert(error.toString()));
   }
 
   const adoptionProcess = !useCustomSpecies

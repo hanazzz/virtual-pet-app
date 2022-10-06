@@ -337,9 +337,12 @@ def get_user_loc():
     user_data = res.json()
     print(user_data)
 
+    # Check for error
     if user_data["status"] == "fail":
-        print("Request failed.")
-        # TODO: ADD BEHAVIOR IN CASE OF FAILURE (alert user and use default location)
+        error_msg = user_data["message"]
+        print("ERROR: Location API request failed.")
+        print("Error message:", error_msg)
+        return jsonify(f"Encountered an error retrieving user location. Error message: {error_msg}")
 
     return jsonify(user_data)
 
@@ -358,7 +361,15 @@ def mock_get_user_loc():
         "city": "Oakland",
         "lat": 37.7994978,
         "lon": -122.2613965,
+        "status": "success",        # Use "fail" to test failed API call
+        "message": "invalid query"      # Test error message
     }
+
+    if user_data["status"] == "fail":
+        error_msg = user_data["message"]
+        print("ERROR: Location API request failed.")
+        print("Error message:", error_msg)
+        return jsonify(f"Encountered an error retrieving user location. Error message: {error_msg}")
 
     return jsonify(user_data)
 
@@ -391,8 +402,9 @@ def get_current_weather():
 
     # Check for error
     if not res:
-        print(res.status_code)
-        return ("ERROR:", res.status_code)
+        print("ERROR: Weather API request failed.")
+        print("Response status code:", res.status_code)
+        return jsonify(f"Encountered an error retrieving current weather. Status code: {res.status_code}")
 
     weather_data = res.json()
     weather_data_overview = weather_data["weather"][0]
@@ -434,6 +446,12 @@ def mock_get_current_weather():
         'scattered clouds',
         'owmIconID': '03d',
     }
+
+    # Test error
+    status_code = 200
+    print("ERROR: Weather API request failed.")
+    print("Response status code:", status_code)
+    # return jsonify(f"Encountered an error retrieving current weather. Status code: {status_code}")
 
     return jsonify(current_weather)
 
