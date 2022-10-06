@@ -6,9 +6,9 @@
 
 // eslint-disable-next-line no-unused-vars
 function CustomPetCreator({ adoptPet }) {
-  const adjectives = ['sparkly', 'glowing', 'translucent'];
-  const colors = ['turquoise', 'black', 'neon yellow'];
-  const animals = ['dog', 'mouse', 'turtle'];
+  const adjectives = ['sparkly', 'glowing', 'translucent', 'fluffy', 'angelic', 'flying', 'metallic'];
+  const colors = ['turquoise', 'black', 'neon yellow', 'chartreuse', 'fluorescent orange', 'hot pink', 'neon purple'];
+  const animals = ['dog', 'mouse', 'turtle', 'kitten', 'eagle', 'goldfish', 'leopard'];
   const [adjective, setAdjective] = React.useState('');
   const [color, setColor] = React.useState('');
   const [animal, setAnimal] = React.useState('');

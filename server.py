@@ -7,7 +7,7 @@ from model import connect_to_db, db
 import crud
 import helper
 from data_attributes.create_attributes import (ACTIVITY)
-from random import (choice, sample)
+from random import sample
 from jinja2 import StrictUndefined
 import requests
 import os
@@ -193,8 +193,8 @@ def create_custom_pet():
     # Receive string of keywords
     pet_prompt = request.json
     print(pet_prompt)
-    # Append "synthwave"
-    pet_prompt.append("synthwave")
+    # Append "synthwave high resolution 4k"
+    pet_prompt.append("synthwave high resolution 4k")
     print(pet_prompt)
     # Join list items to form a string
     pet_prompt_str = ' '.join(pet_prompt)

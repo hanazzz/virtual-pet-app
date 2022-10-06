@@ -3,7 +3,7 @@
 from flask import (session)
 import crud
 from model import db
-from random import (choice, sample)
+from random import (choice, sample, randint)
 # Lists of pet attributes
 from data_attributes.create_attributes import (
     SPECIES_ID, SPECIES, FOOD, ACTIVITY, MUSIC_GENRE, WEATHER, PERSONALITY,
@@ -273,9 +273,10 @@ def generate_craiyon_img(text_prompt, user_id):
     result = generator.generate(text_prompt)
     images = result.images  # A list containing image data as base64 encoded strings
 
-    # # ONLY GET FIRST IMAGE
-    image = Image.open(BytesIO(base64.decodebytes(images[0].encode("utf-8"))))
-    image.show()    # Opens image on computer
+    # GET ONE RANDOM IMAGE
+    idx = randint(1, 9)     # Get random # from 1-9 to use for img idx
+    image = Image.open(BytesIO(base64.decodebytes(images[idx].encode("utf-8"))))
+    # image.show()    # Opens image on computer
     image.save(f"static/images/custom-pets/{user_id}.jpg")   # Saves image to file path, using user_id as filename
     print("Image complete.")
 
