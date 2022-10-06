@@ -28,14 +28,6 @@ function CustomPetCreator({ adoptPet }) {
     const petPrompt = [adjective, color, animal];
 
     makeCustomImg(petPrompt);
-    // console.log(petPrompt);
-    // fetch('/user/pet/custom', {
-    //   method: 'POST',
-    //   body: JSON.stringify(petPrompt),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // });
   }
 
   return (

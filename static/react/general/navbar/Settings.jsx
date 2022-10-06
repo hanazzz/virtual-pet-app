@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 // eslint-disable-next-line no-unused-vars
-function Settings() {
+function Settings({ tempInF, setTempInF }) {
   const { petData } = usePetData();
 
   const navbarPetInfo = !petData ? null : (
@@ -17,8 +17,7 @@ function Settings() {
     <div id="settings" className="dropdown dropdown-end dropdown-hover">
       <label tabIndex={0} className="btn btn-ghost"><i className="fa-solid fa-gear" /></label>
       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        {/* TODO: Move F/C button here */}
-        <li><a>Switch between F and C</a></li>
+        <li><ToggleTempUnit tempInF={tempInF} setTempInF={setTempInF} /></li>
         {navbarPetInfo}
         <li><DeleteObj deleteAcct={true} /></li>
       </ul>
@@ -26,3 +25,8 @@ function Settings() {
     </div>
   );
 }
+
+Settings.propTypes = {
+  tempInF: PropTypes.bool.isRequired,
+  setTempInF: PropTypes.func.isRequired,
+};

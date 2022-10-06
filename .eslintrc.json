@@ -23,6 +23,7 @@
         "SpeciesToggle": "readonly",
         "PetGenerator": "readonly",
         "Settings": "readonly",
+        "ToggleTempUnit": "readonly",
         "Logout": "readonly",
         "DeleteObj": "readonly",
         "RenamePet": "readonly",

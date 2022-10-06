@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function CurrentPet() {
+function CurrentPet({ tempInF }) {
   const { petData } = usePetData();
 
   // If stat data is in local storage, set as initial  state value.
@@ -47,7 +47,7 @@ function CurrentPet() {
         <div id="mood">
           <h5>{mood}</h5>
         </div>
-        <WeatherDisplay lat={petData.lat} lon={petData.lon} />
+        <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
       </div>
 
       <div className="col-span-4">
@@ -85,3 +85,7 @@ function CurrentPet() {
     </div>
   );
 }
+
+CurrentPet.propTypes = {
+  tempInF: PropTypes.bool.isRequired,
+};

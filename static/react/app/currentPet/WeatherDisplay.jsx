@@ -3,19 +3,13 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function WeatherDisplay({ lat, lon }) {
+function WeatherDisplay({ lat, lon, tempInF }) {
   console.log('*** rendering WeatherDisplay ***');
 
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
-  // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)
-  const [tempInF, setTempInF] = React.useState(true);
+  const petLocation = { lat, lon };
   const fahrenheit = '\u2109';
   const celsius = '\u2103';
-  const petLocation = { lat, lon };
-
-  function toggleTempUnit() {
-    setTempInF((prevTemp) => (!prevTemp));
-  }
 
   // Get current weather
   React.useEffect(() => {
@@ -51,11 +45,6 @@ function WeatherDisplay({ lat, lon }) {
         {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
       </div>
       <div className="">{currentWeather.description}</div>
-      <Button
-        onClick={toggleTempUnit}
-      >
-        {fahrenheit} {'\u2194'} {celsius}
-      </Button>
     </div>
   );
 }
@@ -63,4 +52,5 @@ function WeatherDisplay({ lat, lon }) {
 WeatherDisplay.propTypes = {
   lat: PropTypes.number.isRequired,
   lon: PropTypes.number.isRequired,
+  tempInF: PropTypes.bool.isRequired,
 };

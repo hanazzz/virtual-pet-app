@@ -3,10 +3,14 @@
 /* eslint-disable no-alert */
 
 function VirtualPetApp() {
-  // const [petData, setPetData] = React.useState(undefined);
+  // Get username from local storage (if any)
   const username = localStorage.getItem('username');
 
+  // Get pet data from server (database)
   const { petData, isLoading } = usePetData();
+
+  // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)
+  const [tempInF, setTempInF] = React.useState(JSON.parse(localStorage.getItem('tempInF')) || true);
 
   console.log('Loading app');
 
@@ -17,7 +21,7 @@ function VirtualPetApp() {
     appContent = <div className="row">Loading...</div>;
   } else if (petData) {
     // If received pet data and there is an existing pet, show current pet
-    appContent = <CurrentPet />;
+    appContent = <CurrentPet tempInF={tempInF} />;
   } else if (!petData) {
     // If there is no existing pet, show pet generator
     // Delete any lingering stats in local storage
@@ -28,7 +32,7 @@ function VirtualPetApp() {
 
   return (
     <>
-      <Navbar username={username} />
+      <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} />
       <main className="px-10 py-6">
         {appContent}
       </main>
