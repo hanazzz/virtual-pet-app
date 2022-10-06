@@ -12,21 +12,32 @@
 //   return {isLoading, error, isSuccess}
 // }
 
+// eslint-disable-next-line no-unused-vars
 const useMakeCustomImg = () => {
-  const { mutate, isLoading, error, isSuccess } = ReactQuery.useMutation((petPrompt) => fetch('/user/pet/custom', {
-    method: 'POST',
-    body: JSON.stringify(petPrompt),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => (console.log('response:', response)))
+  const queryClient = ReactQuery.useQueryClient();
+
+  const { mutate: makeCustomImg, isLoading, error, isSuccess } = ReactQuery.useMutation(
+    // mutation function
+    (petPrompt) => fetch('/user/pet/custom', {
+      method: 'POST',
+      body: JSON.stringify(petPrompt),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => (console.log('response:', response))),
     // .catch((error) => (console.log('fetch error:', error)))
-    , { cacheTime: Infinity });
+    {
+      // disable garbage collection
+      cacheTime: Infinity,
+      // callback function for when mutation function is successful
+      onSuccess: () => queryClient.invalidateQueries(['pet data']),
+    },
+  );
 
-  console.log('isLoading:', isLoading);
-  console.log('error:', error);
-  console.log('isSuccess:', isSuccess);
+  console.log('useMakeCustomImg - isLoading:', isLoading);
+  console.log('useMakeCustomImg - error:', error);
+  console.log('useMakeCustomImg - isSuccess:', isSuccess);
 
-  return { makeCustomImg: mutate, isLoading, error, isSuccess };
+  return { makeCustomImg, isLoading, error, isSuccess };
 };
