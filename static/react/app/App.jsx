@@ -10,39 +10,20 @@ function VirtualPetApp() {
 
   console.log('Loading app');
 
-  // Check if user has existing pet
-  // React.useEffect(() => {
-  //   console.log('fetching');
-  //   fetch('/user/pet/info')
-  //     .then((response) => response.json())
-  //     .then((petJson) => {
-  //       if (petJson) {
-  //         console.log('checked db: has pet');
-  //         setPetData(petJson);
-  //       } else {
-  //         console.log('checked db: no pet');
-  //         setPetData(null);
-  //       }
-  //     })
-  //     .catch((error) => alert(error.toString()));
-  // }, []);
+  let appContent;
 
-  // If user's pet status is unknown (i.e. useEffect hasn't run)
-  // TODO: rewrite to check isLoading to determine what to show (update following lines accordingly)
-  let appContent = (<div className="row">Loading...</div>);
-
-  // If user has pet, load CurrentPet. If not, load PetGene
-  if (petData) {
-    appContent = (
-      <CurrentPet />
-    );
-  } else if (petData === null) {
-    // If any lingering stats in local storage, delete them.
+  if (isLoading) {
+    // If still retrieving pet data from server, show loading
+    appContent = <div className="row">Loading...</div>;
+  } else if (petData) {
+    // If received pet data and there is an existing pet, show current pet
+    appContent = <CurrentPet />;
+  } else if (!petData) {
+    // If there is no existing pet, show pet generator
+    // Delete any lingering stats in local storage
     localStorage.removeItem('energy');
     localStorage.removeItem('happiness');
-    appContent = (
-      <PetGenerator />
-    );
+    appContent = <PetGenerator />;
   }
 
   return (
