@@ -1,8 +1,10 @@
+// Toggle between adopting a pet that's an existing species vs custom species
+
 // eslint-disable-next-line no-unused-vars
 function SpeciesToggle({ useCustomSpecies, setUseCustomSpecies }) {
   function handleSpeciesChange() {
     setUseCustomSpecies((prevState) => !prevState);
-    document.querySelector('#custom-species-form').classList.toggle('hidden');
+    // document.querySelector('#custom-species-form').classList.toggle('hidden');
   }
 
   return (

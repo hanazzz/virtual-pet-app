@@ -42,6 +42,8 @@
         "AttributesModal": "readonly",
         "Interaction": "readonly",
         "Feed": "readonly",
+        "PotentialPet": "readonly",
+        "AdoptPet": "readonly",
         "AdoptPetBtn": "readonly",
         "GeneratePetBtn": "readonly",
         "usePetData": "readonly",
