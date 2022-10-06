@@ -4,3 +4,4 @@ secrets.sh
 node_modules
 .vscode
 .DS*
+custom-pets/
