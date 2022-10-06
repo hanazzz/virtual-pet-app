@@ -4,7 +4,9 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function RenamePet({ setPetData, modalID }) {
+function RenamePet({ modalID }) {
+  const queryClient = ReactQuery.useQueryClient();
+
   const [newName, setNewName] = React.useState('');
 
   function renamePet(evt) {
@@ -21,10 +23,11 @@ function RenamePet({ setPetData, modalID }) {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
-      .then((updatedPetData) => {
+      .then(() => {
+        // Get new data from server
+        // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
+        queryClient.invalidateQueries(['pet data']);
         alert('Your pet has been renamed!');
-        setPetData(updatedPetData);
       });
   }
 
@@ -57,6 +60,5 @@ function RenamePet({ setPetData, modalID }) {
 }
 
 RenamePet.propTypes = {
-  setPetData: PropTypes.func.isRequired,
   modalID: PropTypes.string.isRequired,
 };

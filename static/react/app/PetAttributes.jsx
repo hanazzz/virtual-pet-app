@@ -1,5 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-function PetAttributes({ pet, speciesPlaceholder }) {
+function PetAttributes({ newPetData, speciesPlaceholder }) {
+  const { petData } = usePetData();
+  const pet = petData || newPetData;
+
   return (
     <table id="pet-display" className="col">
       <caption>Pet Attributes</caption>
@@ -54,22 +57,30 @@ function PetAttributes({ pet, speciesPlaceholder }) {
 }
 
 PetAttributes.propTypes = {
-  pet: PropTypes.shape({
-    species_name: PropTypes.string.isRequired,
-    food_fave: PropTypes.string.isRequired,
-    food_least: PropTypes.string.isRequired,
-    activity_fave: PropTypes.string.isRequired,
-    activity_least: PropTypes.string.isRequired,
-    music_fave: PropTypes.string.isRequired,
-    music_least: PropTypes.string.isRequired,
-    weather_fave: PropTypes.string.isRequired,
-    weather_least: PropTypes.string.isRequired,
-    personality: PropTypes.string.isRequired,
-    astro_sign: PropTypes.string.isRequired,
-    species_img_path: PropTypes.string.isRequired,
-  }).isRequired,
+  newPetData: PropTypes.oneOfType([
+    PropTypes.shape({
+      species_name: PropTypes.string.isRequired,
+      food_fave: PropTypes.string.isRequired,
+      food_least: PropTypes.string.isRequired,
+      activity_fave: PropTypes.string.isRequired,
+      activity_least: PropTypes.string.isRequired,
+      music_fave: PropTypes.string.isRequired,
+      music_least: PropTypes.string.isRequired,
+      weather_fave: PropTypes.string.isRequired,
+      weather_least: PropTypes.string.isRequired,
+      personality: PropTypes.string.isRequired,
+      astro_sign: PropTypes.string.isRequired,
+      species_img_path: PropTypes.string.isRequired,
+    }),
+    PropTypes.bool,
+  ]),
   speciesPlaceholder: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
-  ]).isRequired,
+  ]),
+};
+
+PetAttributes.defaultProps = {
+  newPetData: false,
+  speciesPlaceholder: false,
 };

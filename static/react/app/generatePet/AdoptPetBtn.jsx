@@ -6,7 +6,9 @@
 // Adopt pet
 
 // eslint-disable-next-line no-unused-vars
-function AdoptPetBtn({ newPetData, setNewPetData, setPetData }) {
+function AdoptPetBtn({ newPetData, setNewPetData }) {
+  const queryClient = ReactQuery.useQueryClient();
+
   function adoptPet() {
     console.log('preparing to adopt pet');
     // Get user's location via IP address and use for pet's location
@@ -49,12 +51,14 @@ function AdoptPetBtn({ newPetData, setNewPetData, setPetData }) {
             'Content-Type': 'application/json',
           },
         })
-          .then((response) => response.json())
-          .then((responseJson) => {
+          .then(() => {
+            // Get new data from server
+            // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
+            queryClient.invalidateQueries(['pet data']);
+
             console.log('adoption complete');
             // eslint-disable-next-line react/prop-types
             alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
-            setPetData(responseJson);
           })
           .catch((error) => alert(error.toString()));
       });
@@ -86,5 +90,4 @@ AdoptPetBtn.propTypes = {
     species_img_path: PropTypes.string.isRequired,
   }).isRequired,
   setNewPetData: PropTypes.func.isRequired,
-  setPetData: PropTypes.func.isRequired,
 };

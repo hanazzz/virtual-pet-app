@@ -3,28 +3,30 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function CurrentPet({ pet, setPetData }) {
+function CurrentPet() {
+  const { petData } = usePetData();
+
   // If stat data is in local storage, set as initial  state value.
   // If not, use initialStat passed through as prop (data retrieved from db at user log in).
   const energyInStorage = JSON.parse(localStorage.getItem('energy'));
   const [energy, setEnergy] = React.useState(
-    Number.isInteger(energyInStorage) ? energyInStorage : pet.energy,
+    Number.isInteger(energyInStorage) ? energyInStorage : petData.energy,
   );
 
   const happinessInStorage = JSON.parse(localStorage.getItem('happiness'));
   const [happiness, setHappiness] = React.useState(
-    Number.isInteger(happinessInStorage) ? happinessInStorage : pet.happiness,
+    Number.isInteger(happinessInStorage) ? happinessInStorage : petData.happiness,
   );
 
   const [mood, setMood] = React.useState("I'm so happy to see you!");
 
-  const {error, isLoading, isSuccess} = useMakeCustomImg();
+  // const { error, isLoading, isSuccess } = useMakeCustomImg();
 
-  console.log('*** Existing pet data, rendering CurrentPet ***');
+  console.log('*** Existing petData data, rendering CurrentPet ***');
 
-  // TODO: Configure this to work correctly
+  // TODO: Take screenshot (html2canvas) - Configure this to work correctly
   // function takePic() {
-  //   const captureThis = document.getElementById('current-pet');
+  //   const captureThis = document.getElementById('current-petData');
 
   //   html2canvas(captureThis).then(canvas => {
   //     document.body.appendChild(canvas)
@@ -37,7 +39,7 @@ function CurrentPet({ pet, setPetData }) {
     <div id="current-pet" className="grid grid-cols-8">
 
       <div id="pet-heading" className="col-span-8">
-        <PetHeading pet={pet} />
+        <PetHeading />
       </div>
 
       {/* <div id="pet-main" className="col-span-6 grid grid-cols-6"> */}
@@ -45,18 +47,15 @@ function CurrentPet({ pet, setPetData }) {
         <div id="mood">
           <h5>{mood}</h5>
         </div>
-        <WeatherDisplay lat={pet.lat} lon={pet.lon} />
+        <WeatherDisplay lat={petData.lat} lon={petData.lon} />
       </div>
 
       <div className="col-span-4">
         <img
-          src={pet.species_img_path}
-          alt={pet.species_name}
+          src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
+          alt={petData.species_name}
           id="species-img"
         />
-        Error: {error}
-        isLoading: {isLoading}
-        isSuccess: {isSuccess}
       </div>
 
       <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">
@@ -69,7 +68,7 @@ function CurrentPet({ pet, setPetData }) {
         {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
         <br />
         <br />
-        <AttributesModal pet={pet} />
+        <AttributesModal />
       </div>
       {/* </div> */}
 
@@ -86,31 +85,3 @@ function CurrentPet({ pet, setPetData }) {
     </div>
   );
 }
-
-CurrentPet.propTypes = {
-  pet: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    species_name: PropTypes.string.isRequired,
-    country: PropTypes.string.isRequired,
-    region: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    lat: PropTypes.number.isRequired,
-    lon: PropTypes.number.isRequired,
-    energy: PropTypes.number.isRequired,
-    // last_fed:  PropTypes.??.isRequired,
-    happiness: PropTypes.number.isRequired,
-    // last_played:  PropTypes.??.isRequired,
-    food_fave: PropTypes.string.isRequired,
-    food_least: PropTypes.string.isRequired,
-    activity_fave: PropTypes.string.isRequired,
-    activity_least: PropTypes.string.isRequired,
-    music_fave: PropTypes.string.isRequired,
-    music_least: PropTypes.string.isRequired,
-    weather_fave: PropTypes.string.isRequired,
-    weather_least: PropTypes.string.isRequired,
-    personality: PropTypes.string.isRequired,
-    astro_sign: PropTypes.string.isRequired,
-    species_img_path: PropTypes.string.isRequired,
-  }).isRequired,
-  setPetData: PropTypes.func.isRequired,
-};

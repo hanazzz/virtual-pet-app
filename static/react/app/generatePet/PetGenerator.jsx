@@ -5,7 +5,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function PetGenerator({ setPetData }) {
+function PetGenerator() {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
 
@@ -29,25 +29,17 @@ function PetGenerator({ setPetData }) {
             className="col"
           />
         </div>
-        <PetAttributes pet={newPetData} speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'} />
+        <PetAttributes newPetData={newPetData} speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'} />
         <SpeciesToggle useCustomSpecies={useCustomSpecies} setUseCustomSpecies={setUseCustomSpecies} />
-        <CustomPetCreator />
+        <CustomPetCreator
+          newPetData={newPetData}
+          setNewPetData={setNewPetData}
+        />
         <div className="col-span-1">
           <AdoptPetBtn
             newPetData={newPetData}
             setNewPetData={setNewPetData}
-            setPetData={setPetData}
           />
-        </div>
-        <div>
-          <br />
-          <br />
-          <br />
-          <p>Worker Test</p>
-          <WorkerTest />
-          <br />
-          <br />
-          <br />
         </div>
       </>
     );
@@ -69,7 +61,3 @@ function PetGenerator({ setPetData }) {
     </div>
   );
 }
-
-PetGenerator.propTypes = {
-  setPetData: PropTypes.func.isRequired,
-};

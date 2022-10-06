@@ -1,4 +1,4 @@
-function Navbar({ username, petData, setPetData }) {
+function Navbar({ username }) {
   const navbarUserInfo = !username ? null : (
   // If user is logged in, displaying following in navbar
     <div id="navbar-user-info" className="navbar-end text-sm">
@@ -7,7 +7,7 @@ function Navbar({ username, petData, setPetData }) {
         <p>Logged in as {username}</p>
       </div>
 
-      <Settings petData={petData} setPetData={setPetData} />
+      <Settings />
 
       <div>
         <Logout />
@@ -28,11 +28,8 @@ function Navbar({ username, petData, setPetData }) {
 
 Navbar.propTypes = {
   username: PropTypes.string,
-  petData: PropTypes.any.isRequired,
-  setPetData: PropTypes.func,
 };
 
 Navbar.defaultProps = {
   username: undefined,
-  setPetData: undefined,
 };

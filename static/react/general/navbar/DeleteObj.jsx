@@ -3,11 +3,8 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function DeleteObj({ setPetData, deletePet, deleteAcct }) {
-  function action() {
-    if (deletePet) setPetData(null);
-    else window.location.href = '/';
-  }
+function DeleteObj({ deletePet, deleteAcct }) {
+  const queryClient = ReactQuery.useQueryClient();
 
   const route = deletePet ? '/user/pet/delete' : '/user/delete';
   const deletionObject = deletePet ? 'pet' : 'account';
@@ -18,11 +15,19 @@ function DeleteObj({ setPetData, deletePet, deleteAcct }) {
     // eslint-disable-next-line no-restricted-globals
     if (confirm(`Are you sure you want to delete your ${deletionObject}? WARNING: This action is irreversible.`)) {
       fetch(route)
+        .then((response) => {
+          // Get new data from server
+          // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
+          queryClient.invalidateQueries(['pet data']);
+          return response;
+        })
         .then((response) => response.json())
         .then((msg) => {
           console.log(`deleting ${deletionObject}`);
           alert(msg);
-          action();
+          if (deleteAcct) {
+            window.location.href = '/';
+          }
         })
         .catch((error) => alert(error.toString()));
     } else {
@@ -42,13 +47,11 @@ function DeleteObj({ setPetData, deletePet, deleteAcct }) {
 }
 
 DeleteObj.propTypes = {
-  setPetData: PropTypes.func,
   deletePet: PropTypes.bool,
   deleteAcct: PropTypes.bool,
 };
 
 DeleteObj.defaultProps = {
-  setPetData: undefined,
   deletePet: false,
   deleteAcct: false,
 };
