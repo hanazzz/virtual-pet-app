@@ -363,10 +363,7 @@ def remove_item_from_user(user_id, item_name):
 # ------ DELETE ------ #
 ## USER: Delete
 def delete_user(user_id):
-    """Delete current user and their pet."""
-
-    # Delete user's pet
-    delete_pet(user_id)
+    """Delete current user."""
 
     # Get user from db
     user = get_user_by_id(user_id)

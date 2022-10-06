@@ -104,6 +104,13 @@ def delete_user():
     if not helper.check_for_login():
         return redirect("/")
 
+    msg = "Your account has been deleted."
+
+    # If user has a pet, delete pet
+    if session["current_pet"]:
+        crud.delete_pet(session["current_user_id"])
+        msg = "Your account has been deleted and your pet has been released into the wild."
+
     crud.delete_user(session["current_user_id"])
     db.session.commit()
 
@@ -112,7 +119,7 @@ def delete_user():
     session.pop("current_user_id", None)
     session.pop("current_username", None)
 
-    return jsonify("Your account has been deleted and your pet has been released into the wild.")
+    return jsonify(msg)
 
 
 @app.route('/user/pet')

@@ -8,7 +8,7 @@ function Settings({ tempInF, setTempInF }) {
     <>
       {/* Button to open renamePet modal (see RenamePet component) */}
       <li><ModalBtn modalID="rename-pet-modal" classOverride={true}>Rename pet</ModalBtn></li>
-      <li><DeleteObj deletePet={true} /></li>
+      <li><ModalBtn modalID="delete-pet" classOverride={true}>Delete pet</ModalBtn></li>
     </>
   );
 
@@ -19,9 +19,12 @@ function Settings({ tempInF, setTempInF }) {
       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><ToggleTempUnit tempInF={tempInF} setTempInF={setTempInF} /></li>
         {navbarPetInfo}
-        <li><DeleteObj deleteAcct={true} /></li>
+        <li><ModalBtn modalID="delete-account" classOverride={true}>Delete account</ModalBtn></li>
       </ul>
+      {/* Modals */}
       <RenamePet modalID="rename-pet-modal" />
+      <DeleteObj modalID="delete-pet" deletePet={true} />
+      <DeleteObj modalID="delete-account" deleteAcct={true} />
     </div>
   );
 }
