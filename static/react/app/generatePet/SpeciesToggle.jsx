@@ -4,7 +4,6 @@
 function SpeciesToggle({ useCustomSpecies, setUseCustomSpecies }) {
   function handleSpeciesChange() {
     setUseCustomSpecies((prevState) => !prevState);
-    // document.querySelector('#custom-species-form').classList.toggle('hidden');
   }
 
   return (

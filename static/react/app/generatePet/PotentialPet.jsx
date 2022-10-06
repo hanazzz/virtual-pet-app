@@ -26,16 +26,7 @@ function PotentialPet({ newPetData, setNewPetData }) {
         useCustomSpecies={useCustomSpecies}
         setUseCustomSpecies={setUseCustomSpecies}
       />
-      {/* <CustomPetCreator
-        newPetData={newPetData}
-        setNewPetData={setNewPetData}
-      />
-      <div className="col-span-1">
-        <AdoptPetBtn
-          newPetData={newPetData}
-          setNewPetData={setNewPetData}
-        />
-      </div> */}
+
       <AdoptPet
         useCustomSpecies={useCustomSpecies}
         newPetData={newPetData}
