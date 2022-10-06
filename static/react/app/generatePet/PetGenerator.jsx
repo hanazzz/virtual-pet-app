@@ -11,8 +11,6 @@ function PetGenerator() {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
 
-  // const [useCustomSpecies, setUseCustomSpecies] = React.useState(false);
-
   // alert("Looks like you don't have a pet yet! Let's fix that.");
   console.log('*** rendering pet generator ***');
   console.log(newPetData);
@@ -20,41 +18,6 @@ function PetGenerator() {
   const displayNewPet = !newPetData
     ? null
     : <PotentialPet newPetData={newPetData} setNewPetData={setNewPetData} />;
-
-  // let displayNewPet = null;
-
-  // if (newPetData) {
-  //   displayNewPet = (
-  //     <>
-  //       <h2 className="md:col-span-2">Potential Pet</h2>
-  //       <div>
-  //         <img
-  //           src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
-  //           alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
-  //           id="species-img"
-  //           className="col"
-  //         />
-  //       </div>
-  //       <PetAttributes newPetData={newPetData} speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'} />
-  //       <SpeciesToggle useCustomSpecies={useCustomSpecies} setUseCustomSpecies={setUseCustomSpecies} />
-  //       {/* <CustomPetCreator
-  //         newPetData={newPetData}
-  //         setNewPetData={setNewPetData}
-  //       />
-  //       <div className="col-span-1">
-  //         <AdoptPetBtn
-  //           newPetData={newPetData}
-  //           setNewPetData={setNewPetData}
-  //         />
-  //       </div> */}
-  //       <AdoptPet
-  //         useCustomSpecies={useCustomSpecies}
-  //         newPetData={newPetData}
-  //         setNewPetData={setNewPetData}
-  //       />
-  //     </>
-  //   );
-  // }
 
   return (
     <div id="pet-generator" className="grid md:grid-cols-2">
@@ -72,22 +35,3 @@ function PetGenerator() {
     </div>
   );
 }
-
-// PetGenerator.propTypes = {
-//   adoptPet: PropTypes.func.isRequired,
-// newPetData: PropTypes.shape({
-//   species_name: PropTypes.string.isRequired,
-//   food_fave: PropTypes.string.isRequired,
-//   food_least: PropTypes.string.isRequired,
-//   activity_fave: PropTypes.string.isRequired,
-//   activity_least: PropTypes.string.isRequired,
-//   music_fave: PropTypes.string.isRequired,
-//   music_least: PropTypes.string.isRequired,
-//   weather_fave: PropTypes.string.isRequired,
-//   weather_least: PropTypes.string.isRequired,
-//   personality: PropTypes.string.isRequired,
-//   astro_sign: PropTypes.string.isRequired,
-//   species_img_path: PropTypes.string.isRequired,
-// }).isRequired,
-// setNewPetData: PropTypes.func.isRequired,
-// };
