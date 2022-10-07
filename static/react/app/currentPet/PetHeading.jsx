@@ -4,15 +4,19 @@ function PetHeading() {
 
   return (
     <>
-      <h1 className="text-4xl font-medium">
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        {petData.name} the {petData.personality} {petData.species_name}
-      </h1>
+      <div className="text-5xl font-bold">
+        {petData.name}
+      </div>
 
-      <h2 id="location" className="text-xl">
+      <div className="text-3xl medium">
+        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+        the {petData.personality} {petData.species_name}
+      </div>
+
+      <div id="location" className="text-lg">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         Location: {petData.city}, {petData.region}, {petData.country}
-      </h2>
+      </div>
     </>
   );
 }

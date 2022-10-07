@@ -26,25 +26,28 @@ function CurrentPet({ tempInF }) {
 
   return (
     <div id="current-pet" className="">
-
-      <div id="pet-heading" className="">
-        <PetHeading />
+      <div className="flex flex-col md:flex-row justify-between">
+        <div id="pet-heading" className="">
+          <PetHeading />
+        </div>
+        <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
       </div>
 
       <div id="pet-main" className="md:grid grid-cols-7 my-12">
         <div className="col-span-2 flex flex-col justify-evenly">
-          <Card id="mood" color="primary" addlClasses="text-xl">
-            <p>{mood}</p>
-          </Card>
-          <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
+          <Mood mood={mood} />
         </div>
 
         <div className="col-span-3 mx-auto my-0">
-          <img
-            src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
-            alt={petData.species_name}
-            id="species-img"
-          />
+          <div className="mockup-window border bg-base-300">
+            <div className="flex justify-center px-4 py-4 bg-base-200">
+              <img
+                src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
+                alt={petData.species_name}
+                id="species-img"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Overlay images */}

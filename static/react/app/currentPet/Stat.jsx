@@ -32,12 +32,12 @@ function Stat({ statName, statInteraction, stat, setStat }) {
     };
   });
 
-  // interactWithPet() gets called on button click, increases stat by 1
-  function interactWithPet() {
-    if (stat < 5) {
-      setStat((prevStat) => prevStat + 1);
-    }
-  }
+  // // interactWithPet() gets called on button click, increases stat by 1
+  // function interactWithPet() {
+  //   if (stat < 5) {
+  //     setStat((prevStat) => prevStat + 1);
+  //   }
+  // }
 
   return (
     <div id={statName} className="flex flex-row items-center justify-between">
