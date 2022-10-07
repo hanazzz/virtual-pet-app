@@ -18,6 +18,7 @@
         "PropTypes": "readonly",
         "Navbar": "readonly",
         "Footer": "readonly",
+        "Card": "readonly",
         "SelectInput": "readonly",
         "CustomPetCreator": "readonly",
         "SpeciesToggle": "readonly",
