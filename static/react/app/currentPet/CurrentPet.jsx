@@ -24,17 +24,6 @@ function CurrentPet({ tempInF }) {
 
   console.log('*** Existing petData data, rendering CurrentPet ***');
 
-  // TODO: Take screenshot (html2canvas) - Configure this to work correctly
-  // function takePic() {
-  //   const captureThis = document.getElementById('current-petData');
-
-  //   html2canvas(captureThis).then(canvas => {
-  //     document.body.appendChild(canvas)
-  //   });
-
-  //   document.querySelector('canvas').classList.add('')
-  // }
-
   return (
     <div id="current-pet" className="">
 
@@ -85,11 +74,6 @@ function CurrentPet({ tempInF }) {
         </div>
 
       </div>
-
-      {/* <Button onClick={takePic}>
-        Take picture of pet
-      </Button> */}
-
     </div>
   );
 }
