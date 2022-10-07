@@ -26,7 +26,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     const interaction = evt.target.id;
     const statChange = Number(interactions[interaction]['value']);
     // eslint-disable-next-line prefer-destructuring
-    const response = interactions[interaction]['response'];
+    const response = `Hm, ${interaction}? ${interactions[interaction]['response']}`;
     console.log(statChange);
     console.log(stat + statChange);
     if (interactionType === 'feed') {
