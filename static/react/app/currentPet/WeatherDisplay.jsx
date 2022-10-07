@@ -43,12 +43,16 @@ function WeatherDisplay({ lat, lon, tempInF }) {
   }
 
   return (
-    <Card id="weather" color="secondary">
-      <div className="text-2xl">{currentWeather.description}</div>
-      {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
-      <div className="text-3xl">
-        <i className={`wi wi-owm-${currentWeather.conditionCode} pr-4`} />
-        {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
+    <Card id="weather" color="secondary" addlClasses="card-compact">
+      <div id="weather-description" className="text-m">{currentWeather.description}</div>
+
+      <div className="flex flex-row justify-start">
+        {/* weather icon */}
+        <i className={`wi wi-owm-${currentWeather.conditionCode} pr-4 text-4xl`} />
+        {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
+        <span className="text-3xl font-extrabold">
+          {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
+        </span>
       </div>
     </Card>
   );
