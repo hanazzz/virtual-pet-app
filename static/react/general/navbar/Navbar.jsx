@@ -16,7 +16,7 @@ function Navbar({ username, tempInF, setTempInF }) {
   );
 
   return (
-    <nav className="navbar bg-base-100">
+    <nav className="navbar bg-accent px-4">
       <div className="navbar-start">
         <p className="normal-case text-xl">Virtual Pet App</p>
       </div>

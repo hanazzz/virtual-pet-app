@@ -36,46 +36,54 @@ function CurrentPet({ tempInF }) {
   // }
 
   return (
-    <div id="current-pet" className="grid grid-cols-8">
+    <div id="current-pet" className="">
 
-      <div id="pet-heading" className="col-span-8">
+      <div id="pet-heading" className="">
         <PetHeading />
       </div>
 
-      {/* <div id="pet-main" className="col-span-6 grid grid-cols-6"> */}
-      <div className="col-span-2 flex flex-col justify-evenly">
-        <div id="mood">
-          <h5>{mood}</h5>
+      <div id="pet-main" className="md:grid grid-cols-7 my-12">
+        <div className="col-span-2 flex flex-col justify-evenly">
+          <Card id="mood" color="primary" addlClasses="text-xl">
+            <p>{mood}</p>
+          </Card>
+          <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
         </div>
-        <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
-      </div>
 
-      <div className="col-span-4">
-        <img
-          src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
-          alt={petData.species_name}
-          id="species-img"
-        />
-      </div>
+        <div className="col-span-3 mx-auto my-0">
+          <img
+            src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
+            alt={petData.species_name}
+            id="species-img"
+          />
+        </div>
 
-      <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">
-        {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
-        <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
-        <br />
-        <br />
-        {/* eslint-disable-next-line max-len */}
-        <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
-        {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
-        <br />
-        <br />
-        <AttributesModal />
-      </div>
-      {/* </div> */}
+        {/* Overlay images */}
+        {/* <div className="col-span-3 mx-auto my-0" style={{ backgroundImage: 'url(/static/images/tamatest.png)' }}>
+          <img
+            src='/static/images/tamatest.png'
+          />
+          <img
+            src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
+            alt={petData.species_name}
+            id="species-img"
+          />
+        </div> */}
 
-      <div id="stats" className="col-start-3 col-span-4 flex flex-row justify-between">
-        <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
+        <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">
+          {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
+          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
+          {/* eslint-disable-next-line max-len */}
+          <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
+          {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
+          <AttributesModal />
+        </div>
+        <div id="stats" className="col-start-3 col-span-3 flex flex-col justify-between">
+          <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
-        <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
+          <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
+        </div>
+
       </div>
 
       {/* <Button onClick={takePic}>

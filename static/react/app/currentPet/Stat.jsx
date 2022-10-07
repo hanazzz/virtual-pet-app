@@ -40,12 +40,10 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   }
 
   return (
-    <div id={statName} className="col">
-      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <h4>{statName}: {stat}</h4>
+    <div id={statName} className="flex flex-row items-center justify-between">
+      <h4>{statName}</h4>
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
-      <br />
-      <button type="button" onClick={interactWithPet}>{statInteraction}</button>
+      {/* <button type="button" onClick={interactWithPet}>{statInteraction}</button> */}
     </div>
   );
 }
