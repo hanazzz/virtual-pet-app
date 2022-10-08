@@ -33,9 +33,11 @@ function RenamePet({ modalID }) {
 
   return (
     <ModalBox modalID={modalID}>
-      <h5>Rename pet</h5>
+      <ModalTitle>Rename pet</ModalTitle>
+
       <p>If you would like to rename your pet, please enter your pet's new name below.</p>
       <p>If you changed your mind, click "Cancel" to exit.</p>
+
       <form onSubmit={(evt) => renamePet(evt)}>
         <label htmlFor="pet-name">
           New name:
