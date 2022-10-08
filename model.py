@@ -137,7 +137,7 @@ def connect_to_db(app, db_name="virtualpet"):
     # Location of database
     app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_name}"
     # Output raw SQL executed by SQLAlchemy
-    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_ECHO"] = False
     # what does this line do??
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

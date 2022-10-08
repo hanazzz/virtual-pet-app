@@ -73,6 +73,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
             id={interaction}
             key={interaction}
             onClick={handleChoice}
+            btnClasses="btn-lg my-4"
           >
             {interaction}
           </Button>
@@ -90,8 +91,14 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
       </ModalBtn>
 
       <ModalBox modalID={modalID}>
-        <h5 className="modal-title">{interactionText}</h5>
-        {interactionBtns}
+        <ModalTitle>
+          {interactionText}
+        </ModalTitle>
+
+        <div className="flex flex-col items-center">
+          {interactionBtns}
+        </div>
+
         <ModalFooter>
           <ModalBtn modalID={modalID}>
             Cancel

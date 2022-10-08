@@ -33,7 +33,7 @@ function CurrentPet({ tempInF }) {
         <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
       </div>
 
-      <div id="pet-main" className="md:grid grid-cols-7 my-12">
+      <div id="pet-main" className="md:grid grid-cols-7 my-12 gap-6">
         <div className="col-span-2 flex flex-col justify-evenly">
           <Mood mood={mood} />
         </div>
@@ -70,7 +70,7 @@ function CurrentPet({ tempInF }) {
           {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
           <AttributesModal />
         </div>
-        <div id="stats" className="col-start-3 col-span-3 flex flex-col justify-between">
+        <div id="stats" className="col-start-3 col-span-3 grid grid-cols-6">
           <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
           <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />

@@ -32,6 +32,7 @@ function Stat({ statName, statInteraction, stat, setStat }) {
     };
   });
 
+  // TODO: Remove before deployment
   // // interactWithPet() gets called on button click, increases stat by 1
   // function interactWithPet() {
   //   if (stat < 5) {
@@ -39,12 +40,19 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   //   }
   // }
 
+  // <button type="button" onClick={interactWithPet}>{statInteraction}</button>
+
+  // <div id={statName} className="flex flex-row items-center justify-between">
+  //   <h4>{statName}</h4>
+  //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
+  // </div>
+
   return (
-    <div id={statName} className="flex flex-row items-center justify-between">
+    <>
       <h4>{statName}</h4>
+
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
-      {/* <button type="button" onClick={interactWithPet}>{statInteraction}</button> */}
-    </div>
+    </>
   );
 }
 
