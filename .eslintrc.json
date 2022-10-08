@@ -26,6 +26,7 @@
         "Settings": "readonly",
         "ToggleTempUnit": "readonly",
         "Logout": "readonly",
+        "Alert": "readonly",
         "DeleteObj": "readonly",
         "RenamePet": "readonly",
         "CurrentPet": "readonly",

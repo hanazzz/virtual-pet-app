@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/forbid-prop-types */
-function Alert({ alertID, children }) {
+function Alert({ alertID, addlClasses, children }) {
   function toggleAlert() {
     document.getElementById(alertID).classList.toggle('hidden');
   }
 
   return (
-    <div id={alertID} className="alert shadow-lg">
-      <div>
+    <div id={alertID} className={`alert rounded-none hidden ${addlClasses}`} key={children}>
+      <div id="alert-text">
         <span>{children}</span>
       </div>
       <div className="flex-none">
@@ -24,10 +24,12 @@ function Alert({ alertID, children }) {
 }
 
 Alert.propTypes = {
-  alertID: PropTypes.string.isRequired,
+  alertID: PropTypes.string,
+  addlClasses: PropTypes.string,
   children: PropTypes.string.isRequired,
 };
 
 Alert.defaultProps = {
-
+  alertID: null,
+  addlClasses: null,
 };

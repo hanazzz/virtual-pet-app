@@ -27,6 +27,24 @@ function AcctForm() {
     localStorage.clear();
   }, []);
 
+  function showAlert(msg, alertClasses) {
+    // Get alert DOM element
+    const alert = document.querySelector('.alert');
+    // Remove any previous alert classes
+    alert.classList.remove('alert-info');
+    alert.classList.remove('alert-success');
+    alert.classList.remove('alert-warning');
+    alert.classList.remove('alert-error');
+    // Add any additional classes to alert
+    alert.classList.add(alertClasses);
+    // Remove 'hidden' class to show alert
+    alert.classList.remove('hidden');
+    // Get alert text box DOM element
+    const alertText = document.querySelector('#alert-text');
+    // Update alert text with msg
+    alertText.innerText = msg;
+  }
+
   // CALLBACK FUNCTION FOR FORM SUBMISSION
   // Prevents default behavior (page refresh)
   // and sends form data to server via Fetch re quest
@@ -50,7 +68,14 @@ function AcctForm() {
       .then((response) => response.json())
       .then((responseJson) => {
         const { msg } = responseJson;
-        alert(msg);
+        const alertType = msg.startsWith('ERROR') ? 'alert-warning' : 'alert-success';
+        showAlert(msg, alertType);
+        // console.log(alertClass);
+        // const newAlert = createAlert(msg, alertClass);
+        // console.log('new alert:', newAlert);
+        // const newAlert = { msg, alertType };
+        // setAlert(newAlert);
+        // alert(msg);
         if (responseJson.status) {
           // Store username in local storage
           localStorage.setItem('username', responseJson.username);
@@ -89,12 +114,13 @@ function AcctForm() {
 
   return (
     <>
+      <Alert alertID="homepage-alert" addlClasses="hidden" />
       <Navbar />
       <h1>[App Name]</h1>
       <p>A very cool description of this app.</p>
-      <Alert alertID="test-alert">
-        This is a test alert!
-      </Alert>
+
+      {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
+
       {form}
       <br />
       <Button onClick={toggleLogInMethd}>

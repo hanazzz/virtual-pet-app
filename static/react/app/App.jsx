@@ -12,6 +12,24 @@ function VirtualPetApp() {
   // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)
   const [tempInF, setTempInF] = React.useState(JSON.parse(localStorage.getItem('tempInF')) || true);
 
+  function showAlert(msg, alertClasses) {
+    // Get alert DOM element
+    const alert = document.querySelector('.alert');
+    // Remove any previous alert classes
+    alert.classList.remove('alert-info');
+    alert.classList.remove('alert-success');
+    alert.classList.remove('alert-warning');
+    alert.classList.remove('alert-error');
+    // Add any additional classes to alert
+    alert.classList.add(alertClasses);
+    // Remove 'hidden' class to show alert
+    alert.classList.remove('hidden');
+    // Get alert text box DOM element
+    const alertText = document.querySelector('#alert-text');
+    // Update alert text with msg
+    alertText.innerText = msg;
+  }
+
   console.log('Loading app');
 
   let appContent;
@@ -32,10 +50,15 @@ function VirtualPetApp() {
 
   return (
     <>
-      <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} />
+      <Alert alertID="app-alert" addlClasses="hidden" />
+
+      {/* eslint-disable-next-line react/jsx-no-bind */}
+      <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} showAlert={showAlert} />
+
       <main className="px-10 py-6">
         {appContent}
       </main>
+
       <Footer />
     </>
   );

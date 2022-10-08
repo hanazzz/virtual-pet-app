@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 // eslint-disable-next-line no-unused-vars
-function Settings({ tempInF, setTempInF }) {
+function Settings({ tempInF, setTempInF, showAlert }) {
   const { petData } = usePetData();
 
   const navbarPetInfo = !petData ? null : (
@@ -32,4 +32,5 @@ function Settings({ tempInF, setTempInF }) {
 Settings.propTypes = {
   tempInF: PropTypes.bool.isRequired,
   setTempInF: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
 };

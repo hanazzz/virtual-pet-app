@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 // eslint-disable-next-line no-unused-vars
-function Logout() {
+function Logout({ showAlert }) {
   function handleLogout(evt) {
     // prevent page refresh
     evt.preventDefault();
@@ -21,8 +21,7 @@ function Logout() {
     })
       .then((response) => response.json())
       .then((msg) => {
-        // clear local storage
-        alert(msg);
+        showAlert(msg, 'alert-success');
         window.location.href = '/';
       });
   }
@@ -36,3 +35,7 @@ function Logout() {
     </Button>
   );
 }
+
+Logout.propTypes = {
+  showAlert: PropTypes.func.isRequired,
+};
