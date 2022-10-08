@@ -108,11 +108,11 @@ def check_login(username, password):
 
     # Validate username
     if not user:
-        valid_account["msg"] = "No accounts found with that username. Please try again."
+        valid_account["msg"] = "ERROR: No accounts found with that username. Please try again."
 
     # Validate password
     elif user.password != password:
-        valid_account["msg"] = "That username and password don't match. Please try again."
+        valid_account["msg"] = "ERROR: That username and password don't match. Please try again."
     else:
         # Log user in
         valid_account = log_in_user(user, "You are now logged in!")
