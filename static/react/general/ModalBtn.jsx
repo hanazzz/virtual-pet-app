@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 // eslint-disable-next-line no-unused-vars
-function ModalBtn({ modalID, modalBtnCallback, classOverride, children }) {
+function ModalBtn({ modalID, modalBtnCallback, addlClasses, btnClassOverride, children }) {
   function toggleModal() {
     document.getElementById(modalID).classList.toggle('modal-open');
   }
@@ -10,7 +10,8 @@ function ModalBtn({ modalID, modalBtnCallback, classOverride, children }) {
   return (
     <Button
       btnClass="modal-button"
-      classOverride={classOverride}
+      btnClasses={addlClasses}
+      btnClassOverride={btnClassOverride}
       onClick={modalCallback}
     >
       {children}
@@ -24,11 +25,13 @@ ModalBtn.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
-  classOverride: PropTypes.bool,
+  addlClasses: PropTypes.string,
+  btnClassOverride: PropTypes.bool,
   children: PropTypes.any.isRequired,
 };
 
 ModalBtn.defaultProps = {
   modalBtnCallback: false,
-  classOverride: false,
+  addlClasses: null,
+  btnClassOverride: false,
 };

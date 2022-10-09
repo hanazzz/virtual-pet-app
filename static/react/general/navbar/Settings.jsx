@@ -7,8 +7,8 @@ function Settings({ tempInF, setTempInF, showAlert }) {
     // If user has pet, display following options in Settings dropdown menu
     <>
       {/* Button to open renamePet modal (see RenamePet component) */}
-      <li><ModalBtn modalID="rename-pet-modal" classOverride={true}>Rename pet</ModalBtn></li>
-      <li><ModalBtn modalID="delete-pet" classOverride={true}>Delete pet</ModalBtn></li>
+      <li><ModalBtn modalID="rename-pet-modal" btnClassOverride={true}>Rename pet</ModalBtn></li>
+      <li><ModalBtn modalID="delete-pet" btnClassOverride={true}>Delete pet</ModalBtn></li>
     </>
   );
 
@@ -19,7 +19,7 @@ function Settings({ tempInF, setTempInF, showAlert }) {
       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><ToggleTempUnit tempInF={tempInF} setTempInF={setTempInF} /></li>
         {navbarPetInfo}
-        <li><ModalBtn modalID="delete-account" classOverride={true}>Delete account</ModalBtn></li>
+        <li><ModalBtn modalID="delete-account" btnClassOverride={true}>Delete account</ModalBtn></li>
       </ul>
       {/* Modals */}
       <RenamePet modalID="rename-pet-modal" />
