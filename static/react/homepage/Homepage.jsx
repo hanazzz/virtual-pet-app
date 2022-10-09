@@ -119,7 +119,7 @@ function AcctForm() {
       <Navbar />
 
       <main className="px-10 py-6">
-        <h1>[App Name]</h1>
+        <Heading1>[App Name]</Heading1>
         <p>A very cool description of this app.</p>
 
         {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}

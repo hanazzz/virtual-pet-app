@@ -18,6 +18,7 @@
         "PropTypes": "readonly",
         "Navbar": "readonly",
         "Footer": "readonly",
+        "Heading1": "readonly",
         "Card": "readonly",
         "SelectInput": "readonly",
         "Form": "readonly",

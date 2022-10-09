@@ -4,9 +4,9 @@ function PetHeading() {
 
   return (
     <>
-      <div className="text-5xl font-bold">
+      <Heading1>
         {petData.name}
-      </div>
+      </Heading1>
 
       <div className="text-3xl medium">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}

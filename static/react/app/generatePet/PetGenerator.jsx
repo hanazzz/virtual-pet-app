@@ -21,7 +21,7 @@ function PetGenerator() {
 
   return (
     <div id="pet-generator" className="grid md:grid-cols-2">
-      <h1 className="md:col-span-2">Adopt a Pet</h1>
+      <Heading1 addlClasses="md:col-span-2">Adopt a Pet</Heading1>
       <div className="md:col-span-2">
         {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
         <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
