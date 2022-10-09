@@ -29,8 +29,8 @@ function Mood({ mood }) {
   }, [mood]);
 
   return (
-    <Card key={mood} id="mood" color="primary" addlClasses="text-xl h-3/5">
-      <p id="mood-text" />
+    <Card key={mood} id="mood" color="primary" addlClasses="card-compact text-xl h-3/5">
+      <p id="mood-text" className="p-4 rounded-2xl border-solid border-4 border-accent" />
     </Card>
   );
 }
