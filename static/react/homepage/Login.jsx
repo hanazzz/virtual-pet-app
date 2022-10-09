@@ -2,8 +2,9 @@
 function Login({ username, setUsername, password, setPassword, submitForm }) {
   return (
     <div id="login" className="row">
-      <h2>Log In</h2>
-      <form onSubmit={(evt) => submitForm(evt)}>
+
+      <Form submitCallback={submitForm}>
+        <h2>Log In</h2>
         <label htmlFor="username">
           Username:
           <input
@@ -35,8 +36,8 @@ function Login({ username, setUsername, password, setPassword, submitForm }) {
         </label>
         <br />
 
-        <input type="submit" />
-      </form>
+        <input type="submit" className="btn" />
+      </Form>
     </div>
   );
 }

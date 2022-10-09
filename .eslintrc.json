@@ -20,6 +20,7 @@
         "Footer": "readonly",
         "Card": "readonly",
         "SelectInput": "readonly",
+        "Form": "readonly",
         "CustomPetCreator": "readonly",
         "SpeciesToggle": "readonly",
         "PetGenerator": "readonly",

@@ -5,9 +5,9 @@ function CreateAcct({
 }) {
   return (
     <div id="create-account" className="row">
-      <h2>Create Account</h2>
 
-      <form onSubmit={(evt) => submitForm(evt)}>
+      <Form submitCallback={submitForm}>
+        <h2>Create Account</h2>
         <label htmlFor="email">
           Email:
           <input
@@ -72,8 +72,8 @@ function CreateAcct({
         </label>
         <br />
 
-        <input type="submit" />
-      </form>
+        <input type="submit" className="btn" />
+      </Form>
     </div>
   );
 }

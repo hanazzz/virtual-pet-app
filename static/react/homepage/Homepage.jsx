@@ -115,17 +115,21 @@ function AcctForm() {
   return (
     <>
       <Alert alertID="homepage-alert" addlClasses="hidden" />
+
       <Navbar />
-      <h1>[App Name]</h1>
-      <p>A very cool description of this app.</p>
 
-      {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
+      <main className="px-10 py-6">
+        <h1>[App Name]</h1>
+        <p>A very cool description of this app.</p>
 
-      {form}
-      <br />
-      <Button onClick={toggleLogInMethd}>
-        {logInMethd ? logInMsg : createAcctMsg}
-      </Button>
+        {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
+
+        {form}
+
+        <Button onClick={toggleLogInMethd}>
+          {logInMethd ? logInMsg : createAcctMsg}
+        </Button>
+      </main>
     </>
   );
 }
