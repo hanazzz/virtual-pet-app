@@ -9,6 +9,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let interactions = {};
   const modalID = `${interactionType}-modal`;
+  const interactionIcon = interactionType === 'feed' ? 'utensils' : 'gamepad';
 
   // Way to use this function to reduce duplication in handleChoice?
   // function handleStatChange(statChange, response) {
@@ -86,10 +87,13 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
 
   return (
     <>
-      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction}>
+      {/* Interaction button that appears on main page */}
+      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction} addlClasses="btn-lg">
+        <i className={`fa-solid fa-${interactionIcon} pr-2`} />
         {interactionText}
       </ModalBtn>
 
+      {/* Modal box with interaction options */}
       <ModalBox modalID={modalID}>
         <ModalTitle>
           {interactionText}
