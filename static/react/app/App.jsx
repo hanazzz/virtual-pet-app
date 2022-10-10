@@ -1,6 +1,5 @@
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
-/* eslint-disable no-alert */
 
 function VirtualPetApp() {
   // Get username from local storage (if any)

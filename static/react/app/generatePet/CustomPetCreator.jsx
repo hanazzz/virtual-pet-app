@@ -1,6 +1,5 @@
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
-/* eslint-disable no-alert */
 
 // Create custom species and adopt pet (custom species pet)
 

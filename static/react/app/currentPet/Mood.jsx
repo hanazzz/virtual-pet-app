@@ -1,6 +1,5 @@
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
-/* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
 function Mood({ mood }) {
