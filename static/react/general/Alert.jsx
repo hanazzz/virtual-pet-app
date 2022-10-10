@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/forbid-prop-types */
 function Alert({ alertID, addlClasses, children }) {
-  function toggleAlert() {
-    document.getElementById(alertID).classList.toggle('hidden');
+  function closeAlert() {
+    document.getElementById(alertID).classList.add('hidden');
   }
 
   return (
-    <div id={alertID} className={`alert rounded-none hidden ${addlClasses}`} key={children}>
+    <div id={alertID} className={`alert rounded-none  ${addlClasses}`} key={alertID}>
       <div id="alert-text">
         <span>{children}</span>
       </div>
@@ -14,7 +14,7 @@ function Alert({ alertID, addlClasses, children }) {
         <Button
           btnClasses="btn-sm"
           type="button"
-          onClick={toggleAlert}
+          onClick={closeAlert}
         >
           X
         </Button>
@@ -24,12 +24,11 @@ function Alert({ alertID, addlClasses, children }) {
 }
 
 Alert.propTypes = {
-  alertID: PropTypes.string,
+  alertID: PropTypes.string.isRequired,
   addlClasses: PropTypes.string,
   children: PropTypes.string.isRequired,
 };
 
 Alert.defaultProps = {
-  alertID: null,
   addlClasses: null,
 };

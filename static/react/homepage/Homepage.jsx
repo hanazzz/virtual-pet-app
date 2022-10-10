@@ -16,6 +16,8 @@ function AcctForm() {
     setLogInMethd((prevMethd) => !prevMethd);
   }
 
+  const [alertList, setAlertList] = React.useState([]);
+
   // DEFINE STATES FOR FORM FIELDS
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -27,22 +29,32 @@ function AcctForm() {
     localStorage.clear();
   }, []);
 
-  function showAlert(msg, alertClasses) {
-    // Get alert DOM element
-    const alert = document.querySelector('.alert');
-    // Remove any previous alert classes
-    alert.classList.remove('alert-info');
-    alert.classList.remove('alert-success');
-    alert.classList.remove('alert-warning');
-    alert.classList.remove('alert-error');
-    // Add any additional classes to alert
-    alert.classList.add(alertClasses);
-    // Remove 'hidden' class to show alert
-    alert.classList.remove('hidden');
-    // Get alert text box DOM element
-    const alertText = document.querySelector('#alert-text');
-    // Update alert text with msg
-    alertText.innerText = msg;
+  // function showAlert(msg, alertClasses) {
+  //   // Get alert DOM element
+  //   const alert = document.querySelector('.alert');
+  //   // Remove any previous alert classes
+  //   alert.classList.remove('alert-info');
+  //   alert.classList.remove('alert-success');
+  //   alert.classList.remove('alert-warning');
+  //   alert.classList.remove('alert-error');
+  //   // Add any additional classes to alert
+  //   alert.classList.add(alertClasses);
+  //   // Remove 'hidden' class to show alert
+  //   alert.classList.remove('hidden');
+  //   // Get alert text box DOM element
+  //   const alertText = document.querySelector('#alert-text');
+  //   // Update alert text with msg
+  //   alertText.innerText = msg;
+  // }
+
+  function addAlert(msg, alertClasses) {
+    const alertNum = alertList.length;
+    const alert = (
+      <Alert alertID={`login-alert=${alertNum}`} addlClasses={alertClasses}>
+        {msg}
+      </Alert>
+    );
+    setAlertList((prevList) => prevList.concat(alert));
   }
 
   // CALLBACK FUNCTION FOR FORM SUBMISSION
@@ -69,13 +81,8 @@ function AcctForm() {
       .then((responseJson) => {
         const { msg } = responseJson;
         const alertType = msg.startsWith('ERROR') ? 'alert-warning' : 'alert-success';
-        showAlert(msg, alertType);
-        // console.log(alertClass);
-        // const newAlert = createAlert(msg, alertClass);
-        // console.log('new alert:', newAlert);
-        // const newAlert = { msg, alertType };
-        // setAlert(newAlert);
-        // alert(msg);
+        addAlert(msg, alertType);
+        // showAlert(msg, alertType);
         if (responseJson.status) {
           // Store username in local storage
           localStorage.setItem('username', responseJson.username);
@@ -114,7 +121,9 @@ function AcctForm() {
 
   return (
     <>
-      <Alert alertID="homepage-alert" addlClasses="hidden" />
+      {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
+
+      {alertList}
 
       <Navbar />
 
