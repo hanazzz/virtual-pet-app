@@ -1,8 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 // eslint-disable-next-line no-unused-vars
 function Button({ btnClasses, btnClassOverride, onClick, id, key, children }) {
-  // TODO: Need to figure out how to pass in keys
-
   // If btnClassOverride is true, only use classes provided in btnClasses prop.
   // Else: Use 'btn' class and add btnClasses as additional classes
   const classList = btnClassOverride ? btnClasses : `btn ${btnClasses}`;
@@ -12,7 +10,7 @@ function Button({ btnClasses, btnClassOverride, onClick, id, key, children }) {
       className={classList}
       type="button"
       id={id}
-      key={key}
+      key={id}
       onClick={onClick}
     >
       {children}

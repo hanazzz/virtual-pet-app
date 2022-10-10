@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 function Card({ id, color, addlClasses, addlBodyClasses, children }) {
   return (
-    <div id={id} className={`card bg-${color} text-${color}-content ${addlClasses}`}>
+    <div id={id} key={id} className={`card bg-${color} text-${color}-content ${addlClasses}`}>
       <div className={`card-body ${addlBodyClasses}`}>
         {children}
       </div>

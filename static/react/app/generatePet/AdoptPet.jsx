@@ -40,19 +40,6 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
 
         console.log(newPetData);
 
-        // TODO: Troubleshoot (doesn't currently work)
-        // setNewPetData(prevData => ({
-        //   ...prevData,
-        //   name: name,
-        //   country: userData["country"],
-        //   region: userData["regionName"],
-        //   city: userData["city"],
-        //   lat: userData["lat"],
-        //   lon: userData["lon"],
-        // }));
-
-        // console.log(newPetData);
-
         // Adopt pet (create pet in database and link to user)
         fetch('/user/pet/new', {
           method: 'POST',
