@@ -48,7 +48,7 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
         Yes, I want to delete my {deletionObject}
       </ModalBtn>
 
-      <ModalBtn modalID={modalID}>
+      <ModalBtn modalID={modalID} closeModal>
         No
       </ModalBtn>
     </ModalBox>

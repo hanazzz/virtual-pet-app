@@ -9,12 +9,16 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
       <h2 className="md:col-span-2">Potential Pet</h2>
 
       <div>
-        <img
-          src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
-          alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
-          id="species-img"
-          className="col"
-        />
+        <div className="mockup-window border bg-base-300">
+          <div className="flex justify-center px-4 py-4 bg-base-200">
+            <img
+              src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
+              alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
+              id="species-img"
+              className="rounded-2xl"
+            />
+          </div>
+        </div>
       </div>
 
       <PetAttributes

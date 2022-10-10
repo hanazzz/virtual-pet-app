@@ -59,7 +59,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
           <Button
             id={interaction}
             onClick={handleChoice}
-            btnClasses="btn-lg my-4"
+            btnClasses="btn-lg my-4 btn-primary"
           >
             {interaction}
           </Button>
@@ -89,7 +89,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         </div>
 
         <ModalFooter>
-          <ModalBtn modalID={modalID}>
+          <ModalBtn modalID={modalID} closeModal>
             Cancel
           </ModalBtn>
         </ModalFooter>

@@ -12,7 +12,7 @@ function AttributesModal() {
       <ModalBox modalID={modalID}>
         <PetAttributes />
         <ModalFooter>
-          <ModalBtn modalID={modalID}>
+          <ModalBtn modalID={modalID} closeModal>
             Close
           </ModalBtn>
         </ModalFooter>

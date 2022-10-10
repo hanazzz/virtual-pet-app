@@ -44,18 +44,24 @@ function CurrentPet({ tempInF }) {
                 src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
                 alt={petData.species_name}
                 id="species-img"
+                className="rounded-2xl"
               />
             </div>
           </div>
         </div>
 
         {/* Overlay images */}
-        {/* <div className="col-span-3 mx-auto my-0" style={{ backgroundImage: 'url(/static/images/tamatest.png)' }}>
+        {/* <div
+              className="col-span-3 mx-auto my-0"
+              style={{ backgroundImage: 'url(/static/images/pet-test-frame.png)' }}
+            >
           <img
-            src='/static/images/tamatest.png'
+            src='/static/images/pet-test-frame.png'
           />
           <img
-            src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
+            src={petData.species_img_path
+              ? petData.species_img_path
+              : '/static/images/loading-pet.gif'}
             alt={petData.species_name}
             id="species-img"
           />

@@ -1,15 +1,20 @@
 /* eslint-disable react/forbid-prop-types */
 // eslint-disable-next-line no-unused-vars
-function ModalBtn({ modalID, modalBtnCallback, addlClasses, btnClassOverride, children }) {
+function ModalBtn({
+  modalID, modalBtnCallback,
+  addlClasses, btnClassOverride, closeModal, children,
+}) {
   function toggleModal() {
     document.getElementById(modalID).classList.toggle('modal-open');
   }
 
   const modalCallback = modalBtnCallback || toggleModal;
 
+  const btnClasses = closeModal ? `${addlClasses} btn-accent` : addlClasses;
+
   return (
     <Button
-      btnClasses={addlClasses}
+      btnClasses={btnClasses}
       btnClassOverride={btnClassOverride}
       onClick={modalCallback}
     >
@@ -26,6 +31,7 @@ ModalBtn.propTypes = {
   ]),
   addlClasses: PropTypes.string,
   btnClassOverride: PropTypes.bool,
+  closeModal: PropTypes.bool,
   children: PropTypes.any.isRequired,
 };
 
@@ -33,4 +39,5 @@ ModalBtn.defaultProps = {
   modalBtnCallback: false,
   addlClasses: null,
   btnClassOverride: false,
+  closeModal: false,
 };

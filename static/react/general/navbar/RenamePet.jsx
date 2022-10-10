@@ -54,7 +54,7 @@ function RenamePet({ modalID, addAlert }) {
 
         <input type="submit" className="btn" />
 
-        <ModalBtn modalID={modalID}>
+        <ModalBtn modalID={modalID} closeModal>
           Cancel
         </ModalBtn>
       </form>
