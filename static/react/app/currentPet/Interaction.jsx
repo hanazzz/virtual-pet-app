@@ -10,17 +10,20 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   const modalID = `${interactionType}-modal`;
   const interactionIcon = interactionType === 'feed' ? 'utensils' : 'gamepad';
 
-  // Way to use this function to reduce duplication in handleChoice?
-  // function handleStatChange(statChange, response) {
-  //   if ((stat + statChange) <= 0) {
-  //     setStat(0);
-  //   } else if ((stat + statChange) >= 5) {
-  //     setStat(5);
-  //   } else {
-  //     setStat(stat + statChange);
-  //   }
-  //   setMood(response);
-  // }
+  function handleStatChange(statChange, response) {
+    // Close modal
+    document.getElementById(modalID).classList.toggle('modal-open');
+    // Change stat
+    if ((stat + statChange) <= 0) {
+      setStat(0);
+    } else if ((stat + statChange) >= 5) {
+      setStat(5);
+    } else {
+      setStat(stat + statChange);
+    }
+    // Update pet mood
+    setMood(response);
+  }
 
   function handleChoice(evt) {
     const interaction = evt.target.id;
@@ -38,26 +41,10 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         },
       })
         .then(() => {
-          document.getElementById(modalID).classList.toggle('modal-open');
-          if ((stat + statChange) <= 0) {
-            setStat(0);
-          } else if ((stat + statChange) >= 5) {
-            setStat(5);
-          } else {
-            setStat(stat + statChange);
-          }
-          setMood(response);
+          handleStatChange(statChange, response);
         });
     } else {
-      document.getElementById(modalID).classList.toggle('modal-open');
-      if ((stat + statChange) <= 0) {
-        setStat(0);
-      } else if ((stat + statChange) >= 5) {
-        setStat(5);
-      } else {
-        setStat(stat + statChange);
-      }
-      setMood(response);
+      handleStatChange(statChange, response);
     }
   }
 
