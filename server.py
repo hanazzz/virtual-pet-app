@@ -199,16 +199,10 @@ def create_custom_pet():
 
     # Receive string of keywords
     pet_prompt = request.json
-    print(pet_prompt)
-    # Append "synthwave high resolution 4k"
-    pet_prompt.append("synthwave high resolution 4k")
-    print(pet_prompt)
+    # Append "cute cartoon high resolution 4k"
+    pet_prompt.append("cute cartoon high resolution 4k")
     # Join list items to form a string
     pet_prompt_str = ' '.join(pet_prompt)
-
-    print()
-    print(pet_prompt_str)
-    print()
 
     user_id = session["current_user_id"]
     # Pass keywords into generate_craiyon_img()
@@ -448,9 +442,9 @@ def mock_get_current_weather():
     }
 
     # Test error
-    status_code = 200
-    print("ERROR: Weather API request failed.")
-    print("Response status code:", status_code)
+    # status_code = 200
+    # print("ERROR: Weather API request failed.")
+    # print("Response status code:", status_code)
     # return jsonify(f"Encountered an error retrieving current weather. Status code: {status_code}")
 
     return jsonify(current_weather)
