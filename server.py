@@ -240,8 +240,8 @@ def rename_user_pet():
     new_name = request.json
 
     # Update pet's name in db and update session with new pet name
-    session["current_pet"] = crud.update_pet_name(
-        session["current_user_id"], new_name)
+    session["current_pet"] = crud.update_pet_attr(
+        session["current_user_id"], "name", new_name)
 
     # Return updated pet data
     return jsonify(session["current_pet"])
