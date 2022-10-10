@@ -9,7 +9,6 @@ function ModalBtn({ modalID, modalBtnCallback, addlClasses, btnClassOverride, ch
 
   return (
     <Button
-      btnClass="modal-button"
       btnClasses={addlClasses}
       btnClassOverride={btnClassOverride}
       onClick={modalCallback}

@@ -9,7 +9,6 @@ function Mood({ mood }) {
   // elemID = ID of element in which to display message
   // idx = index of next character to display (initially starts at 0 by default)
   function typeWriter(msg, speed, elemID, idx = 0) {
-    console.log('typewriter! idx is', idx);
     // while idx < length of msg
     if (idx < msg.length) {
       // Add next character from msg to element
@@ -23,7 +22,7 @@ function Mood({ mood }) {
   // Call typeWriter() every time mood changes
   React.useEffect(() => {
     // Clear out element text
-    document.getElementById('mood-text').innerHTML = '';
+    document.getElementById('mood-text').innerHTML = null;
     typeWriter(mood, 50, 'mood-text');
   }, [mood]);
 
