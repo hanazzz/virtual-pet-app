@@ -6,7 +6,7 @@ from flask import (Flask, render_template, request,
 from model import connect_to_db, db
 import crud
 import helper
-from data_attributes.create_attributes import (ACTIVITY)
+from data.create_attributes import (ACTIVITY)
 from random import sample
 from jinja2 import StrictUndefined
 import requests

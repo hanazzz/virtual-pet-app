@@ -7,8 +7,6 @@ from datetime import datetime
 # Create SQLAlchemy object, represents database
 db = SQLAlchemy()
 
-# TODO: Seed database with items (need list of item names and descriptions)
-
 
 class User(db.Model):
     """A user."""
@@ -146,60 +144,6 @@ def connect_to_db(app, db_name="virtualpet"):
     db.init_app(app)
 
     print("Connected to db!")
-
-
-def create_example_data():
-    """Create example data and add to database."""
-
-    test_user = User(username="potato", email="pot@ato.com",
-                     password="password")
-
-    test_pet = Pet(user_id=1,
-                   species_name='cat',
-                   name='floof',
-                   country="United States",
-                   region="California",
-                   city="Oakland",
-                   lat=37.803372927524414,
-                   lon=-122.27166093896454,
-                   food_fave="cake",
-                   food_least="carrots",
-                   activity_fave="Chasing yarn",
-                   activity_least="Taking a bath",
-                   music_fave="Pop punk",
-                   music_least="Classic rock",
-                   weather_fave="Warm and sunny",
-                   weather_least="Cold and rainy",
-                   personality="Shy, clever, kind",
-                   astro_sign="Libra",
-                   species_img_path="/static/images/premade-species/prickly-bunny.jpg")
-
-    # Add all test data into db
-    test_data = [test_user, test_pet]
-    db.session.add_all(test_data)
-    db.session.commit()
-
-
-def create_example_items():
-    """Create example items and add to database."""
-
-    item1 = Item(item_name="cheddar cheese",
-                 description="Cheesy!")
-    item2 = Item(item_name="jelly", description="So jiggly!")
-    item3 = Item(item_name="chili sauce", description="Spicy!")
-    item4 = Item(item_name="sweet potatoes", description="I love fall!")
-    item5 = Item(item_name="anchovies", description="Fishy")
-    item6 = Item(item_name="sweetened condensed milk",
-                 description="So thick and sweet!")
-    item7 = Item(item_name="chocolate ice cream", description="A classic!")
-    item8 = Item(item_name="grilled corn", description="It's got the juice.")
-    item9 = Item(item_name="carrot and pea omelette",
-                 description="yummdsafklj")
-
-    # Add all test data into db
-    test_items = [item1, item2, item3, item4, item5, item6, item7, item8, item9]
-    db.session.add_all(test_items)
-    db.session.commit()
 
 
 if __name__ == "__main__":

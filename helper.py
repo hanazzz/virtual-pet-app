@@ -5,7 +5,7 @@ import crud
 from model import db
 from random import (choice, sample, randint)
 # Lists of pet attributes
-from data_attributes.create_attributes import (
+from data.create_attributes import (
     SPECIES_ID, SPECIES, FOOD, ACTIVITY, MUSIC_GENRE, WEATHER, PERSONALITY,
     ASTROLOGICAL_SIGN
 )
