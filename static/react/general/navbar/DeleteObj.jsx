@@ -4,7 +4,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function DeleteObj({ deletePet, deleteAcct, modalID }) {
+function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
 
   const route = deletePet ? '/user/pet/delete' : '/user/delete';
@@ -26,13 +26,13 @@ function DeleteObj({ deletePet, deleteAcct, modalID }) {
         // Close modal
         document.getElementById(modalID).classList.toggle('modal-open');
         // Display alert
-        alert(msg);
+        addAlert(msg, 'alert-success');
         // If deleted account, redirect to homepage
         if (deleteAcct) {
           window.location.href = '/';
         }
       })
-      .catch((error) => alert(error.toString()));
+      .catch((error) => addAlert(error, 'alert-error'));
   }
 
   return (
@@ -59,6 +59,7 @@ DeleteObj.propTypes = {
   deletePet: PropTypes.bool,
   deleteAcct: PropTypes.bool,
   modalID: PropTypes.string.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };
 
 DeleteObj.defaultProps = {

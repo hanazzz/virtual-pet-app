@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 // eslint-disable-next-line no-unused-vars
-function Logout({ showAlert }) {
+function Logout({ addAlert }) {
   function handleLogout(evt) {
     // prevent page refresh
     evt.preventDefault();
@@ -21,7 +21,7 @@ function Logout({ showAlert }) {
     })
       .then((response) => response.json())
       .then((msg) => {
-        showAlert(msg, 'alert-success');
+        addAlert(msg, 'alert-success');
         window.location.href = '/';
       });
   }
@@ -37,5 +37,5 @@ function Logout({ showAlert }) {
 }
 
 Logout.propTypes = {
-  showAlert: PropTypes.func.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };

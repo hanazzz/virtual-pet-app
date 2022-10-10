@@ -11,22 +11,18 @@ function VirtualPetApp() {
   // tempInF tracks whether to display temperature in Fahrenheit (true) or Celsius (false)
   const [tempInF, setTempInF] = React.useState(JSON.parse(localStorage.getItem('tempInF')) || true);
 
-  function showAlert(msg, alertClasses) {
-    // Get alert DOM element
-    const alert = document.querySelector('.alert');
-    // Remove any previous alert classes
-    alert.classList.remove('alert-info');
-    alert.classList.remove('alert-success');
-    alert.classList.remove('alert-warning');
-    alert.classList.remove('alert-error');
-    // Add any additional classes to alert
-    alert.classList.add(alertClasses);
-    // Remove 'hidden' class to show alert
-    alert.classList.remove('hidden');
-    // Get alert text box DOM element
-    const alertText = document.querySelector('#alert-text');
-    // Update alert text with msg
-    alertText.innerText = msg;
+  // alertList holds list of alerts to display to user
+  const [alertList, setAlertList] = React.useState([]);
+
+  // Create new alert and add to alertList
+  function addAlert(msg, alertClasses) {
+    const alertNum = alertList.length;
+    const alert = (
+      <Alert alertID={`login-alert=${alertNum}`} addlClasses={alertClasses}>
+        {msg}
+      </Alert>
+    );
+    setAlertList((prevList) => prevList.concat(alert));
   }
 
   console.log('Loading app');
@@ -44,15 +40,17 @@ function VirtualPetApp() {
     // Delete any lingering stats in local storage
     localStorage.removeItem('energy');
     localStorage.removeItem('happiness');
-    appContent = <PetGenerator />;
+    // eslint-disable-next-line react/jsx-no-bind
+    appContent = <PetGenerator addAlert={addAlert} />;
   }
 
   return (
     <>
-      <Alert alertID="app-alert" addlClasses="hidden" />
+      {/* <Alert alertID="app-alert" addlClasses="hidden" /> */}
+      {alertList}
 
       {/* eslint-disable-next-line react/jsx-no-bind */}
-      <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} showAlert={showAlert} />
+      <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
       <main className="px-10 py-6">
         {appContent}

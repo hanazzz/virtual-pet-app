@@ -7,17 +7,18 @@
 // Generate a new pet to adopt
 
 // eslint-disable-next-line no-unused-vars
-function PetGenerator() {
+function PetGenerator({ addAlert }) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
 
-  // alert("Looks like you don't have a pet yet! Let's fix that.");
   console.log('*** rendering pet generator ***');
   console.log(newPetData);
 
+  React.useEffect(() => addAlert("Looks like you don't have a pet yet! Let's fix that.", 'alert-info'), []);
+
   const displayNewPet = !newPetData
     ? null
-    : <PotentialPet newPetData={newPetData} setNewPetData={setNewPetData} />;
+    : <PotentialPet newPetData={newPetData} setNewPetData={setNewPetData} addAlert={addAlert} />;
 
   return (
     <div id="pet-generator" className="grid md:grid-cols-2">
@@ -35,3 +36,7 @@ function PetGenerator() {
     </div>
   );
 }
+
+PetGenerator.propTypes = {
+  addAlert: PropTypes.func.isRequired,
+};

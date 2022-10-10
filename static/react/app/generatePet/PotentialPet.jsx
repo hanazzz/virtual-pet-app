@@ -1,7 +1,7 @@
 // Display information for potential pet
 
 // eslint-disable-next-line no-unused-vars
-function PotentialPet({ newPetData, setNewPetData }) {
+function PotentialPet({ newPetData, setNewPetData, addAlert }) {
   const [useCustomSpecies, setUseCustomSpecies] = React.useState(false);
 
   return (
@@ -31,6 +31,7 @@ function PotentialPet({ newPetData, setNewPetData }) {
         useCustomSpecies={useCustomSpecies}
         newPetData={newPetData}
         setNewPetData={setNewPetData}
+        addAlert={addAlert}
       />
     </>
   );
@@ -52,4 +53,5 @@ PotentialPet.propTypes = {
     species_img_path: PropTypes.string.isRequired,
   }).isRequired,
   setNewPetData: PropTypes.func.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };

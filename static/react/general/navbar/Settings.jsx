@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-boolean-value */
 // eslint-disable-next-line no-unused-vars
-function Settings({ tempInF, setTempInF, showAlert }) {
+function Settings({ tempInF, setTempInF, addAlert }) {
   const { petData } = usePetData();
 
   const navbarPetInfo = !petData ? null : (
@@ -22,9 +22,9 @@ function Settings({ tempInF, setTempInF, showAlert }) {
         <li><ModalBtn modalID="delete-account" btnClassOverride={true}>Delete account</ModalBtn></li>
       </ul>
       {/* Modals */}
-      <RenamePet modalID="rename-pet-modal" />
-      <DeleteObj modalID="delete-pet" deletePet={true} />
-      <DeleteObj modalID="delete-account" deleteAcct={true} />
+      <RenamePet modalID="rename-pet-modal" addAlert={addAlert} />
+      <DeleteObj modalID="delete-pet" deletePet={true} addAlert={addAlert} />
+      <DeleteObj modalID="delete-account" deleteAcct={true} addAlert={addAlert} />
     </div>
   );
 }
@@ -32,5 +32,5 @@ function Settings({ tempInF, setTempInF, showAlert }) {
 Settings.propTypes = {
   tempInF: PropTypes.bool.isRequired,
   setTempInF: PropTypes.func.isRequired,
-  showAlert: PropTypes.func.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };

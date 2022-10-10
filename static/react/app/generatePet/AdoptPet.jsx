@@ -6,10 +6,11 @@
 // Display adoption options (depending on existing vs custom species)
 
 // eslint-disable-next-line no-unused-vars
-function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
+function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
   const { makeCustomImg } = useMakeCustomImg();
 
+  // Define states for custom pet creator input fields
   const [adjective, setAdjective] = React.useState('');
   const [color, setColor] = React.useState('');
   const [animal, setAnimal] = React.useState('');
@@ -62,11 +63,11 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
 
             console.log('adoption complete');
             // eslint-disable-next-line react/prop-types
-            alert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`);
+            addAlert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`, 'alert-success');
           })
-          .catch((error) => alert(error.toString()));
+          .catch((error) => addAlert(error, 'alert-error'));
       })
-      .catch((error) => alert(error.toString()));
+      .catch((error) => addAlert(error, 'alert-error'));
 
     // If using custom species, create custom pet img
     if (useCustomSpecies) {
@@ -148,4 +149,5 @@ AdoptPet.propTypes = {
     species_img_path: PropTypes.string.isRequired,
   }).isRequired,
   setNewPetData: PropTypes.func.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };

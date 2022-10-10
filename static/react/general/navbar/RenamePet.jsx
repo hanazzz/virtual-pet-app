@@ -4,7 +4,7 @@
 /* eslint-disable no-alert */
 
 // eslint-disable-next-line no-unused-vars
-function RenamePet({ modalID }) {
+function RenamePet({ modalID, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
 
   const [newName, setNewName] = React.useState('');
@@ -27,7 +27,7 @@ function RenamePet({ modalID }) {
         // Get new data from server
         // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
         queryClient.invalidateQueries(['pet data']);
-        alert('Your pet has been renamed!');
+        addAlert('Your pet has been renamed!', 'alert-success');
       });
   }
 
@@ -52,15 +52,17 @@ function RenamePet({ modalID }) {
           />
         </label>
 
-        <input type="submit" />
+        <input type="submit" className="btn" />
+
+        <ModalBtn modalID={modalID}>
+          Cancel
+        </ModalBtn>
       </form>
-      <ModalBtn modalID={modalID}>
-        Cancel
-      </ModalBtn>
     </ModalBox>
   );
 }
 
 RenamePet.propTypes = {
   modalID: PropTypes.string.isRequired,
+  addAlert: PropTypes.func.isRequired,
 };
