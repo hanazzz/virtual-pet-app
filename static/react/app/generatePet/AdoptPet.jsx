@@ -8,9 +8,18 @@
 // eslint-disable-next-line no-unused-vars
 function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
   const queryClient = ReactQuery.useQueryClient();
+  const { makeCustomImg } = useMakeCustomImg();
 
-  function adoptPet(speciesName, speciesImgPath) {
+  const [adjective, setAdjective] = React.useState('');
+  const [color, setColor] = React.useState('');
+  const [animal, setAnimal] = React.useState('');
+  const [petName, setPetName] = React.useState('');
+
+  function adoptPet(evt) {
+    evt.preventDefault();
+
     console.log('preparing to adopt pet');
+
     // Get user's location via IP address and use for pet's location
     fetch('/user/location/mock')
       .then((response) => response.json())
@@ -22,19 +31,17 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
           throw (userData);
         }
 
-        const name = prompt('Please name your pet:');
-
         const updatedPetData = newPetData;
-        updatedPetData.name = name;
+        updatedPetData.name = petName;
         updatedPetData.country = userData.country;
         updatedPetData.region = userData.regionName;
         updatedPetData.city = userData.city;
         updatedPetData.lat = userData.lat;
         updatedPetData.lon = userData.lon;
-        // If adopting custom species pet, get species name and img path from params
+        // If adopting custom species pet, use custom species name and set img path to null
         if (useCustomSpecies) {
-          updatedPetData.species_name = speciesName;
-          updatedPetData.species_img_path = speciesImgPath;
+          updatedPetData.species_name = `${adjective} ${animal}`;
+          updatedPetData.species_img_path = null;
         }
         setNewPetData(updatedPetData);
 
@@ -60,13 +67,85 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData }) {
           .catch((error) => alert(error.toString()));
       })
       .catch((error) => alert(error.toString()));
+
+    // If using custom species, create custom pet img
+    if (useCustomSpecies) {
+      console.log('creating custom pet');
+      const petPrompt = [adjective, color, animal];
+      makeCustomImg(petPrompt);
+    }
   }
 
-  const adoptionProcess = !useCustomSpecies
-    ? <AdoptPetBtn adoptPet={adoptPet} />
-    : <CustomPetCreator adoptPet={adoptPet} />;
-
   return (
-    adoptionProcess
+    <>
+      {/* If making custom species, show custom pet creator */}
+      {useCustomSpecies
+        && (
+        <CustomPetCreator
+          adoptPet={adoptPet}
+          adjective={adjective}
+          setAdjective={setAdjective}
+          color={color}
+          setColor={setColor}
+          animal={animal}
+          setAnimal={setAnimal}
+        />
+        )}
+
+      {/* Button to open modal to name pet */}
+      <Button
+        onClick={() => document.getElementById('name-new-pet').classList.toggle('modal-open')}
+        id="adopt-pet"
+      >
+        ADOPT PET
+      </Button>
+
+      {/* Modal to name pet and initiate adoption */}
+      <ModalBox modalID="name-new-pet">
+        <ModalTitle>Name your new pet</ModalTitle>
+
+        <p>Time to name your new pet! Please enter a name below.</p>
+
+        <form onSubmit={(evt) => adoptPet(evt)}>
+          <label htmlFor="pet-name">
+            Pet name:
+            <input
+              type="text"
+              name="pet-name"
+              id="pet-name"
+              required="required"
+              aria-required="true"
+              value={petName}
+              onChange={(evt) => setPetName(evt.target.value)}
+            />
+          </label>
+
+          <input type="submit" className="btn" />
+
+          <ModalBtn modalID="name-new-pet">
+            Cancel
+          </ModalBtn>
+        </form>
+      </ModalBox>
+    </>
   );
 }
+
+AdoptPet.propTypes = {
+  useCustomSpecies: PropTypes.bool.isRequired,
+  newPetData: PropTypes.shape({
+    species_name: PropTypes.string.isRequired,
+    food_fave: PropTypes.string.isRequired,
+    food_least: PropTypes.string.isRequired,
+    activity_fave: PropTypes.string.isRequired,
+    activity_least: PropTypes.string.isRequired,
+    music_fave: PropTypes.string.isRequired,
+    music_least: PropTypes.string.isRequired,
+    weather_fave: PropTypes.string.isRequired,
+    weather_least: PropTypes.string.isRequired,
+    personality: PropTypes.string.isRequired,
+    astro_sign: PropTypes.string.isRequired,
+    species_img_path: PropTypes.string.isRequired,
+  }).isRequired,
+  setNewPetData: PropTypes.func.isRequired,
+};
