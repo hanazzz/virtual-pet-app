@@ -4,51 +4,51 @@ function PetAttributes({ newPetData, speciesPlaceholder }) {
   const pet = petData || newPetData;
 
   return (
-    <table id="pet-display" className="col">
-      <caption>Pet Attributes</caption>
+    <table id="pet-display" className="table table-compact table-zebra">
+      <caption className="font-lg font-bold">Pet Attributes</caption>
       <tbody>
         <tr>
-          <td>Pet species</td>
+          <th>Pet species</th>
           <td id="pet-species">{!speciesPlaceholder ? pet.species_name : speciesPlaceholder}</td>
         </tr>
         <tr>
-          <td>Favorite food</td>
+          <th>Favorite food</th>
           <td id="food-fave">{pet.food_fave}</td>
         </tr>
         <tr>
-          <td>Least favorite food</td>
+          <th>Least favorite food</th>
           <td id="food-least">{pet.food_least}</td>
         </tr>
         <tr>
-          <td>Favorite activity</td>
+          <th>Favorite activity</th>
           <td id="activity-fave">{pet.activity_fave}</td>
         </tr>
         <tr>
-          <td>Least favorite activity</td>
+          <th>Least favorite activity</th>
           <td id="activity-least">{pet.activity_least}</td>
         </tr>
         <tr>
-          <td>Favorite music genre</td>
+          <th>Favorite music genre</th>
           <td id="music-fave">{pet.music_fave}</td>
         </tr>
         <tr>
-          <td>Least favorite music genre</td>
+          <th>Least favorite music genre</th>
           <td id="music-least">{pet.music_least}</td>
         </tr>
         <tr>
-          <td>Favorite weather</td>
+          <th>Favorite weather</th>
           <td id="weather-fave">{pet.weather_fave}</td>
         </tr>
         <tr>
-          <td>Least favorite weather</td>
+          <th>Least favorite weather</th>
           <td id="weather-least">{pet.weather_least}</td>
         </tr>
         <tr>
-          <td>Personality</td>
+          <th>Personality</th>
           <td id="personality">{pet.personality}</td>
         </tr>
         <tr>
-          <td>Astrological sign</td>
+          <th>Astrological sign</th>
           <td id="astro-sign">{pet.astro_sign}</td>
         </tr>
       </tbody>

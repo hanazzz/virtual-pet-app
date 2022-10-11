@@ -20,6 +20,7 @@ function GeneratePetBtn({ setNewPetData }) {
       // eslint-disable-next-line react/jsx-no-bind
       onClick={generateNewPet}
       id="generate-pet"
+      btnClasses="btn-lg btn-secondary"
     >
       GENERATE PET
     </Button>
