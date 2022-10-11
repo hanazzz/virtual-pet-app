@@ -42,19 +42,19 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   // <button type="button" onClick={interactWithPet}>{statInteraction}</button>
 
   // <div id={statName} className="flex flex-row items-center justify-between">
-  //   <h4>{statName}</h4>
+  //   <h3>{statName}</h3>
   //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
   // </div>
 
   return (
   // <div id={statName} className="text-center">
-  //   <h4>{statName}</h4>
+  //   <h3>{statName}</h3>
 
   //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
   // </div>
 
     <Card id={statName} color="accent" addlClasses="text-center card-compact">
-      <h4>{statName}</h4>
+      <h3>{statName}</h3>
 
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
     </Card>

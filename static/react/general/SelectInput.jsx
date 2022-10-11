@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 function SelectInput({
   selectID, labelText, optionList, addlLabelClasses,
-  addlSelectClasses, state, setState,
+  addlSelectClasses, state, setState, isRequired, isDisabled,
 }) {
   const classListLabel = `label label-text ${addlLabelClasses}`;
   const classListSelect = `select ${addlSelectClasses}`;
@@ -20,6 +20,9 @@ function SelectInput({
         className={classListSelect}
         value={state}
         onChange={(evt) => setState(evt.target.value)}
+        required={isRequired ? 'required' : undefined}
+        aria-required={isRequired}
+        disabled={isDisabled}
       >
         <option value="" disabled>Pick one</option>
         {options}
@@ -39,9 +42,13 @@ SelectInput.propTypes = {
   addlSelectClasses: PropTypes.string,
   state: PropTypes.string.isRequired,
   setState: PropTypes.func.isRequired,
+  isRequired: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 };
 
 SelectInput.defaultProps = {
   addlLabelClasses: undefined,
   addlSelectClasses: undefined,
+  isRequired: false,
+  isDisabled: false,
 };

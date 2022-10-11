@@ -6,7 +6,7 @@ function Alert({ alertID, addlClasses, children }) {
   }
 
   return (
-    <div id={alertID} className={`alert rounded-none  ${addlClasses}`} key={alertID}>
+    <div id={alertID} className={`alert rounded-none  ${addlClasses}`} key={alertID} role="alert">
       <div id="alert-text">
         <span>{children}</span>
       </div>

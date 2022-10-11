@@ -39,12 +39,12 @@ function RenamePet({ modalID, addAlert }) {
       <p>If you changed your mind, click "Cancel" to exit.</p>
 
       <form className="text-center mt-4" onSubmit={(evt) => renamePet(evt)}>
-        <label htmlFor="pet-name" className="label label-text flex flex-col">
+        <label htmlFor="new-pet-name" className="label label-text flex flex-col">
           New name:
           <input
             type="text"
-            name="pet-name"
-            id="pet-name"
+            name="new-pet-name"
+            id="new-pet-name"
             required="required"
             aria-required="true"
             value={newName}
