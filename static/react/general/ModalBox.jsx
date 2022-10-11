@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 function ModalBox({ modalID, children }) {
   return (
-    <div id={modalID} className="modal">
+    <div id={modalID} className="modal w-screen">
       <div className="modal-box">
         {children}
       </div>

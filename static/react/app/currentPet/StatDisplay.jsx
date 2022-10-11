@@ -11,16 +11,14 @@ function StatDisplay({ filledStat, emptyStat, statName }) {
   ));
   const emptyStatSquares = [...Array(emptyStat)].map((value, idx) => (
     // eslint-disable-next-line react/no-array-index-key
-    <i className={`fa-solid fa-${icon} opacity-40 fa-2x px-2 py-1`} key={idx} />
+    <i className={`fa-solid fa-${icon} text-neutral-400 fa-2x px-2 py-1`} key={idx} />
   ));
 
   return (
-    // <div id={`${statName}-display`}>
-    <>
+    <div id={`${statName}-display`}>
       {filledStatSquares}
       {emptyStatSquares}
-    </>
-    // </div>
+    </div>
   );
 }
 

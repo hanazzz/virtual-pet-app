@@ -4,7 +4,7 @@ function AttributesModal() {
 
   return (
     <>
-      <ModalBtn modalID={modalID} addlClasses="btn-lg">
+      <ModalBtn modalID={modalID} addlClasses="btn-lg btn-primary">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         <i className="fa-solid fa-book pr-2" /> ATTRIBUTES
       </ModalBtn>

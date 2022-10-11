@@ -33,20 +33,26 @@ function CurrentPet({ tempInF }) {
       </div>
 
       <div id="pet-main" className="md:grid grid-cols-7 my-12 gap-6">
-        <div className="col-span-2 flex flex-col justify-evenly">
-          <Mood mood={mood} />
+        <div id="stats" className="md:col-span-2 my-4 flex flex-col justify-evenly items-center">
+          {/* <Mood mood={mood} /> */}
+          <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
+
+          <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
         </div>
 
-        <div className="col-span-3 mx-auto my-0">
+        <div className="md:col-span-3 mx-auto my-0 w-full">
           <div className="mockup-window border bg-base-300">
-            <div className="flex justify-center px-4 py-4 bg-base-200">
+            <div id="pet-img" className="flex justify-center px-4 py-4 bg-base-200">
               <img
                 src={petData.species_img_path ? petData.species_img_path : '/static/images/loading-pet.gif'}
                 alt={petData.species_name}
                 id="species-img"
-                className="rounded-2xl"
+                // className="rounded-2xl"
               />
             </div>
+
+            <Mood mood={mood} />
+
           </div>
         </div>
 
@@ -67,7 +73,7 @@ function CurrentPet({ tempInF }) {
           />
         </div> */}
 
-        <div id="interactions" className="col-span-2 flex flex-col items-center justify-evenly">
+        <div id="interactions" className="md:col-span-2 my-4 flex flex-col items-center justify-evenly">
           {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
           <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
           {/* eslint-disable-next-line max-len */}
@@ -75,11 +81,11 @@ function CurrentPet({ tempInF }) {
           {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
           <AttributesModal />
         </div>
-        <div id="stats" className="col-start-3 col-span-3 grid grid-cols-6">
+        {/* <div id="stats" className="col-start-3 col-span-3 grid grid-cols-6">
           <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
           <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
-        </div>
+        </div> */}
 
       </div>
     </div>

@@ -16,7 +16,7 @@ function Navbar({ username, tempInF, setTempInF, addAlert }) {
   );
 
   return (
-    <nav className="navbar bg-accent px-4">
+    <nav className="navbar bg-neutral text-neutral-content px-4">
       <div className="navbar-start">
         <p className="normal-case text-xl">Virtual Pet App</p>
       </div>

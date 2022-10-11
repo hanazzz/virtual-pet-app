@@ -19,7 +19,7 @@ function Modal({ modalID, modalBtnText, children, modalBtnCallback }) {
       </Button>
 
       {/* Modal box */}
-      <div id={modalID} className="modal">
+      <div id={modalID} className="modal w-screen">
         <div className="modal-box">
           {children}
           <div className="modal-action">

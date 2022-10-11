@@ -4,77 +4,74 @@ function CreateAcct({
   email, setEmail, password2, setPassword2, submitForm,
 }) {
   return (
-    <div id="create-account" className="row">
+    <Form submitCallback={submitForm}>
+      <h2>Create Account</h2>
+      <label htmlFor="email" className="label label-text flex flex-col">
+        Email:
+        <input
+          type="email"
+          name="email"
+          id="email"
+          maxLength="254"
+          required="required"
+          aria-required="true"
+          autoComplete="email"
+          value={email}
+          onChange={(evt) => setEmail(evt.target.value)}
+          className="input input-bordered"
+        />
+      </label>
 
-      <Form submitCallback={submitForm}>
-        <h2>Create Account</h2>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            maxLength="254"
-            required="required"
-            aria-required="true"
-            autoComplete="email"
-            value={email}
-            onChange={(evt) => setEmail(evt.target.value)}
-          />
-        </label>
-        <br />
+      <label htmlFor="username" className="label label-text flex flex-col">
+        Username:
+        <input
+          type="text"
+          name="username"
+          id="username"
+          maxLength="30"
+          required="required"
+          aria-required="true"
+          autoComplete="username"
+          value={username}
+          onChange={(evt) => setUsername(evt.target.value)}
+          className="input input-bordered"
+        />
+      </label>
 
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            id="username"
-            maxLength="30"
-            required="required"
-            aria-required="true"
-            autoComplete="username"
-            value={username}
-            onChange={(evt) => setUsername(evt.target.value)}
-          />
-        </label>
-        <br />
+      <label htmlFor="password" className="label label-text flex flex-col">
+        Password:
+        <input
+          type="password"
+          name="password"
+          id="password"
+          minLength="8"
+          required="required"
+          aria-required="true"
+          autoComplete="new-password"
+          value={password}
+          onChange={(evt) => setPassword(evt.target.value)}
+          className="input input-bordered"
+        />
+      </label>
 
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            id="password"
-            minLength="8"
-            required="required"
-            aria-required="true"
-            autoComplete="new-password"
-            value={password}
-            onChange={(evt) => setPassword(evt.target.value)}
-          />
-        </label>
-        <br />
+      <label htmlFor="password-confirm" className="label label-text flex flex-col">
+        Confirm password:
+        <input
+          type="password"
+          name="password2"
+          id="password-confirm"
+          minLength="8"
+          required="required"
+          aria-required="true"
+          autoComplete="new-password"
+          value={password2}
+          onChange={(evt) => setPassword2(evt.target.value)}
+          className="input input-bordered"
+        />
+      </label>
 
-        <label htmlFor="password-confirm">
-          Confirm password:
-          <input
-            type="password"
-            name="password2"
-            id="password-confirm"
-            minLength="8"
-            required="required"
-            aria-required="true"
-            autoComplete="new-password"
-            value={password2}
-            onChange={(evt) => setPassword2(evt.target.value)}
-          />
-        </label>
-        <br />
-
-        <input type="submit" className="btn" />
-      </Form>
-    </div>
+      <input type="submit" className="btn btn-primary" />
+    </Form>
   );
 }
 

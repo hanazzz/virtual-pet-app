@@ -10,7 +10,7 @@ function ModalBtn({
 
   const modalCallback = modalBtnCallback || toggleModal;
 
-  const btnClasses = closeModal ? `${addlClasses} btn-accent` : addlClasses;
+  const btnClasses = closeModal ? `${addlClasses}` : addlClasses;
 
   return (
     <Button

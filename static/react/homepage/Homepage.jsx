@@ -117,11 +117,13 @@ function AcctForm() {
 
         {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
 
-        {form}
+        <div className="md:w-3/5 text-center m-auto">
+          {form}
 
-        <Button onClick={toggleLogInMethd}>
-          {logInMethd ? logInMsg : createAcctMsg}
-        </Button>
+          <Button onClick={toggleLogInMethd} btnClasses="btn-secondary">
+            {logInMethd ? logInMsg : createAcctMsg}
+          </Button>
+        </div>
       </main>
     </>
   );

@@ -107,8 +107,8 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
         <p>Time to name your new pet! Please enter a name below.</p>
 
-        <form onSubmit={(evt) => adoptPet(evt)}>
-          <label htmlFor="pet-name">
+        <form className="text-center" onSubmit={(evt) => adoptPet(evt)}>
+          <label htmlFor="pet-name" className="label label-text flex flex-col">
             Pet name:
             <input
               type="text"
@@ -118,14 +118,17 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
               aria-required="true"
               value={petName}
               onChange={(evt) => setPetName(evt.target.value)}
+              className="input input-bordered"
             />
           </label>
 
-          <input type="submit" className="btn" />
+          <ModalFooter>
+            <input type="submit" className="btn btn-primary" />
 
-          <ModalBtn modalID="name-new-pet">
-            Cancel
-          </ModalBtn>
+            <ModalBtn modalID="name-new-pet">
+              Cancel
+            </ModalBtn>
+          </ModalFooter>
         </form>
       </ModalBox>
     </>

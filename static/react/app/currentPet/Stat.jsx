@@ -25,7 +25,7 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   // Use setInterval() on render to call decreaseStat() every n milliseconds
   // Need to clearInterval on return (component unmounting) to avoid multiple intervals
   React.useEffect(() => {
-    intervalID = setInterval(decreaseStat, 5000);
+    intervalID = setInterval(decreaseStat, 10000);
     return () => {
       clearInterval(intervalID);
     };
@@ -47,11 +47,17 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   // </div>
 
   return (
-    <>
+  // <div id={statName} className="text-center">
+  //   <h4>{statName}</h4>
+
+  //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
+  // </div>
+
+    <Card id={statName} color="accent" addlClasses="text-center card-compact">
       <h4>{statName}</h4>
 
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
-    </>
+    </Card>
   );
 }
 

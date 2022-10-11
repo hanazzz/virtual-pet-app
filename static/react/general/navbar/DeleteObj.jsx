@@ -43,14 +43,16 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
       <p>{`Are you sure you want to delete your ${deletionObject}?`}</p>
       <p>WARNING: This action is irreversible.</p>
 
-      <ModalBtn modalID={modalID} modalBtnCallback={deleteObj}>
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        Yes, I want to delete my {deletionObject}
-      </ModalBtn>
+      <ModalFooter>
+        <ModalBtn modalID={modalID} modalBtnCallback={deleteObj} addlClasses="btn-accent shrink md:shrink-0">
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          Yes, I want to delete my {deletionObject}
+        </ModalBtn>
 
-      <ModalBtn modalID={modalID} closeModal>
-        No
-      </ModalBtn>
+        <ModalBtn modalID={modalID} closeModal>
+          No
+        </ModalBtn>
+      </ModalFooter>
     </ModalBox>
   );
 }

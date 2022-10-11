@@ -12,10 +12,10 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
         <div className="mockup-window border bg-base-300">
           <div className="flex justify-center px-4 py-4 bg-base-200">
             <img
-              src={!useCustomSpecies ? newPetData.species_img_path : 'https://via.placeholder.com/256x256.png?text=Your+custom+pet+here!'}
+              src={!useCustomSpecies ? newPetData.species_img_path : '/static/images/new-pet-placeholder.png'}
               alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
               id="species-img"
-              className="rounded-2xl"
+              // className="rounded-2xl"
             />
           </div>
         </div>

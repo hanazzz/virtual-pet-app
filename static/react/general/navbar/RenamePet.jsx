@@ -38,8 +38,8 @@ function RenamePet({ modalID, addAlert }) {
       <p>If you would like to rename your pet, please enter your pet's new name below.</p>
       <p>If you changed your mind, click "Cancel" to exit.</p>
 
-      <form onSubmit={(evt) => renamePet(evt)}>
-        <label htmlFor="pet-name">
+      <form className="text-center mt-4" onSubmit={(evt) => renamePet(evt)}>
+        <label htmlFor="pet-name" className="label label-text flex flex-col">
           New name:
           <input
             type="text"
@@ -49,14 +49,17 @@ function RenamePet({ modalID, addAlert }) {
             aria-required="true"
             value={newName}
             onChange={(evt) => setNewName(evt.target.value)}
+            className="input input-bordered"
           />
         </label>
 
-        <input type="submit" className="btn" />
+        <ModalFooter>
+          <input type="submit" className="btn btn-accent" />
 
-        <ModalBtn modalID={modalID} closeModal>
-          Cancel
-        </ModalBtn>
+          <ModalBtn modalID={modalID} closeModal>
+            Cancel
+          </ModalBtn>
+        </ModalFooter>
       </form>
     </ModalBox>
   );

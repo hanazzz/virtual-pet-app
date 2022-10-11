@@ -73,7 +73,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   return (
     <>
       {/* Interaction button that appears on main page */}
-      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction} addlClasses="btn-lg">
+      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction} addlClasses="btn-lg btn-primary">
         <i className={`fa-solid fa-${interactionIcon} pr-2`} />
         {interactionText}
       </ModalBtn>
