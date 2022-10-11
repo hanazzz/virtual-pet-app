@@ -3,6 +3,102 @@
     background-color: #91b8a5;
 }
 
+/* CSS HSL */
+/* --cambridge-blue: hsla(151, 22%, 65%, 1); */
+/* --corn: hsla(54, 97%, 65%, 1); */
+/* --cotton-candy: hsla(330, 70%, 83%, 1); */
+/* --hunter-green: hsla(139, 20%, 28%, 1); */
+/* --independence: hsl(257, 10%, 36%) */
+/* --purple-navy: hsla(225, 30%, 40%, 1); */
+/* --atomic-tangerine: hsla(23, 100%, 65%, 1); */
+/* --baby-powder: hsl(36, 100%, 99%); */
+/* --cultured: hsl(210, 20%, 96%); */
+/* --light-gray: hsl(216, 12%, 84%) */
+/* --jet: hsl(0, 0%, 20%) */
+
+
+[data-theme='cyberpunk'] {
+    --corn: 54 97% 65%;
+    --cotton-candy: 330 70% 83%;
+    --hunter-green: 139 20% 28%;
+    --independence: 257 10% 36%;
+    --purple-navy: 225 30% 40%;
+    --atomic-tangerine: 23 100% 65%;
+    --baby-powder: 36 100% 99%;
+    --cultured: 210 20% 96%;
+    --light-gray: 216 12% 84%;
+    --jet: 0 0% 20%;
+  /* primary */
+  --p: var(--corn);
+  /* primary focus */
+  /* --pf: 262 80% 40%; */
+  /* primary content */
+  --pc: var(--jet);
+
+  /* secondary */
+  --s: var(--cotton-candy);
+  /* secondary focus */
+  /* --sf: 316 70% 100%; */
+  /* secondary content */
+  /* --sc: 0 0% 50%; */
+
+  /* accent */
+  --a: var(--atomic-tangerine);
+  /* accent contnt */
+  /* --ac: 342  75% 30%; */
+  /* accent focus */
+  /* --af: 342 75% 30%; */
+
+  /* info */
+  /* --in: 198 93% 60%; */
+  /* info content */
+  /* --inc: 198 100% 12%; */
+
+  /* success */
+  /* --su: 158 64% 52%; */
+  /* success content */
+  /* --suc: 158 100% 10%; */
+
+  /* warning */
+  /* --wa: 43 96% 56%; */
+  /* warning content */
+  /* --wac: 43 100% 11%; */
+
+  /* error */
+  /* --er: 0 91% 71%; */
+  /* error content */
+  /* --erc: 0 100% 14%; */
+
+  /* neutral */
+  --n: var(--purple-navy);
+  /* neutral focus */
+  /* --nf: 223 17% 8%; */
+  /* neutral content */
+  --nc: var(--cultured);
+
+  /* base 100 */
+  --b1: var(--baby-powder);
+  /* base 200 */
+  --b2: var(--cultured);
+  /* base 300 */
+  --b3: var(--light-gray);
+  /* base content */
+  --bc: var(--jet);
+
+  /* other settings */
+  /* --rounded-box: 1rem;
+  --rounded-btn: 0.25rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+  --btn-text-case: capitalize;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem; */
+}
+
+
 /* html {
     font-family: sans-serif;
 }
