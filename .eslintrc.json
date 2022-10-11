@@ -19,6 +19,7 @@
         "Navbar": "readonly",
         "Footer": "readonly",
         "Heading1": "readonly",
+        "Heading2": "readonly",
         "Card": "readonly",
         "SelectInput": "readonly",
         "Form": "readonly",
