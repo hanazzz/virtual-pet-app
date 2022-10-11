@@ -9,7 +9,7 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
       <h2 className="md:col-span-2">Potential Pet</h2>
 
       <div>
-        <div className="mockup-window border bg-base-300">
+        <div className="w-fit m-auto mockup-window border bg-base-300">
           <div className="flex justify-center px-4 py-4 bg-base-200">
             <img
               src={!useCustomSpecies ? newPetData.species_img_path : '/static/images/new-pet-placeholder.png'}
@@ -21,21 +21,23 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
         </div>
       </div>
 
+      <div className="flex flex-col items-center">
+        <SpeciesToggle
+          useCustomSpecies={useCustomSpecies}
+          setUseCustomSpecies={setUseCustomSpecies}
+        />
+
+        <AdoptPet
+          useCustomSpecies={useCustomSpecies}
+          newPetData={newPetData}
+          setNewPetData={setNewPetData}
+          addAlert={addAlert}
+        />
+      </div>
+
       <PetAttributes
         newPetData={newPetData}
         speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'}
-      />
-
-      <SpeciesToggle
-        useCustomSpecies={useCustomSpecies}
-        setUseCustomSpecies={setUseCustomSpecies}
-      />
-
-      <AdoptPet
-        useCustomSpecies={useCustomSpecies}
-        newPetData={newPetData}
-        setNewPetData={setNewPetData}
-        addAlert={addAlert}
       />
     </>
   );

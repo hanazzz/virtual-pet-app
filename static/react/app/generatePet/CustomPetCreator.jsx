@@ -4,14 +4,22 @@
 // Create custom species and adopt pet (custom species pet)
 
 // eslint-disable-next-line no-unused-vars
-function CustomPetCreator({ adjective, setAdjective, color, setColor, animal, setAnimal }) {
+function CustomPetCreator({
+  adjective, setAdjective, color, setColor,
+  animal, setAnimal, useCustomSpecies,
+}) {
   const adjectives = ['sparkly', 'glowing', 'translucent', 'fluffy', 'angelic', 'flying', 'metallic'];
   const colors = ['turquoise', 'black', 'neon yellow', 'chartreuse', 'fluorescent orange', 'hot pink', 'neon purple'];
   const animals = ['dog', 'mouse', 'turtle', 'kitten', 'eagle', 'goldfish', 'leopard'];
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    document.getElementById('name-new-pet').classList.toggle('modal-open');
+  }
+
   return (
-    <div className="form-control w-full max-w-xs md:col-span-2">
-      <form id="custom-species-form" name="custom-pet">
+    <div className="form-control text-center w-full max-w-xs md:col-span-2">
+      <form id="custom-species-form" name="custom-pet" onSubmit={(evt) => handleSubmit(evt)}>
         <h3>Make a custom pet species!</h3>
         <SelectInput
           selectID="pet-adjective"
@@ -21,6 +29,8 @@ function CustomPetCreator({ adjective, setAdjective, color, setColor, animal, se
           addlLabelClasses="flex-col"
           state={adjective}
           setState={setAdjective}
+          isRequired
+          isDisabled={useCustomSpecies ? false : true}
         />
 
         <SelectInput
@@ -31,6 +41,8 @@ function CustomPetCreator({ adjective, setAdjective, color, setColor, animal, se
           addlLabelClasses="flex-col"
           state={color}
           setState={setColor}
+          isRequired
+          isDisabled={useCustomSpecies ? false : true}
         />
 
         <SelectInput
@@ -41,9 +53,15 @@ function CustomPetCreator({ adjective, setAdjective, color, setColor, animal, se
           addlLabelClasses="flex-col"
           state={animal}
           setState={setAnimal}
+          isRequired
+          isDisabled={useCustomSpecies ? false : true}
         />
 
-        {/* <input type="submit" className="btn" /> */}
+        <input
+          type="submit"
+          className={`btn btn-secondary ${!useCustomSpecies ? 'hidden' : null}`}
+          value="ADOPT PET"
+        />
       </form>
     </div>
   );
@@ -56,4 +74,5 @@ CustomPetCreator.propTypes = {
   setColor: PropTypes.func.isRequired,
   animal: PropTypes.string.isRequired,
   setAnimal: PropTypes.func.isRequired,
+  useCustomSpecies: PropTypes.bool.isRequired,
 };

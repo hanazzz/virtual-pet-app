@@ -29,7 +29,7 @@ function PetGenerator({ addAlert }) {
         <p>TODO: ADD INSTRUCTIONS. Can either generate pet from existing species or create custom species. Explain Craiyon / wait time.</p>
         <p>Break down into step? Generate pet attributes. Pick from existing pet species (?) or pick keywords to create own. Name and adopt pet.</p>
       </div>
-      <div>
+      <div className="text-center md:col-span-2">
         <GeneratePetBtn setNewPetData={setNewPetData} />
       </div>
       {displayNewPet}

@@ -79,24 +79,22 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
   return (
     <>
-      {/* If making custom species, show custom pet creator */}
-      {useCustomSpecies
-        && (
-        <CustomPetCreator
-          adoptPet={adoptPet}
-          adjective={adjective}
-          setAdjective={setAdjective}
-          color={color}
-          setColor={setColor}
-          animal={animal}
-          setAnimal={setAnimal}
-        />
-        )}
+      <CustomPetCreator
+        adoptPet={adoptPet}
+        adjective={adjective}
+        setAdjective={setAdjective}
+        color={color}
+        setColor={setColor}
+        animal={animal}
+        setAnimal={setAnimal}
+        useCustomSpecies={useCustomSpecies}
+      />
 
       {/* Button to open modal to name pet */}
       <Button
         onClick={() => document.getElementById('name-new-pet').classList.toggle('modal-open')}
         id="adopt-pet"
+        btnClasses={`btn-secondary ${useCustomSpecies ? 'hidden' : null}`}
       >
         ADOPT PET
       </Button>
