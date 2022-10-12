@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/no-unescaped-entities */
 // TODO: Remove these rules before deployment
 /* eslint-disable no-console */
@@ -13,10 +14,10 @@ function RenamePet({ modalID, addAlert }) {
     // Prevent form submit
     evt.preventDefault();
     // Close modal
-    document.getElementById(modalID).classList.toggle('modal-open');
+    // document.getElementById(modalID).classList.toggle('modal-open');
 
     // Send request to server to rename pet
-    fetch('/user/pet/rename', {
+    return fetch('/user/pet/rename', {
       method: 'POST',
       body: JSON.stringify(newName),
       headers: {
@@ -50,6 +51,7 @@ function RenamePet({ modalID, addAlert }) {
             value={newName}
             onChange={(evt) => setNewName(evt.target.value)}
             className="input input-bordered"
+            autoFocus
           />
         </label>
 

@@ -20,6 +20,7 @@
         "Footer": "readonly",
         "Heading1": "readonly",
         "Heading2": "readonly",
+        "Heading3": "readonly",
         "Card": "readonly",
         "SelectInput": "readonly",
         "Form": "readonly",

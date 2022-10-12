@@ -58,6 +58,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         const btns = Object.keys(interactions).map((interaction) => (
           <Button
             id={interaction}
+            key={interaction}
             onClick={handleChoice}
             btnClasses="btn-lg my-4 btn-primary"
           >

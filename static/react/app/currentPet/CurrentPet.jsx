@@ -74,18 +74,14 @@ function CurrentPet({ tempInF }) {
         </div> */}
 
         <div id="interactions" className="md:col-span-2 my-4 flex flex-col items-center justify-evenly">
-          {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
-          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
-          {/* eslint-disable-next-line max-len */}
           <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
           {/* <Feed setEnergy={setEnergy} energy={energy} setMood={setMood} /> */}
+
+          {/* <Play setHappiness={setHappiness} happiness={happiness} setMood={setMood} /> */}
+          <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />
+
           <AttributesModal />
         </div>
-        {/* <div id="stats" className="col-start-3 col-span-3 grid grid-cols-6">
-          <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
-
-          <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
-        </div> */}
 
       </div>
     </div>

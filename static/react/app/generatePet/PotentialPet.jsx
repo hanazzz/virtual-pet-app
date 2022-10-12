@@ -10,12 +10,16 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
 
       <div>
         <div className="w-fit mx-auto my-2 mockup-window border bg-base-300">
-          <div className="flex justify-center px-4 py-4 bg-base-200">
+          <div className="flex flex-col justify-center px-4 py-4 bg-base-200">
             <img
               src={!useCustomSpecies ? newPetData.species_img_path : '/static/images/new-pet-placeholder.png'}
               alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
               id="species-img"
-              className="py-4"
+              className="py-4 w-fit m-auto transition-opacity duration-200"
+            />
+            <PetAttributes
+              newPetData={newPetData}
+              speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'}
             />
           </div>
         </div>
@@ -35,10 +39,10 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
         />
       </div>
 
-      <PetAttributes
+      {/* <PetAttributes
         newPetData={newPetData}
         speciesPlaceholder={!useCustomSpecies ? false : 'Your custom species'}
-      />
+      /> */}
     </>
   );
 }

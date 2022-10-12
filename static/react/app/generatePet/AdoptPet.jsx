@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/jsx-no-bind */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
@@ -62,6 +63,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
             queryClient.invalidateQueries(['pet data']);
 
             console.log('adoption complete');
+            document.getElementById('name-new-pet').classList.toggle('modal-open');
             // eslint-disable-next-line react/prop-types
             addAlert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`, 'alert-success');
           })
@@ -79,25 +81,28 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
   return (
     <>
-      <CustomPetCreator
-        adoptPet={adoptPet}
-        adjective={adjective}
-        setAdjective={setAdjective}
-        color={color}
-        setColor={setColor}
-        animal={animal}
-        setAnimal={setAnimal}
-        useCustomSpecies={useCustomSpecies}
-      />
+      <Card color="accent" addlClasses="my-6">
+        <CustomPetCreator
+          adoptPet={adoptPet}
+          adjective={adjective}
+          setAdjective={setAdjective}
+          color={color}
+          setColor={setColor}
+          animal={animal}
+          setAnimal={setAnimal}
+          useCustomSpecies={useCustomSpecies}
+        />
 
-      {/* Button to open modal to name pet */}
-      <Button
-        onClick={() => document.getElementById('name-new-pet').classList.toggle('modal-open')}
-        id="adopt-pet"
-        btnClasses={`btn-secondary ${useCustomSpecies ? 'hidden' : null}`}
-      >
-        ADOPT PET
-      </Button>
+        {/* Button to open modal to name pet */}
+        <Button
+          onClick={() => document.getElementById('name-new-pet').classList.toggle('modal-open')}
+          id="adopt-pet"
+          key="adopt-pet"
+          btnClasses={`btn-secondary btn-lg mx-auto mt-10 w-fit ${useCustomSpecies ? 'hidden' : null}`}
+        >
+          ADOPT PET
+        </Button>
+      </Card>
 
       {/* Modal to name pet and initiate adoption */}
       <ModalBox modalID="name-new-pet">
@@ -117,6 +122,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
               value={petName}
               onChange={(evt) => setPetName(evt.target.value)}
               className="input input-bordered"
+              autoFocus
             />
           </label>
 

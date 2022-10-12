@@ -18,7 +18,11 @@ function VirtualPetApp() {
   function addAlert(msg, alertClasses) {
     const alertNum = alertList.length;
     const alert = (
-      <Alert alertID={`login-alert=${alertNum}`} addlClasses={alertClasses}>
+      <Alert
+        alertID={`app-alert-${alertNum}`}
+        key={`app-alert-${alertNum}`}
+        addlClasses={alertClasses}
+      >
         {msg}
       </Alert>
     );

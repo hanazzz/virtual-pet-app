@@ -45,11 +45,13 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
 
       <ModalFooter>
         <ModalBtn modalID={modalID} modalBtnCallback={deleteObj} addlClasses="btn-accent shrink md:shrink-0">
+          <i className="fa-solid fa-check pr-2" />
           {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
           Yes, I want to delete my {deletionObject}
         </ModalBtn>
 
         <ModalBtn modalID={modalID} closeModal>
+          <i className="fa-solid fa-xmark pr-2" />
           No
         </ModalBtn>
       </ModalFooter>

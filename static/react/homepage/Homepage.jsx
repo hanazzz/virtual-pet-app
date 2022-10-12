@@ -34,7 +34,11 @@ function AcctForm() {
   function addAlert(msg, alertClasses) {
     const alertNum = alertList.length;
     const alert = (
-      <Alert alertID={`login-alert=${alertNum}`} addlClasses={alertClasses}>
+      <Alert
+        alertID={`homepage-alert-${alertNum}`}
+        key={`homepage-alert-${alertNum}`}
+        addlClasses={alertClasses}
+      >
         {msg}
       </Alert>
     );

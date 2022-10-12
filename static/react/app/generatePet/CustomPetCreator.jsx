@@ -20,7 +20,7 @@ function CustomPetCreator({
   return (
     <div className="form-control text-center w-full max-w-xs md:col-span-2">
       <form id="custom-species-form" name="custom-pet" onSubmit={(evt) => handleSubmit(evt)}>
-        <h3>Make a custom pet species!</h3>
+        <Heading3>Make a custom pet species!</Heading3>
         <SelectInput
           selectID="pet-adjective"
           labelText="Pick an adjective"
@@ -30,7 +30,7 @@ function CustomPetCreator({
           state={adjective}
           setState={setAdjective}
           isRequired
-          isDisabled={useCustomSpecies ? false : true}
+          isDisabled={!useCustomSpecies}
         />
 
         <SelectInput
@@ -42,7 +42,7 @@ function CustomPetCreator({
           state={color}
           setState={setColor}
           isRequired
-          isDisabled={useCustomSpecies ? false : true}
+          isDisabled={!useCustomSpecies}
         />
 
         <SelectInput
@@ -54,12 +54,12 @@ function CustomPetCreator({
           state={animal}
           setState={setAnimal}
           isRequired
-          isDisabled={useCustomSpecies ? false : true}
+          isDisabled={!useCustomSpecies}
         />
 
         <input
           type="submit"
-          className={`btn btn-secondary ${!useCustomSpecies ? 'hidden' : null}`}
+          className={`btn btn-secondary btn-lg mt-10 ${!useCustomSpecies ? 'hidden' : null}`}
           value="ADOPT PET"
         />
       </form>

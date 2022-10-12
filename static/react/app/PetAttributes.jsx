@@ -5,7 +5,7 @@ function PetAttributes({ newPetData, speciesPlaceholder }) {
 
   return (
     <table id="pet-display" className="table table-compact table-zebra">
-      <caption className="font-lg font-bold">Pet Attributes</caption>
+      <caption className="text-xl font-bold">Pet Attributes</caption>
       <tbody>
         <tr>
           <th>Pet species</th>

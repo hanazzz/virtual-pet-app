@@ -54,7 +54,7 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   // </div>
 
     <Card id={statName} color="accent" addlClasses="text-center card-compact">
-      <h3>{statName}</h3>
+      <Heading3>{statName}</Heading3>
 
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
     </Card>
