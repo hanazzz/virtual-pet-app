@@ -6,13 +6,13 @@ function PotentialPet({ newPetData, setNewPetData, addAlert }) {
 
   return (
     <>
-      <Heading2 addlClasses="md:col-span-2">Potential Pet</Heading2>
+      <Heading2 addlClasses="lg:col-span-2">Potential Pet</Heading2>
 
       <div>
-        <div className="w-fit mx-auto my-2 mockup-window border bg-base-300">
+        <div className="w-auto mx-auto my-2 mockup-window border bg-base-300">
           <div className="flex flex-col justify-center px-4 py-4 bg-base-200">
             <img
-              src={!useCustomSpecies ? newPetData.species_img_path : '/static/images/new-pet-placeholder.png'}
+              src={!useCustomSpecies ? newPetData.species_img_path : '/static/images/question-mark.png'}
               alt={!useCustomSpecies ? newPetData.species_name : 'Your custom pet here!'}
               id="species-img"
               className="py-4 w-fit m-auto transition-opacity duration-200"
