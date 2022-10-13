@@ -23,9 +23,9 @@ const useMakeCustomImg = () => {
     },
   );
 
-  console.log('useMakeCustomImg - isLoading:', isLoading);
-  console.log('useMakeCustomImg - error:', error);
-  console.log('useMakeCustomImg - isSuccess:', isSuccess);
+  // console.log('useMakeCustomImg - isLoading:', isLoading);
+  // console.log('useMakeCustomImg - error:', error);
+  // console.log('useMakeCustomImg - isSuccess:', isSuccess);
 
   return { makeCustomImg, isLoading, error, isSuccess };
 };

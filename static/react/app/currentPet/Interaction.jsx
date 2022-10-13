@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable dot-notation */
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
 
 // eslint-disable-next-line no-unused-vars
 function Interaction({ setStat, stat, setMood, interactionText, interactionType }) {
@@ -38,8 +36,6 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     const statChange = Number(interactions[interaction]['value']);
     // eslint-disable-next-line prefer-destructuring
     const response = `Hm, ${interaction}? ${interactions[interaction]['response']}`;
-    console.log(statChange);
-    console.log(stat + statChange);
     if (interactionType === 'play') {
       handleStatChange(statChange, response);
       // Need to return a promise for ModalBtn to work
@@ -63,7 +59,6 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
       .then((response) => response.json())
       .then((responseJson) => {
         interactions = responseJson;
-        console.log(interactions);
         const btns = Object.keys(interactions).map((interaction) => (
           <ModalBtn
             btnID={interaction}

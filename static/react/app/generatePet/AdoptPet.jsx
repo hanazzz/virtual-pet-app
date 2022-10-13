@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-no-bind */
 // TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
 /* eslint-disable no-console */
-/* eslint-disable no-alert */
 
 // Display adoption options (depending on existing vs custom species)
 
@@ -18,16 +17,10 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
   const [petName, setPetName] = React.useState('');
 
   function adoptPet() {
-    // evt.preventDefault();
-
-    console.log('preparing to adopt pet');
-
     // Get user's location via IP address and use for pet's location
     return fetch('/user/location/mock')
       .then((response) => response.json())
       .then((userData) => {
-        console.log(userData);
-
         // Throw error if received error message instead of object
         if (typeof userData === 'string') {
           throw (userData);
@@ -47,8 +40,6 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
         }
         setNewPetData(updatedPetData);
 
-        console.log(newPetData);
-
         // Adopt pet (create pet in database and link to user)
         fetch('/user/pet/new', {
           method: 'POST',
@@ -62,8 +53,6 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
             // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
             queryClient.invalidateQueries(['pet data']);
 
-            console.log('adoption complete');
-            // document.getElementById('name-new-pet').classList.toggle('modal-open');
             // eslint-disable-next-line react/prop-types
             addAlert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`, 'alert-success');
 

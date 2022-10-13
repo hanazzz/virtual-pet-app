@@ -1,6 +1,3 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-
 // eslint-disable-next-line no-unused-vars
 function CurrentPet({ tempInF }) {
   const { petData } = usePetData();
@@ -18,10 +15,6 @@ function CurrentPet({ tempInF }) {
   );
 
   const [mood, setMood] = React.useState("I'm so happy to see you!");
-
-  // const { error, isLoading, isSuccess } = useMakeCustomImg();
-
-  console.log('*** Existing petData data, rendering CurrentPet ***');
 
   return (
     <div id="current-pet" className="">

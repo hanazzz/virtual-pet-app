@@ -1,6 +1,3 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-
 // eslint-disable-next-line no-unused-vars
 function Mood({ mood }) {
   // Function that add each character of a string to designated div after a specified amount of time

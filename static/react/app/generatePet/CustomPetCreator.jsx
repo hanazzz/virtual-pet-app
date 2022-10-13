@@ -1,6 +1,3 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-
 // Create custom species and adopt pet (custom species pet)
 
 // eslint-disable-next-line no-unused-vars

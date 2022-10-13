@@ -1,6 +1,3 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-
 // eslint-disable-next-line no-unused-vars
 function Stat({ statName, statInteraction, stat, setStat }) {
   // eslint-disable-next-line prefer-const
@@ -9,8 +6,6 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   React.useEffect(() => {
     localStorage.setItem(statName, stat);
   }, [stat]);
-
-  console.log(`*** rendering Stat: ${statName} // ${stat} ***`);
 
   // SET UP TIMER
   // callback function for timer: decreases stat by 1
@@ -31,28 +26,7 @@ function Stat({ statName, statInteraction, stat, setStat }) {
     };
   });
 
-  // TODO: Remove before deployment
-  // // interactWithPet() gets called on button click, increases stat by 1
-  // function interactWithPet() {
-  //   if (stat < 5) {
-  //     setStat((prevStat) => prevStat + 1);
-  //   }
-  // }
-
-  // <button type="button" onClick={interactWithPet}>{statInteraction}</button>
-
-  // <div id={statName} className="flex flex-row items-center justify-between">
-  //   <h3>{statName}</h3>
-  //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
-  // </div>
-
   return (
-  // <div id={statName} className="text-center">
-  //   <h3>{statName}</h3>
-
-  //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
-  // </div>
-
     <Card id={statName} color="accent" addlClasses="text-center card-compact gap-0 my-6 md:my-0">
       <div className="font-lcd text-xl">{statName}</div>
 
