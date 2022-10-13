@@ -32,7 +32,7 @@ function Mood({ mood }) {
   // </Card>
 
     <div id="mood" className="text-primary-content text-xl bg-base-200 h-48 p-4 ">
-      <p id="mood-text" className="border-solid border-4 border-neutral h-full p-4" />
+      <p id="mood-text" className="border-solid border-2 border-gray-400 h-full p-4" />
     </div>
   );
 }

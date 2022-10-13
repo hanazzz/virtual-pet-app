@@ -7,12 +7,12 @@ function CurrentPet({ tempInF }) {
 
   // If stat data is in local storage, set as initial  state value.
   // If not, use initialStat passed through as prop (data retrieved from db at user log in).
-  const energyInStorage = JSON.parse(localStorage.getItem('energy'));
+  const energyInStorage = JSON.parse(localStorage.getItem('Energy'));
   const [energy, setEnergy] = React.useState(
     Number.isInteger(energyInStorage) ? energyInStorage : petData.energy,
   );
 
-  const happinessInStorage = JSON.parse(localStorage.getItem('happiness'));
+  const happinessInStorage = JSON.parse(localStorage.getItem('Happiness'));
   const [happiness, setHappiness] = React.useState(
     Number.isInteger(happinessInStorage) ? happinessInStorage : petData.happiness,
   );
@@ -32,12 +32,12 @@ function CurrentPet({ tempInF }) {
         <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />
       </div>
 
-      <div id="pet-main" className="md:grid grid-cols-7 my-12 gap-6">
+      <div id="pet-main" className="md:grid grid-cols-7 my-6 md:my-12 gap-6">
         <div id="stats" className="md:col-span-2 my-4 flex flex-col justify-evenly items-center">
           {/* <Mood mood={mood} /> */}
-          <Stat statName="energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
+          <Stat statName="Energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
-          <Stat statName="happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
+          <Stat statName="Happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
         </div>
 
         <div className="md:col-span-3 mx-auto my-0 w-full">

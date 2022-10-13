@@ -1,7 +1,7 @@
 // Visual display of pet stat (e.g. energy, happiness)
 // eslint-disable-next-line no-unused-vars
 function StatDisplay({ filledStat, emptyStat, statName }) {
-  const icon = statName === 'energy' ? 'bolt-lightning' : 'heart';
+  const icon = statName === 'Energy' ? 'bolt-lightning' : 'heart';
 
   // Create an array with n "undefined" slots
   // Use .map() to create a new array with n square elements

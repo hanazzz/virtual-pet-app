@@ -8,8 +8,8 @@ function Logout({ addAlert }) {
     // send energy and happiness to db
     // Get current stats from local storage
     const currentStats = {
-      currentEnergy: localStorage.getItem('energy'),
-      currentHappiness: localStorage.getItem('happiness'),
+      currentEnergy: localStorage.getItem('Energy'),
+      currentHappiness: localStorage.getItem('Happiness'),
     };
 
     fetch('/user/logout', {

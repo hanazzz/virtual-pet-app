@@ -5,7 +5,6 @@ function Alert({ alertID, addlClasses, children }) {
     document.getElementById(alertID).classList.add('hidden');
   }
 
-  let borderColor;
   let alertIcon;
 
   if (addlClasses.includes('alert-info')) {
@@ -29,7 +28,7 @@ function Alert({ alertID, addlClasses, children }) {
   return (
     <div
       id={alertID}
-      className={`alert rounded-none border-l-8 ${addlClasses}`}
+      className={`alert rounded-none ${addlClasses}`}
       role="alert"
     >
       <div id="alert-text">

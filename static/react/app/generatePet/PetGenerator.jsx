@@ -21,15 +21,15 @@ function PetGenerator({ addAlert }) {
     : <PotentialPet newPetData={newPetData} setNewPetData={setNewPetData} addAlert={addAlert} />;
 
   return (
-    <div id="pet-generator" className="grid md:grid-cols-2">
-      <Heading1 addlClasses="md:col-span-2">Adopt a Pet</Heading1>
-      <div className="md:col-span-2">
+    <div id="pet-generator" className="lg:grid lg:grid-cols-2">
+      <Heading1 addlClasses="lg:col-span-2">Adopt a Pet</Heading1>
+      <div className="lg:col-span-2">
         {/* eslint-disable-next-line react/no-unescaped-entities, max-len */}
         <p>Adopt a pet to call your own! Just click the "GENERATE PET" button until you find a pet that you like. Once you're ready, go ahead and adopt them!</p>
         <p>TODO: ADD INSTRUCTIONS. Can either generate pet from existing species or create custom species. Explain Craiyon / wait time.</p>
         <p>Break down into step? Generate pet attributes. Pick from existing pet species (?) or pick keywords to create own. Name and adopt pet.</p>
       </div>
-      <div className="text-center my-4 md:col-span-2">
+      <div className="text-center my-4 lg:col-span-2">
         <GeneratePetBtn setNewPetData={setNewPetData} />
       </div>
       {displayNewPet}

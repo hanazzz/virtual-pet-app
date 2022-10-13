@@ -42,8 +42,8 @@ function VirtualPetApp() {
   } else if (!petData) {
     // If there is no existing pet, show pet generator
     // Delete any lingering stats in local storage
-    localStorage.removeItem('energy');
-    localStorage.removeItem('happiness');
+    localStorage.removeItem('Energy');
+    localStorage.removeItem('Happiness');
     // eslint-disable-next-line react/jsx-no-bind
     appContent = <PetGenerator addAlert={addAlert} />;
   }
@@ -56,7 +56,7 @@ function VirtualPetApp() {
       {/* eslint-disable-next-line react/jsx-no-bind */}
       <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
-      <main className="px-10 py-6">
+      <main className="px-10 py-6 h-screen">
         {appContent}
       </main>
 

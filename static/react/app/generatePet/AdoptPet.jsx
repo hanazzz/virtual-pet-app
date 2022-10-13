@@ -81,7 +81,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
   return (
     <>
-      <Card color="accent" addlClasses="my-6">
+      <Card color="accent" addlClasses="mt-2 mb-4 md:my-6">
         <CustomPetCreator
           adoptPet={adoptPet}
           adjective={adjective}

@@ -53,8 +53,8 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   //   <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
   // </div>
 
-    <Card id={statName} color="accent" addlClasses="text-center card-compact">
-      <Heading3>{statName}</Heading3>
+    <Card id={statName} color="accent" addlClasses="text-center card-compact gap-0 my-6 md:my-0">
+      <div className="font-lcd text-xl">{statName}</div>
 
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
     </Card>
