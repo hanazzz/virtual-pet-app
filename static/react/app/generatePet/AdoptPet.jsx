@@ -17,13 +17,13 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
   const [animal, setAnimal] = React.useState('');
   const [petName, setPetName] = React.useState('');
 
-  function adoptPet(evt) {
-    evt.preventDefault();
+  function adoptPet() {
+    // evt.preventDefault();
 
     console.log('preparing to adopt pet');
 
     // Get user's location via IP address and use for pet's location
-    fetch('/user/location/mock')
+    return fetch('/user/location/mock')
       .then((response) => response.json())
       .then((userData) => {
         console.log(userData);
@@ -63,20 +63,20 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
             queryClient.invalidateQueries(['pet data']);
 
             console.log('adoption complete');
-            document.getElementById('name-new-pet').classList.toggle('modal-open');
+            // document.getElementById('name-new-pet').classList.toggle('modal-open');
             // eslint-disable-next-line react/prop-types
             addAlert(`Congratulations on bringing home your new pet, ${newPetData.name} the ${newPetData.personality} ${newPetData.species_name}!`, 'alert-success');
+
+            // If using custom species, create custom pet img
+            if (useCustomSpecies) {
+              console.log('creating custom pet');
+              const petPrompt = [adjective, color, animal];
+              makeCustomImg(petPrompt);
+            }
           })
           .catch((error) => addAlert(error, 'alert-error'));
       })
       .catch((error) => addAlert(error, 'alert-error'));
-
-    // If using custom species, create custom pet img
-    if (useCustomSpecies) {
-      console.log('creating custom pet');
-      const petPrompt = [adjective, color, animal];
-      makeCustomImg(petPrompt);
-    }
   }
 
   return (
@@ -110,7 +110,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
         <p>Time to name your new pet! Please enter a name below.</p>
 
-        <form className="text-center" onSubmit={(evt) => adoptPet(evt)}>
+        <div className="text-center">
           <label htmlFor="pet-name" className="label label-text flex flex-col">
             Pet name:
             <input
@@ -127,13 +127,16 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
           </label>
 
           <ModalFooter>
-            <input type="submit" className="btn btn-primary" />
+            {/* <input type="submit" className="btn btn-primary" /> */}
+            <ModalBtn modalID="name-new-pet" addlClasses="btn-primary" modalBtnCallback={adoptPet}>
+              Adopt
+            </ModalBtn>
 
             <ModalBtn modalID="name-new-pet">
               Cancel
             </ModalBtn>
           </ModalFooter>
-        </form>
+        </div>
       </ModalBox>
     </>
   );

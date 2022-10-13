@@ -13,7 +13,7 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
   // Confirm whether user wants to delete pet/account
   // On confirmation, sends GET request to server to execute deletion
   function deleteObj() {
-    fetch(route)
+    return fetch(route)
       .then((response) => {
         // Get new data from server
         // (previous data no longer valid), re-runs query fctn in custom hook, prompts re-render
@@ -24,7 +24,7 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
       .then((msg) => {
         console.log(`deleting ${deletionObject}`);
         // Close modal
-        document.getElementById(modalID).classList.toggle('modal-open');
+        // document.getElementById(modalID).classList.toggle('modal-open');
         // Display alert
         addAlert(msg, 'alert-success');
         // If deleted account, redirect to homepage

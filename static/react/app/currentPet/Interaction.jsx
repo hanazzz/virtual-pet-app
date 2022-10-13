@@ -16,9 +16,10 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     instructions = 'Pick an activity to do with your pet';
   }
 
+  // Change pet stat according to interaction result
   function handleStatChange(statChange, response) {
     // Close modal
-    document.getElementById(modalID).classList.toggle('modal-open');
+    // document.getElementById(modalID).classList.toggle('modal-open');
     // Change stat
     if ((stat + statChange) <= 0) {
       setStat(0);
@@ -31,6 +32,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     setMood(response);
   }
 
+  // eslint-disable-next-line consistent-return
   function handleChoice(evt) {
     const interaction = evt.target.id;
     const statChange = Number(interactions[interaction]['value']);
@@ -38,8 +40,12 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
     const response = `Hm, ${interaction}? ${interactions[interaction]['response']}`;
     console.log(statChange);
     console.log(stat + statChange);
-    if (interactionType === 'feed') {
-      fetch('/user/inventory/update', {
+    if (interactionType === 'play') {
+      handleStatChange(statChange, response);
+      // Need to return a promise for ModalBtn to work
+      return Promise.resolve();
+    } else if (interactionType === 'feed') {
+      return fetch('/user/inventory/update', {
         method: 'POST',
         body: JSON.stringify(interaction),
         headers: {
@@ -49,8 +55,6 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         .then(() => {
           handleStatChange(statChange, response);
         });
-    } else {
-      handleStatChange(statChange, response);
     }
   }
 
@@ -61,14 +65,15 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         interactions = responseJson;
         console.log(interactions);
         const btns = Object.keys(interactions).map((interaction) => (
-          <Button
-            id={interaction}
+          <ModalBtn
+            btnID={interaction}
             key={interaction}
-            onClick={handleChoice}
-            btnClasses="btn-lg my-4 btn-primary"
+            modalBtnCallback={handleChoice}
+            addlClasses="btn-lg my-4 btn-primary"
+            modalID={modalID}
           >
             {interaction}
-          </Button>
+          </ModalBtn>
         ));
         setInteractionBtns(btns);
       });

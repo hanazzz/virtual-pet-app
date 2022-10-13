@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/no-unescaped-entities */
 // TODO: Remove these rules before deployment
@@ -10,9 +11,9 @@ function RenamePet({ modalID, addAlert }) {
 
   const [newName, setNewName] = React.useState('');
 
-  function renamePet(evt) {
+  function renamePet() {
     // Prevent form submit
-    evt.preventDefault();
+    // evt.preventDefault();
     // Close modal
     // document.getElementById(modalID).classList.toggle('modal-open');
 
@@ -39,7 +40,7 @@ function RenamePet({ modalID, addAlert }) {
       <p>If you would like to rename your pet, please enter your pet's new name below.</p>
       <p>If you changed your mind, click "Cancel" to exit.</p>
 
-      <form className="text-center mt-4" onSubmit={(evt) => renamePet(evt)}>
+      <div className="text-center mt-4">
         <label htmlFor="new-pet-name" className="label label-text flex flex-col">
           New name:
           <input
@@ -56,13 +57,16 @@ function RenamePet({ modalID, addAlert }) {
         </label>
 
         <ModalFooter>
-          <input type="submit" className="btn btn-accent" />
+          {/* <input type="submit" className="btn btn-accent" /> */}
+          <ModalBtn modalID={modalID} addlClasses="btn-accent" modalBtnCallback={renamePet}>
+            Rename
+          </ModalBtn>
 
-          <ModalBtn modalID={modalID} closeModal>
+          <ModalBtn modalID={modalID}>
             Cancel
           </ModalBtn>
         </ModalFooter>
-      </form>
+      </div>
     </ModalBox>
   );
 }

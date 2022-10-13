@@ -1,24 +1,41 @@
 /* eslint-disable react/forbid-prop-types */
-// eslint-disable-next-line no-unused-vars
+
+// modalBtnCallback must return a promise and should NOT toggle the modal
 function ModalBtn({
   modalID, modalBtnCallback,
-  addlClasses, btnClassOverride, closeModal, children,
+  addlClasses, btnClassOverride, dataTip, btnID, children,
 }) {
   function toggleModal() {
     document.getElementById(modalID).classList.toggle('modal-open');
   }
 
-  const modalCallback = modalBtnCallback || toggleModal;
+  const [loading, setLoading] = React.useState(false);
 
-  const btnClasses = closeModal ? `${addlClasses}` : addlClasses;
+  function loadingModalCallback(evt) {
+    setLoading(true);
+    return modalBtnCallback(evt)
+      .then(() => {
+        setLoading(false);
+        toggleModal();
+      });
+  }
+
+  // If a modalBtnCallback parameter was provided, use loadingModalCallback
+  // (combines modalBtnCallback, setting loading state, and closing modal)
+  // Otherwise, just use toggleModal
+  const modalCallback = modalBtnCallback ? loadingModalCallback : toggleModal;
+
+  const btnClasses = loading ? `loading ${addlClasses}` : addlClasses;
 
   return (
     <Button
       btnClasses={btnClasses}
       btnClassOverride={btnClassOverride}
       onClick={modalCallback}
+      dataTip={dataTip}
+      id={btnID}
     >
-      {children}
+      {loading ? 'Loading' : children}
     </Button>
   );
 }
@@ -31,7 +48,8 @@ ModalBtn.propTypes = {
   ]),
   addlClasses: PropTypes.string,
   btnClassOverride: PropTypes.bool,
-  closeModal: PropTypes.bool,
+  dataTip: PropTypes.string,
+  btnID: PropTypes.string,
   children: PropTypes.any.isRequired,
 };
 
@@ -39,5 +57,6 @@ ModalBtn.defaultProps = {
   modalBtnCallback: false,
   addlClasses: null,
   btnClassOverride: false,
-  closeModal: false,
+  dataTip: null,
+  btnID: undefined,
 };
