@@ -4,9 +4,13 @@ function AttributesModal() {
 
   return (
     <>
-      <ModalBtn modalID={modalID} addlClasses="btn-lg btn-primary">
+      <ModalBtn
+        modalID={modalID}
+        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-12 my-4 md:my-0"
+        dataTip="ATTRIBUTES"
+      >
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-        <i className="fa-solid fa-book pr-2" /> ATTRIBUTES
+        <i className="fa-solid fa-book  text-4xl pr-0" title="Attributes" />
       </ModalBtn>
 
       <ModalBox modalID={modalID}>

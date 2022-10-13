@@ -9,6 +9,12 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   let interactions = {};
   const modalID = `${interactionType}-modal`;
   const interactionIcon = interactionType === 'feed' ? 'utensils' : 'gamepad';
+  let instructions;
+  if (interactionType === 'feed') {
+    instructions = 'Pick an item from your inventory to feed your pet.';
+  } else {
+    instructions = 'Pick an activity to do with your pet';
+  }
 
   function handleStatChange(statChange, response) {
     // Close modal
@@ -49,8 +55,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   }
 
   function handleInteraction() {
-    document.getElementById(modalID).classList.toggle('modal-open');
-    fetch(`/pet/${interactionType}`)
+    return fetch(`/pet/${interactionType}`)
       .then((response) => response.json())
       .then((responseJson) => {
         interactions = responseJson;
@@ -74,9 +79,13 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   return (
     <>
       {/* Interaction button that appears on main page */}
-      <ModalBtn modalID={modalID} modalBtnCallback={handleInteraction} addlClasses="btn-lg btn-primary">
-        <i className={`fa-solid fa-${interactionIcon} pr-2`} />
-        {interactionText}
+      <ModalBtn
+        modalID={modalID}
+        modalBtnCallback={handleInteraction}
+        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-12 my-4 md:my-0"
+        dataTip={interactionText}
+      >
+        <i className={`fa-solid fa-${interactionIcon} text-4xl pr-0`} title={interactionText} />
       </ModalBtn>
 
       {/* Modal box with interaction options */}
@@ -86,6 +95,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
         </ModalTitle>
 
         <div className="flex flex-col items-center">
+          <p>{instructions}</p>
           {interactionBtns}
         </div>
 
