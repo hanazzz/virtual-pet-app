@@ -1,6 +1,26 @@
+body {
+    background-image: url('/static/images/clouds-bg.png');
+}
+
+td, th {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+input[type="radio"]:not(:checked) {
+    background-color: #F8F7C9 !important;
+    color: #686E78 !important;
+    border: none !important;
+}
+
+.font-lcd {
+    font-family: 'lcd phone', sans-serif;
+}
+
 #mood-text {
     font-family: 'lcd phone', sans-serif;
     background-color: #91b8a5;
+    box-shadow: inset 0 2px 4px 0 rgb(114 114 114 / 51%);
 }
 
 /* CSS HSL */

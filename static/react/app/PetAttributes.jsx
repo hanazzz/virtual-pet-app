@@ -4,7 +4,7 @@ function PetAttributes({ newPetData, speciesPlaceholder }) {
   const pet = petData || newPetData;
 
   return (
-    <table id="pet-display" className="table table-compact table-zebra">
+    <table id="pet-display" className="table table-fixed table-compact table-zebra border-collapse w-full">
       <caption className="text-xl font-bold">Pet Attributes</caption>
       <tbody>
         <tr>
