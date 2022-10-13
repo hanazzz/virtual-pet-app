@@ -56,7 +56,7 @@ function VirtualPetApp() {
       {/* eslint-disable-next-line react/jsx-no-bind */}
       <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
-      <main className="px-10 py-6 h-screen">
+      <main className="px-10 py-6 h-fit">
         {appContent}
       </main>
 
