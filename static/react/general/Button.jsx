@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/forbid-prop-types */
 // eslint-disable-next-line no-unused-vars
-function Button({ btnClasses, btnClassOverride, onClick, id, isDisabled, isFocused, children }) {
+function Button({
+  btnClasses, btnClassOverride, onClick,
+  id, isDisabled, isFocused, dataTip, children,
+}) {
   // If btnClassOverride is true, only use classes provided in btnClasses prop.
   // Else: Use 'btn' class and add btnClasses as additional classes
   const classList = btnClassOverride ? btnClasses : `btn ${btnClasses}`;
@@ -15,6 +18,7 @@ function Button({ btnClasses, btnClassOverride, onClick, id, isDisabled, isFocus
       onClick={onClick}
       disabled={isDisabled}
       autoFocus={isFocused}
+      data-tip={dataTip}
     >
       {children}
     </button>
@@ -28,6 +32,7 @@ Button.propTypes = {
   id: PropTypes.string,
   isDisabled: PropTypes.bool,
   isFocused: PropTypes.bool,
+  dataTip: PropTypes.string,
   children: PropTypes.any.isRequired,
 };
 
@@ -37,4 +42,5 @@ Button.defaultProps = {
   id: undefined,
   isDisabled: false,
   isFocused: false,
+  dataTip: null,
 };
