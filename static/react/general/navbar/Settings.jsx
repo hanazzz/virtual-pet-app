@@ -14,8 +14,8 @@ function Settings({ tempInF, setTempInF, addAlert }) {
 
   return (
 
-    <div id="settings" className="text-base-content dropdown dropdown-end dropdown-hover">
-      <label tabIndex={0} className="text-neutral-content btn btn-ghost px-6"><i className="fa-solid fa-gear" title="Settings" /></label>
+    <div id="settings" className="dropdown dropdown-end dropdown-hover">
+      <label tabIndex={0} className="btn btn-ghost px-6"><i className="fa-solid fa-gear" title="Settings" /></label>
       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         <li><ToggleTempUnit tempInF={tempInF} setTempInF={setTempInF} /></li>
         {navbarPetInfo}

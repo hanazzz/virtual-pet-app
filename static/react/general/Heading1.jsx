@@ -1,6 +1,6 @@
 function Heading1({ addlClasses, children }) {
   return (
-    <h1 className={`text-5xl font-bold ${addlClasses}`}>
+    <h1 className={`text-5xl font-bold mb-1 ${addlClasses}`}>
       {children}
     </h1>
   );

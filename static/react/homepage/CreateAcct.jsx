@@ -5,7 +5,7 @@ function CreateAcct({
 }) {
   return (
     <Form submitCallback={submitForm}>
-      <h2>Create Account</h2>
+      <Heading2>Create Account</Heading2>
       <label htmlFor="email" className="label label-text flex flex-col">
         Email:
         <input
@@ -70,7 +70,7 @@ function CreateAcct({
         />
       </label>
 
-      <input type="submit" className="btn btn-primary" />
+      <input type="submit" value="Create account" className="btn btn-primary mt-6 mb-2 md:mb-0" />
     </Form>
   );
 }

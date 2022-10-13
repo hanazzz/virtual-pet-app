@@ -87,7 +87,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
           onClick={() => document.getElementById('name-new-pet').classList.toggle('modal-open')}
           id="adopt-pet"
           key="adopt-pet"
-          btnClasses={`btn-secondary btn-lg mx-auto mt-10 w-fit ${useCustomSpecies ? 'hidden' : null}`}
+          btnClasses={`btn-secondary btn-lg mx-auto mt-8 w-fit ${useCustomSpecies ? 'hidden' : null}`}
         >
           ADOPT PET
         </Button>

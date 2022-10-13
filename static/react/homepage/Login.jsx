@@ -2,7 +2,7 @@
 function Login({ username, setUsername, password, setPassword, submitForm }) {
   return (
     <Form submitCallback={submitForm}>
-      <h2>Log In</h2>
+      <Heading2>Log In</Heading2>
       <label htmlFor="username" className="label label-text flex flex-col">
         Username:
         <input
@@ -34,7 +34,7 @@ function Login({ username, setUsername, password, setPassword, submitForm }) {
         />
       </label>
 
-      <input type="submit" className="btn btn-primary" />
+      <input type="submit" value="Log in" className="btn btn-primary mt-6 mb-2 md:mb-0" />
     </Form>
   );
 }
