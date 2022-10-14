@@ -261,16 +261,8 @@ def update_pet_attr(user_id, attr, new_value):
 
     pet = get_pet(user_id)
 
-    print()
-    print(attr)
-    print(new_value)
-    print("old attr", getattr(pet, attr))
-
     setattr(pet, attr, new_value)
     db.session.commit()
-
-    print("new attr", getattr(pet, attr))
-    print()
 
     # Get updated pet dictionary from db
     pet_dict = pet.convert_to_dict()
