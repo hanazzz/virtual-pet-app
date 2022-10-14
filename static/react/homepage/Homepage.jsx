@@ -116,8 +116,8 @@ function AcctForm() {
       <Navbar />
 
       <main className="px-10 py-6 h-screen">
-        <Heading1>[App Name]</Heading1>
-        <p>A very cool description of this app.</p>
+        <Heading1>[BitBuddy]</Heading1>
+        <p>Adopt a virtual pet to call your own!</p>
 
         {/* <Alert alertID="homepage-alert" addlClasses="hidden" /> */}
 

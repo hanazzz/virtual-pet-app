@@ -5,10 +5,10 @@ function PetHeading() {
   return (
     <>
       <Heading1>
-        {petData.name}
+        {`[${petData.name}]`}
       </Heading1>
 
-      <div className="text-3xl medium">
+      <div className="text-3xl medium mt-2">
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
         the {petData.personality} {petData.species_name}
       </div>

@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 function ModalTitle({ children }) {
   return (
-    <div className="modal-title text-xl font-bold">
+    <div className="modal-title text-2xl font-bold mb-1">
       {children}
     </div>
   );

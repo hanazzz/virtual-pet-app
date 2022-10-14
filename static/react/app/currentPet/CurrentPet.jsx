@@ -19,7 +19,7 @@ function CurrentPet({ tempInF }) {
   return (
     <div id="current-pet" className="">
       <div className="flex flex-col md:flex-row justify-between">
-        <div id="pet-heading" className="">
+        <div id="pet-heading" className="md:mr-4">
           <PetHeading />
         </div>
         <WeatherDisplay lat={petData.lat} lon={petData.lon} tempInF={tempInF} />

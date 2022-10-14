@@ -11,7 +11,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
   if (interactionType === 'feed') {
     instructions = 'Pick an item from your inventory to feed your pet.';
   } else {
-    instructions = 'Pick an activity to do with your pet';
+    instructions = 'Pick an activity to do with your pet.';
   }
 
   // Change pet stat according to interaction result
@@ -94,7 +94,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
           {interactionText}
         </ModalTitle>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-center">
           <p>{instructions}</p>
           {interactionBtns}
         </div>

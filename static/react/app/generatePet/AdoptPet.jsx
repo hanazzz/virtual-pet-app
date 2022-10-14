@@ -18,7 +18,7 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
   function adoptPet() {
     // Get user's location via IP address and use for pet's location
-    return fetch('/user/location/mock')
+    return fetch('/user/location')
       .then((response) => response.json())
       .then((userData) => {
         // Throw error if received error message instead of object
@@ -97,7 +97,8 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
       <ModalBox modalID="name-new-pet">
         <ModalTitle>Name your new pet</ModalTitle>
 
-        <p>Time to name your new pet! Please enter a name below.</p>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <p>Let's name your new pet! Please enter a name below.</p>
 
         <div className="text-center">
           <label htmlFor="pet-name" className="label label-text flex flex-col">

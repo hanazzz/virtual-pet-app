@@ -38,7 +38,7 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
   return (
     <ModalBox modalID={modalID}>
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      <ModalTitle>Delete {deletionObject}</ModalTitle>
+      <ModalTitle>DELETE {deletionObject.toUpperCase()}</ModalTitle>
 
       <p>{`Are you sure you want to delete your ${deletionObject}?`}</p>
       <p>WARNING: This action is irreversible.</p>

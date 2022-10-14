@@ -35,7 +35,7 @@ function RenamePet({ modalID, addAlert }) {
 
   return (
     <ModalBox modalID={modalID}>
-      <ModalTitle>Rename pet</ModalTitle>
+      <ModalTitle>RENAME PET</ModalTitle>
 
       <p>If you would like to rename your pet, please enter your pet's new name below.</p>
       <p>If you changed your mind, click "Cancel" to exit.</p>
