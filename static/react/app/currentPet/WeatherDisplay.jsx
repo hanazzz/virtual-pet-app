@@ -8,13 +8,13 @@ function WeatherDisplay({ lat, lon, tempInF }) {
 
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
   const petLocation = { lat, lon };
-  const fahrenheit = '\u2109';
-  const celsius = '\u2103';
+  // const fahrenheit = '\u2109';
+  // const celsius = '\u2103';
 
   // Get current weather
   React.useEffect(() => {
     console.log('Getting weather...');
-    fetch('/user/weather/mock', {
+    fetch('/user/weather', {
       method: 'POST',
       body: JSON.stringify(petLocation),
       headers: {
@@ -43,15 +43,15 @@ function WeatherDisplay({ lat, lon, tempInF }) {
   }
 
   return (
-    <Card id="weather" color="secondary" addlClasses="card-compact" addlBodyClasses="gap-0 justify-center">
-      <div id="weather-description" className="text-m">{currentWeather.description}</div>
+    <Card id="weather" color="secondary" addlClasses="card-compact w-fit mt-6 md:mt-0 mx-auto md:mx-0" addlBodyClasses="gap-1 justify-center">
+      <div id="weather-description" className="text-base">{currentWeather.description}</div>
 
       <div className="flex flex-row justify-start font-bold">
         {/* weather icon */}
         <i className={`wi wi-owm-${currentWeather.conditionCode} pr-4 text-4xl`} />
         {/* if tempInF is true, display temperature in Fahrenheit, else display in Celsius */}
         <span className="text-3xl col-start-2 row-start-2">
-          {tempInF ? (`${currentWeather.tempF} ${fahrenheit}`) : (`${currentWeather.tempC} ${celsius}`)}
+          {tempInF ? (`${currentWeather.tempF} °F`) : (`${currentWeather.tempC} °C`)}
         </span>
       </div>
     </Card>

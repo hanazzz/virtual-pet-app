@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 function ToggleTempUnit({ tempInF, setTempInF }) {
-  const fahrenheit = '\u2109';
-  const celsius = '\u2103';
+  // const fahrenheit = '\u2109';
+  // const celsius = '\u2103';
 
   // Update temp unit preference in local storage.
   // Updates whenever component re-renders (which happens when tempInF changes)
@@ -19,10 +19,13 @@ function ToggleTempUnit({ tempInF, setTempInF }) {
       type="button"
       id="toggle-temp"
       onClick={toggleTempUnit}
+      className="gap-2.5"
     >
-      {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-      {fahrenheit} {'\u2194'} {celsius}
+      °F
+      <i className="fa-solid fa-arrows-left-right fa-sm" />
+      °C
     </button>
+
   );
 }
 
