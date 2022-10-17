@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Create new account form
 function CreateAcct({
   username, setUsername, password, setPassword,
   email, setEmail, password2, setPassword2, submitForm,

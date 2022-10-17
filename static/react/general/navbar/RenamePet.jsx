@@ -1,22 +1,13 @@
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable react/no-unescaped-entities */
-// TODO: Remove these rules before deployment
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
 
-// eslint-disable-next-line no-unused-vars
+// Rename existing pet
 function RenamePet({ modalID, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
 
   const [newName, setNewName] = React.useState('');
 
   function renamePet() {
-    // Prevent form submit
-    // evt.preventDefault();
-    // Close modal
-    // document.getElementById(modalID).classList.toggle('modal-open');
-
     // Send request to server to rename pet
     return fetch('/user/pet/rename', {
       method: 'POST',

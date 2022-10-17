@@ -1,15 +1,10 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-
+// Button to generate a random pet
 function GeneratePetBtn({ setNewPetData }) {
   // Generate random pet
   function generateNewPet() {
-    console.log('generating pet');
     fetch('/pet/new')
       .then((response) => response.json())
       .then((petJson) => {
-        console.log('new pet available');
         setNewPetData(petJson);
       })
       .catch((error) => alert(error.toString()));
@@ -17,7 +12,6 @@ function GeneratePetBtn({ setNewPetData }) {
 
   return (
     <Button
-      // eslint-disable-next-line react/jsx-no-bind
       onClick={generateNewPet}
       id="generate-pet"
       key="generate-pet"

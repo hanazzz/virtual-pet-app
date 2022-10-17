@@ -17,6 +17,7 @@ function CurrentPet({ tempInF }) {
   const [mood, setMood] = React.useState("I'm so happy to see you!");
 
   return (
+    // Change div width? w-full?
     <div id="current-pet" className="">
       <div className="flex flex-col md:flex-row justify-between">
         <div id="pet-heading" className="md:mr-4">
@@ -27,7 +28,6 @@ function CurrentPet({ tempInF }) {
 
       <div id="pet-main" className="md:grid grid-cols-7 my-6 md:my-12 gap-6">
         <div id="stats" className="md:col-span-2 my-4 flex flex-col justify-evenly items-center">
-          {/* <Mood mood={mood} /> */}
           <Stat statName="Energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
           <Stat statName="Happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />

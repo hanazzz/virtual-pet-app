@@ -6,7 +6,8 @@
         "object-curly-newline": [2, {
             "multiline": true,
             "consistent": true
-        }]
+        }],
+        "react/jsx-no-bind": ["off"]
     },
     "env": {
         "browser": true

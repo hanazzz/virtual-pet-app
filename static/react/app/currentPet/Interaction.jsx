@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable dot-notation */
 
-// eslint-disable-next-line no-unused-vars
+// User interactions with pet (feed, play)
 function Interaction({ setStat, stat, setMood, interactionText, interactionType }) {
   const [interactionBtns, setInteractionBtns] = React.useState([]);
   let interactions = {};

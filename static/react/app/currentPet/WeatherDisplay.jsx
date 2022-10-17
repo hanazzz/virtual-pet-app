@@ -1,11 +1,4 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-
-// eslint-disable-next-line no-unused-vars
 function WeatherDisplay({ lat, lon, tempInF }) {
-  console.log('*** rendering WeatherDisplay ***');
-
   const [currentWeather, setCurrentWeather] = React.useState(undefined);
   const petLocation = { lat, lon };
   // const fahrenheit = '\u2109';
@@ -13,7 +6,6 @@ function WeatherDisplay({ lat, lon, tempInF }) {
 
   // Get current weather
   React.useEffect(() => {
-    console.log('Getting weather...');
     fetch('/user/weather', {
       method: 'POST',
       body: JSON.stringify(petLocation),
@@ -25,7 +17,6 @@ function WeatherDisplay({ lat, lon, tempInF }) {
       .then((weatherData) => {
         // Throw error if received error message instead of object
         if (typeof weatherData === 'string') {
-          console.log(weatherData);
           throw (weatherData);
         } else {
           setCurrentWeather(weatherData);

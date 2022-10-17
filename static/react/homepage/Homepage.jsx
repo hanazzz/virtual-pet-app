@@ -1,8 +1,4 @@
-/* eslint-disable react/jsx-no-bind */
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-
+// Homepage where user signs in/creates account
 function AcctForm() {
   // LOGIC FOR LOG IN / CREATE ACCOUNT BUTTON
   // logInMethd tracks whether the user is logging into an existing account (true)

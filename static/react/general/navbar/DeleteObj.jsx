@@ -1,9 +1,4 @@
-/* eslint-disable react/jsx-no-bind */
-// TODO: Remove these rules before deployment
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-
-// eslint-disable-next-line no-unused-vars
+// Delete existing pet or user account
 function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
 
@@ -22,9 +17,6 @@ function DeleteObj({ deletePet, deleteAcct, modalID, addAlert }) {
       })
       .then((response) => response.json())
       .then((msg) => {
-        console.log(`deleting ${deletionObject}`);
-        // Close modal
-        // document.getElementById(modalID).classList.toggle('modal-open');
         // Display alert
         addAlert(msg, 'alert-success');
         // If deleted account, redirect to homepage

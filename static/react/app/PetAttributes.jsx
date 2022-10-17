@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Display pet attributes
 function PetAttributes({ newPetData, speciesPlaceholder }) {
   const { petData } = usePetData();
   const pet = petData || newPetData;

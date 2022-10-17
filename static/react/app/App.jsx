@@ -1,6 +1,4 @@
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-
+// Parent component for app
 function VirtualPetApp() {
   // Get username from local storage (if any)
   const username = localStorage.getItem('username');
@@ -29,8 +27,6 @@ function VirtualPetApp() {
     setAlertList((prevList) => prevList.concat(alert));
   }
 
-  console.log('Loading app');
-
   let appContent;
 
   if (isLoading) {
@@ -44,16 +40,13 @@ function VirtualPetApp() {
     // Delete any lingering stats in local storage
     localStorage.removeItem('Energy');
     localStorage.removeItem('Happiness');
-    // eslint-disable-next-line react/jsx-no-bind
     appContent = <PetGenerator addAlert={addAlert} />;
   }
 
   return (
     <>
-      {/* <Alert alertID="app-alert" addlClasses="hidden" /> */}
       {alertList}
 
-      {/* eslint-disable-next-line react/jsx-no-bind */}
       <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
       <main className="px-10 py-6 h-fit">
@@ -65,6 +58,7 @@ function VirtualPetApp() {
   );
 }
 
+// Parent component to wrap VirtualPetApp in provider
 function App() {
   const queryClient = new ReactQuery.QueryClient();
 

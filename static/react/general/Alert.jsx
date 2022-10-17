@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/forbid-prop-types */
+// Display alert to user
 function Alert({ alertID, addlClasses, children }) {
   function closeAlert() {
     document.getElementById(alertID).classList.add('hidden');

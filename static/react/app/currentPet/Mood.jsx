@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Display pet response ("mood") to user interactions
 function Mood({ mood }) {
   // Function that add each character of a string to designated div after a specified amount of time
   // msg = message to display

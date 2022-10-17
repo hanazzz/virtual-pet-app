@@ -1,5 +1,4 @@
 // Visual display of pet stat (e.g. energy, happiness)
-// eslint-disable-next-line no-unused-vars
 function StatDisplay({ filledStat, emptyStat, statName }) {
   const icon = statName === 'Energy' ? 'bolt-lightning' : 'heart';
 

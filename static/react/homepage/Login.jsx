@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Log in form
 function Login({ username, setUsername, password, setPassword, submitForm }) {
   return (
     <Form submitCallback={submitForm}>

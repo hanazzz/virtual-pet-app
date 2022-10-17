@@ -1,20 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable max-len */
-/* eslint-disable react/jsx-no-bind */
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
 
 // Generate a new pet to adopt
 
-// eslint-disable-next-line no-unused-vars
+// Generate random pet
 function PetGenerator({ addAlert }) {
   // Store data for generated pets in newPetData state
   const [newPetData, setNewPetData] = React.useState();
-
-  console.log('*** rendering pet generator ***');
-  console.log(newPetData);
 
   React.useEffect(() => addAlert("Looks like you don't have a pet yet! Let's fix that.", 'alert-info'), []);
 

@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Switch between displaying temperature in Fahrenheit and Celsius
 function ToggleTempUnit({ tempInF, setTempInF }) {
   // const fahrenheit = '\u2109';
   // const celsius = '\u2103';

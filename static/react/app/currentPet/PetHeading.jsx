@@ -1,3 +1,4 @@
+// Shows existing pet's name, personality, species type, and location
 // eslint-disable-next-line no-unused-vars
 function PetHeading() {
   const { petData } = usePetData();

@@ -1,11 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable react/jsx-no-bind */
-// TODO: REMOVE THE BELOW BEFORE DEPLOYMENT
-/* eslint-disable no-console */
 
 // Display adoption options (depending on existing vs custom species)
-
-// eslint-disable-next-line no-unused-vars
 function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
   const queryClient = ReactQuery.useQueryClient();
   const { makeCustomImg } = useMakeCustomImg();
@@ -58,7 +53,6 @@ function AdoptPet({ useCustomSpecies, newPetData, setNewPetData, addAlert }) {
 
             // If using custom species, create custom pet img
             if (useCustomSpecies) {
-              console.log('creating custom pet');
               const petPrompt = [adjective, color, animal];
               makeCustomImg(petPrompt);
             }

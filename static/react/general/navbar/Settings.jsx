@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-boolean-value */
-// eslint-disable-next-line no-unused-vars
+// Settings menu in navbar: toggle temp unit, rename pet, delete pet, delete account
 function Settings({ tempInF, setTempInF, addAlert }) {
   const { petData } = usePetData();
 

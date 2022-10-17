@@ -16,7 +16,7 @@ from craiyon import Craiyon
 # create Flask app
 app = Flask(__name__)
 # create secret_key (req for session object)
-app.secret_key = "lkdhjfasiop89ryweq23809"
+app.secret_key = os.environ["FLASK_APP_KEY"]
 # throw error for undefined variables
 app.jinja_env.undefined = StrictUndefined
 
@@ -209,10 +209,6 @@ def create_custom_pet():
     helper.generate_craiyon_img(pet_prompt_str, user_id)
     species_img_path = (f"/static/images/custom-pets/{user_id}.jpg")
 
-    print()
-    print(species_img_path)
-    print()
-
     # Update pet object in db with new img
     # Get updated pet as dict and update session
     session["current_pet"] = crud.update_pet_attr(user_id, "species_img_path", species_img_path)
@@ -329,7 +325,6 @@ def get_user_loc():
     res = requests.get(url)
     # parse JSON
     user_data = res.json()
-    print(user_data)
 
     # Check for error
     if user_data["status"] == "fail":

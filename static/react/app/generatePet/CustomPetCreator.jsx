@@ -1,6 +1,4 @@
 // Create custom species and adopt pet (custom species pet)
-
-// eslint-disable-next-line no-unused-vars
 function CustomPetCreator({
   adjective, setAdjective, color, setColor,
   animal, setAnimal, useCustomSpecies,
@@ -17,7 +15,7 @@ function CustomPetCreator({
   return (
     <div className="form-control text-center w-full max-w-xs md:col-span-2">
       <form id="custom-species-form" name="custom-pet" onSubmit={(evt) => handleSubmit(evt)}>
-        <Heading3>Make a custom pet species!</Heading3>
+        <Heading3>Make a custom pet species</Heading3>
         <SelectInput
           selectID="pet-adjective"
           labelText="Pick an adjective"

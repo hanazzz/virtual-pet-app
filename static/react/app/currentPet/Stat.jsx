@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// Pet's energy and happiness stats
 function Stat({ statName, statInteraction, stat, setStat }) {
   // eslint-disable-next-line prefer-const
   let intervalID = null;

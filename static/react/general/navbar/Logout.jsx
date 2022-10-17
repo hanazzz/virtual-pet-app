@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-no-bind */
-// eslint-disable-next-line no-unused-vars
+// Log user out
 function Logout({ addAlert }) {
   function handleLogout(evt) {
     // prevent page refresh

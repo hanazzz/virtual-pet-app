@@ -11,9 +11,5 @@ const usePetData = () => {
     { onError: (error) => alert(error.toString()) },
   );
 
-  // console.log('usePetData - petData:', petData);
-  // console.log('usePetData - isLoading:', isLoading);
-  // console.log('usePetData - error:', error);
-
   return { petData, isLoading };
 };
