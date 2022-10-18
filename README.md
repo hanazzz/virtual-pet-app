@@ -96,7 +96,7 @@ $ python3 seed_database.py
 ```
 $ python3 server.py
 ```
-9. **Go to localhost:5000 in your browser and have fun with BitBuddy!**
+9. **Go to `localhost:5000` in your browser and have fun with BitBuddy!**
 
 
 ## Possible Future Features
