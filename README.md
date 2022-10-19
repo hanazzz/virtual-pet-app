@@ -11,10 +11,13 @@ Demo: [Watch Hackbright Demo Day video](https://youtu.be/Zq7ozBKdLWI)
 - [Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#features)
 - [Installation](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#installation)
 - [Possible Future Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#possible-future-features)
+- [Known Bugs](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#known-bugs)
 
 
 ## Project Description
-BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. Users start by generating random pets until they find one they want to adopt. They can then customize their pet by using Craiyon, an AI image generator based on DALL-E, to generate a custom image for their pet. After adopting their new friend, users can feed and play with them. Just like a real pet, their pet’s happiness and energy decrease over time, and they prefer some foods and activities over others. BitBuddy also displays the current weather at their pet’s “location” (with the location coming from the user’s IP address and the weather coming from OpenWeatherMap’s API). With BitBuddy, users can create their own one-of-a-kind pet!
+BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. Users start by generating random pets until they find one they want to adopt. They can then customize their pet by using Craiyon, an AI image generator based on DALL-E, to generate a custom image for their pet. After adopting their new friend, users can feed and play with them. Just like a real pet, their pet’s happiness and energy decrease over time, and they prefer some foods and activities over others. BitBuddy also displays the current weather at their pet’s “location” (with the location coming from the user’s IP address and the weather coming from OpenWeatherMap’s API).
+
+With BitBuddy, anyone can create their own one-of-a-kind pet!
 
 *Log in page*  
 <img src="https://user-images.githubusercontent.com/96971685/196335876-67654d1d-ba9f-424b-bbbe-f7ea72a03d03.png" alt="BitBuddy log in page" width="60%"/>
@@ -46,6 +49,8 @@ APIs:
 - [OpenWeatherMap API](https://openweathermap.org/api)
 - [IP API](https://ip-api.com/)
 - [Craiyon API](https://github.com/FireHead90544/craiyon.py)
+
+Pixel art made by Hanâ Zait
 
 
 ## Features
@@ -111,3 +116,22 @@ $ python3 server.py
 - ***Loading egg/pet***: Display loading egg/pet for users with pets from existing species too (would create a small delay)
 - ***User-to-user interaction***: Give each pet a public profile, so users could share their pet links with one another and see each other’s pets. I could also include a way for user’s to interact with each other’s pets (e.g. feed or play with them, have a message board for users to leave messages).
 - ***Sharing image of pet***: Allow user to “take a picture” (screenshot) of their pet that they can then share (e.g. on Twitter, Instagram).
+- ***Save user preferences***: Save the user’s preference for Fahrenheit/Celsius to their account in the database, so it shows their preferred unit every time they log in (currently it’s not stored anywhere, so it always initially shows F)
+- ***Expand pet attributes***:
+  - Add to the list of pet attributes (music genres, foods, activities, etc.) and by extension, increase the options for possible user interactions
+  - Test and add additional keywords to use with Craiyon
+- ***Consequences for neglecting pet***: Add consequences if pet's stats reach zero (e.g. pet dies)
+
+
+## Known Bugs
+- ***Pet typing response***: If user clicks an interaction button too soon after the previous interaction, the pet’s response text overlaps itself and looks like gibberish, since the previous text finishes concurrent with the new text starting
+- ***Loading buttons***: Only some buttons show a loading indication after being clicked
+- ***Responsiveness***: The app is responsive and mostly works on mobile devices, but there are some glitches (e.g. species toggle button displays incorrectly). I would fix this with further testing and improving the mobile layout of the app.
+- ***Accessibility***: While I tried to make my app as accessible as I could, given my limited knowledge of accessibility in web design, I need to do further testing and do more research to see what I missed
+- ***Pet stat storage***: Every time stats update, that is saved in in local storage. The stats get sent to the backend (to update the database) when the user logs out. This poses some issues, so I would need to re-assess this process. These issues include:
+  - User may not have local storage enabled, preventing stats from being saved
+  - Can easily lose data (e.g. if someone is using an incognito browser and doesn't log out of the app)
+  - Security vulnerabilities
+- ***Security***: The app currently has some known vulnerabilities. Solutions include:
+  - Implementing limitations on what words user can use for their username and pet
+  - Adding more checks on the backend to ensure data from frontend is valid
