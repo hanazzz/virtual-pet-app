@@ -1,5 +1,5 @@
 // Pet's energy and happiness stats
-function Stat({ statName, statInteraction, stat, setStat }) {
+function Stat({ statName, stat, setStat }) {
   // eslint-disable-next-line prefer-const
   let intervalID = null;
   // Add stat data to local storage or update if already present. Updates whenever stat changes.
@@ -20,7 +20,7 @@ function Stat({ statName, statInteraction, stat, setStat }) {
   // Use setInterval() on render to call decreaseStat() every n milliseconds
   // Need to clearInterval on return (component unmounting) to avoid multiple intervals
   React.useEffect(() => {
-    intervalID = setInterval(decreaseStat, 10000);
+    intervalID = setInterval(decreaseStat, (20 * 1000));
     return () => {
       clearInterval(intervalID);
     };
@@ -37,7 +37,6 @@ function Stat({ statName, statInteraction, stat, setStat }) {
 
 Stat.propTypes = {
   statName: PropTypes.string.isRequired,
-  statInteraction: PropTypes.string.isRequired,
   stat: PropTypes.number.isRequired,
   setStat: PropTypes.func.isRequired,
 };
