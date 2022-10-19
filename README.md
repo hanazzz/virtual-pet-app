@@ -6,12 +6,12 @@ Demo: [Watch Hackbright Demo Day video](https://youtu.be/Zq7ozBKdLWI)
 
 
 ## Table of Contents
-- [Project Description](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#project-description)
-- [Tech Stack](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#tech-stack)
-- [Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#features)
-- [Installation](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#installation)
-- [Possible Future Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#possible-future-features)
-- [Known Bugs](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#known-bugs)
+- [Project Description](https://github.com/hanazzz/virtual-pet-app#project-description)
+- [Tech Stack](https://github.com/hanazzz/virtual-pet-app#tech-stack)
+- [Features](https://github.com/hanazzz/virtual-pet-app#features)
+- [Possible Future Features](https://github.com/hanazzz/virtual-pet-app#possible-future-features)
+- [Known Bugs](https://github.com/hanazzz/virtual-pet-app#known-bugs)
+- [Installation](https://github.com/hanazzz/virtual-pet-app#installation)
 
 
 ## Project Description
@@ -71,39 +71,6 @@ Pixel art made by Hanâ Zait
   - The response includes an impact on the relevant stat level (going up or down) and a "verbal" response (e.g. "Wow, that was so much fun!" or "Yuck, I didn't like that").
 
 
-## Installation
-To run BitBuddy locally on your computer:
-1. **Clone repository** to your local computer
-2. **Get an API key** for OpenWeatherMap to use their API. Sign up for free [here](https://openweathermap.org/api/).
-3. **Store your OWM API key and create a key for the Flask app.** Create a file called secrets.sh in the virtual-pet-app directory. Add the code below to the file and replace the text in the quotation marks as described.
-```
-export FLASK_APP_KEY="ENTER_ANYTHING_HERE"
-export OWM_API_KEY="YOUR_API_KEY_HERE"
-```
-4. **Read the key variables** into your shell
-```
-$ source secrets.sh
-```
-5. Create and activate a **virtual environment**
-```
-$ virtualenv env
-$ source env/bin/activate
-```
-6. Install all **dependencies**
-```
-$ pip3 install -r requirements.txt
-```
-7. Create the **database**
-```
-$ python3 seed_database.py
-```
-8. Start up the **Flask server**
-```
-$ python3 server.py
-```
-9. **Go to `localhost:5000` in your browser and have fun with BitBuddy!**
-
-
 ## Possible Future Features
 - ***Custom pet species image selection***:
   - Craiyon generates 9 images, but due to time constraints I designed it so that the image “selection” happens server-side (wrote an algorithm that randomly selects 1 of the 9 images).
@@ -135,3 +102,36 @@ $ python3 server.py
 - ***Security***: The app currently has some known vulnerabilities. Solutions include:
   - Implementing limitations on what words user can use for their username and pet
   - Adding more checks on the backend to ensure data from frontend is valid
+
+
+## Installation
+To run BitBuddy locally on your computer:
+1. **Clone repository** to your local computer
+2. **Get an API key** for OpenWeatherMap to use their API. Sign up for free [here](https://openweathermap.org/api/).
+3. **Store your OWM API key and create a key for the Flask app.** Create a file called secrets.sh in the virtual-pet-app directory. Add the code below to the file and replace the text in the quotation marks as described.
+```
+export FLASK_APP_KEY="ENTER_ANYTHING_HERE"
+export OWM_API_KEY="YOUR_API_KEY_HERE"
+```
+4. **Read the key variables** into your shell
+```
+$ source secrets.sh
+```
+5. Create and activate a **virtual environment**
+```
+$ virtualenv env
+$ source env/bin/activate
+```
+6. Install all **dependencies**
+```
+$ pip3 install -r requirements.txt
+```
+7. Create the **database**
+```
+$ python3 seed_database.py
+```
+8. Start up the **Flask server**
+```
+$ python3 server.py
+```
+9. **Go to `localhost:5000` in your browser and have fun with BitBuddy!**
