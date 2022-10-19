@@ -16,7 +16,7 @@ function PetGenerator({ addAlert }) {
     : <PotentialPet newPetData={newPetData} setNewPetData={setNewPetData} addAlert={addAlert} />;
 
   return (
-    <div id="pet-generator" className="lg:grid lg:grid-cols-2">
+    <div id="pet-generator" className="lg:grid lg:grid-cols-2 lg:gap-x-4">
       <Heading1 addlClasses="lg:col-span-2">[Adopt a Pet]</Heading1>
       <div className="leading-5 pt-4 lg:col-span-2">
         <p>Time to adopt a pet to call your own! Here's what you need to do:</p>
