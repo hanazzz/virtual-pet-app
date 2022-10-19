@@ -10,7 +10,7 @@ Demo video: *Coming soon*
 - [Possible Future Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#possible-future-features)
 
 ## Project Description
-BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. Users start by generating random pets until they find one they want to adopt. They can then customize their pet by using Craiyon, an AI image generator based on DALL-E, to generate a custom image for their pet. After adopting their new friend, users can play with and feed them. Just like a real pet, their pet’s happiness and energy decrease over time, and they prefer some foods and activities over others. BitBuddy also displays the current weather at their pet’s “location” (with the location coming from the user’s IP address and the weather coming from OpenWeatherMap’s API). 
+BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. Users start by generating random pets until they find one they want to adopt. They can then customize their pet by using Craiyon, an AI image generator based on DALL-E, to generate a custom image for their pet. After adopting their new friend, users can feed and play with them. Just like a real pet, their pet’s happiness and energy decrease over time, and they prefer some foods and activities over others. BitBuddy also displays the current weather at their pet’s “location” (with the location coming from the user’s IP address and the weather coming from OpenWeatherMap’s API). With BitBuddy, users can create their own one-of-a-kind pet!
 
 ## Tech Stack
 - Python
@@ -51,7 +51,7 @@ APIs:
 To run BitBuddy locally on your computer:
 1. **Clone repository** to your local computer
 2. **Get an API key** for OpenWeatherMap to use their API. Sign up for free [here](https://openweathermap.org/api/).
-3. **Store your OWM API key and create a key for the Flask app.** Create a file called secrets.sh in the app directory. Add the code below and replace the text in the quotation marks as described.
+3. **Store your OWM API key and create a key for the Flask app.** Create a file called secrets.sh in the virtual-pet-app directory. Add the code below to the file and replace the text in the quotation marks as described.
 ```
 export FLASK_APP_KEY="ENTER_ANYTHING_HERE"
 export OWM_API_KEY="YOUR_API_KEY_HERE"
