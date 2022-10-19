@@ -1,6 +1,9 @@
 # BitBuddy: A virtual pet web app
+![BitBuddy header](https://user-images.githubusercontent.com/96971685/196337419-431e0df8-c5ee-4bd9-9831-19609d7922f4.png)
+
 Live link: *Coming soon*  
 Demo video: *Coming soon*
+
 
 ## Table of Contents
 - [Project Description](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#project-description)
@@ -9,8 +12,22 @@ Demo video: *Coming soon*
 - [Installation](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#installation)
 - [Possible Future Features](https://github.com/hanazzz/virtual-pet-app/edit/main/README.md#possible-future-features)
 
+
 ## Project Description
 BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. Users start by generating random pets until they find one they want to adopt. They can then customize their pet by using Craiyon, an AI image generator based on DALL-E, to generate a custom image for their pet. After adopting their new friend, users can feed and play with them. Just like a real pet, their pet’s happiness and energy decrease over time, and they prefer some foods and activities over others. BitBuddy also displays the current weather at their pet’s “location” (with the location coming from the user’s IP address and the weather coming from OpenWeatherMap’s API). With BitBuddy, users can create their own one-of-a-kind pet!
+
+*Log in page*  
+<img src="https://user-images.githubusercontent.com/96971685/196335876-67654d1d-ba9f-424b-bbbe-f7ea72a03d03.png" alt="BitBuddy log in page" width="60%"/>
+
+*Generating a pet from a custom species*  
+<img src="https://user-images.githubusercontent.com/96971685/196335888-267b7c10-0c40-44b1-a593-837501bdd4f3.png" alt="Generating a pet with a custom species" width="60%"/>
+
+*Viewing current pet while awaiting custom pet image from Craiyon*  
+<img src="https://user-images.githubusercontent.com/96971685/196335902-cc723245-abb9-400d-ab76-7bd856c922a9.png" alt="Current pet display with egg as pet image" width="60%"/>
+
+*Viewing current pet after feeding them their favorite food*
+<img src="https://user-images.githubusercontent.com/96971685/196335916-dd4f1842-6d2a-4c83-826a-03147acf02a9.png" alt="Current pet display with pet image from Craiyon and pet response to being fed: 'Hm, grilled corn? Mmm, that was the best thing I've ever had!'" width="60%"/>
+
 
 ## Tech Stack
 - Python
@@ -30,6 +47,7 @@ APIs:
 - [IP API](https://ip-api.com/)
 - [Craiyon API](https://github.com/FireHead90544/craiyon.py)
 
+
 ## Features
 - Make an account, log in, log out
 - Generate a random pet
@@ -46,6 +64,7 @@ APIs:
 - Feed and play with pet, impacting the pet's energy and happiness, respectively.
   - Pet response to interactions is based on pet's preferences (e.g. favorite/least favorite food)
   - The response includes an impact on the relevant stat level (going up or down) and a "verbal" response (e.g. "Wow, that was so much fun!" or "Yuck, I didn't like that").
+
 
 ## Installation
 To run BitBuddy locally on your computer:
@@ -77,7 +96,8 @@ $ python3 seed_database.py
 ```
 $ python3 server.py
 ```
-9. **Go to localhost:5000 in your browser and have fun with BitBuddy!**
+9. **Go to `localhost:5000` in your browser and have fun with BitBuddy!**
+
 
 ## Possible Future Features
 - ***Custom pet species image selection***:
