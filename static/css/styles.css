@@ -23,6 +23,11 @@ input[type="radio"]:not(:checked) {
     box-shadow: inset 0 2px 4px 0 rgb(114 114 114 / 51%);
 }
 
+#about-modal p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
 /* CSS HSL */
 /* --cambridge-blue: hsla(151, 22%, 65%, 1); */
 /* --corn: hsla(54, 97%, 65%, 1); */

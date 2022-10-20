@@ -49,6 +49,7 @@
         "ModalBox": "readonly",
         "ModalTitle": "readonly",
         "ModalFooter": "readonly",
+        "About": "readonly",
         "AttributesModal": "readonly",
         "Interaction": "readonly",
         "Feed": "readonly",

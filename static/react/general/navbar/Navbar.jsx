@@ -1,18 +1,18 @@
 function Navbar({ username, tempInF, setTempInF, addAlert }) {
   const navbarUserInfo = !username ? null : (
   // If user is logged in, displaying following in navbar
-    <div id="navbar-user-info" className="navbar-end text-sm">
-      <div className="px-4">
-        {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+    <>
+      {/* <div className="px-4">
+        eslint-disable-next-line react/jsx-one-expression-per-line
         <p>Logged in as {username}</p>
-      </div>
+      </div> */}
 
       <Settings tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
       <div>
         <Logout addAlert={addAlert} />
       </div>
-    </div>
+    </>
   );
 
   return (
@@ -21,7 +21,11 @@ function Navbar({ username, tempInF, setTempInF, addAlert }) {
         <p className="normal-case text-xl">BitBuddy</p>
       </div>
 
-      {navbarUserInfo}
+      <div className="navbar-end text-sm">
+        <About />
+
+        {navbarUserInfo}
+      </div>
     </nav>
   );
 }
