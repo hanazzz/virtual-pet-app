@@ -49,7 +49,7 @@ function VirtualPetApp() {
 
       <Navbar username={username} tempInF={tempInF} setTempInF={setTempInF} addAlert={addAlert} />
 
-      <main className="px-10 py-6 h-fit">
+      <main className="px-10 py-6 min-h-screen max-h-fit">
         {appContent}
       </main>
 
