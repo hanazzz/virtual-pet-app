@@ -11,7 +11,20 @@ function About() {
         <ModalTitle>ABOUT</ModalTitle>
 
         <Heading3>What is BitBuddy?</Heading3>
-        <p className="pb-8">BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. It was created by Hanâ Zait as their capstone project for the Hackbright Software Engineering Bootcamp. </p>
+        <p className="pb-4">BitBuddy is a virtual pet app inspired by digital pet games from the early/mid 2000s, but with a modern twist: AI. It was created by Hanâ Zait as their capstone project for the Hackbright Software Engineering Bootcamp.</p>
+        <p className="pb-8">
+          You can learn more about BitBuddy, including the tech stack used, on
+          {' '}
+          <a
+            href="https://github.com/hanazzz/virtual-pet-app"
+            className="link hover:bg-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          .
+        </p>
 
         <Heading3>Who is Hanâ?</Heading3>
         <p className="pb-4">Hanâ is a software engineer based in the Bay Area. BitBuddy is a nod to Hanâ's first exposure to tech: as an avid Neopets player growing up, they loved to tinker with the HTML on their profile.</p>
@@ -36,8 +49,8 @@ function About() {
             rel="noopener noreferrer"
           >
             LinkedIn
-            {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-          </a>.
+          </a>
+          .
         </p>
         <ModalFooter>
           <ModalBtn modalID="about-modal">
