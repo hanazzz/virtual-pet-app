@@ -27,7 +27,7 @@ function Stat({ statName, stat, setStat }) {
   });
 
   return (
-    <Card id={statName} color="accent" addlClasses="text-center card-compact gap-0 my-6 md:my-0">
+    <Card id={statName} color="accent" addlClasses="text-center card-compact gap-0 mb-4 md:my-0">
       <div className="font-lcd text-xl">{statName}</div>
 
       <StatDisplay filledStat={stat} emptyStat={5 - stat} statName={statName} />
