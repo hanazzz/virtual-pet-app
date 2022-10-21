@@ -6,7 +6,7 @@ function AttributesModal() {
     <>
       <ModalBtn
         modalID={modalID}
-        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-12 my-4 md:my-0"
+        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-6 md:p-12 my-4 md:my-0"
         dataTip="ATTRIBUTES"
       >
         {/* eslint-disable-next-line react/jsx-one-expression-per-line */}

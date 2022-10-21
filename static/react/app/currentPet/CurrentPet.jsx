@@ -54,7 +54,7 @@ function CurrentPet({ tempInF }) {
         </div>
 
         {/* Interactions and attributes */}
-        <div id="interactions" className="md:col-span-2 my-4 flex flex-col items-center justify-evenly">
+        <div id="interactions" className="md:col-span-2 my-4 flex flex-row md:flex-col items-center justify-between md:justify-evenly">
           <Interaction setStat={setEnergy} stat={energy} setMood={setMood} interactionText="FEED PET" interactionType="feed" />
 
           <Interaction setStat={setHappiness} stat={happiness} setMood={setMood} interactionText="PLAY WITH PET" interactionType="play" />

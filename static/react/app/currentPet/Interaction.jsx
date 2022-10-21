@@ -81,7 +81,7 @@ function Interaction({ setStat, stat, setMood, interactionText, interactionType 
       <ModalBtn
         modalID={modalID}
         modalBtnCallback={handleInteraction}
-        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-12 my-4 md:my-0"
+        addlClasses="btn-lg btn-primary tooltip tooltip-primary content-center p-6 md:p-12 my-4 md:my-0"
         dataTip={interactionText}
       >
         <i className={`fa-solid fa-${interactionIcon} text-4xl pr-0`} title={interactionText} />
