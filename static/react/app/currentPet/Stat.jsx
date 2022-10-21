@@ -20,7 +20,7 @@ function Stat({ statName, stat, setStat }) {
   // Use setInterval() on render to call decreaseStat() every n milliseconds
   // Need to clearInterval on return (component unmounting) to avoid multiple intervals
   React.useEffect(() => {
-    intervalID = setInterval(decreaseStat, (20 * 1000));
+    intervalID = setInterval(decreaseStat, (10 * 1000));
     return () => {
       clearInterval(intervalID);
     };
