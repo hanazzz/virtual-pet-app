@@ -5,7 +5,7 @@ function About() {
   return (
 
     <>
-      <ModalBtn modalID="about-modal" addlClasses="btn-ghost px-6"><i className="fa-solid fa-rainbow" title="About" /></ModalBtn>
+      <ModalBtn modalID="about-modal" addlClasses="btn-ghost w-16"><i className="fa-solid fa-rainbow" title="About" /></ModalBtn>
 
       <ModalBox modalID="about-modal">
         <ModalTitle>ABOUT</ModalTitle>
@@ -20,7 +20,7 @@ function About() {
           {' '}
           <a
             href="https://github.com/hanazzz/"
-            className="link link-accent"
+            className="link hover:bg-accent"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -31,11 +31,12 @@ function About() {
           {' '}
           <a
             href="https://www.linkedin.com/in/hanazait/"
-            className="link link-accent"
+            className="link hover:bg-accent"
             target="_blank"
             rel="noopener noreferrer"
           >
             LinkedIn
+            {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
           </a>.
         </p>
         <ModalFooter>
