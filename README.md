@@ -1,8 +1,8 @@
 # BitBuddy: A virtual pet web app
 ![BitBuddy header](https://user-images.githubusercontent.com/96971685/196337419-431e0df8-c5ee-4bd9-9831-19609d7922f4.png)
 
-Live link: [Try out BitBuddy](http://34.218.189.55/)  
-Demo: [Watch Hackbright Demo Day video](https://youtu.be/Zq7ozBKdLWI)
+Live link: [Try out BitBuddy](http://bitbuddy.hanazait.com/)  
+Demo: [Watch Hackbright Demo Day video](https://youtu.be/aJK0rel3F_0)
 
 
 ## Table of Contents
