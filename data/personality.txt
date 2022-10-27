@@ -5,3 +5,10 @@ shy
 bold
 mellow
 poised
+snarky
+witty
+mischievous
+outgoing
+charismatic
+short-tempered
+thoughtful

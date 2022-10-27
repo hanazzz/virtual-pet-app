@@ -1,3 +1,7 @@
 hot
 warm
 cold
+thunderstorms
+rain
+snow
+clear and sunny
