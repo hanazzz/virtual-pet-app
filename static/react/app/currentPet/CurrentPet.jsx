@@ -31,7 +31,7 @@ function CurrentPet({ tempInF }) {
       {/* Main pet information */}
       <div id="pet-main" className="grid grid-cols-1 md:grid-cols-7 mt-6 mb-4 md:my-12 md:gap-6">
         {/* Pet stats */}
-        <div id="stats" className="md:col-span-2 md:my-4 order-last md:order-first  flex flex-col justify-evenly items-center">
+        <div id="stats" className="md:col-span-2 md:my-4 order-last md:order-first flex flex-row justify-between md:flex-col md:justify-evenly items-center">
           <Stat statName="Energy" statInteraction="FEED PET" stat={energy} setStat={setEnergy} />
 
           <Stat statName="Happiness" statInteraction="PLAY WITH PET" stat={happiness} setStat={setHappiness} />
