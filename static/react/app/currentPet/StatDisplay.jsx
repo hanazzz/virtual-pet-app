@@ -6,11 +6,11 @@ function StatDisplay({ filledStat, emptyStat, statName }) {
   // Use .map() to create a new array with n square elements
   const filledStatSquares = [...Array(filledStat)].map((value, idx) => (
     // eslint-disable-next-line react/no-array-index-key
-    <i className={`fa-solid fa-${icon} fa-2x px-2 py-1`} key={idx} />
+    <i className={`fa-solid fa-${icon} text-xl md:text-3xl fa-fw py-0 md:py-1 md:mx-0.5`} key={idx} />
   ));
   const emptyStatSquares = [...Array(emptyStat)].map((value, idx) => (
     // eslint-disable-next-line react/no-array-index-key
-    <i className={`fa-solid fa-${icon} text-neutral-400 fa-2x px-2 py-1`} key={idx} />
+    <i className={`fa-solid fa-${icon} text-neutral-400 text-xl md:text-3xl fa-fw py-0 md:py-1 md:mx-0.5`} key={idx} />
   ));
 
   return (
