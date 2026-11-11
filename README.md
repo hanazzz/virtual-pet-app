@@ -1,8 +1,14 @@
 # BitBuddy: A virtual pet web app
 ![BitBuddy header](https://user-images.githubusercontent.com/96971685/196337419-431e0df8-c5ee-4bd9-9831-19609d7922f4.png)
 
-Live link: [Try out BitBuddy](http://bitbuddy.hanazait.com/)  
-Demo: [Watch Hackbright Demo Day video](https://youtu.be/aJK0rel3F_0)
+> [!IMPORTANT]
+> **Project Status: Archived / Unmaintained**  
+> This project was created as my capstone project for the Hackbright Academy Software Engineering Bootcamp in October 2022. Because it is no longer actively maintained, the live app may have broken formatting or features that no longer work as expected. The code is left here as-is for reference.
+>
+> **Note**: I used Craiyon to experiment with using an external API for the project, back when image generators first came out and were still a novelty. These days, I prefer to use art made by myself (like all the pixel art in this app!) or other humans.
+
+🚀 Live link: [Try out BitBuddy](http://bitbuddy.hanazait.com/)  
+📼 Demo video: [Watch Hackbright Demo Day video](https://youtu.be/aJK0rel3F_0)
 
 
 ## Table of Contents
